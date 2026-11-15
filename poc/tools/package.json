@@ -1,0 +1,26 @@
+{
+  "name": "calm-views-tools",
+  "version": "0.1.0",
+  "private": true,
+  "description": "CALM Views reference tools: validate, render, derive, gallery (stdlib only, no runtime dependencies). TypeScript port of the original Python POC; outputs are byte-identical.",
+  "type": "module",
+  "engines": {
+    "node": ">=18"
+  },
+  "bin": {
+    "calm-views-validate": "./dist/validate.js",
+    "calm-views-render": "./dist/render.js",
+    "calm-views-derive": "./dist/derive.js",
+    "calm-views-gallery": "./dist/gallery.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "validate": "node dist/validate.js",
+    "gallery": "node dist/gallery.js",
+    "test": "node --test dist/test/*.test.js"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.6",
+    "typescript": "^5.8.2"
+  }
+}
