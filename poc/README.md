@@ -14,8 +14,7 @@ Reference implementation in TypeScript, zero runtime dependencies, offline.
   one question each) + `kyc-screening-neighborhood` (derived, frozen
   snapshot + provenance, same schema) + `calm-3-flows` (flows-axis fixture).
 - `tools/` — `validate`, `render`, `derive`, `gallery` (TypeScript, stdlib
-  only; `npm install` pulls just the compiler). `mcp/` — workspace-side
-  MCP server over views + SQL (own package, own deps).
+  only; `npm install` pulls just the compiler).
 - `renders/` — generated outputs (scoped JSON + static SVG + Markdown per
   view, `gallery.html`). Committed as the reproducible record.
 

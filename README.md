@@ -29,8 +29,7 @@ node poc/tools/dist/derive.js poc/model/fluxnova-kyc-onboarding.architecture.jso
 node poc/tools/dist/gallery.js             # second consumer: poc/renders/gallery.html
 ```
 
-Requirements: Node 18+. Zero runtime dependencies for the core tools
-(except the MCP server, which vendors SQLite/WASM), offline reproducible,
+Requirements: Node 18+. Zero runtime dependencies, offline reproducible,
 no network. TypeScript port of a Python prototype; renders are
 byte-identical between the two.
 
