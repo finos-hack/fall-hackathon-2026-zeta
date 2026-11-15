@@ -1,0 +1,16 @@
+# Provenance — vendored base model
+
+- File: `model/fluxnova-kyc-onboarding.architecture.json`
+- Upstream: `finos/architecture-as-code`,
+  `examples/fluxnova/fluxnova-kyc-onboarding.architecture.json`
+- Upstream commit: `0626cea3` (2026-11-10)
+- Seeded as Hub demo data upstream
+  (`calm-hub/mongo/init-mongo.js`, `calm-hub/nitrite/init-nitrite.sh`).
+- sha256: `54a5d6066987cd41ffbaf5e8fb1e666a03816074c56aa8219111396abd2a4541`
+- Status: 20 nodes, 28 relationships, 0 flows, no top-level `controls`
+  array (nodes may carry inline `controls`; `interfaces` present on some
+  services). Never modified by this POC — verify with
+  `shasum -a 256 fluxnova-kyc-onboarding.architecture.json` at any time.
+- `views/kyc-screening-effectiveness.decorator.json`: demo decorator authored
+  for the POC (not upstream), consumed by the audit view. Lives next to the
+  views: decorators resolve as sibling documents of the view.

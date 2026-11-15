@@ -1,0 +1,79 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/jaab-tech/calm-views-dev/blob/main/poc/view.json",
+  "title": "CALM View (POC draft — NOT a standard)",
+  "description": "Draft meta-schema for a CALM view: a named, audience-tagged selection over one architecture. Filter only — no presentation properties (layout, pins, colors, themes are out of scope by design; see finos/architecture-as-code#3552). POC for finos/architecture-as-code#2344. Provisional pending #3624 (reference format). suggested-formats is a non-normative hint only: any renderer may ignore it.",
+  "type": "object",
+  "properties": {
+    "$schema": {
+      "type": "string",
+      "description": "Reference to this meta-schema (convention; also lets content detectors route by keyword)."
+    },
+    "unique-id": {
+      "type": "string",
+      "description": "Identity of the view document."
+    },
+    "name": {
+      "type": "string",
+      "description": "Human-readable name."
+    },
+    "description": {
+      "type": "string",
+      "description": "What question this view answers, and for whom."
+    },
+    "audience": {
+      "type": "array",
+      "items": { "type": "string" },
+      "minItems": 1,
+      "description": "Stakeholder roles this view serves (cf. ISO 42010 stakeholder). Free strings; no LDAP mapping (future work)."
+    },
+    "suggested-formats": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Non-normative presentation hint for this view's readers (e.g. svg for managers, json for developers, markdown as compliance record). Renderers may ignore it; renderer-neutrality holds."
+    },
+    "derived-from": {
+      "type": "object",
+      "properties": {
+        "seeds": { "type": "array", "items": { "type": "string" } },
+        "depth": { "type": "integer" },
+        "generated": { "type": "string" },
+        "tool": { "type": "string" }
+      },
+      "description": "Provenance for derived views (frozen snapshot, re-derivable). Absent on hand-authored views. Carries no intent: intent lives in custom views only."
+    },
+    "for": {
+      "type": "string",
+      "description": "One-way reference to the architecture this view selects from. Provisional semantics: path relative to this file's directory (pending finos/architecture-as-code#3624)."
+    },
+    "filter": {
+      "type": "object",
+      "description": "Inclusion selectors. A node is in the view if its unique-id is listed in 'nodes' or its node-type is listed in 'node-types'. A relationship is in the view if listed in 'relationships', or if all its endpoints are in the view (closure). Flows and decorators resolve by unique-id against sibling documents.",
+      "properties": {
+        "nodes": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "node-types": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "relationships": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "flows": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "decorators": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "required": ["unique-id", "name", "for", "filter"],
+  "additionalProperties": false
+}
