@@ -1,0 +1,17 @@
+{
+  "unique-id": "kyc-screening-effectiveness",
+  "type": "control-evaluation",
+  "target-type": ["architecture"],
+  "target": ["fluxnova-kyc-onboarding.architecture.json"],
+  "applies-to": [
+    "kyc-identity-verification-svc",
+    "kyc-sanctions-screening-svc",
+    "kyc-risk-scoring-svc",
+    "kyc-kyc-database"
+  ],
+  "data": {
+    "evaluation": "sanctions and identity screening run synchronously in the onboarding path; screening outcomes persist in kyc-database for supervisory review",
+    "reviewed": "2026-10-30",
+    "outcome": "effective-with-observations"
+  }
+}

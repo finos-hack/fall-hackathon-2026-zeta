@@ -1,0 +1,47 @@
+{
+  "$schema": "../schema/view.json",
+  "unique-id": "kyc-platform-view",
+  "name": "KYC Platform View",
+  "description": "What does the platform team operate? The FluxNova platform container, the engine and its services, and the process database \u2014 no actors, no external providers.",
+  "audience": [
+    "platform-engineers",
+    "sre"
+  ],
+  "suggested-formats": [
+    "json",
+    "svg",
+    "markdown"
+  ],
+  "for": "../model/fluxnova-kyc-onboarding.architecture.json",
+  "filter": {
+    "node-types": [
+      "fluxnova:platform",
+      "fluxnova:engine",
+      "fluxnova:rest-api",
+      "fluxnova:cockpit",
+      "fluxnova:admin",
+      "fluxnova:tasklist",
+      "fluxnova:process-db",
+      "service",
+      "database"
+    ],
+    "relationships": [
+      "kyc-engine-to-process-db",
+      "kyc-rest-api-to-engine",
+      "kyc-cockpit-to-rest-api",
+      "kyc-admin-to-rest-api",
+      "kyc-tasklist-to-rest-api",
+      "kyc-engine-to-idv-svc",
+      "kyc-engine-to-sanctions-svc",
+      "kyc-engine-to-risk-scoring",
+      "kyc-engine-to-doc-mgmt",
+      "kyc-engine-to-notification",
+      "kyc-engine-to-crm-sync",
+      "kyc-idv-svc-to-kyc-db",
+      "kyc-sanctions-svc-to-kyc-db",
+      "kyc-risk-scoring-to-kyc-db",
+      "kyc-doc-mgmt-to-kyc-db",
+      "kyc-crm-sync-to-kyc-db"
+    ]
+  }
+}
