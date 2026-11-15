@@ -42,7 +42,7 @@ _Where can a compliance officer see control coverage? Human touchpoints, the scr
 - `kyc-sanctions-svc-to-watchlist` — connects (HTTPS): `kyc-sanctions-screening-svc`, `kyc-watchlist-provider`
 - `kyc-senior-compliance-to-tasklist` — interacts: `kyc-fluxnova-tasklist`, `kyc-senior-compliance`
 
-## Decorator: `kyc-screening-effectiveness` (control-evaluation)
+## Decorator: `kyc-screening-effectiveness` (screening-effectiveness)
 
 Applies to: `kyc-identity-verification-svc`, `kyc-sanctions-screening-svc`, `kyc-risk-scoring-svc`, `kyc-kyc-database`
 

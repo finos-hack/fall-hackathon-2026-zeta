@@ -665,8 +665,9 @@
   ],
   "decorators": [
     {
+      "$schema": "https://calm.finos.org/release/1.3/meta/decorators.json#/defs/decorator",
       "unique-id": "kyc-screening-effectiveness",
-      "type": "control-evaluation",
+      "type": "screening-effectiveness",
       "target-type": [
         "architecture"
       ],
