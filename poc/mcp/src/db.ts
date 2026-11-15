@@ -121,6 +121,7 @@ export function query(db: Database, sql: string, limit = 100): Row[] {
         return handled.slice(0, limit);
     }
     const stmt = db.prepare(sql);
+    const out: Row[] = [];
     try {
         while (stmt.step() && out.length < limit) out.push(stmt.getAsObject() as Row);
     } finally {

@@ -5,7 +5,8 @@
  * Byte-identical outputs are the contract: Python `json.dump(indent=2)`
  * escaping, `:.0f` banker's rounding and `xml.sax` escaping are replicated.
  */
-import { readFileSync, writeFileSync } from 'node:fs';
+import { readFileSync, writeFileSync, mkdirSync } from 'node:fs';
+import { dirname } from 'node:path';
 
 export type JsonRecord = Record<string, unknown>;
 
@@ -61,6 +62,7 @@ export function dumpJson(value: unknown): string {
 }
 
 export function writeText(path: string, text: string): void {
+    mkdirSync(dirname(path), { recursive: true });
     writeFileSync(path, text, 'utf8');
 }
 

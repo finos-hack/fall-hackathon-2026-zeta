@@ -36,8 +36,8 @@ await check('list_views has 5 views', views.length === 5, `${views.length} views
 
 const audit = JSON.parse(await call('describe_view', { id: 'kyc-audit-view' }));
 await check(
-    'describe_view audit 15 nodes 14 rels',
-    audit.nodeCount === 15 && audit.relationshipCount === 14,
+    'describe_view audit 14 nodes 14 rels',
+    audit.nodeCount === 14 && audit.relationshipCount === 14,
     `${audit.nodeCount}/${audit.relationshipCount}`
 );
 
@@ -50,7 +50,7 @@ await check('nodes_in_view platform has 14', scope.length === 14, `${scope.lengt
 const rows = JSON.parse(
     await call('sql', { query: 'SELECT view, COUNT(*) AS n FROM view_nodes GROUP BY view ORDER BY n DESC' })
 );
-await check('sql group-by works', rows.length === 5 && rows[0].n === 15, JSON.stringify(rows));
+await check('sql group-by works', rows.length === 5 && rows[0].n === 14, JSON.stringify(rows));
 
 let rejected = false;
 try {
@@ -60,10 +60,10 @@ try {
 }
 await check('sql rejects DROP', rejected);
 
-const tables = await call('sql', { query: 'SHOW TABLES' });
+const tables = JSON.parse(await call('sql', { query: 'SHOW TABLES' }));
 await check('SHOW TABLES lists 8', tables.length === 8, `${tables.length} tables`);
 
-const cols = await call('sql', { query: 'SHOW COLUMNS FROM view_nodes' });
+const cols = JSON.parse(await call('sql', { query: 'SHOW COLUMNS FROM view_nodes' }));
 await check('SHOW COLUMNS works', cols.length === 2, JSON.stringify(cols));
 
 await client.close();

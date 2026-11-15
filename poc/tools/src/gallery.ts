@@ -21,15 +21,16 @@ export function main(): void {
         }
     }
     const rendersDir = normalize(out);
+    const inDir = join(ROOT, 'renders');
     const cards: string[] = [];
-    const scopedFiles = readdirSync(rendersDir)
+    const scopedFiles = readdirSync(inDir)
         .filter((f) => f.endsWith('-scoped.json'))
         .sort()
-        .map((f) => join(rendersDir, f));
+        .map((f) => join(inDir, f));
     for (const sp of scopedFiles) {
         const scoped = readJson(sp) as JsonRecord;
         const vid = scoped['view'] as string;
-        const svgPath = join(rendersDir, vid + '.svg');
+        const svgPath = join(inDir, vid + '.svg');
         let svg: string;
         try {
             svg = readFileSync(svgPath, 'utf8');
