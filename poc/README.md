@@ -30,6 +30,6 @@ node tools/dist/derive.js model/fluxnova-kyc-onboarding.architecture.json \
 node tools/dist/gallery.js                 # renders/gallery.html
 ```
 
-Green 2026-11-14: 5/5 validate OK (14/22, 10/9, 15/14, 4/3, 10/10),
+Green 2026-11-15: 5/5 validate OK (14/22, 10/9, 14/14, 4/3, 10/10),
 4/4 SVG XML ok, model sha unchanged. Regenerating wipes and reproduces
 the committed outputs byte-identically.

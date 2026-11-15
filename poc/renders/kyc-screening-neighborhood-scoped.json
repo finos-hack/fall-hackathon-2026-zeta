@@ -1,0 +1,231 @@
+{
+  "view": "kyc-screening-neighborhood",
+  "for": "../model/fluxnova-kyc-onboarding.architecture.json",
+  "nodes": [
+    {
+      "unique-id": "kyc-fluxnova-engine",
+      "node-type": "fluxnova:engine",
+      "name": "FluxNova BPM Engine",
+      "description": "Core BPMN 2.0 / DMN 1.3 engine executing the Client Onboarding KYC process (Process_ClientOnboardingKYC) with boundary timers, escalation gateways, and DMN risk scoring",
+      "controls": {
+        "audit-logging": {
+          "description": "All process execution events, variable changes, task assignments, and decision outcomes are recorded in an immutable audit log for regulatory compliance",
+          "requirements": [
+            {
+              "requirement-url": "https://calm.finos.org/release/1.2/meta/control-requirement.json",
+              "config": {
+                "control-id": "fluxnova-audit-logging",
+                "name": "Audit Logging",
+                "description": "All process execution events, variable changes, task assignments, and decision outcomes are recorded in an immutable audit log for regulatory compliance",
+                "reference-url": "https://docs.fluxnova.finos.org/docs/reference/audit-log"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "unique-id": "kyc-sanctions-screening-svc",
+      "node-type": "service",
+      "name": "Sanctions & PEP Screening Service",
+      "description": "External task worker querying OFAC, UN, EU sanctions lists and PEP databases for compliance checks (topic: sanctions-screen)",
+      "interfaces": [
+        {
+          "unique-id": "kyc-sanctions-api",
+          "type": "url",
+          "value": "https://kyc-services.internal/api/v1/sanctions"
+        }
+      ],
+      "controls": {
+        "audit-logging": {
+          "description": "All sanctions and PEP screening queries, match results, and investigation outcomes are logged for regulatory compliance",
+          "requirements": [
+            {
+              "requirement-url": "https://calm.finos.org/release/1.2/meta/control-requirement.json",
+              "config": {
+                "control-id": "fluxnova-audit-logging",
+                "name": "Audit Logging",
+                "description": "All sanctions and PEP screening queries, match results, and investigation outcomes are logged for regulatory compliance",
+                "reference-url": "https://docs.fluxnova.finos.org/docs/reference/audit-log"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "unique-id": "kyc-kyc-database",
+      "node-type": "database",
+      "name": "KYC Database",
+      "description": "Dedicated database storing customer PII, verification results, sanctions screening outcomes, risk assessments, and compliance decisions",
+      "interfaces": [
+        {
+          "unique-id": "kyc-kyc-db-port",
+          "type": "host-port",
+          "value": "kyc-db:5432"
+        }
+      ],
+      "data-classification": "PII",
+      "controls": {
+        "data-classification": {
+          "description": "Contains personally identifiable information including customer identity data, verification results, and compliance decisions \u2014 classified as PII",
+          "requirements": [
+            {
+              "requirement-url": "https://calm.finos.org/release/1.2/meta/control-requirement.json",
+              "config": {
+                "control-id": "fluxnova-data-classification",
+                "name": "Data Classification",
+                "description": "Contains personally identifiable information including customer identity data, verification results, and compliance decisions \u2014 classified as PII",
+                "reference-url": "https://calm.finos.org/core-concepts/data-classification"
+              }
+            }
+          ]
+        },
+        "encryption-at-rest": {
+          "description": "All PII data is encrypted at rest using AES-256 with key management via HSM",
+          "requirements": [
+            {
+              "requirement-url": "https://calm.finos.org/release/1.2/meta/control-requirement.json",
+              "config": {
+                "control-id": "fluxnova-encryption-at-rest",
+                "name": "Encryption At Rest",
+                "description": "All PII data is encrypted at rest using AES-256 with key management via HSM",
+                "reference-url": "https://calm.finos.org/core-concepts/controls"
+              }
+            }
+          ]
+        },
+        "access-control": {
+          "description": "Database access restricted to authorized KYC services only via role-based access control and network segmentation",
+          "requirements": [
+            {
+              "requirement-url": "https://calm.finos.org/release/1.2/meta/control-requirement.json",
+              "config": {
+                "control-id": "fluxnova-access-control",
+                "name": "Access Control",
+                "description": "Database access restricted to authorized KYC services only via role-based access control and network segmentation",
+                "reference-url": "https://calm.finos.org/core-concepts/controls"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "unique-id": "kyc-watchlist-provider",
+      "node-type": "system",
+      "name": "Watchlist Data Provider",
+      "description": "External system providing OFAC, UN, EU sanctions lists and PEP databases for compliance screening"
+    }
+  ],
+  "relationships": [
+    {
+      "unique-id": "kyc-engine-to-sanctions-svc",
+      "relationship-type": {
+        "connects": {
+          "source": {
+            "node": "kyc-fluxnova-engine"
+          },
+          "destination": {
+            "node": "kyc-sanctions-screening-svc"
+          }
+        }
+      },
+      "protocol": "HTTPS",
+      "description": "Engine dispatches sanctions and PEP screening external tasks (ServiceTask_SanctionsPEP) after document verification passes",
+      "controls": {
+        "audit-logging": {
+          "description": "All screening task dispatches, match results, and routing decisions are audit-logged",
+          "requirements": [
+            {
+              "requirement-url": "https://calm.finos.org/release/1.2/meta/control-requirement.json",
+              "config": {
+                "control-id": "fluxnova-audit-logging",
+                "name": "Audit Logging",
+                "description": "All screening task dispatches, match results, and routing decisions are audit-logged",
+                "reference-url": "https://docs.fluxnova.finos.org/docs/reference/audit-log"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "unique-id": "kyc-sanctions-svc-to-kyc-db",
+      "relationship-type": {
+        "connects": {
+          "source": {
+            "node": "kyc-sanctions-screening-svc"
+          },
+          "destination": {
+            "node": "kyc-kyc-database"
+          }
+        }
+      },
+      "protocol": "JDBC",
+      "description": "Persists sanctions screening results, PEP match data, and investigation outcomes",
+      "controls": {
+        "encryption-in-transit": {
+          "description": "Screening result transfers to database use TLS-encrypted JDBC",
+          "requirements": [
+            {
+              "requirement-url": "https://calm.finos.org/release/1.2/meta/control-requirement.json",
+              "config": {
+                "control-id": "fluxnova-encryption-in-transit",
+                "name": "Encryption In Transit",
+                "description": "Screening result transfers to database use TLS-encrypted JDBC",
+                "reference-url": "https://calm.finos.org/core-concepts/controls"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "unique-id": "kyc-sanctions-svc-to-watchlist",
+      "relationship-type": {
+        "connects": {
+          "source": {
+            "node": "kyc-sanctions-screening-svc"
+          },
+          "destination": {
+            "node": "kyc-watchlist-provider"
+          }
+        }
+      },
+      "protocol": "HTTPS",
+      "description": "Queries OFAC, UN, EU sanctions lists and PEP databases for compliance screening",
+      "controls": {
+        "encryption-in-transit": {
+          "description": "External watchlist API calls use TLS 1.3 encryption for data protection",
+          "requirements": [
+            {
+              "requirement-url": "https://calm.finos.org/release/1.2/meta/control-requirement.json",
+              "config": {
+                "control-id": "fluxnova-encryption-in-transit",
+                "name": "Encryption In Transit",
+                "description": "External watchlist API calls use TLS 1.3 encryption for data protection",
+                "reference-url": "https://calm.finos.org/core-concepts/controls"
+              }
+            }
+          ]
+        },
+        "audit-logging": {
+          "description": "All sanctions screening queries and results are logged for regulatory compliance",
+          "requirements": [
+            {
+              "requirement-url": "https://calm.finos.org/release/1.2/meta/control-requirement.json",
+              "config": {
+                "control-id": "fluxnova-audit-logging",
+                "name": "Audit Logging",
+                "description": "All sanctions screening queries and results are logged for regulatory compliance",
+                "reference-url": "https://docs.fluxnova.finos.org/docs/reference/audit-log"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "decorators": []
+}
