@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://github.com/jaab-tech/calm-views-dev/blob/main/poc/view.json",
+  "$id": "https://github.com/finos-hack/fall-hackathon-2026-zeta/blob/main/poc/schema/view.json",
   "title": "CALM View (POC draft — NOT a standard)",
   "description": "Draft meta-schema for a CALM view: a named, audience-tagged selection over one architecture. Filter only — no presentation properties (layout, pins, colors, themes are out of scope by design; see finos/architecture-as-code#3552). POC for finos/architecture-as-code#2344. Provisional pending #3624 (reference format). suggested-formats is a non-normative hint only: any renderer may ignore it.",
   "type": "object",

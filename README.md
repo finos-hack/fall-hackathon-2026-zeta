@@ -3,7 +3,6 @@
 **Hackathon Track:** Track 3 Features
 
 **Team:** zeta — Andrés Antoniuk (solo)
-
 First-class, named views over a CALM architecture: scoped, audience-tagged
 lenses in sidecar `*.calm-view.json` documents, with zero presentation in the
 schema. Evidence for `finos/architecture-as-code#2344`.
@@ -20,16 +19,20 @@ scoped JSON (machine), static SVG (human diagram) and Markdown prose
 ## Usage example
 
 ```sh
-python3 tools/validate.py                 # all views must report OK
-python3 tools/render.py views/kyc-audit.calm-view.json
-python3 tools/derive.py model/fluxnova-kyc-onboarding.architecture.json \
+cd poc/tools && npm install && npm run build && cd ../..
+node poc/tools/dist/validate.js            # all views must report OK
+node poc/tools/dist/render.js poc/views/kyc-audit.calm-view.json
+node poc/tools/dist/derive.js poc/model/fluxnova-kyc-onboarding.architecture.json \
   kyc-sanctions-screening-svc --depth 1 \
   --id kyc-screening-neighborhood --name "Screening Neighborhood (derived)" \
   --audience risk-analysts
-python3 tools/gallery.py                  # second consumer: renders/gallery.html
+node poc/tools/dist/gallery.js             # second consumer: poc/renders/gallery.html
 ```
 
-Requirements: Python 3 plus `jsonschema`. Offline reproducible, no network.
+Requirements: Node 18+. Zero runtime dependencies for the core tools
+(except the MCP server, which vendors SQLite/WASM), offline reproducible,
+no network. TypeScript port of a Python prototype; renders are
+byte-identical between the two.
 
 ## Interactive demo (spike)
 
@@ -37,8 +40,8 @@ A spike of the consumption side lives on the `spike/view-selector` branch
 of `jaab-tech/architecture-as-code` (fork, no upstream PR): a toolbar
 dropdown in CALM Canvas lists the workspace `*.calm-view.json` sidecars
 selecting the open document and filters the canvas to the active view
-(listed ids plus relationship closure, same semantics as `validate.py`).
-Same filter, third renderer — the Python POC above stays the reference.
+(listed ids plus relationship closure, same semantics as `validate`).
+Same filter, third renderer — the TypeScript POC above stays the reference.
 
 ## Roadmap
 
