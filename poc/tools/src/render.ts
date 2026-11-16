@@ -79,7 +79,8 @@ export function renderSvg(
     view: JsonRecord,
     arch: CalmArchitecture,
     inNodes: Set<string>,
-    inRels: Set<string>
+    inRels: Set<string>,
+    lifted: Map<string, string[]>
 ): string {
     const nodes = new Map<string, JsonRecord>();
     for (const n of arch.nodes ?? []) {
@@ -89,15 +90,25 @@ export function renderSvg(
     const flowEdges: FlowEdge[] = [];
     const otherEdges: FlowEdge[] = [];
     const containers = new Map<string, Set<string>>();
+    const seenPairs = new Set<string>();
     for (const r of relList) {
+        const id = r['unique-id'] as string;
         const rt = (r['relationship-type'] as JsonRecord | undefined) ?? {};
+        const eps = lifted.get(id) ?? [];
         if ('connects' in rt) {
-            const c = rt['connects'] as { source: { node: string }; destination: { node: string } };
-            flowEdges.push([c.source.node, c.destination.node, r]);
+            if (eps.length >= 2 && eps[0] !== eps[1]) {
+                const key = `${eps[0]}>${eps[1]}`;
+                if (!seenPairs.has(key)) {
+                    seenPairs.add(key);
+                    flowEdges.push([eps[0] as string, eps[1] as string, r]);
+                }
+            }
         } else if ('interacts' in rt) {
             const i = rt['interacts'] as { actor: string; nodes?: string[] };
-            for (const m of i.nodes ?? []) {
-                if (inNodes.has(m)) otherEdges.push([i.actor, m, r]);
+            if (inNodes.has(i.actor)) {
+                for (const m of new Set(eps.filter((e) => e !== i.actor))) {
+                    if (inNodes.has(m)) otherEdges.push([i.actor, m, r]);
+                }
             }
         } else if ('composed-of' in rt) {
             const co = rt['composed-of'] as { container: string; nodes?: string[] };
@@ -182,18 +193,21 @@ export function renderSvg(
         const t = ((nodes.get(u) as JsonRecord)['node-type'] as string) ?? '?';
         const fill = t === 'actor' ? COLORS.actor_fill : t === 'database' ? COLORS.db_fill : COLORS.box_fill;
         const rx = t === 'actor' ? 28 : 8;
+        const drill = ((view['drill-down'] as Record<string, string> | undefined) ?? {})[u];
+        if (drill) P.push(`<a href="${drill}.svg">`);
         P.push(
             `<rect x="${pyFloat0(x)}" y="${pyFloat0(y)}" width="${BOX_W}" height="${BOX_H}" rx="${rx}" ` +
                 `fill="${fill}" stroke="${COLORS.box_stroke}" stroke-width="1.5"/>`
         );
         P.push(
             `<text x="${pyFloat0(x + BOX_W / 2)}" y="${pyFloat0(y + 25)}" font-size="12" text-anchor="middle" ` +
-                `fill="${COLORS.label}">${escXml(u.slice(0, 28))}</text>`
+                `fill="${COLORS.label}">${escXml(u.slice(0, 28))}${drill ? ' ↧' : ''}</text>`
         );
         P.push(
             `<text x="${pyFloat0(x + BOX_W / 2)}" y="${pyFloat0(y + 42)}" font-size="10" text-anchor="middle" ` +
                 `fill="${COLORS.edge}">${escXml(t.slice(0, 32))}</text>`
         );
+        if (drill) P.push('</a>');
     }
     P.push('</svg>');
     return P.join('\n') + '\n';
@@ -205,7 +219,8 @@ export function renderMarkdown(
     inNodes: Set<string>,
     inRels: Set<string>,
     excluded: Map<string, string[]>,
-    viewDir: string
+    viewDir: string,
+    lifted: Map<string, string[]>
 ): string {
     const nodes = new Map((arch.nodes ?? []).map((n) => [n['unique-id'] as string, n]));
     const rels = new Map((arch.relationships ?? []).map((r) => [r['unique-id'] as string, r]));
@@ -223,15 +238,17 @@ export function renderMarkdown(
         '| unique-id | type |',
         '|---|---|',
     ];
+    const drillMap = ((view['drill-down'] as Record<string, string> | undefined) ?? {});
     for (const u of [...inNodes].sort()) {
-        L.push(`| \`${u}\` | ${((nodes.get(u) as JsonRecord)['node-type'] as string) ?? '?'} |`);
+        const cell = drillMap[u] ? `[\`${u}\`](${drillMap[u]}.md)` : `\`${u}\``;
+        L.push(`| ${cell} | ${((nodes.get(u) as JsonRecord)['node-type'] as string) ?? '?'} |`);
     }
     L.push('', '## Relationships', '');
     for (const u of [...inRels].sort()) {
         const r = rels.get(u) as JsonRecord;
         const kind = Object.keys(((r['relationship-type'] as JsonRecord) ?? { '?': null }))[0];
         const proto = r['protocol'] ? ` (${r['protocol'] as string})` : '';
-        const eps = [...endpoints(r)].sort().map((e) => `\`${e}\``).join(', ');
+        const eps = [...(lifted.get(u) ?? [...endpoints(r)])].sort().map((e) => `\`${e}\``).join(', ');
         L.push(`- \`${u}\` — ${kind}${proto}: ${eps}`);
     }
     for (const d of ((view['filter'] as CalmFilter | undefined)?.decorators ?? []) as string[]) {
@@ -295,7 +312,7 @@ export function main(): void {
     const view = readJson(viewPath) as JsonRecord;
     const viewDir = dirname(normalize(viewPath));
     const arch = readJson(normalize(join(viewDir, view['for'] as string))) as CalmArchitecture;
-    const { inNodes, inRels, excluded } = resolveView(arch, (view['filter'] as CalmFilter | undefined) ?? {});
+    const { inNodes, inRels, excluded, liftedEndpoints } = resolveView(arch, (view['filter'] as CalmFilter | undefined) ?? {});
     const base = join(out, view['unique-id'] as string);
     const want = new Set(['all', format]);
     if (want.has('json') || want.has('all')) {
@@ -310,10 +327,10 @@ export function main(): void {
         writeText(base + '-scoped.json', dumpJson(scoped));
     }
     if (want.has('svg') || want.has('all')) {
-        writeText(base + '.svg', renderSvg(view, arch, inNodes, inRels));
+        writeText(base + '.svg', renderSvg(view, arch, inNodes, inRels, liftedEndpoints));
     }
     if (want.has('md') || want.has('all')) {
-        writeText(base + '.md', renderMarkdown(view, arch, inNodes, inRels, excluded, viewDir));
+        writeText(base + '.md', renderMarkdown(view, arch, inNodes, inRels, excluded, viewDir, liftedEndpoints));
     }
     console.log(
         `${view['unique-id']}: ${inNodes.size} nodes, ${inRels.size} relationships -> ${base}.{json,svg,md}`

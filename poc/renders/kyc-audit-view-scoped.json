@@ -3,6 +3,12 @@
   "for": "../model/fluxnova-kyc-onboarding.architecture.json",
   "nodes": [
     {
+      "unique-id": "kyc-fluxnova-platform",
+      "node-type": "fluxnova:platform",
+      "name": "FluxNova Platform",
+      "description": "Full FluxNova BPM platform deployment hosting the KYC onboarding process"
+    },
+    {
       "unique-id": "kyc-fluxnova-engine",
       "node-type": "fluxnova:engine",
       "name": "FluxNova BPM Engine",
@@ -292,6 +298,82 @@
     }
   ],
   "relationships": [
+    {
+      "unique-id": "kyc-engine-to-process-db",
+      "relationship-type": {
+        "connects": {
+          "source": {
+            "node": "kyc-fluxnova-engine"
+          },
+          "destination": {
+            "node": "kyc-fluxnova-process-db"
+          }
+        }
+      },
+      "protocol": "JDBC",
+      "description": "Engine persists KYC process state, history, decision audit data, and escalation records",
+      "controls": {
+        "encryption-in-transit": {
+          "description": "Database connection uses TLS-encrypted JDBC to protect process data and credentials in transit",
+          "requirements": [
+            {
+              "requirement-url": "https://calm.finos.org/release/1.2/meta/control-requirement.json",
+              "config": {
+                "control-id": "fluxnova-encryption-in-transit",
+                "name": "Encryption In Transit",
+                "description": "Database connection uses TLS-encrypted JDBC to protect process data and credentials in transit",
+                "reference-url": "https://docs.fluxnova.finos.org/docs/reference/security#database-encryption"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "unique-id": "kyc-rest-api-to-engine",
+      "relationship-type": {
+        "connects": {
+          "source": {
+            "node": "kyc-fluxnova-rest-api"
+          },
+          "destination": {
+            "node": "kyc-fluxnova-engine"
+          }
+        }
+      },
+      "protocol": "HTTP",
+      "description": "REST API delegates all requests to the embedded engine via internal Java API calls"
+    },
+    {
+      "unique-id": "kyc-cockpit-to-rest-api",
+      "relationship-type": {
+        "connects": {
+          "source": {
+            "node": "kyc-fluxnova-cockpit"
+          },
+          "destination": {
+            "node": "kyc-fluxnova-rest-api"
+          }
+        }
+      },
+      "protocol": "HTTPS",
+      "description": "Cockpit queries KYC process instances, SLA breach incidents, and escalation status"
+    },
+    {
+      "unique-id": "kyc-tasklist-to-rest-api",
+      "relationship-type": {
+        "connects": {
+          "source": {
+            "node": "kyc-fluxnova-tasklist"
+          },
+          "destination": {
+            "node": "kyc-fluxnova-rest-api"
+          }
+        }
+      },
+      "protocol": "HTTPS",
+      "description": "Tasklist enables compliance officers and ops staff to claim and complete KYC review tasks"
+    },
     {
       "unique-id": "kyc-customer-to-tasklist",
       "relationship-type": {
@@ -661,6 +743,42 @@
           ]
         }
       }
+    },
+    {
+      "unique-id": "kyc-platform-has-engine",
+      "relationship-type": {
+        "composed-of": {
+          "container": "kyc-fluxnova-platform",
+          "nodes": [
+            "kyc-fluxnova-engine"
+          ]
+        }
+      },
+      "description": "FluxNova platform contains the BPM engine"
+    },
+    {
+      "unique-id": "kyc-platform-has-cockpit",
+      "relationship-type": {
+        "composed-of": {
+          "container": "kyc-fluxnova-platform",
+          "nodes": [
+            "kyc-fluxnova-cockpit"
+          ]
+        }
+      },
+      "description": "FluxNova platform contains the Cockpit monitoring app"
+    },
+    {
+      "unique-id": "kyc-platform-has-tasklist",
+      "relationship-type": {
+        "composed-of": {
+          "container": "kyc-fluxnova-platform",
+          "nodes": [
+            "kyc-fluxnova-tasklist"
+          ]
+        }
+      },
+      "description": "FluxNova platform contains the Tasklist app"
     }
   ],
   "decorators": [

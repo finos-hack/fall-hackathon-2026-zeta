@@ -17,7 +17,7 @@ const POC = join(HERE, '..', '..', '..');
 describe('views conform to schema/view.json under real Ajv 2020-12', () => {
     const viewsDir = join(POC, 'views');
     const files = readdirSync(viewsDir).filter((x) => x.endsWith('.calm-view.json')).sort();
-    assert.equal(files.length, 5);
+    assert.equal(files.length, 6);
     for (const f of files) {
         it(`${f} validates`, () => {
             const ajv = new Ajv2020({ strict: true });
@@ -27,4 +27,12 @@ describe('views conform to schema/view.json under real Ajv 2020-12', () => {
             assert.equal(validate(view), true, JSON.stringify(validate.errors));
         });
     }
+    it('rejects a view missing unique-id (enforcement, not just acceptance)', () => {
+        const ajv = new Ajv2020({ strict: true });
+        const schema = JSON.parse(readFileSync(join(POC, 'schema', 'view.json'), 'utf8'));
+        const validate = ajv.compile(schema);
+        const broken = JSON.parse(readFileSync(join(viewsDir, files[0] as string), 'utf8')) as Record<string, unknown>;
+        delete broken['unique-id'];
+        assert.equal(validate(broken), false);
+    });
 });

@@ -95,8 +95,61 @@ export function endpoints(rel: JsonRecord): Set<string> {
 export interface ViewResolution {
     inNodes: Set<string>;
     inRels: Set<string>;
+    /** Relationship id to the endpoints it is drawn with (after lifting). */
+    liftedEndpoints: Map<string, string[]>;
     excluded: Map<string, string[]>;
     warnings: string[];
+}
+
+/** Child node to all its containers, transitively (composed-of / deployed-in). */
+export function containerAncestors(arch: CalmArchitecture): Map<string, Set<string>> {
+    const parents = new Map<string, Set<string>>();
+    const add = (child: string, parent: string) => {
+        if (child === parent) return;
+        if (!parents.has(child)) parents.set(child, new Set());
+        parents.get(child)?.add(parent);
+    };
+    for (const r of arch.relationships ?? []) {
+        const rt = ((r as JsonRecord)['relationship-type'] as JsonRecord | undefined) ?? {};
+        for (const key of ['composed-of', 'deployed-in'] as const) {
+            const c = rt[key] as { container?: string; nodes?: string[] } | undefined;
+            if (c?.container) {
+                for (const m of c.nodes ?? []) add(m, c.container);
+            }
+        }
+    }
+    const closure = new Map<string, Set<string>>();
+    const ancestorsOf = (n: string, seen: Set<string>): Set<string> => {
+        const out = new Set<string>();
+        for (const p of parents.get(n) ?? []) {
+            if (seen.has(p)) continue;
+            out.add(p);
+            for (const q of ancestorsOf(p, new Set([...seen, n]))) out.add(q);
+        }
+        return out;
+    };
+    for (const n of arch.nodes ?? []) {
+        const id = (n as JsonRecord)['unique-id'] as string;
+        if (id) closure.set(id, ancestorsOf(id, new Set()));
+    }
+    return closure;
+}
+
+/** Nearest visible node for an endpoint: itself, else the closest visible container (BFS up). */
+function liftEndpoint(e: string, inNodes: Set<string>, ancestors: Map<string, Set<string>>): string | null {
+    if (inNodes.has(e)) return e;
+    const seen = new Set([e]);
+    const queue = [e];
+    while (queue.length > 0) {
+        const cur = queue.shift() as string;
+        for (const p of ancestors.get(cur) ?? []) {
+            if (seen.has(p)) continue;
+            seen.add(p);
+            if (inNodes.has(p)) return p;
+            queue.push(p);
+        }
+    }
+    return null;
 }
 
 /** Apply the filter: listed ids plus relationship closure. Mirrors resolve_view. */
@@ -121,16 +174,37 @@ export function resolveView(arch: CalmArchitecture, filt: CalmFilter): ViewResol
         if (id) rels.set(id, r);
     }
     const inRels = new Set<string>();
+    const liftedEndpoints = new Map<string, string[]>();
     const excluded = new Map<string, string[]>();
+    const ancestors = containerAncestors(arch);
+    const liftAll = (id: string, r: JsonRecord): boolean => {
+        const eps = endpoints(r);
+        if (eps.size === 0) return false;
+        const lifted: string[] = [];
+        for (const e of eps) {
+            const l = liftEndpoint(e, inNodes, ancestors);
+            if (l === null) return false;
+            if (!lifted.includes(l)) lifted.push(l);
+        }
+        if (lifted.length <= 1) return false;
+        inRels.add(id);
+        liftedEndpoints.set(id, lifted);
+        return true;
+    };
     for (const u of filt.relationships ?? []) {
         if (!rels.has(u)) warnings.push(`relationship '${u}' not in architecture`);
-        else inRels.add(u);
+        else if (!liftAll(u, rels.get(u) as JsonRecord)) {
+            excluded.set(u, [...endpoints(rels.get(u) as JsonRecord)].filter((e) => !inNodes.has(e)).sort());
+        }
     }
     for (const [id, r] of rels) {
         if (inRels.has(id)) continue;
-        const eps = endpoints(r);
-        if (eps.size > 0 && [...eps].every((e) => inNodes.has(e))) inRels.add(id);
-        else if (eps.size > 0) excluded.set(id, [...eps].filter((e) => !inNodes.has(e)).sort());
+        if (!liftAll(id, r)) {
+            const eps = endpoints(r);
+            if (eps.size > 0) {
+                excluded.set(id, [...eps].filter((e) => !inNodes.has(e)).sort());
+            }
+        }
     }
-    return { inNodes, inRels, excluded, warnings };
+    return { inNodes, inRels, liftedEndpoints, excluded, warnings };
 }

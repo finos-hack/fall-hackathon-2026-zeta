@@ -23,12 +23,12 @@ const run = (script: string, args: string[]): { stdout: string; code: number } =
 };
 
 describe('end-to-end: validate -> render -> gallery are green and reproducible', () => {
-    it('validate exits 0 with 5 OK lines', () => {
+    it('validate exits 0 with 6 OK lines', () => {
         const { stdout, code } = run('validate.js', []);
         assert.equal(code, 0);
         const oks = stdout.split('\n').filter((l) => l.includes(': OK'));
-        assert.equal(oks.length, 5);
-        assert.match(oks.join('\n'), /kyc-audit\.calm-view\.json: OK — 14 nodes, 14 relationships/);
+        assert.equal(oks.length, 6);
+        assert.match(oks.join('\n'), /kyc-audit\.calm-view\.json: OK — 15 nodes, 21 relationships/);
     });
 
     it('render into a fresh temp dir reproduces the committed renders byte-for-byte', () => {
@@ -38,12 +38,13 @@ describe('end-to-end: validate -> render -> gallery are green and reproducible',
             'kyc-integration',
             'kyc-audit',
             'kyc-screening-neighborhood',
+            'kyc-platform-inside',
         ]) {
             const { code } = run('render.js', [join(POC, 'views', `${v}.calm-view.json`), '--out', tmp]);
             assert.equal(code, 0, v);
         }
         const committed = readdirSync(RENDERS).filter((x) => x !== 'gallery.html');
-        assert.ok(committed.length >= 12, `expected 12+ committed renders, got ${committed.length}`);
+        assert.ok(committed.length >= 15, `expected 15+ committed renders, got ${committed.length}`);
         for (const f of committed) {
             const a = readFileSync(join(RENDERS, f));
             const b = readFileSync(join(tmp, f));
@@ -51,13 +52,13 @@ describe('end-to-end: validate -> render -> gallery are green and reproducible',
         }
     });
 
-    it('gallery embeds the 4 views', () => {
+    it('gallery embeds the 5 views', () => {
         const tmp = mkdtempSync(join(tmpdir(), 'calm-gallery-'));
         const { stdout, code } = run('gallery.js', ['--out', tmp]);
         assert.equal(code, 0);
-        assert.match(stdout, /4 views embedded/);
+        assert.match(stdout, /5 views embedded/);
         const html = readFileSync(join(tmp, 'gallery.html'), 'utf8');
-        assert.equal((html.match(/<section>/g) ?? []).length, 4);
+        assert.equal((html.match(/<section>/g) ?? []).length, 5);
     });
 
     it('derive reproduces the frozen snapshot scope (4 nodes, 3 rels)', () => {

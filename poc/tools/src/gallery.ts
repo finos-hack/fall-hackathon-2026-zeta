@@ -22,7 +22,21 @@ export function main(): void {
     }
     const rendersDir = normalize(out);
     const inDir = join(ROOT, 'renders');
+    const groupOf = new Map<string, string>();
+    const derivedOf = new Set<string>();
+    for (const f of readdirSync(join(ROOT, 'views')).filter((x: string) => x.endsWith('.calm-view.json'))) {
+        try {
+            const v = readJson(join(ROOT, 'views', f)) as JsonRecord;
+            const id = v['unique-id'] as string;
+            if (typeof v['group'] === 'string') groupOf.set(id, v['group'] as string);
+            if (v['derived-from']) derivedOf.add(id);
+        } catch {
+            /* validated separately */
+        }
+    }
     const cards: string[] = [];
+    let viewCount = 0;
+    let lastGroup = '';
     const scopedFiles = readdirSync(inDir)
         .filter((f) => f.endsWith('-scoped.json'))
         .sort()
@@ -38,8 +52,15 @@ export function main(): void {
             svg = '<p>(no diagram)</p>';
         }
         const md = vid + '.md';
+        const group = groupOf.get(vid) ?? 'Ungrouped';
+        const derived = derivedOf.has(vid) ? ' · derived' : '';
+        viewCount += 1;
+        if (group !== lastGroup) {
+            cards.push(`<h2>${group}</h2>`);
+            lastGroup = group;
+        }
         cards.push(
-            `<section><h2>${vid}</h2>` +
+            `<section><h3>${vid}${derived}</h3>` +
                 `<p>${(scoped['nodes'] as unknown[]).length} nodes, ` +
                 `${(scoped['relationships'] as unknown[]).length} relationships, ` +
                 `${((scoped['decorators'] as unknown[]) ?? []).length} decorators — ` +
@@ -61,7 +82,7 @@ export function main(): void {
         cards.join('\n') +
         '</body></html>\n';
     writeText(join(rendersDir, 'gallery.html'), html);
-    console.log(`gallery.html: ${cards.length} views embedded`);
+    console.log(`gallery.html: ${viewCount} views embedded`);
 }
 
 const invoked = process.argv[1] ?? '';
