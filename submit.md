@@ -11,6 +11,8 @@
   selector). No recording.
 - Why FINOS should care: views graduate through the calm-schema pipeline and
   land as a Hub extension tab, an integration path, not just a demo.
+  Reader-side queries (#2344 territory) are designed to sit on CalmGraph
+  when `calm query` (#3661) lands.
 
 Submission checklist (Wed 18/11, hard stop 19:00 local):
 

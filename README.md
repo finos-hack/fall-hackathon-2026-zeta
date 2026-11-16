@@ -4,8 +4,10 @@
 
 **Team:** zeta — Andrés Antoniuk (solo)
 First-class, named views over a CALM architecture: scoped, audience-tagged
-lenses in sidecar `*.calm-view.json` documents, with zero presentation in the
-schema. Evidence for `finos/architecture-as-code#2344`.
+selections in sidecar `*.calm-view.json` documents, with zero presentation
+in the schema. Evidence for `finos/architecture-as-code#2344`.
+A view selects; a renderer draws — including the Hub `diagram-lens`
+(#3771), which no view feeds yet.
 
 ## What it does
 
@@ -50,7 +52,8 @@ if the project continues:
 1. Graduate `view.json` into the `calm-schema` pipeline as the next draft.
 2. A Views tab or overlay in Hub UI as an extension, per the extensions
    framework, plus `docify --view` parity in the CLI.
-3. Sidecar survival of a Canvas round-trip once upstream `#3637` merges.
+3. Sidecar survival of a Canvas round-trip in an extension release shipping
+   upstream `#3637` (merged 2026-11-16, not yet in 0.9.6).
 
 ## Contributing
 
