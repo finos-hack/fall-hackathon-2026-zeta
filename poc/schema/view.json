@@ -32,6 +32,10 @@
       "items": { "type": "string" },
       "description": "Non-normative presentation hint for this view's readers (e.g. svg for managers, json for developers, markdown as compliance record). Renderers may ignore it; renderer-neutrality holds."
     },
+    "group": {
+      "type": "string",
+      "description": "Editorial folder for view pickers (e.g. a LikeC4-style list). Free text; views without group list under Ungrouped. Organization only, never selection semantics."
+    },
     "derived-from": {
       "type": "object",
       "properties": {
@@ -42,13 +46,18 @@
       },
       "description": "Provenance for derived views (frozen snapshot, re-derivable). Absent on hand-authored views. Carries no intent: intent lives in custom views only."
     },
+    "drill-down": {
+      "type": "object",
+      "additionalProperties": { "type": "string" },
+      "description": "Navigation within one model: node unique-id to the unique-id of another sidecar over the same architecture. Opening it replaces the canvas content; it never edits the model. Renderers link to the target (Markdown and SVG); validators require the target to exist with the same `for`."
+    },
     "for": {
       "type": "string",
       "description": "One-way reference to the architecture this view selects from. Provisional semantics: path relative to this file's directory (pending finos/architecture-as-code#3624)."
     },
     "filter": {
       "type": "object",
-      "description": "Inclusion selectors. A node is in the view if its unique-id is listed in 'nodes' or its node-type is listed in 'node-types'. A relationship is in the view if listed in 'relationships', or if all its endpoints are in the view (closure). Flows and decorators resolve by unique-id against sibling documents.",
+      "description": "Inclusion selectors. A node is in the view if its unique-id is listed in 'nodes' or its node-type is listed in 'node-types'. A relationship is in the view if listed in 'relationships', or if all its endpoints are in the view (closure). Endpoints outside the view lift to the nearest visible container (composed-of / deployed-in ancestry); relationships that cannot lift to distinct visible endpoints stay excluded with reason. Flows and decorators resolve by unique-id against sibling documents.",
       "properties": {
         "nodes": {
           "type": "array",

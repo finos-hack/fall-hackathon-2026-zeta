@@ -11,7 +11,8 @@
     "calm-views-validate": "./dist/validate.js",
     "calm-views-render": "./dist/render.js",
     "calm-views-derive": "./dist/derive.js",
-    "calm-views-gallery": "./dist/gallery.js"
+    "calm-views-gallery": "./dist/gallery.js",
+    "calm-views-query": "./dist/query.js"
   },
   "scripts": {
     "build": "tsc",

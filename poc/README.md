@@ -13,14 +13,14 @@ Reference implementation in TypeScript, zero runtime dependencies, offline.
 - `views/` — `kyc-platform`, `kyc-integration`, `kyc-audit` (hand-authored,
   one question each) + `kyc-screening-neighborhood` (derived, frozen
   snapshot + provenance, same schema) + `calm-3-flows` (flows-axis fixture).
-- `tools/` — `validate`, `render`, `derive`, `gallery` (TypeScript, stdlib
-  only; `npm install` pulls just the compiler).
+ - `tools/` — `validate`, `render`, `derive`, `gallery`, `query`
+   (TypeScript, stdlib only; `npm install` pulls just the compiler).
 - `renders/` — generated outputs (scoped JSON + static SVG + Markdown per
   view, `gallery.html`). Committed as the reproducible record.
 
 ```sh
 cd tools && npm install && npm run build && cd ..
-node tools/dist/validate.js                 # 5/5 must report OK
+node tools/dist/validate.js                 # 6/6 must report OK
 node tools/dist/render.js views/kyc-audit.calm-view.json
 node tools/dist/derive.js model/fluxnova-kyc-onboarding.architecture.json \
   kyc-sanctions-screening-svc --depth 1 \
@@ -29,6 +29,6 @@ node tools/dist/derive.js model/fluxnova-kyc-onboarding.architecture.json \
 node tools/dist/gallery.js                 # renders/gallery.html
 ```
 
-Green 2026-11-15: 5/5 validate OK (14/22, 10/9, 14/14, 4/3, 10/10),
+Green 2026-11-15: 6/6 validate OK (14/22, 10/9, 15/21, 4/3, 10/10, 6/5),
 4/4 SVG XML ok, model sha unchanged. Regenerating wipes and reproduces
 the committed outputs byte-identically.

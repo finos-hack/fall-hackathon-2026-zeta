@@ -11,6 +11,7 @@
     "json",
     "markdown"
   ],
+  "group": "KYC onboarding",
   "derived-from": {
     "seeds": [
       "kyc-sanctions-screening-svc"

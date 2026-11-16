@@ -3,8 +3,15 @@
  *
  * Usage: node derive.js ARCH SEED [SEED ...] --depth N --id VIEW-ID --name NAME
  *        --audience a,b [--description TEXT] [--suggested-formats svg,json] [--out FILE]
+ *    or: node derive.js ARCH --inside CONTAINER --id VIEW-ID --name NAME
+ *        --audience a,b [--parent PARENT-VIEW-ID] [--description TEXT] [--out FILE]
+ *
+ * --inside derives the composed-of members of a container plus the border
+ * nodes they connect to; with --parent it also wires drill-down on the
+ * parent sidecar (container -> new view).
  */
-import { join, dirname, normalize, resolve, relative } from 'node:path';
+import { join, dirname, resolve, relative } from 'node:path';
+import { readdirSync } from 'node:fs';
 import { ROOT, readJson, writeText, dumpJson, endpoints, type CalmArchitecture } from './calm.js';
 
 interface Args {
@@ -16,6 +23,9 @@ interface Args {
     audience: string;
     description: string;
     suggestedFormats: string;
+    group: string | null;
+    inside: string | null;
+    parent: string | null;
     out: string | null;
 }
 
@@ -31,6 +41,9 @@ function parseArgs(argv: string[]): Args {
         audience: '',
         description: '',
         suggestedFormats: 'svg,json,markdown',
+        group: null,
+        inside: null,
+        parent: null,
         out: null,
     };
     let i = 0;
@@ -42,6 +55,9 @@ function parseArgs(argv: string[]): Args {
         else if (t === '--audience') a.audience = args[++i] as string;
         else if (t === '--description') a.description = args[++i] as string;
         else if (t === '--suggested-formats') a.suggestedFormats = args[++i] as string;
+        else if (t === '--group') a.group = args[++i] as string;
+        else if (t === '--inside') a.inside = args[++i] as string;
+        else if (t === '--parent') a.parent = args[++i] as string;
         else if (t === '--out') a.out = args[++i] as string;
         else if (t.startsWith('-')) {
             console.error(`unknown argument: ${t}`);
@@ -60,6 +76,10 @@ function parseArgs(argv: string[]): Args {
             console.error(`missing required argument: --${k}`);
             process.exit(2);
         }
+    }
+    if (a.inside && a.seeds.length > 0) {
+        console.error('--inside takes no seed nodes');
+        process.exit(2);
     }
     return a;
 }
@@ -98,30 +118,84 @@ export function main(): void {
     }
     const seenNodes = new Set(args.seeds);
     const seenRels = new Set<string>();
-    let frontier = new Set(args.seeds);
-    for (let d = 0; d < args.depth; d++) {
-        const nxt = new Set<string>();
-        for (const a of frontier) {
-            for (const b of adj.get(a) ?? []) {
-                for (const r of pairRels.get(`${a}\0${b}`) ?? []) seenRels.add(r);
-                if (!seenNodes.has(b)) nxt.add(b);
+    let drillSeeds = [...args.seeds];
+    let drillDepth = args.depth;
+    if (args.inside) {
+        const container = args.inside;
+        if (!known.has(container)) {
+            console.error(`error: unknown container node: ${container}`);
+            process.exit(1);
+        }
+        const members = new Set<string>();
+        for (const r of arch.relationships ?? []) {
+            const co = ((r as Record<string, unknown>)['relationship-type'] as Record<string, unknown> | undefined)?.['composed-of'] as
+                | { container?: string; nodes?: string[] }
+                | undefined;
+            if (co?.container === container) {
+                for (const m of co.nodes ?? []) members.add(m);
             }
         }
-        for (const n of nxt) seenNodes.add(n);
-        frontier = nxt;
+        if (members.size === 0) {
+            console.error(`error: no composed-of members under ${container}`);
+            process.exit(1);
+        }
+        const border = new Set<string>();
+        void border;
+        for (const r of arch.relationships ?? []) {
+            const rec = r as Record<string, unknown>;
+            const eps = endpoints(rec);
+            if (eps.size > 0 && [...eps].every((e) => members.has(e))) {
+                seenRels.add(rec['unique-id'] as string);
+            }
+        }
+        seenNodes.clear();
+        for (const m of members) seenNodes.add(m);
+        drillSeeds = [container];
+        drillDepth = 1;
+    } else {
+        let frontier = new Set(args.seeds);
+        for (let d = 0; d < args.depth; d++) {
+            const nxt = new Set<string>();
+            for (const a of frontier) {
+                for (const b of adj.get(a) ?? []) {
+                    for (const r of pairRels.get(`${a}\0${b}`) ?? []) seenRels.add(r);
+                    if (!seenNodes.has(b)) nxt.add(b);
+                }
+            }
+            for (const n of nxt) seenNodes.add(n);
+            frontier = nxt;
+        }
     }
     const out = args.out ?? join(ROOT, 'views', args.id + '.calm-view.json');
-    const view = {
+    let parentFile: string | null = null;
+    let parentGroup: string | null = null;
+    if (args.parent) {
+        const viewsDir = join(ROOT, 'views');
+        parentFile =
+            readdirSync(viewsDir)
+                .filter((f: string) => f.endsWith('.calm-view.json'))
+                .map((f) => join(viewsDir, f))
+                .find((p) => (readJson(p) as Record<string, unknown>)['unique-id'] === args.parent) ?? null;
+        if (!parentFile) {
+            console.error(`error: parent view not found: ${args.parent}`);
+            process.exit(1);
+        }
+        const pg = (readJson(parentFile) as Record<string, unknown>)['group'];
+        if (typeof pg === 'string') parentGroup = pg;
+    }
+    const defaultDescription = args.inside
+        ? `Derived view: inside ${args.inside} (composed-of members only).`
+        : `Derived view: ${args.depth}-hop neighborhood of ${args.seeds.join(', ')}.`;    const view = {
         $schema: '../schema/view.json',
         'unique-id': args.id,
         name: args.name,
-        description:
-            args.description || `Derived view: ${args.depth}-hop neighborhood of ${args.seeds.join(', ')}.`,
+        description: args.description || defaultDescription,
         audience: args.audience.split(','),
         'suggested-formats': args.suggestedFormats.split(','),
+        ...(args.group ?? parentGroup ? { group: (args.group ?? parentGroup) as string } : {}),
         'derived-from': {
-            seeds: [...args.seeds].sort(),
-            depth: args.depth,
+            seeds: [...drillSeeds].sort(),
+            depth: drillDepth,
             generated: localDate(),
             tool: 'tools/derive.ts',
         },
@@ -134,8 +208,16 @@ export function main(): void {
     writeText(out, dumpJson(view) + '\n');
     console.log(
         `${args.id}: derived ${seenNodes.size} nodes, ${seenRels.size} relationships ` +
-            `from ${args.seeds.length} seed(s) at depth ${args.depth} -> ${out}`
+            `from ${drillSeeds.length} seed(s) at depth ${drillDepth} -> ${out}`
     );
+    if (args.parent && parentFile) {
+        const parent = readJson(parentFile) as Record<string, unknown>;
+        const dd = ((parent['drill-down'] as Record<string, string> | undefined) ?? {}) as Record<string, string>;
+        dd[args.inside as string] = args.id;
+        parent['drill-down'] = dd;
+        writeText(parentFile, dumpJson(parent) + '\n');
+        console.log(`${args.parent}: drill-down '${args.inside}' -> '${args.id}'`);
+    }
 }
 
 const invoked = process.argv[1] ?? '';

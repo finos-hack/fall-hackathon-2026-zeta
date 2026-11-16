@@ -9,6 +9,7 @@
   "suggested-formats": [
     "json"
   ],
+  "group": "Tooling fixture",
   "for": "../fixtures/calm-3.architecture.json",
   "filter": {
     "nodes": [

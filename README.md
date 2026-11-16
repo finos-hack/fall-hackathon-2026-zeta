@@ -11,8 +11,9 @@ schema. Evidence for `finos/architecture-as-code#2344`.
 
 One vendored upstream architecture
 (`examples/fluxnova/fluxnova-kyc-onboarding.architecture.json`, 20 nodes,
-28 relationships, never modified) rendered through four views: platform,
-integration, audit, plus one derived neighborhood view. Each view emits
+28 relationships, never modified) rendered through five views: platform,
+integration, audit, a derived neighborhood view, and a drill-down inside
+view. Each view emits
 scoped JSON (machine), static SVG (human diagram) and Markdown prose
 (audit-readable scope, tables, excluded-with-reason).
 
@@ -27,6 +28,8 @@ node poc/tools/dist/derive.js poc/model/fluxnova-kyc-onboarding.architecture.jso
   --id kyc-screening-neighborhood --name "Screening Neighborhood (derived)" \
   --audience risk-analysts
 node poc/tools/dist/gallery.js             # second consumer: poc/renders/gallery.html
+node poc/tools/dist/query.js describe-view kyc-audit-view   # reader query
+node poc/tools/dist/query.js coverage                       # per-view coverage
 ```
 
 Requirements: Node 18+. Zero runtime dependencies, offline reproducible,

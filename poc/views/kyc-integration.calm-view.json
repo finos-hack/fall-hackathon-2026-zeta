@@ -2,7 +2,7 @@
   "$schema": "../schema/view.json",
   "unique-id": "kyc-integration-view",
   "name": "KYC Integration View",
-  "description": "Where does the system touch the outside world? The engine, the API, the services that call external providers, and the providers themselves \u2014 no human touchpoints, no datastores.",
+  "description": "Where does the system touch the outside world? The engine, the API, the services that call external providers, and the providers themselves — no human touchpoints, no datastores.",
   "audience": [
     "integration-developers",
     "partner-managers"
@@ -12,6 +12,7 @@
     "json",
     "markdown"
   ],
+  "group": "KYC onboarding",
   "for": "../model/fluxnova-kyc-onboarding.architecture.json",
   "filter": {
     "nodes": [
