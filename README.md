@@ -35,8 +35,8 @@ the whole, and the community is already moving toward a unified space
 architecture, and serve every reader with views over it, carrying rich
 metadata such as maturity or lifecycle.
 That is why CALM is the answer: a vendor-neutral standard for the model,
-with validation in the build. This project proposes one piece of the
-missing side, named and reviewable selections for readers, scales and
+with validation in the build. This project proposes one piece that is
+not defined yet: named, reviewable selections for readers, scales and
 questions, building on issues the community already opened: first-class
 views ([#2344](https://github.com/finos/architecture-as-code/issues/2344)),
 the separate-document discussion ([#2901](https://github.com/finos/architecture-as-code/issues/2901)),
@@ -137,7 +137,7 @@ In ISO 42010 terms ([ISO/IEC/IEEE 42010:2022](https://www.iso.org/standard/74393
   the earlier attempt at a common language, with clear layers. Its limit
   is tool XML that humans cannot write, review or diff by hand. CALM keeps
   the discipline and adds readable JSON plus build-time validation. The
-  importer in this repo proves the bridge on a real model (eCH-0122).
+  importer in this repo proves the bridge on a real model (eCH-0122, 216 nodes).
 - [LikeC4](https://likec4.dev): the model/views split this project imitates.
   One model, as many views as readers need. Its limit is being one
   vendor's language. A bank should not build on a dialect. CALM standardizes
