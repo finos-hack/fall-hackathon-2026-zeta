@@ -62,8 +62,8 @@ Views are files, so any tool can consume them. What exists today:
   transport format, not integration yet.
 - **ArchiMate**: `archimate.js` imports Archi tool models, preserving
   layers in node metadata. A standard translated into working software,
-  shown here on a real model (eCH-0122, 155 nodes) because a toy model
-  cannot prove that views scale.
+  shown on the real eCH-0122 model (155 nodes) to prove that views scale
+  to complex architectures.
 - **CLI gap**: `calm docify` has no `--view` flag. Views stop at the POC
   until the schema graduates (#2344).
 
@@ -83,7 +83,7 @@ agent roles, and every claim above was verified by hand (clean-clone
 install, byte-identical renders, DCO on every commit). No data is
 invented: every node id resolves against the vendored architecture,
 and every exclusion names its reason. A view is also the context unit
-for an agent: a 216-node model does not fit a prompt, one view does
+for an agent: a 155-node model does not fit a prompt, one view does
 (`query.js context`, above).
 
 ## Roadmap
