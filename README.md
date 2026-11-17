@@ -126,9 +126,9 @@ if the project continues:
 4. Wishlist, blocked upstream, documented here so the direction survives
    the hackathon: a unified model across files needs shared node identity
    ([calm-schema#27](https://github.com/finos/calm-schema/issues/27),
-   overlapping with [#47](https://github.com/finos/calm-schema/issues/47));
-   until then, multi-file views stay a namespaced union without dedup.
-   Cross-document references need one format and resolver
+   overlapping with [#47](https://github.com/finos/calm-schema/issues/47)).
+   Until then, multi-file views stay a namespaced union without dedup.
+   Cross-document references need one format and one resolver
    ([#3624](https://github.com/finos/architecture-as-code/issues/3624)).
    Nested-architecture examples are still wanted upstream
    ([#1568](https://github.com/finos/architecture-as-code/issues/1568)).
