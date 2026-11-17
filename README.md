@@ -127,7 +127,7 @@ In ISO 42010 terms ([ISO/IEC/IEEE 42010:2022](https://www.iso.org/standard/74393
   importer in this repo proves the bridge on a real model (eCH-0122).
 - [LikeC4](https://likec4.dev): the model/views split this project imitates.
   One model, as many views as readers need. Its limit is being one
-  vendor's language. A bank cannot build on a dialect. CALM standardizes
+  vendor's language. A bank should not build on a dialect. CALM standardizes
   the model side. Named views are still open ([#2344](https://github.com/finos/architecture-as-code/issues/2344)).
 - [finos/architecture-as-code#2344](https://github.com/finos/architecture-as-code/issues/2344):
   first-class views, open. Our filter mirrors its proposed selection

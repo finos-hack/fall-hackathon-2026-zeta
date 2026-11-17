@@ -63,8 +63,7 @@ node tools/dist/derive.js model/fluxnova-kyc-onboarding.architecture.json \
 node tools/dist/gallery.js                 # renders/gallery.html
 ```
 
-Green 2026-11-17: 11/11 validate OK (KYC 14/22, 10/9, 15/21, 4/3,
-6/5, 4/3; cross-model all-actors 51 namespaced nodes; eCH 100/81, 50/41,
-61/7; calm-3 10/10).
-Models sha unchanged. Regenerating wipes and reproduces the committed
-outputs byte-identically (e2e).
+Green 2026-11-17: 11/11 validate OK. KYC views: 14/22, 10/9, 15/21,
+4/3, 6/5, 4/3. Cross-model all-actors: 51 namespaced nodes. eCH views:
+100/81, 50/41, 61/7. calm-3: 10/10. Models sha unchanged. Regenerating
+wipes and reproduces the committed outputs byte-identically (e2e).
