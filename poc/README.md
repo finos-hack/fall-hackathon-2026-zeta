@@ -11,10 +11,10 @@ provisional.
   (eCH-0122 v2.0.1, 216 nodes, 287 relationships), converted from ArchiMate
   with layers preserved in node metadata. eCH is published by Verein eCH
   under terms that allow free use, sharing and development
-  (https://www.ech.ch/de/ech/ech-0122/2.0.0). It is included here as the
-  redistributable proof that views scale to real, complex architectures.
-  It answers: what does a view buy you when the model is too big to show
-  at once.
+  (https://www.ech.ch/de/ech/ech-0122/2.0.0). It was chosen as the
+  reference because it is public, validated and official: a real
+  government architecture, not a toy model. It answers what a view buys
+  you when the model is too big to show at once.
 - `schema/view.json` — draft meta-schema: filter-only (ids, node-types,
   node metadata match, control claims over the model's real `controls`) +
   optional `suggested-formats` (non-normative) + optional `derived-from`
