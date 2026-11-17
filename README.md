@@ -3,11 +3,11 @@
 **Hackathon Track:** Track 3 Features
 
 **Team:** zeta — Andrés Antoniuk (solo)
-First-class, named views over a CALM architecture: scoped, audience-tagged
+First-class, named views over a [CALM](https://calm.finos.org) architecture: scoped, audience-tagged
 selections in sidecar `*.calm-view.json` documents, with zero presentation
-in the schema. Evidence for `finos/architecture-as-code#2344`.
-A view selects, a renderer draws (including the Hub `diagram-lens`
-(#3771), which no view feeds yet).
+in the schema. Evidence for [finos/architecture-as-code#2344](https://github.com/finos/architecture-as-code/issues/2344).
+A view selects, a renderer draws (including the Hub [`diagram-lens`](https://calm.finos.org/extensions)
+([#3771](https://github.com/finos/architecture-as-code/pull/3771)), which no view feeds yet).
 
 ## What it does
 
@@ -65,7 +65,7 @@ Views are files, so any tool can consume them. What exists today:
   shown on the real eCH-0122 model (155 nodes) to prove that views scale
   to complex architectures.
 - **CLI gap**: `calm docify` has no `--view` flag. Views stop at the POC
-  until the schema graduates (#2344).
+  until the schema graduates ([#2344](https://github.com/finos/architecture-as-code/issues/2344)).
 
 In ISO 42010 terms ([ISO/IEC/IEEE 42010:2022](https://www.iso.org/standard/74393.html)):
 
@@ -95,12 +95,12 @@ if the project continues:
 2. A Views tab or overlay in Hub UI as an extension, per the extensions
    framework, plus `docify --view` parity in the CLI.
 3. Sidecar survival of a Canvas round-trip in an extension release shipping
-   upstream `#3637` (merged 2026-11-16, not yet in 0.9.6).
+   upstream `[#3637](https://github.com/finos/architecture-as-code/pull/3637)` (merged 2026-11-16, not yet in 0.9.6).
 
 ## What this is not
 
 - No upstream changes: sidecars and tools only, the model file is never
-  modified. `for` is relative and provisional (#3624).
+  modified. `for` is relative and provisional ([#3624](https://github.com/finos/architecture-as-code/issues/3624)).
 - No Hub surface: `pack` produces the decorator format, but the Hub has
   no views tab. Transport, not integration.
 - No `docify --view`: per-view documents come from `render --format md`.

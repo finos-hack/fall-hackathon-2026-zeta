@@ -18,7 +18,7 @@ Reference implementation in TypeScript, zero runtime dependencies, offline.
   optional `suggested-formats` (non-normative) + optional `derived-from`
   provenance.
   NOT a standard. `for` resolves relative to the view file's directory
-  (provisional, pending finos/architecture-as-code#3624).
+  (provisional, pending finos/architecture-as-code[#3624](https://github.com/finos/architecture-as-code/issues/3624)).
 - `views/` — `kyc-platform`, `kyc-integration`, `kyc-audit` (hand-authored,
   one question each) + `kyc-screening-neighborhood` (derived, frozen
   snapshot + provenance, same schema) + `kyc-platform-inside` (drill-down
