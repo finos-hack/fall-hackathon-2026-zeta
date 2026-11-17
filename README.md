@@ -40,8 +40,7 @@ node poc/tools/dist/pack.js poc/views/kyc-audit.calm-view.json --arch-id kyc-arc
 ```
 
 Requirements: Node 18+. Zero runtime dependencies, offline reproducible,
-no network. TypeScript port of a Python prototype; renders are
-byte-identical between the two.
+no network. TypeScript port of a Python prototype. Both render byte-identical output.
 
 ## Interactive demo (spike)
 
@@ -63,7 +62,7 @@ Views are files, so any tool can consume them. What exists today:
   transport format, not integration yet.
 - **ArchiMate**: `archimate.js` imports Archi tool models, preserving
   layers in node metadata. A standard translated into working software.
-- **CLI gap**: `calm docify` has no `--view` flag; views stop at the POC
+- **CLI gap**: `calm docify` has no `--view` flag. Views stop at the POC
   until the schema graduates (#2344).
 
 In ISO 42010 terms:
@@ -99,13 +98,13 @@ if the project continues:
 ## What this is not
 
 - No upstream changes: sidecars and tools only, the model file is never
-  modified; `for` is relative and provisional (#3624).
+  modified. `for` is relative and provisional (#3624).
 - No Hub surface: `pack` produces the decorator format, but the Hub has
-  no views tab; transport, not integration.
-- No `docify --view`: per-view documents come from `render --format md`;
+  no views tab. Transport, not integration.
+- No `docify --view`: per-view documents come from `render --format md`.
   CLI parity belongs upstream.
 - No top-level controls: views filter on the inline `controls` claims
-  the model already carries; inventing none.
+  the model already carries. Nothing is invented.
 
 ## Contributing
 

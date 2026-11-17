@@ -2,7 +2,7 @@
 
 Built per `../docs/DESIGN.md` §4 and `../docs/LECTORES.md` (decided 2026-11-14).
 Reference implementation in TypeScript, zero runtime dependencies, offline.
-(Ported from the original Python POC; renders are byte-identical.)
+(Ported from the original Python POC. Both render byte-identical output.)
 
 - `model/` — vendored base architecture (never modified, see
   `PROVENANCE.md`) + demo decorator (POC-authored, consumed by audit view) +
@@ -10,7 +10,7 @@ Reference implementation in TypeScript, zero runtime dependencies, offline.
   (eCH-0122 v2.0.1, 155 nodes, 247 relationships), converted from ArchiMate
   with layers preserved in node metadata. eCH is published by Verein eCH
   under terms that allow free use, sharing and development
-  (https://www.ech.ch/de/ech/ech-0122/2.0.0); it is included here as the
+  (https://www.ech.ch/de/ech/ech-0122/2.0.0). It is included here as the
   redistributable proof that views scale to real, complex architectures.
   It answers: what does a view buy you when the model is too big to show
   at once.
@@ -28,7 +28,7 @@ Reference implementation in TypeScript, zero runtime dependencies, offline.
   capability aspects of the eCH model) + `calm-3-flows` (flows-axis fixture).
  - `tools/` — `validate`, `render`, `derive`, `gallery`, `query`,
    `archimate` (ArchiMate XML import with layer metadata and entity decoding)
-   (TypeScript, stdlib only; `npm install` pulls just the compiler).
+   (TypeScript, stdlib only. `npm install` pulls just the compiler).
 - `renders/` — generated outputs (scoped JSON + static SVG + Markdown per
   view, `gallery.html`). Committed as the reproducible record.
 
@@ -44,6 +44,6 @@ node tools/dist/gallery.js                 # renders/gallery.html
 ```
 
 Green 2026-11-17: 10/10 validate OK (KYC 14/22, 10/9, 15/21, 4/3,
-6/5, 4/3; eCH 100/81, 50/41, 61/7; calm-3 10/10),
-models sha unchanged. Regenerating wipes and reproduces the committed
+6/5, 4/3. eCH 100/81, 50/41, 61/7. calm-3 10/10).
+Models sha unchanged. Regenerating wipes and reproduces the committed
 outputs byte-identically (e2e).
