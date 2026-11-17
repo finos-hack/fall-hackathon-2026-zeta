@@ -17,15 +17,22 @@ No lens consumes a view yet.
 
 ## What it does
 
-As an example, one vendored upstream architecture
+This project defines a view document (`schema/view.json`: audience,
+filter by id, type, metadata or control claims, zero presentation) and
+the tools and use cases around it: `validate`, `render`, `derive`,
+`gallery`, reader queries (`query.js`), governance gates
+(`coverage --require`), Hub transport (`pack.js`) and ArchiMate import.
+
+To demonstrate it on existing architectures, two vendored models ship
+with the repo, never modified. The KYC onboarding model
 (`examples/fluxnova/fluxnova-kyc-onboarding.architecture.json`, 20 nodes,
-28 relationships, never modified) rendered through six views: platform,
-integration, audit, a derived neighborhood view, a drill-down inside
-view, and an audit-logging coverage view over the model's real control
-claims. A second, redistributable reference model (Swiss e-government
-eCH-0122, 216 nodes) ships with layer and capability views. Each view emits
-scoped JSON (machine), static SVG (human diagram) and Markdown prose
-(audit-readable scope, tables, excluded-with-reason).
+28 relationships) renders through six views: platform, integration,
+audit, a derived neighborhood view, a drill-down inside view, and an
+audit-logging coverage view over the model's real control claims. The
+Swiss e-government reference eCH-0122 (216 nodes, redistributable)
+ships with layer and capability views. Each view emits scoped JSON
+(machine), static SVG (human diagram) and Markdown prose (audit-readable
+scope, tables, excluded-with-reason).
 
 ## Usage example
 
