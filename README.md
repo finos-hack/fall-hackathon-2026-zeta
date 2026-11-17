@@ -22,14 +22,15 @@ with clear layers. But its files are tool XML, and the as-code loop
 (diff, review, validate in build) does not fit XML. I adopted LikeC4
 next. The model/views split works: one model, as many views as readers
 need. Its limit is standardization. One vendor's DSL is a dialect, and
-a bank cannot build on a dialect.
+a bank should not build on a dialect.
 
 Modernizing bank infrastructure means modeling systems that already
 exist. Those models are big: our eCH import has 216 nodes and 287
 relationships. Slicing them into separate architectures per team breaks
 the whole. The namespace is the architecture. What serves every reader
 is views over it, with rich metadata such as maturity or lifecycle.
-CALM standardizes the model. This project proposes the missing reader
+That is why CALM is the answer: a vendor-neutral standard for the model,
+with validation in the build. This project proposes the missing reader
 side.
 
 ## What it does
