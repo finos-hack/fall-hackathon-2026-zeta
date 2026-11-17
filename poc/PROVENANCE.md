@@ -3,9 +3,8 @@
 - File: `model/fluxnova-kyc-onboarding.architecture.json`
 - Upstream: `finos/architecture-as-code`,
   `examples/fluxnova/fluxnova-kyc-onboarding.architecture.json`
-- Upstream commit: `0626cea3` (2026-11-10)
-- Seeded as Hub demo data upstream
-  (`calm-hub/mongo/init-mongo.js`, `calm-hub/nitrite/init-nitrite.sh`).
+- Upstream commit: `0626cea3` (2026-11-10). Chosen because it is also
+  seeded as Hub demo data upstream.
 - sha256: `54a5d6066987cd41ffbaf5e8fb1e666a03816074c56aa8219111396abd2a4541`
 - Status: 20 nodes, 28 relationships, 0 flows, no top-level `controls`
   array (nodes may carry inline `controls`, and `interfaces` is present
