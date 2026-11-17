@@ -1,4 +1,4 @@
-# Calm views — one model, three readers
+# Calm views — named selections over CALM architectures
 
 **Hackathon Track:** Track 3 Features
 

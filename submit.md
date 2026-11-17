@@ -1,6 +1,6 @@
 # Submission
 
-- Project: Calm views — one model, three readers
+- Project: Calm views — named selections over CALM architectures
 - Track: Track 3 Features
 - Team: zeta — Andrés Antoniuk (solo)
 - Why FINOS should care: CALM has models and diagrams but no reader layer.
