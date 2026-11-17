@@ -19,7 +19,6 @@ Submission checklist (Wed 18/11, hard stop 19:00 local):
 - [ ] Project name and track confirmed.
 - [ ] README filled in the zeta repo via PR (rama, nunca directo a main).
 - [ ] `submit.md` present in the zeta repo via PR.
-- [ ] Revert of the 2 early commits included via PR (decided 2026-11-14).
 - [ ] DCO audit: every commit carries matching Signed-off-by.
 - [ ] Reread diff for environment mentions or private material.
 - [ ] Confirm receipt per the channel announced at kickoff.
