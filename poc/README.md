@@ -26,7 +26,8 @@ Reference implementation in TypeScript, zero runtime dependencies, offline.
   `ech-business`, `ech-application`, `ech-capabilities` (layer and
   capability aspects of the eCH model) + `calm-3-flows` (flows-axis fixture).
  - `tools/` — `validate`, `render`, `derive`, `gallery`, `query`,
-   `archimate` (ArchiMate XML import with layer metadata and entity decoding)
+   `archimate` (ArchiMate XML import with layer metadata and entity
+   decoding, exercised on the real eCH model below)
    (TypeScript, stdlib only. `npm install` pulls just the compiler).
 - `renders/` — generated outputs (scoped JSON + static SVG + Markdown per
   view, `gallery.html`). Committed as the reproducible record.

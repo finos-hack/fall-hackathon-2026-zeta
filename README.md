@@ -61,11 +61,13 @@ Views are files, so any tool can consume them. What exists today:
   the Hub MCP serves. The Hub has no views surface today, so this is
   transport format, not integration yet.
 - **ArchiMate**: `archimate.js` imports Archi tool models, preserving
-  layers in node metadata. A standard translated into working software.
+  layers in node metadata. A standard translated into working software,
+  shown here on a real model (eCH-0122, 155 nodes) because a toy model
+  cannot prove that views scale.
 - **CLI gap**: `calm docify` has no `--view` flag. Views stop at the POC
   until the schema graduates (#2344).
 
-In ISO 42010 terms:
+In ISO 42010 terms ([ISO/IEC/IEEE 42010:2022](https://www.iso.org/standard/74393.html)):
 
 | 42010 | This project |
 |---|---|
