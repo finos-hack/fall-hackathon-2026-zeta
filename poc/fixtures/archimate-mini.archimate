@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<archimate:model xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:archimate="http://www.architool.com/archimate" name="FluxNova Lite" id="fluxlite" version="3.1.1">
+  <folder name="Business" id="f-biz" type="business">
+    <element xsi:type="archimate:BusinessActor" id="op" name="Ops Manager"/>
+    <element xsi:type="archimate:BusinessRole" id="aud" name="Auditor"/>
+    <element xsi:type="archimate:BusinessProcess" id="review" name="Review Controls"/>
+    <element xsi:type="archimate:BusinessObject" id="report" name="Control Report"/>
+  </folder>
+  <folder name="Application" id="f-app" type="application">
+    <element xsi:type="archimate:ApplicationComponent" id="engine" name="Rules Engine"/>
+    <element xsi:type="archimate:ApplicationService" id="api" name="Review API"/>
+    <element xsi:type="archimate:ApplicationFunction" id="score" name="Score Risk"/>
+  </folder>
+  <folder name="Technology" id="f-tech" type="technology">
+    <element xsi:type="archimate:Device" id="srv" name="App Server"/>
+    <element xsi:type="archimate:SystemSoftware" id="dbms" name="DBMS"/>
+    <element xsi:type="archimate:Network" id="lan" name="LAN"/>
+  </folder>
+  <folder name="Relations" id="f-rel" type="relations">
+    <element xsi:type="archimate:AssignmentRelationship" id="r1" source="op" target="review"/>
+    <element xsi:type="archimate:UsedByRelationship" id="r2" source="review" target="engine"/>
+    <element xsi:type="archimate:FlowRelationship" id="r3" source="engine" target="api"/>
+    <element xsi:type="archimate:RealisationRelationship" id="r4" source="dbms" target="api"/>
+    <element xsi:type="archimate:CompositionRelationship" id="r5" source="srv" target="dbms"/>
+    <element xsi:type="archimate:AssociationRelationship" id="r6" source="aud" target="report"/>
+  </folder>
+</archimate:model>

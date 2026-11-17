@@ -13,8 +13,15 @@ Reference implementation in TypeScript, zero runtime dependencies, offline.
 - `views/` — `kyc-platform`, `kyc-integration`, `kyc-audit` (hand-authored,
   one question each) + `kyc-screening-neighborhood` (derived, frozen
   snapshot + provenance, same schema) + `calm-3-flows` (flows-axis fixture).
- - `tools/` — `validate`, `render`, `derive`, `gallery`, `query`
-   (TypeScript, stdlib only; `npm install` pulls just the compiler).
+ - `tools/` — `validate`, `render`, `derive`, `gallery`, `query`,
+   `archimate` (ArchiMate XML to CALM import; TypeScript, stdlib only;
+   `npm install` pulls just the compiler).
+ - `fixtures/archimate-mini.archimate` — hand-made 10-element ArchiMate
+   sketch exercising the importer, including layer metadata.
+ - The importer was also proven against the Archisurance case study (The
+   Open Group): 106 nodes, 173 relationships, layers preserved in node
+   metadata. That model is not redistributed here; reproduce with
+   `node tools/dist/archimate.js <archisurance.xml> --out <arch.architecture.json>`.
 - `renders/` — generated outputs (scoped JSON + static SVG + Markdown per
   view, `gallery.html`). Committed as the reproducible record.
 
