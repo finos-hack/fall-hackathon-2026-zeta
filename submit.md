@@ -15,7 +15,7 @@
   workspace with 10/10 validate OK, 38/38 tests green from a clean clone,
   DCO on every commit, CI green (install, build, test, validate, plus
   both governance gates).
-- POC issue: none (decided 2026-11-14 — no POC issue). Community vehicle is
+- POC issue: none (decided 2026-11-14, no POC issue). Community vehicle is
   the comment on [finos/architecture-as-code#3731](https://github.com/finos/architecture-as-code/issues/3731), plus link if applicable.
 - Demo: live (validate + coverage gates → render + gallery + Canvas spike
   with the grouped view selector and drill-down). No recording.
