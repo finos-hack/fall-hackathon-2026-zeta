@@ -1,0 +1,195 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 896 5266" width="896" height="5266" font-family="sans-serif">
+<title>eCH capability map</title>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#475569" /></marker></defs>
+<rect x="0" y="0" width="896" height="5266" fill="white"/>
+<line x1="218" y1="3714" x2="348" y2="2586" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+<line x1="218" y1="3996" x2="348" y2="2586" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+<line x1="218" y1="3432" x2="348" y2="2586" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+<line x1="218" y1="988" x2="348" y2="2492" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+<line x1="218" y1="3150" x2="348" y2="2774" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+<line x1="548" y1="2680" x2="678" y2="2633" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+<line x1="218" y1="1364" x2="348" y2="2680" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+<rect x="18" y="18" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="43" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-010e02ee62e9406ab46bc</text>
+<text x="118" y="60" font-size="10" text-anchor="middle" fill="#475569">capability</text>
+<rect x="18" y="112" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="137" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-048da02167a64db6860c8</text>
+<text x="118" y="154" font-size="10" text-anchor="middle" fill="#475569">capability</text>
+<rect x="18" y="206" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="231" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-061dc63116a14e4bb5a72</text>
+<text x="118" y="248" font-size="10" text-anchor="middle" fill="#475569">capability</text>
+<rect x="18" y="300" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="325" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-06d1934efefe46b08c590</text>
+<text x="118" y="342" font-size="10" text-anchor="middle" fill="#475569">capability</text>
+<rect x="18" y="394" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="419" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-09940a190f954a4d986a2</text>
+<text x="118" y="436" font-size="10" text-anchor="middle" fill="#475569">capability</text>
+<rect x="678" y="2603" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="778" y="2628" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-0c62d85a6ee64a59a8e0c</text>
+<text x="778" y="2645" font-size="10" text-anchor="middle" fill="#475569">capability</text>
+<rect x="18" y="488" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="513" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-0d5ac72c9dbd40e9a4988</text>
+<text x="118" y="530" font-size="10" text-anchor="middle" fill="#475569">capability</text>
+<rect x="18" y="582" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="607" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-0ecde0ca162742338a3c8</text>
+<text x="118" y="624" font-size="10" text-anchor="middle" fill="#475569">capability</text>
+<rect x="18" y="676" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="701" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-11f5db39421e453095c21</text>
+<text x="118" y="718" font-size="10" text-anchor="middle" fill="#475569">capability</text>
+<rect x="18" y="770" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="795" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-13989069955e4ee59203c</text>
+<text x="118" y="812" font-size="10" text-anchor="middle" fill="#475569">capability</text>
+<rect x="18" y="864" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="889" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-1ceb583efbe94bb2adf66</text>
+<text x="118" y="906" font-size="10" text-anchor="middle" fill="#475569">capability</text>
+<rect x="348" y="2462" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="448" y="2487" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-29b5528aa76b4a60bfab2</text>
+<text x="448" y="2504" font-size="10" text-anchor="middle" fill="#475569">capability</text>
+<rect x="18" y="958" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="983" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-2b12096506264f5f8f4f8</text>
+<text x="118" y="1000" font-size="10" text-anchor="middle" fill="#475569">capability</text>
+<rect x="18" y="1052" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="1077" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-2d5a7349657a447c9cc95</text>
+<text x="118" y="1094" font-size="10" text-anchor="middle" fill="#475569">capability</text>
+<rect x="348" y="2556" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="448" y="2581" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-301e6d62884641f2922d2</text>
+<text x="448" y="2598" font-size="10" text-anchor="middle" fill="#475569">capability</text>
+<rect x="18" y="1146" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="1171" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-30714ce06e6345fe8c71a</text>
+<text x="118" y="1188" font-size="10" text-anchor="middle" fill="#475569">capability</text>
+<rect x="18" y="1240" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="1265" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-3c9b3b59280449759484e</text>
+<text x="118" y="1282" font-size="10" text-anchor="middle" fill="#475569">capability</text>
+<rect x="18" y="1334" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="1359" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-3ddfb0593ff044fdaa3f4</text>
+<text x="118" y="1376" font-size="10" text-anchor="middle" fill="#475569">capability</text>
+<rect x="18" y="1428" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="1453" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-3f54afae67664a5788aa4</text>
+<text x="118" y="1470" font-size="10" text-anchor="middle" fill="#475569">capability</text>
+<rect x="18" y="1522" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="1547" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-46e7ef18a6764673882d7</text>
+<text x="118" y="1564" font-size="10" text-anchor="middle" fill="#475569">capability</text>
+<rect x="18" y="1616" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="1641" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-47125da40f204ec48683c</text>
+<text x="118" y="1658" font-size="10" text-anchor="middle" fill="#475569">capability</text>
+<rect x="18" y="1710" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="1735" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-4e8e22b20ac14cbcaec77</text>
+<text x="118" y="1752" font-size="10" text-anchor="middle" fill="#475569">capability</text>
+<rect x="18" y="1804" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="1829" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-5294aab4aa944678867eb</text>
+<text x="118" y="1846" font-size="10" text-anchor="middle" fill="#475569">capability</text>
+<rect x="18" y="1898" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="1923" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-547f981655dc496c8e65f</text>
+<text x="118" y="1940" font-size="10" text-anchor="middle" fill="#475569">capability</text>
+<rect x="18" y="1992" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="2017" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-549b4498bc664cce81472</text>
+<text x="118" y="2034" font-size="10" text-anchor="middle" fill="#475569">capability</text>
+<rect x="18" y="2086" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="2111" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-5511b259548a4d15a8ad5</text>
+<text x="118" y="2128" font-size="10" text-anchor="middle" fill="#475569">capability</text>
+<rect x="18" y="2180" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="2205" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-59d1ca94bc16425186e62</text>
+<text x="118" y="2222" font-size="10" text-anchor="middle" fill="#475569">capability</text>
+<rect x="18" y="2274" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="2299" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-5ccb20c4d7154d83bdaaa</text>
+<text x="118" y="2316" font-size="10" text-anchor="middle" fill="#475569">capability</text>
+<rect x="18" y="2368" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="2393" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-5f362ed303e840f2a54bb</text>
+<text x="118" y="2410" font-size="10" text-anchor="middle" fill="#475569">capability</text>
+<rect x="18" y="2462" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="2487" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-64f4c3223dbc444e9379f</text>
+<text x="118" y="2504" font-size="10" text-anchor="middle" fill="#475569">capability</text>
+<rect x="18" y="2556" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="2581" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-6bd074248722482a8f8ac</text>
+<text x="118" y="2598" font-size="10" text-anchor="middle" fill="#475569">capability</text>
+<rect x="18" y="2650" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="2675" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-6c27bcc1614b468a9db3b</text>
+<text x="118" y="2692" font-size="10" text-anchor="middle" fill="#475569">capability</text>
+<rect x="18" y="2744" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="2769" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-6d790fd02ca544d2afabd</text>
+<text x="118" y="2786" font-size="10" text-anchor="middle" fill="#475569">capability</text>
+<rect x="18" y="2838" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="2863" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-6de6559bf3e34273b004a</text>
+<text x="118" y="2880" font-size="10" text-anchor="middle" fill="#475569">capability</text>
+<rect x="18" y="2932" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="2957" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-6f37a58bcd5741c28716c</text>
+<text x="118" y="2974" font-size="10" text-anchor="middle" fill="#475569">capability</text>
+<rect x="18" y="3026" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="3051" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-6ff1e56e07994cb5bbfd2</text>
+<text x="118" y="3068" font-size="10" text-anchor="middle" fill="#475569">capability</text>
+<rect x="18" y="3120" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="3145" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-753b5e9dfc1b48caa7dc4</text>
+<text x="118" y="3162" font-size="10" text-anchor="middle" fill="#475569">capability</text>
+<rect x="18" y="3214" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="3239" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-766030fe256d4f7789a82</text>
+<text x="118" y="3256" font-size="10" text-anchor="middle" fill="#475569">capability</text>
+<rect x="348" y="2650" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="448" y="2675" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-7806964a6f5b4997a5844</text>
+<text x="448" y="2692" font-size="10" text-anchor="middle" fill="#475569">capability</text>
+<rect x="18" y="3308" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="3333" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-7af9e3534cce45ce8dea9</text>
+<text x="118" y="3350" font-size="10" text-anchor="middle" fill="#475569">capability</text>
+<rect x="18" y="3402" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="3427" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-80ed1b9a933942c783db5</text>
+<text x="118" y="3444" font-size="10" text-anchor="middle" fill="#475569">capability</text>
+<rect x="18" y="3496" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="3521" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-856ba09fa79f448aaf609</text>
+<text x="118" y="3538" font-size="10" text-anchor="middle" fill="#475569">capability</text>
+<rect x="18" y="3590" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="3615" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-870d6178f29847b483e95</text>
+<text x="118" y="3632" font-size="10" text-anchor="middle" fill="#475569">capability</text>
+<rect x="18" y="3684" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="3709" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-87e0337529a84832aed6e</text>
+<text x="118" y="3726" font-size="10" text-anchor="middle" fill="#475569">capability</text>
+<rect x="18" y="3778" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="3803" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-8831132885184e3faea70</text>
+<text x="118" y="3820" font-size="10" text-anchor="middle" fill="#475569">capability</text>
+<rect x="18" y="3872" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="3897" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-8f07d421319d4fac936cb</text>
+<text x="118" y="3914" font-size="10" text-anchor="middle" fill="#475569">capability</text>
+<rect x="18" y="3966" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="3991" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-94c68a180ffe4ee5a34a9</text>
+<text x="118" y="4008" font-size="10" text-anchor="middle" fill="#475569">capability</text>
+<rect x="18" y="4060" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="4085" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-9674f373e406469c9f9d0</text>
+<text x="118" y="4102" font-size="10" text-anchor="middle" fill="#475569">capability</text>
+<rect x="18" y="4154" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="4179" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-9ea3b12f505c470bac45d</text>
+<text x="118" y="4196" font-size="10" text-anchor="middle" fill="#475569">capability</text>
+<rect x="18" y="4248" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="4273" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-a37f2e9dc53148a7aedcb</text>
+<text x="118" y="4290" font-size="10" text-anchor="middle" fill="#475569">capability</text>
+<rect x="18" y="4342" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="4367" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-a8f2bd5b9ceb4ee2a1316</text>
+<text x="118" y="4384" font-size="10" text-anchor="middle" fill="#475569">capability</text>
+<rect x="18" y="4436" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="4461" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-acea85073aaa483aa55e3</text>
+<text x="118" y="4478" font-size="10" text-anchor="middle" fill="#475569">capability</text>
+<rect x="18" y="4530" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="4555" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-af272b1a8ac44c18bf93e</text>
+<text x="118" y="4572" font-size="10" text-anchor="middle" fill="#475569">capability</text>
+<rect x="18" y="4624" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="4649" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-b2b173aae01a4d79bed5f</text>
+<text x="118" y="4666" font-size="10" text-anchor="middle" fill="#475569">capability</text>
+<rect x="18" y="4718" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="4743" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-c3a25efee3eb410689076</text>
+<text x="118" y="4760" font-size="10" text-anchor="middle" fill="#475569">capability</text>
+<rect x="18" y="4812" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="4837" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-cdb29f6122304fc98526c</text>
+<text x="118" y="4854" font-size="10" text-anchor="middle" fill="#475569">capability</text>
+<rect x="18" y="4906" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="4931" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-e651a241087046f28305d</text>
+<text x="118" y="4948" font-size="10" text-anchor="middle" fill="#475569">capability</text>
+<rect x="18" y="5000" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="5025" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-ea4dc3cc33404e9688f6f</text>
+<text x="118" y="5042" font-size="10" text-anchor="middle" fill="#475569">capability</text>
+<rect x="18" y="5094" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="5119" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-ea9c0624c2164a96abad9</text>
+<text x="118" y="5136" font-size="10" text-anchor="middle" fill="#475569">capability</text>
+<rect x="18" y="5188" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="5213" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-ef771d2b5c674b288333b</text>
+<text x="118" y="5230" font-size="10" text-anchor="middle" fill="#475569">capability</text>
+<rect x="348" y="2744" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="448" y="2769" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-eff28fbde9e746b1b0fb1</text>
+<text x="448" y="2786" font-size="10" text-anchor="middle" fill="#475569">capability</text>
+</svg>

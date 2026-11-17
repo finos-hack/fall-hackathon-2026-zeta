@@ -105,4 +105,20 @@ describe('resolveView (mirrors Python validate.resolve_view)', () => {
         assert.deepEqual([...inNodes].sort(), ['db', 'nope']);
         assert.ok(warnings.some((w) => w.includes('nope')));
     });
+    it('selects by node metadata match (every key must match)', () => {
+        const withMeta = {
+            nodes: [
+                { 'unique-id': 'a', 'node-type': 'service', metadata: { layer: 'app', owner: 'x' } },
+                { 'unique-id': 'b', 'node-type': 'service', metadata: { layer: 'app', owner: 'y' } },
+                { 'unique-id': 'db', 'node-type': 'database' },
+            ],
+            relationships: [],
+        } as unknown as CalmArchitecture;
+        const { inNodes } = resolveView(withMeta, { metadata: { layer: ['app'] } });
+        assert.deepEqual([...inNodes].sort(), ['a', 'b']);
+        const narrow = resolveView(withMeta, { metadata: { layer: ['app'], owner: ['x'] } });
+        assert.deepEqual([...narrow.inNodes].sort(), ['a']);
+        const none = resolveView(withMeta, { metadata: { layer: ['infra'] } });
+        assert.deepEqual([...none.inNodes].sort(), []);
+    });
 });

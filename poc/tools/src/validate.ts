@@ -58,9 +58,15 @@ function checkSchema(view: unknown): string | null {
     const filter = v['filter'] as JsonRecord | undefined;
     if (filter !== undefined) {
         if (typeof filter !== 'object' || filter === null) return `'filter' must be an object`;
-        const fallowed = new Set(['nodes', 'node-types', 'relationships', 'flows', 'decorators']);
+        const fallowed = new Set(['nodes', 'node-types', 'metadata', 'relationships', 'flows', 'decorators']);
         for (const k of Object.keys(filter)) {
             if (!fallowed.has(k)) return `filter: additional properties not allowed ('${k}')`;
+            if (k === 'metadata') {
+                if (typeof filter[k] !== 'object' || filter[k] === null || Array.isArray(filter[k])) {
+                    return `filter.metadata must be an object of key to string array`;
+                }
+                continue;
+            }
             if (!Array.isArray(filter[k])) return `filter.${k} must be an array`;
         }
     }

@@ -18,6 +18,9 @@ export interface CalmArchitecture {
 export interface CalmFilter {
     nodes?: string[];
     'node-types'?: string[];
+    /** Node metadata match: the node is in the view when, for every key,
+     *  its metadata value is one of the listed values. */
+    metadata?: Record<string, string[]>;
     relationships?: string[];
     flows?: string[];
     decorators?: string[];
@@ -163,6 +166,14 @@ export function resolveView(arch: CalmArchitecture, filt: CalmFilter): ViewResol
     for (const [id, n] of nodes) {
         const t = n['node-type'] as string;
         if ((filt['node-types'] ?? []).includes(t)) inNodes.add(id);
+        const meta = (n['metadata'] as JsonRecord | undefined) ?? {};
+        const wanted = filt.metadata ?? {};
+        if (
+            Object.keys(wanted).length > 0 &&
+            Object.entries(wanted).every(([k, vals]) => (vals as string[]).includes(meta[k] as string))
+        ) {
+            inNodes.add(id);
+        }
     }
     const warnings: string[] = [];
     for (const u of filt.nodes ?? []) {
