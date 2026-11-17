@@ -30,8 +30,10 @@ we looked for an existing model with public access and found eCH-0122,
 the Swiss e-government reference architecture: our import has 216
 nodes and 287 relationships. Slicing them into separate architectures
 per team breaks
-the whole. The namespace is the architecture. What serves every reader
-is views over it, with rich metadata such as maturity or lifecycle.
+the whole, and the community is already moving toward a unified space
+(see Related work below). Our position: treat the namespace as the
+architecture, and serve every reader with views over it, carrying rich
+metadata such as maturity or lifecycle.
 That is why CALM is the answer: a vendor-neutral standard for the model,
 with validation in the build. This project proposes the missing reader
 side.
