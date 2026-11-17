@@ -25,8 +25,11 @@ need. Its limit is standardization. One vendor's DSL is a dialect, and
 a bank should not build on a dialect.
 
 Modernizing bank infrastructure means modeling systems that already
-exist. Those models are big: our eCH import has 216 nodes and 287
-relationships. Slicing them into separate architectures per team breaks
+exist. Those models are usually big. To validate views on a real one,
+we looked for an existing model with public access and found eCH-0122,
+the Swiss e-government reference architecture: our import has 216
+nodes and 287 relationships. Slicing them into separate architectures
+per team breaks
 the whole. The namespace is the architecture. What serves every reader
 is views over it, with rich metadata such as maturity or lifecycle.
 That is why CALM is the answer: a vendor-neutral standard for the model,
