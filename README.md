@@ -52,6 +52,9 @@ node poc/tools/dist/query.js context kyc-audit-view        # LLM-ready bundle: h
 node poc/tools/dist/pack.js poc/views/kyc-audit.calm-view.json --arch-id kyc-arch  # pack for Hub transport (the Hub has no views surface today)
 ```
 
+A view is also the context unit for an agent: a 216-node model does not
+fit a prompt, one view does (`query.js context`, above).
+
 Requirements: Node 18+. Zero runtime dependencies, offline reproducible,
 no network. Renders are byte-identical across runs.
 
@@ -100,15 +103,15 @@ In ISO 42010 terms ([ISO/IEC/IEEE 42010:2022](https://www.iso.org/standard/74393
 
 ## Related work
 
-- [LikeC4](https://likec4.dev): the model/views split this project imitates.
-  One model, as many views as readers need. Its limit is being one
-  vendor's language. A bank cannot build on a dialect. CALM standardizes
-  the model side. Named views are still open ([#2344](https://github.com/finos/architecture-as-code/issues/2344)).
 - [ArchiMate](https://www.opengroup.org/archimate-forum/archimate-overview):
   the earlier attempt at a common language, with clear layers. Its limit
   is tool XML that humans cannot write, review or diff by hand. CALM keeps
   the discipline and adds readable JSON plus build-time validation. The
   importer in this repo proves the bridge on a real model (eCH-0122).
+- [LikeC4](https://likec4.dev): the model/views split this project imitates.
+  One model, as many views as readers need. Its limit is being one
+  vendor's language. A bank cannot build on a dialect. CALM standardizes
+  the model side. Named views are still open ([#2344](https://github.com/finos/architecture-as-code/issues/2344)).
 - [finos/architecture-as-code#2344](https://github.com/finos/architecture-as-code/issues/2344):
   first-class views, open. Our filter mirrors its proposed selection
   semantics. A separate view document was proposed in [#2901](https://github.com/finos/architecture-as-code/issues/2901)
@@ -122,9 +125,7 @@ upstream surveillance, test design, and rubric review ran as separate
 agent roles, and every claim above was verified by hand (clean-clone
 install, byte-identical renders, DCO on every commit). No data is
 invented: every node id resolves against the vendored architecture,
-and every exclusion names its reason. A view is also the context unit
-for an agent: a 155-node model does not fit a prompt, one view does
-(`query.js context`, above).
+and every exclusion names its reason.
 
 ## Roadmap
 
