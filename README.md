@@ -46,8 +46,9 @@ with the repo, never modified. The KYC onboarding model
 28 relationships) renders through six views: platform, integration,
 audit, a derived neighborhood view, a drill-down inside view, and an
 audit-logging coverage view over the model's real control claims. The
-Swiss e-government reference eCH-0122 (216 nodes, redistributable)
-ships with layer and capability views. Each view emits scoped JSON
+Swiss e-government reference eCH-0122 (216 nodes, redistributable, chosen
+because it is a public, validated, official architecture) ships with
+layer and capability views. Each view emits scoped JSON
 (machine), static SVG (human diagram) and Markdown prose (audit-readable
 scope, tables, excluded-with-reason).
 
