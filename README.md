@@ -17,7 +17,7 @@ No lens consumes a view yet.
 
 ## What it does
 
-This project defines a view document (`schema/view.json`: audience,
+This project defines a view document (`poc/schema/view.json`: audience,
 filter by id, type, metadata or control claims, zero presentation) and
 the tools and use cases around it: `validate`, `render`, `derive`,
 `gallery`, reader queries (`query.js`), governance gates
