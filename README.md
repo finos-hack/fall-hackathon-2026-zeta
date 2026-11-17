@@ -122,7 +122,16 @@ if the project continues:
 2. A Views tab or overlay in Hub UI as an extension, per the extensions
    framework, plus `docify --view` parity in the CLI.
 3. Sidecar survival of a Canvas round-trip in an extension release shipping
-   upstream `[#3637](https://github.com/finos/architecture-as-code/pull/3637)` (merged 2026-11-16, not yet in 0.9.6).
+   upstream [#3637](https://github.com/finos/architecture-as-code/pull/3637) (merged 2026-11-16, not yet in 0.9.6).
+4. Wishlist, blocked upstream, documented here so the direction survives
+   the hackathon: a unified model across files needs shared node identity
+   ([calm-schema#27](https://github.com/finos/calm-schema/issues/27),
+   overlapping with [#47](https://github.com/finos/calm-schema/issues/47));
+   until then, multi-file views stay a namespaced union without dedup.
+   Cross-document references need one format and resolver
+   ([#3624](https://github.com/finos/architecture-as-code/issues/3624)).
+   Nested-architecture examples are still wanted upstream
+   ([#1568](https://github.com/finos/architecture-as-code/issues/1568)).
 
 ## What this is not
 
