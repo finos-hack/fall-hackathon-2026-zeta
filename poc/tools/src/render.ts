@@ -5,7 +5,8 @@
  * Static, dependency-free SVG (lane layout owned by the renderer). No Mermaid (#3674).
  * The architecture file is only read, never modified.
  */
-import { existsSync } from 'node:fs';
+import { createHash } from 'node:crypto';
+import { existsSync, readFileSync } from 'node:fs';
 import { join, dirname, normalize, basename } from 'node:path';
 import {
     ROOT,
@@ -23,6 +24,37 @@ import {
 
 const BOX_W = 200;
 const BOX_H = 60;
+
+/** Evidence pack header: what view, what model bytes, when, with which tool. */
+export interface Attestation {
+    view: string;
+    model: string;
+    modelSha256: string;
+    generated: string;
+    tool: string;
+}
+
+export function attestation(viewPath: string, archPath: string): Attestation {
+    const sha = createHash('sha256').update(readFileSync(archPath)).digest('hex');
+    return {
+        view: basename(viewPath),
+        model: basename(archPath),
+        modelSha256: sha,
+        generated: new Date().toISOString().slice(0, 10),
+        tool: 'calm-views-tools@0.1.0',
+    };
+}
+
+export function attestMarkdown(a: Attestation): string {
+    return `\n\n---\n_Rendered ${a.generated} by ${a.tool} from ${a.model} sha256:${a.modelSha256.slice(0, 12)}._\n`;
+}
+
+export function attestSvg(svg: string, a: Attestation): string {
+    return svg.replace(
+        /<svg([^>]*)>/,
+        `<svg$1>\n<!-- ${a.view} from ${a.model} sha256:${a.modelSha256.slice(0, 12)} ${a.generated} ${a.tool} -->`
+    );
+}
 const GAP_X = 130;
 const GAP_Y = 34;
 const PAD = 18;
@@ -311,8 +343,10 @@ export function main(): void {
     const { view: viewPath, out, format } = parseArgs(process.argv);
     const view = readJson(viewPath) as JsonRecord;
     const viewDir = dirname(normalize(viewPath));
-    const arch = readJson(normalize(join(viewDir, view['for'] as string))) as CalmArchitecture;
+    const archPath = normalize(join(viewDir, view['for'] as string));
+    const arch = readJson(archPath) as CalmArchitecture;
     const { inNodes, inRels, excluded, liftedEndpoints } = resolveView(arch, (view['filter'] as CalmFilter | undefined) ?? {});
+    const attest = attestation(viewPath, archPath);
     const base = join(out, view['unique-id'] as string);
     const want = new Set(['all', format]);
     if (want.has('json') || want.has('all')) {
@@ -323,14 +357,21 @@ export function main(): void {
             const p = normalize(join(viewDir, `${d}.decorator.json`));
             if (existsSync(p)) decs.push(readJson(p));
         }
-        const scoped = { view: view['unique-id'], for: view['for'], nodes: scopedNodes, relationships: scopedRels, decorators: decs };
+        const scoped = {
+            view: view['unique-id'],
+            for: view['for'],
+            nodes: scopedNodes,
+            relationships: scopedRels,
+            decorators: decs,
+            attestation: attest,
+        };
         writeText(base + '-scoped.json', dumpJson(scoped));
     }
     if (want.has('svg') || want.has('all')) {
-        writeText(base + '.svg', renderSvg(view, arch, inNodes, inRels, liftedEndpoints));
+        writeText(base + '.svg', attestSvg(renderSvg(view, arch, inNodes, inRels, liftedEndpoints), attest));
     }
     if (want.has('md') || want.has('all')) {
-        writeText(base + '.md', renderMarkdown(view, arch, inNodes, inRels, excluded, viewDir, liftedEndpoints));
+        writeText(base + '.md', renderMarkdown(view, arch, inNodes, inRels, excluded, viewDir, liftedEndpoints) + attestMarkdown(attest));
     }
     console.log(
         `${view['unique-id']}: ${inNodes.size} nodes, ${inRels.size} relationships -> ${base}.{json,svg,md}`

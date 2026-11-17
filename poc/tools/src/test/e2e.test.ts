@@ -23,11 +23,11 @@ const run = (script: string, args: string[]): { stdout: string; code: number } =
 };
 
 describe('end-to-end: validate -> render -> gallery are green and reproducible', () => {
-    it('validate exits 0 with 6 OK lines', () => {
+    it('validate exits 0 with 10 OK lines', () => {
         const { stdout, code } = run('validate.js', []);
         assert.equal(code, 0);
         const oks = stdout.split('\n').filter((l) => l.includes(': OK'));
-        assert.equal(oks.length, 6);
+        assert.equal(oks.length, 10);
         assert.match(oks.join('\n'), /kyc-audit\.calm-view\.json: OK — 15 nodes, 21 relationships/);
     });
 
@@ -39,6 +39,10 @@ describe('end-to-end: validate -> render -> gallery are green and reproducible',
             'kyc-audit',
             'kyc-screening-neighborhood',
             'kyc-platform-inside',
+            'kyc-audit-logging',
+            'ech-business',
+            'ech-application',
+            'ech-capabilities',
         ]) {
             const { code } = run('render.js', [join(POC, 'views', `${v}.calm-view.json`), '--out', tmp]);
             assert.equal(code, 0, v);
@@ -52,13 +56,13 @@ describe('end-to-end: validate -> render -> gallery are green and reproducible',
         }
     });
 
-    it('gallery embeds the 5 views', () => {
+    it('gallery embeds the 9 views', () => {
         const tmp = mkdtempSync(join(tmpdir(), 'calm-gallery-'));
         const { stdout, code } = run('gallery.js', ['--out', tmp]);
         assert.equal(code, 0);
-        assert.match(stdout, /5 views embedded/);
+        assert.match(stdout, /9 views embedded/);
         const html = readFileSync(join(tmp, 'gallery.html'), 'utf8');
-        assert.equal((html.match(/<section>/g) ?? []).length, 5);
+        assert.equal((html.match(/<section>/g) ?? []).length, 9);
     });
 
     it('derive reproduces the frozen snapshot scope (4 nodes, 3 rels)', () => {

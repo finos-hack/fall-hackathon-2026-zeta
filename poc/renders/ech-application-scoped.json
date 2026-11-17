@@ -1,0 +1,1140 @@
+{
+  "view": "ech-application",
+  "for": "../model/ech-0122.architecture.json",
+  "nodes": [
+    {
+      "unique-id": "ech-id-d0697d98d1c1402dbf3b0540214eb279",
+      "node-type": "service",
+      "name": "Datenkatalg",
+      "description": "ArchiMate ApplicationService from Application (imported from eCH-0122-2-0-1.archimate).",
+      "metadata": {
+        "archimate-type": "ApplicationService",
+        "archimate-layer": "Application",
+        "archimate-folders": "Application"
+      }
+    },
+    {
+      "unique-id": "ech-id-755e1f25c8ae4140a07fbe25c92529f6",
+      "node-type": "database",
+      "name": "Zentralisierte Metadaten",
+      "description": "ArchiMate DataObject from Application (imported from eCH-0122-2-0-1.archimate).",
+      "metadata": {
+        "archimate-type": "DataObject",
+        "archimate-layer": "Application",
+        "archimate-folders": "Application"
+      }
+    },
+    {
+      "unique-id": "ech-id-060b64f78066488ca2beac4e6622db12",
+      "node-type": "database",
+      "name": "Metadata A",
+      "description": "ArchiMate DataObject from Application (imported from eCH-0122-2-0-1.archimate).",
+      "metadata": {
+        "archimate-type": "DataObject",
+        "archimate-layer": "Application",
+        "archimate-folders": "Application"
+      }
+    },
+    {
+      "unique-id": "ech-id-8e1bf77800024627a92afd30a337a936",
+      "node-type": "database",
+      "name": "Metadata B",
+      "description": "ArchiMate DataObject from Application (imported from eCH-0122-2-0-1.archimate).",
+      "metadata": {
+        "archimate-type": "DataObject",
+        "archimate-layer": "Application",
+        "archimate-folders": "Application"
+      }
+    },
+    {
+      "unique-id": "ech-id-3f10004468994dfaa3eed25b8d8dbf48",
+      "node-type": "service",
+      "name": "Daten-anbieter A",
+      "description": "ArchiMate ApplicationService from Application (imported from eCH-0122-2-0-1.archimate).",
+      "metadata": {
+        "archimate-type": "ApplicationService",
+        "archimate-layer": "Application",
+        "archimate-folders": "Application"
+      }
+    },
+    {
+      "unique-id": "ech-id-e2d5e68d6fce4651a362556c393e96c8",
+      "node-type": "service",
+      "name": "Daten-anbieter B",
+      "description": "ArchiMate ApplicationService from Application (imported from eCH-0122-2-0-1.archimate).",
+      "metadata": {
+        "archimate-type": "ApplicationService",
+        "archimate-layer": "Application",
+        "archimate-folders": "Application"
+      }
+    },
+    {
+      "unique-id": "ech-id-d6d760b4eb4d43a8b5f4a4596a41436e",
+      "node-type": "service",
+      "name": "Anwendung",
+      "description": "ArchiMate ApplicationComponent from Application (imported from eCH-0122-2-0-1.archimate).",
+      "metadata": {
+        "archimate-type": "ApplicationComponent",
+        "archimate-layer": "Application",
+        "archimate-folders": "Application"
+      }
+    },
+    {
+      "unique-id": "ech-id-223a2718d6ae407fb5b346fa4db1f0ce",
+      "node-type": "database",
+      "name": "Data B",
+      "description": "ArchiMate DataObject from Application (imported from eCH-0122-2-0-1.archimate).",
+      "metadata": {
+        "archimate-type": "DataObject",
+        "archimate-layer": "Application",
+        "archimate-folders": "Application"
+      }
+    },
+    {
+      "unique-id": "ech-id-37a6f4c5ee09445f8f5cdc10eb5dc6d2",
+      "node-type": "service",
+      "name": "\u00d6ffentliche Digitale Leistung A",
+      "description": "ArchiMate ApplicationService from Application (imported from eCH-0122-2-0-1.archimate).",
+      "metadata": {
+        "archimate-type": "ApplicationService",
+        "archimate-layer": "Application",
+        "archimate-folders": "Application"
+      }
+    },
+    {
+      "unique-id": "ech-id-0e07844fdc63437f8acde1236dc3b422",
+      "node-type": "service",
+      "name": "\u00d6ffentliche Digitale Leistung",
+      "description": "ArchiMate ApplicationService from Application (imported from eCH-0122-2-0-1.archimate).",
+      "metadata": {
+        "archimate-type": "ApplicationService",
+        "archimate-layer": "Application",
+        "archimate-folders": "Application"
+      }
+    },
+    {
+      "unique-id": "ech-id-07240f6a5f5a4033855da4e581e117b4",
+      "node-type": "service",
+      "name": "Digitale Leistung",
+      "description": "ArchiMate ApplicationService from Application (imported from eCH-0122-2-0-1.archimate).",
+      "metadata": {
+        "archimate-type": "ApplicationService",
+        "archimate-layer": "Application",
+        "archimate-folders": "Application"
+      }
+    },
+    {
+      "unique-id": "ech-id-a5db7c3053844253b8be6f015a5b19d3",
+      "node-type": "service",
+      "name": "Prozess-spezifischer Dienst",
+      "description": "ArchiMate ApplicationService from Application (imported from eCH-0122-2-0-1.archimate).",
+      "metadata": {
+        "archimate-type": "ApplicationService",
+        "archimate-layer": "Application",
+        "archimate-folders": "Application"
+      }
+    },
+    {
+      "unique-id": "ech-id-79bda45748014efa9b89860f363b83db",
+      "node-type": "service",
+      "name": "Agnostischer Dienst",
+      "description": "ArchiMate ApplicationService from Application (imported from eCH-0122-2-0-1.archimate).",
+      "metadata": {
+        "archimate-type": "ApplicationService",
+        "archimate-layer": "Application",
+        "archimate-folders": "Application"
+      }
+    },
+    {
+      "unique-id": "ech-id-82870805ef2a4c0296a22f6649725e65",
+      "node-type": "service",
+      "name": "Utility",
+      "description": "ArchiMate ApplicationService from Application (imported from eCH-0122-2-0-1.archimate).",
+      "metadata": {
+        "archimate-type": "ApplicationService",
+        "archimate-layer": "Application",
+        "archimate-folders": "Application"
+      }
+    },
+    {
+      "unique-id": "ech-id-033fd712301a4cfa88c319f72a4b51e7",
+      "node-type": "service",
+      "name": "Bestand",
+      "description": "ArchiMate ApplicationService from Application (imported from eCH-0122-2-0-1.archimate).",
+      "metadata": {
+        "archimate-type": "ApplicationService",
+        "archimate-layer": "Application",
+        "archimate-folders": "Application"
+      }
+    },
+    {
+      "unique-id": "ech-id-1c51e6c6be1f4ccda88ae3edb336b3d0",
+      "node-type": "service",
+      "name": "Business Rule",
+      "description": "ArchiMate ApplicationService from Application (imported from eCH-0122-2-0-1.archimate).",
+      "metadata": {
+        "archimate-type": "ApplicationService",
+        "archimate-layer": "Application",
+        "archimate-folders": "Application"
+      }
+    },
+    {
+      "unique-id": "ech-id-12ba559423294ebf880c6289d8b8bcdb",
+      "node-type": "service",
+      "name": "Orchestrierung / Workflow",
+      "description": "ArchiMate ApplicationService from Application (imported from eCH-0122-2-0-1.archimate).",
+      "metadata": {
+        "archimate-type": "ApplicationService",
+        "archimate-layer": "Application",
+        "archimate-folders": "Application"
+      }
+    },
+    {
+      "unique-id": "ech-id-029b838e4a9441da95e264f9b6cb4e3f",
+      "node-type": "service",
+      "name": "Einfacher Prozess",
+      "description": "ArchiMate ApplicationService from Application (imported from eCH-0122-2-0-1.archimate).",
+      "metadata": {
+        "archimate-type": "ApplicationService",
+        "archimate-layer": "Application",
+        "archimate-folders": "Application"
+      }
+    },
+    {
+      "unique-id": "ech-id-31225b5c98d7454dbb97e01f2a4cee37",
+      "node-type": "service",
+      "name": "Funktion",
+      "description": "ArchiMate ApplicationService from Application (imported from eCH-0122-2-0-1.archimate).",
+      "metadata": {
+        "archimate-type": "ApplicationService",
+        "archimate-layer": "Application",
+        "archimate-folders": "Application"
+      }
+    },
+    {
+      "unique-id": "ech-id-6ab818fe8704440e9cb6847a7578767f",
+      "node-type": "service",
+      "name": "HMI",
+      "description": "ArchiMate ApplicationInterface from Application (imported from eCH-0122-2-0-1.archimate).",
+      "metadata": {
+        "archimate-type": "ApplicationInterface",
+        "archimate-layer": "Application",
+        "archimate-folders": "Application"
+      }
+    },
+    {
+      "unique-id": "ech-id-78222fba875448e68e77ebb519393bde",
+      "node-type": "service",
+      "name": "Interaktion",
+      "description": "ArchiMate ApplicationService from Application (imported from eCH-0122-2-0-1.archimate).",
+      "metadata": {
+        "archimate-type": "ApplicationService",
+        "archimate-layer": "Application",
+        "archimate-folders": "Application"
+      }
+    },
+    {
+      "unique-id": "ech-id-6ff5577ebe1d42ce8770632a9eb475a9",
+      "node-type": "service",
+      "name": "MMI",
+      "description": "ArchiMate ApplicationInterface from Application (imported from eCH-0122-2-0-1.archimate).",
+      "metadata": {
+        "archimate-type": "ApplicationInterface",
+        "archimate-layer": "Application",
+        "archimate-folders": "Application"
+      }
+    },
+    {
+      "unique-id": "ech-id-3dc20bea18154e12ba6cc82341a36541",
+      "node-type": "service",
+      "name": "Externes System",
+      "description": "ArchiMate ApplicationComponent from Application (imported from eCH-0122-2-0-1.archimate).",
+      "metadata": {
+        "archimate-type": "ApplicationComponent",
+        "archimate-layer": "Application",
+        "archimate-folders": "Application"
+      }
+    },
+    {
+      "unique-id": "ech-id-3de5746cc824464fb5e820d361505761",
+      "node-type": "service",
+      "name": "Interner Dienst",
+      "description": "ArchiMate ApplicationService from Application (imported from eCH-0122-2-0-1.archimate).",
+      "metadata": {
+        "archimate-type": "ApplicationService",
+        "archimate-layer": "Application",
+        "archimate-folders": "Application"
+      }
+    },
+    {
+      "unique-id": "ech-id-bfcc587967e64d8b804eb40195266a18",
+      "node-type": "service",
+      "name": "Interaktions-dienst",
+      "description": "ArchiMate ApplicationService from Application (imported from eCH-0122-2-0-1.archimate).",
+      "metadata": {
+        "archimate-type": "ApplicationService",
+        "archimate-layer": "Application",
+        "archimate-folders": "Application"
+      }
+    },
+    {
+      "unique-id": "ech-id-569c65b065694bee90716f2d4851327b",
+      "node-type": "service",
+      "name": "API / M2M   ",
+      "description": "ArchiMate ApplicationInterface from Application (imported from eCH-0122-2-0-1.archimate).",
+      "metadata": {
+        "archimate-type": "ApplicationInterface",
+        "archimate-layer": "Application",
+        "archimate-folders": "Application"
+      }
+    },
+    {
+      "unique-id": "ech-id-30526707fce0488c813226dd60666fea",
+      "node-type": "service",
+      "name": "Legacy-API",
+      "description": "ArchiMate ApplicationInterface from Application (imported from eCH-0122-2-0-1.archimate).",
+      "metadata": {
+        "archimate-type": "ApplicationInterface",
+        "archimate-layer": "Application",
+        "archimate-folders": "Application"
+      }
+    },
+    {
+      "unique-id": "ech-id-42402b1d4ebc4645a1230d8a1dfdffd7",
+      "node-type": "service",
+      "name": "Legacy L\u00f6sung",
+      "description": "ArchiMate ApplicationComponent from Application (imported from eCH-0122-2-0-1.archimate).",
+      "metadata": {
+        "archimate-type": "ApplicationComponent",
+        "archimate-layer": "Application",
+        "archimate-folders": "Application"
+      }
+    },
+    {
+      "unique-id": "ech-id-64f979d75d9242688aaa3ab7ca19dffe",
+      "node-type": "database",
+      "name": "Datenmapping",
+      "description": "ArchiMate DataObject from Application (imported from eCH-0122-2-0-1.archimate).",
+      "metadata": {
+        "archimate-type": "DataObject",
+        "archimate-layer": "Application",
+        "archimate-folders": "Application"
+      }
+    },
+    {
+      "unique-id": "ech-id-ac8ef321097c49c28ea8277a3f58fd6b",
+      "node-type": "service",
+      "name": "Standardisierte API",
+      "description": "ArchiMate ApplicationInterface from Application (imported from eCH-0122-2-0-1.archimate).",
+      "metadata": {
+        "archimate-type": "ApplicationInterface",
+        "archimate-layer": "Application",
+        "archimate-folders": "Application"
+      }
+    },
+    {
+      "unique-id": "ech-id-975423816f90446da9f5aa0d5f4beb80",
+      "node-type": "service",
+      "name": "Fassade",
+      "description": "ArchiMate ApplicationComponent from Application (imported from eCH-0122-2-0-1.archimate).",
+      "metadata": {
+        "archimate-type": "ApplicationComponent",
+        "archimate-layer": "Application",
+        "archimate-folders": "Application"
+      }
+    },
+    {
+      "unique-id": "ech-id-cb4282d536484e4ca83063db80fb27b9",
+      "node-type": "service",
+      "name": "Service Consumer Anwendung",
+      "description": "ArchiMate ApplicationComponent from Application (imported from eCH-0122-2-0-1.archimate).",
+      "metadata": {
+        "archimate-type": "ApplicationComponent",
+        "archimate-layer": "Application",
+        "archimate-folders": "Application"
+      }
+    },
+    {
+      "unique-id": "ech-id-7233eca57a094689bbca0a7c8bd2f50a",
+      "node-type": "service",
+      "name": "L\u00f6sung A2",
+      "description": "ArchiMate ApplicationComponent from Application (imported from eCH-0122-2-0-1.archimate).",
+      "metadata": {
+        "archimate-type": "ApplicationComponent",
+        "archimate-layer": "Application",
+        "archimate-folders": "Application"
+      }
+    },
+    {
+      "unique-id": "ech-id-4f552f991e374bd5b569593f13afff29",
+      "node-type": "service",
+      "name": "L\u00f6sung",
+      "description": "ArchiMate ApplicationComponent from Application (imported from eCH-0122-2-0-1.archimate).",
+      "metadata": {
+        "archimate-type": "ApplicationComponent",
+        "archimate-layer": "Application",
+        "archimate-folders": "Application"
+      }
+    },
+    {
+      "unique-id": "ech-id-24dbe08456954a77950e16d185027e75",
+      "node-type": "service",
+      "name": "L\u00f6sung A1",
+      "description": "ArchiMate ApplicationComponent from Application (imported from eCH-0122-2-0-1.archimate).",
+      "metadata": {
+        "archimate-type": "ApplicationComponent",
+        "archimate-layer": "Application",
+        "archimate-folders": "Application"
+      }
+    },
+    {
+      "unique-id": "ech-id-e559ee6edbd74d7cb505b8e99870694f",
+      "node-type": "service",
+      "name": "L\u00f6sung B",
+      "description": "ArchiMate ApplicationComponent from Application (imported from eCH-0122-2-0-1.archimate).",
+      "metadata": {
+        "archimate-type": "ApplicationComponent",
+        "archimate-layer": "Application",
+        "archimate-folders": "Application"
+      }
+    },
+    {
+      "unique-id": "ech-id-9229426fd74f49fc97419bc2aefe0310",
+      "node-type": "service",
+      "name": "L\u00f6sung A",
+      "description": "ArchiMate ApplicationComponent from Application (imported from eCH-0122-2-0-1.archimate).",
+      "metadata": {
+        "archimate-type": "ApplicationComponent",
+        "archimate-layer": "Application",
+        "archimate-folders": "Application"
+      }
+    },
+    {
+      "unique-id": "ech-id-ce2c71580df649128ce62a49e39f3201",
+      "node-type": "service",
+      "name": "Digitale Leistung A",
+      "description": "ArchiMate ApplicationService from Application (imported from eCH-0122-2-0-1.archimate).",
+      "metadata": {
+        "archimate-type": "ApplicationService",
+        "archimate-layer": "Application",
+        "archimate-folders": "Application"
+      }
+    },
+    {
+      "unique-id": "ech-id-184b53652e9a4d118cb12ee5cd7a8717",
+      "node-type": "service",
+      "name": "Digitale Leistung B",
+      "description": "ArchiMate ApplicationService from Application (imported from eCH-0122-2-0-1.archimate).",
+      "metadata": {
+        "archimate-type": "ApplicationService",
+        "archimate-layer": "Application",
+        "archimate-folders": "Application"
+      }
+    },
+    {
+      "unique-id": "ech-id-fc269abaa1da48cba5f2f11940fc0fda",
+      "node-type": "service",
+      "name": "Standardisierte Schnittstelle",
+      "description": "ArchiMate ApplicationInterface from Application (imported from eCH-0122-2-0-1.archimate).",
+      "metadata": {
+        "archimate-type": "ApplicationInterface",
+        "archimate-layer": "Application",
+        "archimate-folders": "Application"
+      }
+    },
+    {
+      "unique-id": "ech-id-7a5ac152e01a4a7f91422c3acdbf9810",
+      "node-type": "database",
+      "name": "Daten A",
+      "description": "ArchiMate DataObject from Application (imported from eCH-0122-2-0-1.archimate).",
+      "metadata": {
+        "archimate-type": "DataObject",
+        "archimate-layer": "Application",
+        "archimate-folders": "Application"
+      }
+    },
+    {
+      "unique-id": "ech-id-93a033aa5f114fbfab867be9d08b43af",
+      "node-type": "database",
+      "name": "Interne Daten A",
+      "description": "ArchiMate DataObject from Application (imported from eCH-0122-2-0-1.archimate).",
+      "metadata": {
+        "archimate-type": "DataObject",
+        "archimate-layer": "Application",
+        "archimate-folders": "Application"
+      }
+    },
+    {
+      "unique-id": "ech-id-d5b3d7a4fcd54c9ab4d2769c802e65da",
+      "node-type": "database",
+      "name": "Daten B",
+      "description": "ArchiMate DataObject from Application (imported from eCH-0122-2-0-1.archimate).",
+      "metadata": {
+        "archimate-type": "DataObject",
+        "archimate-layer": "Application",
+        "archimate-folders": "Application"
+      }
+    },
+    {
+      "unique-id": "ech-id-5a6fc58454ed47139ae6aaa1b03f7251",
+      "node-type": "database",
+      "name": "Interne Daten B",
+      "description": "ArchiMate DataObject from Application (imported from eCH-0122-2-0-1.archimate).",
+      "metadata": {
+        "archimate-type": "DataObject",
+        "archimate-layer": "Application",
+        "archimate-folders": "Application"
+      }
+    },
+    {
+      "unique-id": "ech-id-c43305c39a844451a5736d7316b04def",
+      "node-type": "database",
+      "name": "Daten",
+      "description": "ArchiMate DataObject from Application (imported from eCH-0122-2-0-1.archimate).",
+      "metadata": {
+        "archimate-type": "DataObject",
+        "archimate-layer": "Application",
+        "archimate-folders": "Application"
+      }
+    },
+    {
+      "unique-id": "ech-id-c0146cc4d02c4e4cbfc6637c3bcc66b9",
+      "node-type": "database",
+      "name": "Record",
+      "description": "ArchiMate DataObject from Application (imported from eCH-0122-2-0-1.archimate).",
+      "metadata": {
+        "archimate-type": "DataObject",
+        "archimate-layer": "Application",
+        "archimate-folders": "Application"
+      }
+    },
+    {
+      "unique-id": "ech-id-294bb519476b4806aad43e16461ef0d5",
+      "node-type": "service",
+      "name": "Register",
+      "description": "ArchiMate ApplicationService from Application (imported from eCH-0122-2-0-1.archimate).",
+      "metadata": {
+        "archimate-type": "ApplicationService",
+        "archimate-layer": "Application",
+        "archimate-folders": "Application"
+      }
+    },
+    {
+      "unique-id": "ech-id-245c55d28c7d43a9a2f00d9b3a0fcc8d",
+      "node-type": "service",
+      "name": "Datenbank-system",
+      "description": "ArchiMate ApplicationComponent from Application (imported from eCH-0122-2-0-1.archimate).",
+      "metadata": {
+        "archimate-type": "ApplicationComponent",
+        "archimate-layer": "Application",
+        "archimate-folders": "Application"
+      }
+    },
+    {
+      "unique-id": "ech-id-b76759aa87294c569472d22447b38725",
+      "node-type": "service",
+      "name": "Digitale L\u00f6sung B",
+      "description": "ArchiMate ApplicationComponent from Application (imported from eCH-0122-2-0-1.archimate).",
+      "metadata": {
+        "archimate-type": "ApplicationComponent",
+        "archimate-layer": "Application",
+        "archimate-folders": "Application"
+      }
+    },
+    {
+      "unique-id": "ech-id-0c4f6432ab8441a389608dfcca10465d",
+      "node-type": "database",
+      "name": "Dokumentdaten (Webforms, usw)",
+      "description": "ArchiMate DataObject from Application (imported from eCH-0122-2-0-1.archimate).",
+      "metadata": {
+        "archimate-type": "DataObject",
+        "archimate-layer": "Application",
+        "archimate-folders": "Application"
+      }
+    }
+  ],
+  "relationships": [
+    {
+      "unique-id": "ech-rel-id-180b31dab73945d9ae10386544d5ead7",
+      "relationship-type": {
+        "connects": {
+          "source": {
+            "node": "ech-id-d6d760b4eb4d43a8b5f4a4596a41436e"
+          },
+          "destination": {
+            "node": "ech-id-e2d5e68d6fce4651a362556c393e96c8"
+          }
+        }
+      },
+      "description": "Daten B abrufen (ArchiMate TriggeringRelationship)"
+    },
+    {
+      "unique-id": "ech-rel-id-2ee819888ad34f46aa169d3438e0994a",
+      "relationship-type": {
+        "connects": {
+          "source": {
+            "node": "ech-id-d6d760b4eb4d43a8b5f4a4596a41436e"
+          },
+          "destination": {
+            "node": "ech-id-d0697d98d1c1402dbf3b0540214eb279"
+          }
+        }
+      },
+      "description": "Wer stellt Daten B zur Verf\u00fcgung? (ArchiMate TriggeringRelationship)"
+    },
+    {
+      "unique-id": "ech-rel-id-0967066ae13a4659b1a77dead7859ae5",
+      "relationship-type": {
+        "connects": {
+          "source": {
+            "node": "ech-id-d0697d98d1c1402dbf3b0540214eb279"
+          },
+          "destination": {
+            "node": "ech-id-755e1f25c8ae4140a07fbe25c92529f6"
+          }
+        }
+      },
+      "description": "ArchiMate AccessRelationship"
+    },
+    {
+      "unique-id": "ech-rel-id-13acb05993be4f7a82a6849a803cb0d1",
+      "relationship-type": {
+        "connects": {
+          "source": {
+            "node": "ech-id-e2d5e68d6fce4651a362556c393e96c8"
+          },
+          "destination": {
+            "node": "ech-id-223a2718d6ae407fb5b346fa4db1f0ce"
+          }
+        }
+      },
+      "description": "ArchiMate AccessRelationship"
+    },
+    {
+      "unique-id": "ech-rel-id-3714483bd3404cf7b43717ff577dab0c",
+      "relationship-type": {
+        "connects": {
+          "source": {
+            "node": "ech-id-1c51e6c6be1f4ccda88ae3edb336b3d0"
+          },
+          "destination": {
+            "node": "ech-id-79bda45748014efa9b89860f363b83db"
+          }
+        }
+      },
+      "description": "ArchiMate SpecializationRelationship"
+    },
+    {
+      "unique-id": "ech-rel-id-650be3960c964bc397b919c0a330ddae",
+      "relationship-type": {
+        "connects": {
+          "source": {
+            "node": "ech-id-12ba559423294ebf880c6289d8b8bcdb"
+          },
+          "destination": {
+            "node": "ech-id-a5db7c3053844253b8be6f015a5b19d3"
+          }
+        }
+      },
+      "description": "ArchiMate TriggeringRelationship"
+    },
+    {
+      "unique-id": "ech-rel-id-a7e8005f123c4ee1adc29b63c31b5dbf",
+      "relationship-type": {
+        "connects": {
+          "source": {
+            "node": "ech-id-1c51e6c6be1f4ccda88ae3edb336b3d0"
+          },
+          "destination": {
+            "node": "ech-id-82870805ef2a4c0296a22f6649725e65"
+          }
+        }
+      },
+      "description": "ArchiMate TriggeringRelationship"
+    },
+    {
+      "unique-id": "ech-rel-id-ef08394e4dc945cb8ffade975116984d",
+      "relationship-type": {
+        "connects": {
+          "source": {
+            "node": "ech-id-31225b5c98d7454dbb97e01f2a4cee37"
+          },
+          "destination": {
+            "node": "ech-id-79bda45748014efa9b89860f363b83db"
+          }
+        }
+      },
+      "description": "ArchiMate SpecializationRelationship"
+    },
+    {
+      "unique-id": "ech-rel-id-e54984f027c74275a114bda9b703d015",
+      "relationship-type": {
+        "connects": {
+          "source": {
+            "node": "ech-id-3dc20bea18154e12ba6cc82341a36541"
+          },
+          "destination": {
+            "node": "ech-id-6ff5577ebe1d42ce8770632a9eb475a9"
+          }
+        }
+      },
+      "description": "ArchiMate TriggeringRelationship"
+    },
+    {
+      "unique-id": "ech-rel-id-4fadfa4b408d4e5fb2cf2417084b7d61",
+      "relationship-type": {
+        "connects": {
+          "source": {
+            "node": "ech-id-a5db7c3053844253b8be6f015a5b19d3"
+          },
+          "destination": {
+            "node": "ech-id-79bda45748014efa9b89860f363b83db"
+          }
+        }
+      },
+      "description": "ArchiMate TriggeringRelationship"
+    },
+    {
+      "unique-id": "ech-rel-id-01daa8161ad74e2296d9401b6a1edf33",
+      "relationship-type": {
+        "connects": {
+          "source": {
+            "node": "ech-id-12ba559423294ebf880c6289d8b8bcdb"
+          },
+          "destination": {
+            "node": "ech-id-a5db7c3053844253b8be6f015a5b19d3"
+          }
+        }
+      },
+      "description": "ArchiMate SpecializationRelationship"
+    },
+    {
+      "unique-id": "ech-rel-id-322e481311ed4c7aad081857605e760a",
+      "relationship-type": {
+        "connects": {
+          "source": {
+            "node": "ech-id-033fd712301a4cfa88c319f72a4b51e7"
+          },
+          "destination": {
+            "node": "ech-id-1c51e6c6be1f4ccda88ae3edb336b3d0"
+          }
+        }
+      },
+      "description": "ArchiMate TriggeringRelationship"
+    },
+    {
+      "unique-id": "ech-rel-id-07171104119346738228db6ae62308eb",
+      "relationship-type": {
+        "connects": {
+          "source": {
+            "node": "ech-id-033fd712301a4cfa88c319f72a4b51e7"
+          },
+          "destination": {
+            "node": "ech-id-79bda45748014efa9b89860f363b83db"
+          }
+        }
+      },
+      "description": "ArchiMate SpecializationRelationship"
+    },
+    {
+      "unique-id": "ech-rel-id-3a0c619bc4da4c2ab5dd88bb3ec79afa",
+      "relationship-type": {
+        "connects": {
+          "source": {
+            "node": "ech-id-033fd712301a4cfa88c319f72a4b51e7"
+          },
+          "destination": {
+            "node": "ech-id-82870805ef2a4c0296a22f6649725e65"
+          }
+        }
+      },
+      "description": "ArchiMate TriggeringRelationship"
+    },
+    {
+      "unique-id": "ech-rel-id-04453e7e5ba641b39e407008a1e5aa93",
+      "relationship-type": {
+        "connects": {
+          "source": {
+            "node": "ech-id-31225b5c98d7454dbb97e01f2a4cee37"
+          },
+          "destination": {
+            "node": "ech-id-79bda45748014efa9b89860f363b83db"
+          }
+        }
+      },
+      "description": "ArchiMate TriggeringRelationship"
+    },
+    {
+      "unique-id": "ech-rel-id-dbd241e901874155823d79f1d3baae7a",
+      "relationship-type": {
+        "connects": {
+          "source": {
+            "node": "ech-id-029b838e4a9441da95e264f9b6cb4e3f"
+          },
+          "destination": {
+            "node": "ech-id-a5db7c3053844253b8be6f015a5b19d3"
+          }
+        }
+      },
+      "description": "ArchiMate SpecializationRelationship"
+    },
+    {
+      "unique-id": "ech-rel-id-1439df34fb3640d6929488bab0e7c539",
+      "relationship-type": {
+        "connects": {
+          "source": {
+            "node": "ech-id-78222fba875448e68e77ebb519393bde"
+          },
+          "destination": {
+            "node": "ech-id-a5db7c3053844253b8be6f015a5b19d3"
+          }
+        }
+      },
+      "description": "ArchiMate TriggeringRelationship"
+    },
+    {
+      "unique-id": "ech-rel-id-e4969176075149bb878b761d1fb8668f",
+      "relationship-type": {
+        "connects": {
+          "source": {
+            "node": "ech-id-82870805ef2a4c0296a22f6649725e65"
+          },
+          "destination": {
+            "node": "ech-id-79bda45748014efa9b89860f363b83db"
+          }
+        }
+      },
+      "description": "ArchiMate SpecializationRelationship"
+    },
+    {
+      "unique-id": "ech-rel-id-5ed8fb4827fb4f36af158b4ab81d13f8",
+      "relationship-type": {
+        "connects": {
+          "source": {
+            "node": "ech-id-78222fba875448e68e77ebb519393bde"
+          },
+          "destination": {
+            "node": "ech-id-79bda45748014efa9b89860f363b83db"
+          }
+        }
+      },
+      "description": "ArchiMate TriggeringRelationship"
+    },
+    {
+      "unique-id": "ech-rel-id-92ea9a5656c1494da3c58775fa8d9f8c",
+      "relationship-type": {
+        "connects": {
+          "source": {
+            "node": "ech-id-bfcc587967e64d8b804eb40195266a18"
+          },
+          "destination": {
+            "node": "ech-id-3de5746cc824464fb5e820d361505761"
+          }
+        }
+      },
+      "description": "ArchiMate TriggeringRelationship"
+    },
+    {
+      "unique-id": "ech-rel-id-08c9bbcfa3e746d8aba2f4d06349dfc9",
+      "relationship-type": {
+        "connects": {
+          "source": {
+            "node": "ech-id-3dc20bea18154e12ba6cc82341a36541"
+          },
+          "destination": {
+            "node": "ech-id-569c65b065694bee90716f2d4851327b"
+          }
+        }
+      },
+      "description": "ArchiMate TriggeringRelationship"
+    },
+    {
+      "unique-id": "ech-rel-id-9eaa04f5296b4963bb229e301370b82b",
+      "relationship-type": {
+        "connects": {
+          "source": {
+            "node": "ech-id-79bda45748014efa9b89860f363b83db"
+          },
+          "destination": {
+            "node": "ech-id-a5db7c3053844253b8be6f015a5b19d3"
+          }
+        }
+      },
+      "description": "dient (ArchiMate ServingRelationship)"
+    },
+    {
+      "unique-id": "ech-rel-id-22ec957b1378415abc602770f6243830",
+      "relationship-type": {
+        "connects": {
+          "source": {
+            "node": "ech-id-a5db7c3053844253b8be6f015a5b19d3"
+          },
+          "destination": {
+            "node": "ech-id-79bda45748014efa9b89860f363b83db"
+          }
+        }
+      },
+      "description": "verwendet (ArchiMate TriggeringRelationship)"
+    },
+    {
+      "unique-id": "ech-rel-id-2756412f62bb4ea1b0718139ff15e455",
+      "relationship-type": {
+        "connects": {
+          "source": {
+            "node": "ech-id-975423816f90446da9f5aa0d5f4beb80"
+          },
+          "destination": {
+            "node": "ech-id-64f979d75d9242688aaa3ab7ca19dffe"
+          }
+        }
+      },
+      "description": "ArchiMate AccessRelationship"
+    },
+    {
+      "unique-id": "ech-rel-id-d910d91dad3b4c73ab3fd6508f23befb",
+      "relationship-type": {
+        "connects": {
+          "source": {
+            "node": "ech-id-975423816f90446da9f5aa0d5f4beb80"
+          },
+          "destination": {
+            "node": "ech-id-42402b1d4ebc4645a1230d8a1dfdffd7"
+          }
+        }
+      },
+      "description": "ArchiMate TriggeringRelationship"
+    },
+    {
+      "unique-id": "ech-rel-id-5c3857123c504fa283abfef78a16ac37",
+      "relationship-type": {
+        "connects": {
+          "source": {
+            "node": "ech-id-cb4282d536484e4ca83063db80fb27b9"
+          },
+          "destination": {
+            "node": "ech-id-ac8ef321097c49c28ea8277a3f58fd6b"
+          }
+        }
+      },
+      "description": "request (ArchiMate FlowRelationship)"
+    },
+    {
+      "unique-id": "ech-rel-id-b50c9a867d894cddb9ea37d95f0c7098",
+      "relationship-type": {
+        "connects": {
+          "source": {
+            "node": "ech-id-975423816f90446da9f5aa0d5f4beb80"
+          },
+          "destination": {
+            "node": "ech-id-ac8ef321097c49c28ea8277a3f58fd6b"
+          }
+        }
+      },
+      "description": "ArchiMate RealizationRelationship"
+    },
+    {
+      "unique-id": "ech-rel-id-fa8e24f126a34280bb063e5a26eee430",
+      "relationship-type": {
+        "connects": {
+          "source": {
+            "node": "ech-id-975423816f90446da9f5aa0d5f4beb80"
+          },
+          "destination": {
+            "node": "ech-id-07240f6a5f5a4033855da4e581e117b4"
+          }
+        }
+      },
+      "description": "ArchiMate RealizationRelationship"
+    },
+    {
+      "unique-id": "ech-rel-id-6e2a001afbf048e1a9e79d086c91c310",
+      "relationship-type": {
+        "connects": {
+          "source": {
+            "node": "ech-id-9229426fd74f49fc97419bc2aefe0310"
+          },
+          "destination": {
+            "node": "ech-id-ce2c71580df649128ce62a49e39f3201"
+          }
+        }
+      },
+      "description": "ArchiMate RealizationRelationship"
+    },
+    {
+      "unique-id": "ech-rel-id-af4171a4493a4844ab00ba68ffa6430f",
+      "relationship-type": {
+        "connects": {
+          "source": {
+            "node": "ech-id-e559ee6edbd74d7cb505b8e99870694f"
+          },
+          "destination": {
+            "node": "ech-id-184b53652e9a4d118cb12ee5cd7a8717"
+          }
+        }
+      },
+      "description": "ArchiMate RealizationRelationship"
+    },
+    {
+      "unique-id": "ech-rel-id-c2c79435ffe14c01bf6482a6383bcc04",
+      "relationship-type": {
+        "connects": {
+          "source": {
+            "node": "ech-id-9229426fd74f49fc97419bc2aefe0310"
+          },
+          "destination": {
+            "node": "ech-id-93a033aa5f114fbfab867be9d08b43af"
+          }
+        }
+      },
+      "description": "ArchiMate AccessRelationship"
+    },
+    {
+      "unique-id": "ech-rel-id-713786d97ee1457d9d58c8eb82f8d40d",
+      "relationship-type": {
+        "connects": {
+          "source": {
+            "node": "ech-id-e559ee6edbd74d7cb505b8e99870694f"
+          },
+          "destination": {
+            "node": "ech-id-184b53652e9a4d118cb12ee5cd7a8717"
+          }
+        }
+      },
+      "description": "ArchiMate RealizationRelationship"
+    },
+    {
+      "unique-id": "ech-rel-id-1e4ea1eebe2d4c9e9c53abfdd562b2d5",
+      "relationship-type": {
+        "connects": {
+          "source": {
+            "node": "ech-id-fc269abaa1da48cba5f2f11940fc0fda"
+          },
+          "destination": {
+            "node": "ech-id-7a5ac152e01a4a7f91422c3acdbf9810"
+          }
+        }
+      },
+      "description": "ArchiMate AccessRelationship"
+    },
+    {
+      "unique-id": "ech-rel-id-b055b91d42c3429998c21cc9589a233b",
+      "relationship-type": {
+        "connects": {
+          "source": {
+            "node": "ech-id-e559ee6edbd74d7cb505b8e99870694f"
+          },
+          "destination": {
+            "node": "ech-id-5a6fc58454ed47139ae6aaa1b03f7251"
+          }
+        }
+      },
+      "description": "ArchiMate AccessRelationship"
+    },
+    {
+      "unique-id": "ech-rel-id-7952e8cabea04dc1bfc78ddde73e6cae",
+      "relationship-type": {
+        "connects": {
+          "source": {
+            "node": "ech-id-fc269abaa1da48cba5f2f11940fc0fda"
+          },
+          "destination": {
+            "node": "ech-id-d5b3d7a4fcd54c9ab4d2769c802e65da"
+          }
+        }
+      },
+      "description": "ArchiMate AccessRelationship"
+    },
+    {
+      "unique-id": "ech-rel-id-a764fbca74854e739fa0bd39fba89824",
+      "relationship-type": {
+        "connects": {
+          "source": {
+            "node": "ech-id-07240f6a5f5a4033855da4e581e117b4"
+          },
+          "destination": {
+            "node": "ech-id-c43305c39a844451a5736d7316b04def"
+          }
+        }
+      },
+      "description": "verarbeitet (ArchiMate AccessRelationship)"
+    },
+    {
+      "unique-id": "ech-rel-id-3b76146a0ff94076b8b1c6705d302353",
+      "relationship-type": {
+        "connects": {
+          "source": {
+            "node": "ech-id-294bb519476b4806aad43e16461ef0d5"
+          },
+          "destination": {
+            "node": "ech-id-07240f6a5f5a4033855da4e581e117b4"
+          }
+        }
+      },
+      "description": "ArchiMate SpecializationRelationship"
+    },
+    {
+      "unique-id": "ech-rel-id-a92c0e2e7dc945e295be8a30f14302c5",
+      "relationship-type": {
+        "connects": {
+          "source": {
+            "node": "ech-id-c0146cc4d02c4e4cbfc6637c3bcc66b9"
+          },
+          "destination": {
+            "node": "ech-id-c43305c39a844451a5736d7316b04def"
+          }
+        }
+      },
+      "description": "ArchiMate SpecializationRelationship"
+    },
+    {
+      "unique-id": "ech-rel-id-8a6812dbeae7478c94b56a2f25d75798",
+      "relationship-type": {
+        "connects": {
+          "source": {
+            "node": "ech-id-245c55d28c7d43a9a2f00d9b3a0fcc8d"
+          },
+          "destination": {
+            "node": "ech-id-c0146cc4d02c4e4cbfc6637c3bcc66b9"
+          }
+        }
+      },
+      "description": "speichert und liefert (ArchiMate AccessRelationship)"
+    },
+    {
+      "unique-id": "ech-rel-id-6b11c0cbb0724e87b56f80e4de431ff9",
+      "relationship-type": {
+        "connects": {
+          "source": {
+            "node": "ech-id-245c55d28c7d43a9a2f00d9b3a0fcc8d"
+          },
+          "destination": {
+            "node": "ech-id-294bb519476b4806aad43e16461ef0d5"
+          }
+        }
+      },
+      "description": "ArchiMate RealizationRelationship"
+    },
+    {
+      "unique-id": "ech-rel-id-afebd54333c64dab88127b7d9b6922c0",
+      "relationship-type": {
+        "connects": {
+          "source": {
+            "node": "ech-id-ce2c71580df649128ce62a49e39f3201"
+          },
+          "destination": {
+            "node": "ech-id-184b53652e9a4d118cb12ee5cd7a8717"
+          }
+        }
+      },
+      "description": "serves (ArchiMate ServingRelationship)"
+    }
+  ],
+  "decorators": [],
+  "attestation": {
+    "view": "ech-application.calm-view.json",
+    "model": "ech-0122.architecture.json",
+    "modelSha256": "56404bd0d1bbf2f3337db008a347cd0b00d586a9edc2f3f266591a84e94fa349",
+    "generated": "2026-11-17",
+    "tool": "calm-views-tools@0.1.0"
+  }
+}

@@ -1,0 +1,26 @@
+name: ci
+on:
+  push:
+  pull_request:
+jobs:
+  poc:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: poc/tools/package-lock.json
+      - run: npm ci
+        working-directory: poc/tools
+      - run: npm run build
+        working-directory: poc/tools
+      - run: npm test
+        working-directory: poc/tools
+      - run: node dist/validate.js
+        working-directory: poc/tools
+      - run: node dist/query.js coverage --require audit-logging auditors
+        working-directory: poc/tools
+      - run: node dist/query.js coverage --require data-classification auditors
+        working-directory: poc/tools
