@@ -105,4 +105,32 @@ describe('resolveView (mirrors Python validate.resolve_view)', () => {
         assert.deepEqual([...inNodes].sort(), ['db', 'nope']);
         assert.ok(warnings.some((w) => w.includes('nope')));
     });
+    it('selects by node metadata match (every key must match)', () => {
+        const withMeta = {
+            nodes: [
+                { 'unique-id': 'a', 'node-type': 'service', metadata: { layer: 'app' } },
+                { 'unique-id': 'b', 'node-type': 'service', metadata: { layer: 'app' } },
+                { 'unique-id': 'db', 'node-type': 'database' },
+            ],
+            relationships: [],
+        } as unknown as CalmArchitecture;
+        const { inNodes } = resolveView(withMeta, { metadata: { layer: ['app'] } });
+        assert.deepEqual([...inNodes].sort(), ['a', 'b']);
+        const none = resolveView(withMeta, { metadata: { layer: ['infra'] } });
+        assert.deepEqual([...none.inNodes].sort(), []);
+    });
+    it('selects by control claim on nodes', () => {
+        const withControls = {
+            nodes: [
+                { 'unique-id': 'a', 'node-type': 'service', controls: { 'audit-logging': {} } },
+                { 'unique-id': 'b', 'node-type': 'service' },
+            ],
+            relationships: [
+                { 'unique-id': 'r1', 'relationship-type': { connects: { source: { node: 'a' }, destination: { node: 'b' } } }, controls: { 'audit-logging': {} } },
+            ],
+        } as unknown as CalmArchitecture;
+        const { inNodes, inRels } = resolveView(withControls, { controls: ['audit-logging'] });
+        assert.deepEqual([...inNodes].sort(), ['a']);
+        assert.ok(!inRels.has('r1'));
+    });
 });

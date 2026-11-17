@@ -7,17 +7,21 @@
  *
  * Usage: node query.js views-for-node NODE-ID
  *        node query.js nodes-in-view VIEW-ID
- *        node query.js describe-view VIEW-ID
+ *        node query.js describe-view VIEW-ID | context VIEW-ID
  *        node query.js coverage
+ * `context` emits a compact, LLM-ready bundle: header (view, model sha,
+ * audience, scope), nodes, relationships, exclusions with reason.
  *
  * VIEW-ID is the view `unique-id` (e.g. kyc-audit-view).
  */
-import { readdirSync } from 'node:fs';
+import { createHash } from 'node:crypto';
+import { readdirSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import {
     ROOT,
     readJson,
     resolveView,
+    endpoints,
     type CalmArchitecture,
     type CalmFilter,
     type JsonRecord,
@@ -104,6 +108,59 @@ export function cmdDescribeView(m: LoadedModel, viewId: string): string {
     return lines.join('\n') + '\n';
 }
 
+export function cmdContext(m: LoadedModel, viewId: string): string {
+    const v = findView(m.views, viewId);
+    const { inNodes, inRels, excluded } = resolveView(m.arch, v.filter);
+    const archPath = join(ROOT, 'model', 'fluxnova-kyc-onboarding.architecture.json');
+    const sha = createHash('sha256').update(readFileSync(archPath)).digest('hex');
+    const relById = new Map((m.arch.relationships ?? []).map((r) => [(r as JsonRecord)['unique-id'] as string, r as JsonRecord]));
+    const lines = [
+        `# view: ${v.uniqueId} (${v.name})`,
+        `model: model/fluxnova-kyc-onboarding.architecture.json sha256:${sha}`,
+        `audience: ${v.audience.join(', ') || '(none)'}`,
+        ...(v.group ? [`group: ${v.group}`] : []),
+        `scope: ${inNodes.size}/${(m.arch.nodes ?? []).length} nodes, ${inRels.size}/${(m.arch.relationships ?? []).length} relationships`,
+        '## nodes',
+    ];
+    for (const id of [...inNodes].sort()) {
+        lines.push(`- ${nodeLabel(m.arch, id)}`);
+    }
+    lines.push('## relationships');
+    for (const id of [...inRels].sort()) {
+        const r = relById.get(id) ?? {};
+        const kind = Object.keys((r['relationship-type'] as JsonRecord | undefined) ?? { '?': null })[0] as string;
+        const eps = [...endpoints(r)].sort().join(', ');
+        lines.push(`- ${id} [${kind}] ${eps}`);
+    }
+    if (excluded.size > 0) {
+        lines.push('## excluded (endpoints outside this view)');
+        for (const [id, outside] of [...excluded.entries()].sort(([a], [b]) => (a < b ? -1 : 1))) {
+            lines.push(`- ${id} (outside: ${[...outside].sort().join(', ')})`);
+        }
+    }
+    return lines.join('\n') + '\n';
+}
+
+export function cmdCoverageRequire(m: LoadedModel, control: string, audience: string): { ok: boolean; text: string } {
+    const need = new Set(
+        (m.arch.nodes ?? [])
+            .filter((n) => control in (((n as JsonRecord)['controls'] as JsonRecord | undefined) ?? {}))
+            .map((n) => (n as JsonRecord)['unique-id'] as string)
+    );
+    const covered = new Set<string>();
+    for (const v of m.views) {
+        if (!v.audience.includes(audience)) continue;
+        for (const id of resolveView(m.arch, v.filter).inNodes) covered.add(id);
+    }
+    const missing = [...need].filter((id) => !covered.has(id)).sort();
+    const head = `require ${control} in audience ${audience}: ${missing.length} violation(s)`;
+    if (missing.length === 0) return { ok: true, text: head + '\n' };
+    return {
+        ok: false,
+        text: head + '\n' + missing.map((id) => `- ${nodeLabel(m.arch, id)}`).join('\n') + '\n',
+    };
+}
+
 export function cmdCoverage(m: LoadedModel): string {
     const total = (m.arch.nodes ?? []).length;
     const coveredBy = new Map<string, string[]>();
@@ -122,13 +179,13 @@ export function cmdCoverage(m: LoadedModel): string {
 
 function usage(): never {
     process.stderr.write(
-        'Usage: node query.js views-for-node NODE-ID | nodes-in-view VIEW-ID | describe-view VIEW-ID | coverage\n',
+        'Usage: node query.js views-for-node NODE-ID | nodes-in-view VIEW-ID | describe-view VIEW-ID | context VIEW-ID | coverage\n',
     );
     process.exit(2);
 }
 
 function main(): void {
-    const [cmd, arg] = process.argv.slice(2);
+    const [cmd, arg, ...rest] = process.argv.slice(2);
     if (!cmd) usage();
     const m = loadWorkspace();
     let out: string;
@@ -145,7 +202,21 @@ function main(): void {
             if (!arg) usage();
             out = cmdDescribeView(m, arg as string);
             break;
+        case 'context':
+            if (!arg) usage();
+            out = cmdContext(m, arg as string);
+            break;
         case 'coverage':
+            if (arg === '--require') {
+                const [control, audience] = rest;
+                if (!control || !audience) {
+                    process.stderr.write('Usage: node query.js coverage --require CONTROL AUDIENCE\n');
+                    process.exit(2);
+                }
+                const r = cmdCoverageRequire(m, control as string, audience as string);
+                process.stdout.write(r.text);
+                process.exit(r.ok ? 0 : 1);
+            }
             out = cmdCoverage(m);
             break;
         default:

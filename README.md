@@ -6,16 +6,18 @@
 First-class, named views over a CALM architecture: scoped, audience-tagged
 selections in sidecar `*.calm-view.json` documents, with zero presentation
 in the schema. Evidence for `finos/architecture-as-code#2344`.
-A view selects; a renderer draws — including the Hub `diagram-lens`
-(#3771), which no view feeds yet.
+A view selects, a renderer draws (including the Hub `diagram-lens`
+(#3771), which no view feeds yet).
 
 ## What it does
 
 One vendored upstream architecture
 (`examples/fluxnova/fluxnova-kyc-onboarding.architecture.json`, 20 nodes,
-28 relationships, never modified) rendered through five views: platform,
-integration, audit, a derived neighborhood view, and a drill-down inside
-view. Each view emits
+28 relationships, never modified) rendered through six views: platform,
+integration, audit, a derived neighborhood view, a drill-down inside
+view, and an audit-logging coverage view over the model's real control
+claims. A second, redistributable reference model (Swiss e-government
+eCH-0122, 216 nodes) ships with layer and capability views. Each view emits
 scoped JSON (machine), static SVG (human diagram) and Markdown prose
 (audit-readable scope, tables, excluded-with-reason).
 
@@ -32,6 +34,8 @@ node poc/tools/dist/derive.js poc/model/fluxnova-kyc-onboarding.architecture.jso
 node poc/tools/dist/gallery.js             # second consumer: poc/renders/gallery.html
 node poc/tools/dist/query.js describe-view kyc-audit-view   # reader query
 node poc/tools/dist/query.js coverage                       # per-view coverage
+node poc/tools/dist/query.js coverage --require audit-logging auditors  # governance gate
+node poc/tools/dist/query.js context kyc-audit-view        # LLM-ready bundle: header + nodes + rels + exclusions
 node poc/tools/dist/pack.js poc/views/kyc-audit.calm-view.json --arch-id kyc-arch  # pack for Hub transport (the Hub has no views surface today)
 ```
 
@@ -46,7 +50,40 @@ of `jaab-tech/architecture-as-code` (fork, no upstream PR): a toolbar
 dropdown in CALM Canvas lists the workspace `*.calm-view.json` sidecars
 selecting the open document and filters the canvas to the active view
 (listed ids plus relationship closure, same semantics as `validate`).
-Same filter, third renderer — the TypeScript POC above stays the reference.
+Same filter, third renderer. The TypeScript POC above stays the reference.
+
+## Integration surfaces
+
+Views are files, so any tool can consume them. What exists today:
+
+- **Canvas** (spike, fork): dropdown, canvas filter, drill-down.
+  Same semantics as `validate`.
+- **Hub**: `pack.js` wraps a sidecar as a `type: view` decorator, which
+  the Hub MCP serves. The Hub has no views surface today, so this is
+  transport format, not integration yet.
+- **ArchiMate**: `archimate.js` imports Archi tool models, preserving
+  layers in node metadata. A standard translated into working software.
+- **CLI gap**: `calm docify` has no `--view` flag; views stop at the POC
+  until the schema graduates (#2344).
+
+In ISO 42010 terms:
+
+| 42010 | This project |
+|---|---|
+| viewpoint / stakeholder / concern | view / audience / description |
+| view | `*.calm-view.json` (selection, zero presentation) |
+| model | the untouched `*.architecture.json` |
+
+## How this was built
+
+With AI coding agents under human direction and review: research and
+upstream surveillance, test design, and rubric review ran as separate
+agent roles, and every claim above was verified by hand (clean-clone
+install, byte-identical renders, DCO on every commit). No data is
+invented: every node id resolves against the vendored architecture,
+and every exclusion names its reason. A view is also the context unit
+for an agent: a 216-node model does not fit a prompt, one view does
+(`query.js context`, above).
 
 ## Roadmap
 
@@ -58,6 +95,17 @@ if the project continues:
    framework, plus `docify --view` parity in the CLI.
 3. Sidecar survival of a Canvas round-trip in an extension release shipping
    upstream `#3637` (merged 2026-11-16, not yet in 0.9.6).
+
+## What this is not
+
+- No upstream changes: sidecars and tools only, the model file is never
+  modified; `for` is relative and provisional (#3624).
+- No Hub surface: `pack` produces the decorator format, but the Hub has
+  no views tab; transport, not integration.
+- No `docify --view`: per-view documents come from `render --format md`;
+  CLI parity belongs upstream.
+- No top-level controls: views filter on the inline `controls` claims
+  the model already carries; inventing none.
 
 ## Contributing
 

@@ -1,5 +1,804 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><title>CALM Views POC — gallery</title><style>body{font-family:sans-serif;max-width:1100px;margin:auto;padding:1em}.diagram{border:1px solid #94a3b8;border-radius:8px;overflow:auto;background:#fff}.diagram svg{max-width:none}section{margin-bottom:3em}</style></head><body><h1>CALM Views POC — one model, three audiences</h1><p>Each view below is a <code>*.calm-view.json</code> sidecar selecting from the same unmodified architecture. Same selection, second presentation (alongside the Markdown prose): the view file is renderer-neutral.</p><h2>KYC onboarding</h2>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><title>CALM Views POC — gallery</title><style>body{font-family:sans-serif;max-width:1100px;margin:auto;padding:1em}.diagram{border:1px solid #94a3b8;border-radius:8px;overflow:auto;background:#fff}.diagram svg{max-width:none}section{margin-bottom:3em}</style></head><body><h1>CALM Views POC — one model, three audiences</h1><p>Each view below is a <code>*.calm-view.json</code> sidecar selecting from the same unmodified architecture. Same selection, second presentation (alongside the Markdown prose): the view file is renderer-neutral.</p><h2>eCH-0122 (imported)</h2>
+<section><h3>ech-application</h3><p>50 nodes, 41 relationships, 0 decorators — source: <code>../model/ech-0122.architecture.json</code> (unmodified). Prose: <a href="ech-application.md">ech-application.md</a></p><div class="diagram"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1556 2446" width="1556" height="2446" font-family="sans-serif">
+<!-- ech-application.calm-view.json from ech-0122.architecture.json sha256:56404bd0d1bb 2026-11-17 calm-views-tools@0.1.0 -->
+<title>eCH application layer</title>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#475569" /></marker></defs>
+<rect x="0" y="0" width="1556" height="2446" fill="white"/>
+<line x1="218" y1="2210" x2="348" y2="1928" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+<line x1="218" y1="2210" x2="348" y2="1740" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+<line x1="548" y1="1740" x2="678" y2="1317" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+<line x1="548" y1="1928" x2="678" y2="1223" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+<line x1="548" y1="518" x2="1008" y2="1176" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+<line x1="218" y1="518" x2="1338" y2="1223" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+<line x1="548" y1="518" x2="678" y2="1411" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+<line x1="218" y1="894" x2="1008" y2="1176" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+<line x1="218" y1="1082" x2="348" y2="1176" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+<path d="M1538,1223 H1273 V1176 H1008" fill="none" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+<line x1="218" y1="142" x2="348" y2="518" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+<line x1="218" y1="142" x2="1008" y2="1176" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+<line x1="218" y1="142" x2="678" y2="1411" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+<line x1="218" y1="48" x2="1338" y2="1223" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+<line x1="218" y1="1552" x2="1338" y2="1223" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+<line x1="878" y1="1411" x2="1008" y2="1176" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+<line x1="218" y1="1552" x2="1008" y2="1176" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+<line x1="218" y1="2022" x2="348" y2="706" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+<line x1="218" y1="1082" x2="348" y2="894" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+<line x1="1208" y1="1176" x2="1338" y2="1223" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+<line x1="218" y1="1834" x2="348" y2="1082" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+<line x1="218" y1="1834" x2="348" y2="800" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+<line x1="218" y1="2116" x2="348" y2="1458" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+<line x1="218" y1="1834" x2="348" y2="1458" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+<line x1="218" y1="1834" x2="678" y2="1035" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+<line x1="218" y1="1740" x2="348" y2="1646" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+<line x1="218" y1="2304" x2="678" y2="1129" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+<line x1="218" y1="1740" x2="348" y2="1364" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+<line x1="218" y1="2398" x2="348" y2="1270" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+<line x1="218" y1="2304" x2="348" y2="988" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+<line x1="218" y1="2398" x2="348" y2="1834" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+<line x1="878" y1="1035" x2="1008" y2="1270" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+<line x1="548" y1="612" x2="678" y2="1035" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+<line x1="548" y1="1552" x2="1008" y2="1270" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+<line x1="218" y1="612" x2="348" y2="1552" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+<line x1="218" y1="612" x2="348" y2="612" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+<line x1="548" y1="1646" x2="678" y2="1129" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+<rect x="18" y="18" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="43" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-029b838e4a9441da95e26</text>
+<text x="118" y="60" font-size="10" text-anchor="middle" fill="#475569">service</text>
+<rect x="18" y="112" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="137" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-033fd712301a4cfa88c31</text>
+<text x="118" y="154" font-size="10" text-anchor="middle" fill="#475569">service</text>
+<rect x="18" y="206" width="200" height="60" rx="8" fill="#ecfdf5" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="231" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-060b64f78066488ca2bea</text>
+<text x="118" y="248" font-size="10" text-anchor="middle" fill="#475569">database</text>
+<rect x="678" y="1005" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="778" y="1030" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-07240f6a5f5a4033855da</text>
+<text x="778" y="1047" font-size="10" text-anchor="middle" fill="#475569">service</text>
+<rect x="18" y="300" width="200" height="60" rx="8" fill="#ecfdf5" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="325" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-0c4f6432ab8441a389608</text>
+<text x="118" y="342" font-size="10" text-anchor="middle" fill="#475569">database</text>
+<rect x="18" y="394" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="419" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-0e07844fdc63437f8acde</text>
+<text x="118" y="436" font-size="10" text-anchor="middle" fill="#475569">service</text>
+<rect x="18" y="488" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="513" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-12ba559423294ebf880c6</text>
+<text x="118" y="530" font-size="10" text-anchor="middle" fill="#475569">service</text>
+<rect x="678" y="1099" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="778" y="1124" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-184b53652e9a4d118cb12</text>
+<text x="778" y="1141" font-size="10" text-anchor="middle" fill="#475569">service</text>
+<rect x="348" y="488" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="448" y="513" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-1c51e6c6be1f4ccda88ae</text>
+<text x="448" y="530" font-size="10" text-anchor="middle" fill="#475569">service</text>
+<rect x="678" y="1193" width="200" height="60" rx="8" fill="#ecfdf5" stroke="#334155" stroke-width="1.5"/>
+<text x="778" y="1218" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-223a2718d6ae407fb5b34</text>
+<text x="778" y="1235" font-size="10" text-anchor="middle" fill="#475569">database</text>
+<rect x="18" y="582" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="607" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-245c55d28c7d43a9a2f00</text>
+<text x="118" y="624" font-size="10" text-anchor="middle" fill="#475569">service</text>
+<rect x="18" y="676" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="701" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-24dbe08456954a77950e1</text>
+<text x="118" y="718" font-size="10" text-anchor="middle" fill="#475569">service</text>
+<rect x="348" y="582" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="448" y="607" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-294bb519476b4806aad43</text>
+<text x="448" y="624" font-size="10" text-anchor="middle" fill="#475569">service</text>
+<rect x="18" y="770" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="795" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-30526707fce0488c81322</text>
+<text x="118" y="812" font-size="10" text-anchor="middle" fill="#475569">service</text>
+<rect x="18" y="864" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="889" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-31225b5c98d7454dbb97e</text>
+<text x="118" y="906" font-size="10" text-anchor="middle" fill="#475569">service</text>
+<rect x="18" y="958" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="983" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-37a6f4c5ee09445f8f5cd</text>
+<text x="118" y="1000" font-size="10" text-anchor="middle" fill="#475569">service</text>
+<rect x="18" y="1052" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="1077" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-3dc20bea18154e12ba6cc</text>
+<text x="118" y="1094" font-size="10" text-anchor="middle" fill="#475569">service</text>
+<rect x="348" y="676" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="448" y="701" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-3de5746cc824464fb5e82</text>
+<text x="448" y="718" font-size="10" text-anchor="middle" fill="#475569">service</text>
+<rect x="18" y="1146" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="1171" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-3f10004468994dfaa3eed</text>
+<text x="118" y="1188" font-size="10" text-anchor="middle" fill="#475569">service</text>
+<rect x="348" y="770" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="448" y="795" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-42402b1d4ebc4645a1230</text>
+<text x="448" y="812" font-size="10" text-anchor="middle" fill="#475569">service</text>
+<rect x="18" y="1240" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="1265" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-4f552f991e374bd5b5695</text>
+<text x="118" y="1282" font-size="10" text-anchor="middle" fill="#475569">service</text>
+<rect x="348" y="864" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="448" y="889" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-569c65b065694bee90716</text>
+<text x="448" y="906" font-size="10" text-anchor="middle" fill="#475569">service</text>
+<rect x="348" y="958" width="200" height="60" rx="8" fill="#ecfdf5" stroke="#334155" stroke-width="1.5"/>
+<text x="448" y="983" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-5a6fc58454ed47139ae6a</text>
+<text x="448" y="1000" font-size="10" text-anchor="middle" fill="#475569">database</text>
+<rect x="348" y="1052" width="200" height="60" rx="8" fill="#ecfdf5" stroke="#334155" stroke-width="1.5"/>
+<text x="448" y="1077" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-64f979d75d9242688aaa3</text>
+<text x="448" y="1094" font-size="10" text-anchor="middle" fill="#475569">database</text>
+<rect x="18" y="1334" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="1359" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-6ab818fe8704440e9cb68</text>
+<text x="118" y="1376" font-size="10" text-anchor="middle" fill="#475569">service</text>
+<rect x="348" y="1146" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="448" y="1171" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-6ff5577ebe1d42ce87706</text>
+<text x="448" y="1188" font-size="10" text-anchor="middle" fill="#475569">service</text>
+<rect x="18" y="1428" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="1453" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-7233eca57a094689bbca0</text>
+<text x="118" y="1470" font-size="10" text-anchor="middle" fill="#475569">service</text>
+<rect x="678" y="1287" width="200" height="60" rx="8" fill="#ecfdf5" stroke="#334155" stroke-width="1.5"/>
+<text x="778" y="1312" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-755e1f25c8ae4140a07fb</text>
+<text x="778" y="1329" font-size="10" text-anchor="middle" fill="#475569">database</text>
+<rect x="18" y="1522" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="1547" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-78222fba875448e68e77e</text>
+<text x="118" y="1564" font-size="10" text-anchor="middle" fill="#475569">service</text>
+<rect x="1008" y="1146" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="1108" y="1171" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-79bda45748014efa9b898</text>
+<text x="1108" y="1188" font-size="10" text-anchor="middle" fill="#475569">service</text>
+<rect x="348" y="1240" width="200" height="60" rx="8" fill="#ecfdf5" stroke="#334155" stroke-width="1.5"/>
+<text x="448" y="1265" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-7a5ac152e01a4a7f91422</text>
+<text x="448" y="1282" font-size="10" text-anchor="middle" fill="#475569">database</text>
+<rect x="678" y="1381" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="778" y="1406" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-82870805ef2a4c0296a22</text>
+<text x="778" y="1423" font-size="10" text-anchor="middle" fill="#475569">service</text>
+<rect x="18" y="1616" width="200" height="60" rx="8" fill="#ecfdf5" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="1641" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-8e1bf77800024627a92af</text>
+<text x="118" y="1658" font-size="10" text-anchor="middle" fill="#475569">database</text>
+<rect x="18" y="1710" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="1735" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-9229426fd74f49fc97419</text>
+<text x="118" y="1752" font-size="10" text-anchor="middle" fill="#475569">service</text>
+<rect x="348" y="1334" width="200" height="60" rx="8" fill="#ecfdf5" stroke="#334155" stroke-width="1.5"/>
+<text x="448" y="1359" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-93a033aa5f114fbfab867</text>
+<text x="448" y="1376" font-size="10" text-anchor="middle" fill="#475569">database</text>
+<rect x="18" y="1804" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="1829" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-975423816f90446da9f5a</text>
+<text x="118" y="1846" font-size="10" text-anchor="middle" fill="#475569">service</text>
+<rect x="1338" y="1193" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="1438" y="1218" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-a5db7c3053844253b8be6</text>
+<text x="1438" y="1235" font-size="10" text-anchor="middle" fill="#475569">service</text>
+<rect x="348" y="1428" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="448" y="1453" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-ac8ef321097c49c28ea82</text>
+<text x="448" y="1470" font-size="10" text-anchor="middle" fill="#475569">service</text>
+<rect x="18" y="1898" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="1923" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-b76759aa87294c569472d</text>
+<text x="118" y="1940" font-size="10" text-anchor="middle" fill="#475569">service</text>
+<rect x="18" y="1992" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="2017" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-bfcc587967e64d8b804eb</text>
+<text x="118" y="2034" font-size="10" text-anchor="middle" fill="#475569">service</text>
+<rect x="348" y="1522" width="200" height="60" rx="8" fill="#ecfdf5" stroke="#334155" stroke-width="1.5"/>
+<text x="448" y="1547" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-c0146cc4d02c4e4cbfc66</text>
+<text x="448" y="1564" font-size="10" text-anchor="middle" fill="#475569">database</text>
+<rect x="1008" y="1240" width="200" height="60" rx="8" fill="#ecfdf5" stroke="#334155" stroke-width="1.5"/>
+<text x="1108" y="1265" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-c43305c39a844451a5736</text>
+<text x="1108" y="1282" font-size="10" text-anchor="middle" fill="#475569">database</text>
+<rect x="18" y="2086" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="2111" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-cb4282d536484e4ca8306</text>
+<text x="118" y="2128" font-size="10" text-anchor="middle" fill="#475569">service</text>
+<rect x="348" y="1616" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="448" y="1641" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-ce2c71580df649128ce62</text>
+<text x="448" y="1658" font-size="10" text-anchor="middle" fill="#475569">service</text>
+<rect x="348" y="1710" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="448" y="1735" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-d0697d98d1c1402dbf3b0</text>
+<text x="448" y="1752" font-size="10" text-anchor="middle" fill="#475569">service</text>
+<rect x="348" y="1804" width="200" height="60" rx="8" fill="#ecfdf5" stroke="#334155" stroke-width="1.5"/>
+<text x="448" y="1829" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-d5b3d7a4fcd54c9ab4d27</text>
+<text x="448" y="1846" font-size="10" text-anchor="middle" fill="#475569">database</text>
+<rect x="18" y="2180" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="2205" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-d6d760b4eb4d43a8b5f4a</text>
+<text x="118" y="2222" font-size="10" text-anchor="middle" fill="#475569">service</text>
+<rect x="348" y="1898" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="448" y="1923" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-e2d5e68d6fce4651a3625</text>
+<text x="448" y="1940" font-size="10" text-anchor="middle" fill="#475569">service</text>
+<rect x="18" y="2274" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="2299" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-e559ee6edbd74d7cb505b</text>
+<text x="118" y="2316" font-size="10" text-anchor="middle" fill="#475569">service</text>
+<rect x="18" y="2368" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="2393" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-fc269abaa1da48cba5f2f</text>
+<text x="118" y="2410" font-size="10" text-anchor="middle" fill="#475569">service</text>
+</svg>
+</div></section>
+<section><h3>ech-business</h3><p>100 nodes, 81 relationships, 0 decorators — source: <code>../model/ech-0122.architecture.json</code> (unmodified). Prose: <a href="ech-business.md">ech-business.md</a></p><div class="diagram"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1886 5924" width="1886" height="5924" font-family="sans-serif">
+<!-- ech-business.calm-view.json from ech-0122.architecture.json sha256:56404bd0d1bb 2026-11-17 calm-views-tools@0.1.0 -->
+<title>eCH business layer</title>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#475569" /></marker></defs>
+<rect x="0" y="0" width="1886" height="5924" fill="white"/>
+<line x1="1208" y1="3009" x2="1338" y2="3291" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+<line x1="218" y1="5124" x2="1338" y2="3291" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+<line x1="1208" y1="2821" x2="1338" y2="2915" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+<line x1="1208" y1="2821" x2="1338" y2="2821" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+<line x1="878" y1="3150" x2="1338" y2="3291" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+<line x1="878" y1="3150" x2="1008" y2="2821" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+<line x1="218" y1="5594" x2="1008" y2="3009" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+<line x1="878" y1="3150" x2="1008" y2="3009" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+<line x1="878" y1="3150" x2="1008" y2="2727" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+<line x1="1208" y1="2821" x2="1338" y2="2633" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+<line x1="218" y1="4748" x2="1008" y2="2727" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+<line x1="218" y1="5594" x2="1338" y2="3291" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+<line x1="218" y1="5594" x2="1008" y2="2727" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+<line x1="548" y1="2492" x2="678" y2="3150" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+<line x1="218" y1="142" x2="348" y2="2492" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+<line x1="218" y1="1364" x2="348" y2="2492" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+<line x1="218" y1="1364" x2="678" y2="3150" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+<line x1="218" y1="142" x2="678" y2="3150" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+<line x1="548" y1="3338" x2="678" y2="3244" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+<line x1="548" y1="3338" x2="1008" y2="3197" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+<line x1="218" y1="1834" x2="678" y2="3244" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+<line x1="878" y1="3244" x2="1338" y2="3197" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+<line x1="548" y1="3432" x2="1008" y2="3197" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+<line x1="548" y1="3338" x2="678" y2="2586" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+<line x1="548" y1="3432" x2="678" y2="3244" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+<line x1="218" y1="236" x2="348" y2="3338" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+<line x1="218" y1="5030" x2="348" y2="3432" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+<line x1="218" y1="612" x2="348" y2="3150" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+<line x1="548" y1="3432" x2="678" y2="2868" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+<line x1="1208" y1="3197" x2="1338" y2="3197" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+<line x1="1208" y1="2915" x2="1338" y2="3197" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+<line x1="1208" y1="2915" x2="1338" y2="3009" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+<line x1="218" y1="2680" x2="1008" y2="2915" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+<line x1="878" y1="3244" x2="1008" y2="3103" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+<line x1="878" y1="3244" x2="1008" y2="3197" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+<line x1="218" y1="1176" x2="348" y2="2680" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+<line x1="548" y1="2680" x2="678" y2="2962" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+<line x1="1208" y1="2821" x2="1338" y2="2727" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+<line x1="548" y1="2774" x2="678" y2="3338" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+<line x1="218" y1="1458" x2="348" y2="2868" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+<line x1="218" y1="5406" x2="678" y2="3338" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+<line x1="218" y1="5406" x2="1008" y2="2821" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+<line x1="218" y1="5406" x2="348" y2="2774" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+<line x1="548" y1="2868" x2="678" y2="3338" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+<line x1="548" y1="2774" x2="1008" y2="2821" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+<line x1="218" y1="4842" x2="678" y2="3338" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+<line x1="548" y1="2586" x2="1008" y2="2821" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+<line x1="548" y1="2962" x2="678" y2="3056" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+<line x1="218" y1="3808" x2="348" y2="2962" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+<path d="M1538,2727 H1108 V2680 H678" fill="none" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+<line x1="878" y1="2680" x2="1338" y2="2727" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+<line x1="218" y1="3902" x2="348" y2="3244" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+<line x1="548" y1="2398" x2="678" y2="2680" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+<path d="M878,2680 H613 V2398 H348" fill="none" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+<path d="M878,2680 H613 V3244 H348" fill="none" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+<line x1="548" y1="3244" x2="678" y2="2680" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+<line x1="218" y1="4090" x2="348" y2="2398" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+<line x1="218" y1="800" x2="678" y2="2680" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+<line x1="218" y1="5500" x2="348" y2="3056" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+<path d="M1208,2821 H943 V3150 H678" fill="none" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+<line x1="1208" y1="2821" x2="1338" y2="3103" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+<line x1="218" y1="5594" x2="1008" y2="2821" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+<line x1="218" y1="5312" x2="348" y2="2868" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+<line x1="218" y1="5406" x2="678" y2="2774" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+<line x1="548" y1="2868" x2="678" y2="2774" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+<line x1="1538" y1="2727" x2="1668" y2="2962" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+<line x1="218" y1="4560" x2="348" y2="2868" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+<line x1="218" y1="4372" x2="678" y2="2774" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+<line x1="548" y1="2868" x2="1668" y2="2962" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+<line x1="218" y1="5594" x2="348" y2="2586" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+<line x1="218" y1="988" x2="678" y2="2774" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+<line x1="218" y1="1646" x2="1008" y2="2915" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+<line x1="218" y1="424" x2="348" y2="3526" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+<line x1="218" y1="424" x2="348" y2="2868" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+<line x1="218" y1="1082" x2="348" y2="2868" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+<line x1="878" y1="3244" x2="1008" y2="2915" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+<line x1="218" y1="3338" x2="1008" y2="2915" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+<rect x="18" y="18" width="200" height="60" rx="8" fill="#ecfdf5" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="43" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-02472a07db1348cdbe6f1</text>
+<text x="118" y="60" font-size="10" text-anchor="middle" fill="#475569">database</text>
+<rect x="18" y="112" width="200" height="60" rx="28" fill="#eef2ff" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="137" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-02b0ab643aff433e94faa</text>
+<text x="118" y="154" font-size="10" text-anchor="middle" fill="#475569">actor</text>
+<rect x="18" y="206" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="231" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-05ef46ab0a8d4b8cb008e</text>
+<text x="118" y="248" font-size="10" text-anchor="middle" fill="#475569">service</text>
+<rect x="18" y="300" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="325" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-08ac90d625554732aa759</text>
+<text x="118" y="342" font-size="10" text-anchor="middle" fill="#475569">service</text>
+<rect x="18" y="394" width="200" height="60" rx="8" fill="#ecfdf5" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="419" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-09f1cebb81cc4424b582e</text>
+<text x="118" y="436" font-size="10" text-anchor="middle" fill="#475569">database</text>
+<rect x="1338" y="2603" width="200" height="60" rx="28" fill="#eef2ff" stroke="#334155" stroke-width="1.5"/>
+<text x="1438" y="2628" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-1618135b21e64179b3ad2</text>
+<text x="1438" y="2645" font-size="10" text-anchor="middle" fill="#475569">actor</text>
+<rect x="348" y="2368" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="448" y="2393" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-1701f70cf2e04f41ab1f8</text>
+<text x="448" y="2410" font-size="10" text-anchor="middle" fill="#475569">service</text>
+<rect x="18" y="488" width="200" height="60" rx="8" fill="#ecfdf5" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="513" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-17c523b520304e0892a00</text>
+<text x="118" y="530" font-size="10" text-anchor="middle" fill="#475569">database</text>
+<rect x="18" y="582" width="200" height="60" rx="8" fill="#ecfdf5" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="607" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-19962ef695864bb6bf0d0</text>
+<text x="118" y="624" font-size="10" text-anchor="middle" fill="#475569">database</text>
+<rect x="18" y="676" width="200" height="60" rx="28" fill="#eef2ff" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="701" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-1bf5096f7ed04de18934b</text>
+<text x="118" y="718" font-size="10" text-anchor="middle" fill="#475569">actor</text>
+<rect x="18" y="770" width="200" height="60" rx="28" fill="#eef2ff" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="795" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-1c0a827a4a8c4084b0ed3</text>
+<text x="118" y="812" font-size="10" text-anchor="middle" fill="#475569">actor</text>
+<rect x="1008" y="2697" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="1108" y="2722" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-209c8f0310e6427e8a916</text>
+<text x="1108" y="2739" font-size="10" text-anchor="middle" fill="#475569">service</text>
+<rect x="18" y="864" width="200" height="60" rx="28" fill="#eef2ff" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="889" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-244aae288b3248248a33e</text>
+<text x="118" y="906" font-size="10" text-anchor="middle" fill="#475569">actor</text>
+<rect x="678" y="2556" width="200" height="60" rx="28" fill="#eef2ff" stroke="#334155" stroke-width="1.5"/>
+<text x="778" y="2581" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-2997c431368547f4ad6a8</text>
+<text x="778" y="2598" font-size="10" text-anchor="middle" fill="#475569">actor</text>
+<rect x="1008" y="2791" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="1108" y="2816" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-2a68f92cf6e6411da6d60</text>
+<text x="1108" y="2833" font-size="10" text-anchor="middle" fill="#475569">service</text>
+<rect x="18" y="958" width="200" height="60" rx="8" fill="#ecfdf5" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="983" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-2a8c62ec43f44457aec55</text>
+<text x="118" y="1000" font-size="10" text-anchor="middle" fill="#475569">database</text>
+<rect x="1338" y="2697" width="200" height="60" rx="28" fill="#eef2ff" stroke="#334155" stroke-width="1.5"/>
+<text x="1438" y="2722" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-2ad7de2fd40e487bb3947</text>
+<text x="1438" y="2739" font-size="10" text-anchor="middle" fill="#475569">actor</text>
+<rect x="18" y="1052" width="200" height="60" rx="8" fill="#ecfdf5" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="1077" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-2b668c5f755047848d173</text>
+<text x="118" y="1094" font-size="10" text-anchor="middle" fill="#475569">database</text>
+<rect x="348" y="2462" width="200" height="60" rx="28" fill="#eef2ff" stroke="#334155" stroke-width="1.5"/>
+<text x="448" y="2487" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-2bdc7b81d9534152b43ef</text>
+<text x="448" y="2504" font-size="10" text-anchor="middle" fill="#475569">actor</text>
+<rect x="348" y="2556" width="200" height="60" rx="28" fill="#eef2ff" stroke="#334155" stroke-width="1.5"/>
+<text x="448" y="2581" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-2c22f8430c744412a16fe</text>
+<text x="448" y="2598" font-size="10" text-anchor="middle" fill="#475569">actor</text>
+<rect x="18" y="1146" width="200" height="60" rx="8" fill="#ecfdf5" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="1171" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-2f7cd36649234dc4978fa</text>
+<text x="118" y="1188" font-size="10" text-anchor="middle" fill="#475569">database</text>
+<rect x="18" y="1240" width="200" height="60" rx="28" fill="#eef2ff" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="1265" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-30a816331d074bc5b855f</text>
+<text x="118" y="1282" font-size="10" text-anchor="middle" fill="#475569">actor</text>
+<rect x="18" y="1334" width="200" height="60" rx="28" fill="#eef2ff" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="1359" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-32de3a21f68a4315b2226</text>
+<text x="118" y="1376" font-size="10" text-anchor="middle" fill="#475569">actor</text>
+<rect x="18" y="1428" width="200" height="60" rx="8" fill="#ecfdf5" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="1453" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-389b3c55777a4e7c8bf51</text>
+<text x="118" y="1470" font-size="10" text-anchor="middle" fill="#475569">database</text>
+<rect x="18" y="1522" width="200" height="60" rx="8" fill="#ecfdf5" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="1547" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-3b3e328f24f94acb8cd9d</text>
+<text x="118" y="1564" font-size="10" text-anchor="middle" fill="#475569">database</text>
+<rect x="18" y="1616" width="200" height="60" rx="28" fill="#eef2ff" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="1641" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-3d09e05ab3b74ac493a7b</text>
+<text x="118" y="1658" font-size="10" text-anchor="middle" fill="#475569">actor</text>
+<rect x="18" y="1710" width="200" height="60" rx="28" fill="#eef2ff" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="1735" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-3fa7c6bd85284524a64d9</text>
+<text x="118" y="1752" font-size="10" text-anchor="middle" fill="#475569">actor</text>
+<rect x="1338" y="2791" width="200" height="60" rx="28" fill="#eef2ff" stroke="#334155" stroke-width="1.5"/>
+<text x="1438" y="2816" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-4338721bf0a6424786bf1</text>
+<text x="1438" y="2833" font-size="10" text-anchor="middle" fill="#475569">actor</text>
+<rect x="348" y="2650" width="200" height="60" rx="8" fill="#ecfdf5" stroke="#334155" stroke-width="1.5"/>
+<text x="448" y="2675" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-4456c0605c7443198ab84</text>
+<text x="448" y="2692" font-size="10" text-anchor="middle" fill="#475569">database</text>
+<rect x="18" y="1804" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="1829" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-49cdf3eb8a2547fc82e50</text>
+<text x="118" y="1846" font-size="10" text-anchor="middle" fill="#475569">service</text>
+<rect x="18" y="1898" width="200" height="60" rx="28" fill="#eef2ff" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="1923" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-4a87f752fb5148909b520</text>
+<text x="118" y="1940" font-size="10" text-anchor="middle" fill="#475569">actor</text>
+<rect x="678" y="2650" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="778" y="2675" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-51936d57e25849e784232</text>
+<text x="778" y="2692" font-size="10" text-anchor="middle" fill="#475569">service</text>
+<rect x="348" y="2744" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="448" y="2769" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-52982c2d58c64a6cb942a</text>
+<text x="448" y="2786" font-size="10" text-anchor="middle" fill="#475569">service</text>
+<rect x="18" y="1992" width="200" height="60" rx="28" fill="#eef2ff" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="2017" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-560ec276fd8949df85703</text>
+<text x="118" y="2034" font-size="10" text-anchor="middle" fill="#475569">actor</text>
+<rect x="1338" y="2885" width="200" height="60" rx="28" fill="#eef2ff" stroke="#334155" stroke-width="1.5"/>
+<text x="1438" y="2910" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-59fc81a268cc454c8b1b5</text>
+<text x="1438" y="2927" font-size="10" text-anchor="middle" fill="#475569">actor</text>
+<rect x="678" y="2744" width="200" height="60" rx="8" fill="#ecfdf5" stroke="#334155" stroke-width="1.5"/>
+<text x="778" y="2769" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-5e2a841269e04858b9a2a</text>
+<text x="778" y="2786" font-size="10" text-anchor="middle" fill="#475569">database</text>
+<rect x="18" y="2086" width="200" height="60" rx="28" fill="#eef2ff" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="2111" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-5e57bae9e5054f378d1a7</text>
+<text x="118" y="2128" font-size="10" text-anchor="middle" fill="#475569">actor</text>
+<rect x="18" y="2180" width="200" height="60" rx="28" fill="#eef2ff" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="2205" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-5f90ec2563bb4eb9902d1</text>
+<text x="118" y="2222" font-size="10" text-anchor="middle" fill="#475569">actor</text>
+<rect x="18" y="2274" width="200" height="60" rx="28" fill="#eef2ff" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="2299" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-62b21d39a0f04ee0833db</text>
+<text x="118" y="2316" font-size="10" text-anchor="middle" fill="#475569">actor</text>
+<rect x="18" y="2368" width="200" height="60" rx="28" fill="#eef2ff" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="2393" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-6653eb62a3264ff7b7637</text>
+<text x="118" y="2410" font-size="10" text-anchor="middle" fill="#475569">actor</text>
+<rect x="348" y="2838" width="200" height="60" rx="8" fill="#ecfdf5" stroke="#334155" stroke-width="1.5"/>
+<text x="448" y="2863" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-66ba282d30264ef9adcae</text>
+<text x="448" y="2880" font-size="10" text-anchor="middle" fill="#475569">database</text>
+<rect x="1338" y="2979" width="200" height="60" rx="28" fill="#eef2ff" stroke="#334155" stroke-width="1.5"/>
+<text x="1438" y="3004" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-66fca61560e749739bf8d</text>
+<text x="1438" y="3021" font-size="10" text-anchor="middle" fill="#475569">actor</text>
+<rect x="18" y="2462" width="200" height="60" rx="28" fill="#eef2ff" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="2487" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-672ca484eef24d53b832f</text>
+<text x="118" y="2504" font-size="10" text-anchor="middle" fill="#475569">actor</text>
+<rect x="18" y="2556" width="200" height="60" rx="28" fill="#eef2ff" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="2581" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-67ebd962647441088b6c1</text>
+<text x="118" y="2598" font-size="10" text-anchor="middle" fill="#475569">actor</text>
+<rect x="18" y="2650" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="2675" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-6ade3f65382445c997414</text>
+<text x="118" y="2692" font-size="10" text-anchor="middle" fill="#475569">service</text>
+<rect x="678" y="2838" width="200" height="60" rx="28" fill="#eef2ff" stroke="#334155" stroke-width="1.5"/>
+<text x="778" y="2863" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-6c8df94cac9e4bbcbcd4d</text>
+<text x="778" y="2880" font-size="10" text-anchor="middle" fill="#475569">actor</text>
+<rect x="678" y="2932" width="200" height="60" rx="8" fill="#ecfdf5" stroke="#334155" stroke-width="1.5"/>
+<text x="778" y="2957" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-764fa4696c6e41698e0d5</text>
+<text x="778" y="2974" font-size="10" text-anchor="middle" fill="#475569">database</text>
+<rect x="18" y="2744" width="200" height="60" rx="28" fill="#eef2ff" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="2769" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-7a999b49564b4dbfbf93a</text>
+<text x="118" y="2786" font-size="10" text-anchor="middle" fill="#475569">actor</text>
+<rect x="348" y="2932" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="448" y="2957" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-7bd099f44aa44581ab78d</text>
+<text x="448" y="2974" font-size="10" text-anchor="middle" fill="#475569">service</text>
+<rect x="18" y="2838" width="200" height="60" rx="8" fill="#ecfdf5" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="2863" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-7cac0626feeb4463b5464</text>
+<text x="118" y="2880" font-size="10" text-anchor="middle" fill="#475569">database</text>
+<rect x="1668" y="2932" width="200" height="60" rx="8" fill="#ecfdf5" stroke="#334155" stroke-width="1.5"/>
+<text x="1768" y="2957" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-829b55c9d9bf47af895a9</text>
+<text x="1768" y="2974" font-size="10" text-anchor="middle" fill="#475569">database</text>
+<rect x="18" y="2932" width="200" height="60" rx="28" fill="#eef2ff" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="2957" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-8302508b85c647068025e</text>
+<text x="118" y="2974" font-size="10" text-anchor="middle" fill="#475569">actor</text>
+<rect x="1338" y="3073" width="200" height="60" rx="28" fill="#eef2ff" stroke="#334155" stroke-width="1.5"/>
+<text x="1438" y="3098" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-88f7d42e42f14930ac53f</text>
+<text x="1438" y="3115" font-size="10" text-anchor="middle" fill="#475569">actor</text>
+<rect x="18" y="3026" width="200" height="60" rx="8" fill="#ecfdf5" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="3051" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-89781978e6b0425ab27a9</text>
+<text x="118" y="3068" font-size="10" text-anchor="middle" fill="#475569">database</text>
+<rect x="678" y="3026" width="200" height="60" rx="28" fill="#eef2ff" stroke="#334155" stroke-width="1.5"/>
+<text x="778" y="3051" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-8ac479b4ddf445c48dba0</text>
+<text x="778" y="3068" font-size="10" text-anchor="middle" fill="#475569">actor</text>
+<rect x="18" y="3120" width="200" height="60" rx="8" fill="#ecfdf5" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="3145" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-8b48b4a0b6a94406a2f99</text>
+<text x="118" y="3162" font-size="10" text-anchor="middle" fill="#475569">database</text>
+<rect x="18" y="3214" width="200" height="60" rx="28" fill="#eef2ff" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="3239" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-8b498b10f96446159a1a3</text>
+<text x="118" y="3256" font-size="10" text-anchor="middle" fill="#475569">actor</text>
+<rect x="18" y="3308" width="200" height="60" rx="28" fill="#eef2ff" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="3333" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-8deb12d60a0f4e2ab2434</text>
+<text x="118" y="3350" font-size="10" text-anchor="middle" fill="#475569">actor</text>
+<rect x="18" y="3402" width="200" height="60" rx="28" fill="#eef2ff" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="3427" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-91c53215409d4535bd0bb</text>
+<text x="118" y="3444" font-size="10" text-anchor="middle" fill="#475569">actor</text>
+<rect x="18" y="3496" width="200" height="60" rx="8" fill="#ecfdf5" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="3521" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-99183004eeb642c893f42</text>
+<text x="118" y="3538" font-size="10" text-anchor="middle" fill="#475569">database</text>
+<rect x="18" y="3590" width="200" height="60" rx="28" fill="#eef2ff" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="3615" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-9a744745e1354b6b8ba67</text>
+<text x="118" y="3632" font-size="10" text-anchor="middle" fill="#475569">actor</text>
+<rect x="18" y="3684" width="200" height="60" rx="28" fill="#eef2ff" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="3709" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-9dea9c5ec8eb4345810fd</text>
+<text x="118" y="3726" font-size="10" text-anchor="middle" fill="#475569">actor</text>
+<rect x="348" y="3026" width="200" height="60" rx="8" fill="#ecfdf5" stroke="#334155" stroke-width="1.5"/>
+<text x="448" y="3051" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-9e1da98c1d3c4be08a41b</text>
+<text x="448" y="3068" font-size="10" text-anchor="middle" fill="#475569">database</text>
+<rect x="678" y="3120" width="200" height="60" rx="28" fill="#eef2ff" stroke="#334155" stroke-width="1.5"/>
+<text x="778" y="3145" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-9e6a0db663aa46598bfaa</text>
+<text x="778" y="3162" font-size="10" text-anchor="middle" fill="#475569">actor</text>
+<rect x="18" y="3778" width="200" height="60" rx="28" fill="#eef2ff" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="3803" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-9edf9a87ea4a41dfa4a8e</text>
+<text x="118" y="3820" font-size="10" text-anchor="middle" fill="#475569">actor</text>
+<rect x="18" y="3872" width="200" height="60" rx="28" fill="#eef2ff" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="3897" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-9eea74c6c60444308af04</text>
+<text x="118" y="3914" font-size="10" text-anchor="middle" fill="#475569">actor</text>
+<rect x="678" y="3214" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="778" y="3239" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-a1dfebc7e9ff400fa7d29</text>
+<text x="778" y="3256" font-size="10" text-anchor="middle" fill="#475569">service</text>
+<rect x="18" y="3966" width="200" height="60" rx="28" fill="#eef2ff" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="3991" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-a2dbf5e2f4cb45ebba8f1</text>
+<text x="118" y="4008" font-size="10" text-anchor="middle" fill="#475569">actor</text>
+<rect x="18" y="4060" width="200" height="60" rx="28" fill="#eef2ff" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="4085" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-a39cdd3a8b04436bb7e65</text>
+<text x="118" y="4102" font-size="10" text-anchor="middle" fill="#475569">actor</text>
+<rect x="18" y="4154" width="200" height="60" rx="8" fill="#ecfdf5" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="4179" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-a5a4d9f4d0d242888889b</text>
+<text x="118" y="4196" font-size="10" text-anchor="middle" fill="#475569">database</text>
+<rect x="1008" y="2885" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="1108" y="2910" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-a7aee60b30214aff84f6e</text>
+<text x="1108" y="2927" font-size="10" text-anchor="middle" fill="#475569">service</text>
+<rect x="348" y="3120" width="200" height="60" rx="8" fill="#ecfdf5" stroke="#334155" stroke-width="1.5"/>
+<text x="448" y="3145" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-abb5146d37414421b1b5a</text>
+<text x="448" y="3162" font-size="10" text-anchor="middle" fill="#475569">database</text>
+<rect x="18" y="4248" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="4273" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-ad92de19a6b1426c92d13</text>
+<text x="118" y="4290" font-size="10" text-anchor="middle" fill="#475569">service</text>
+<rect x="678" y="3308" width="200" height="60" rx="8" fill="#ecfdf5" stroke="#334155" stroke-width="1.5"/>
+<text x="778" y="3333" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-b43c924c047d4f8ab9dd1</text>
+<text x="778" y="3350" font-size="10" text-anchor="middle" fill="#475569">database</text>
+<rect x="18" y="4342" width="200" height="60" rx="8" fill="#ecfdf5" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="4367" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-ba77dc6679ad412393c37</text>
+<text x="118" y="4384" font-size="10" text-anchor="middle" fill="#475569">database</text>
+<rect x="18" y="4436" width="200" height="60" rx="28" fill="#eef2ff" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="4461" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-bd2b7fe702384022b7f12</text>
+<text x="118" y="4478" font-size="10" text-anchor="middle" fill="#475569">actor</text>
+<rect x="1338" y="3167" width="200" height="60" rx="8" fill="#ecfdf5" stroke="#334155" stroke-width="1.5"/>
+<text x="1438" y="3192" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-c4247ea416974089a0ba7</text>
+<text x="1438" y="3209" font-size="10" text-anchor="middle" fill="#475569">database</text>
+<rect x="18" y="4530" width="200" height="60" rx="8" fill="#ecfdf5" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="4555" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-c569380a24124ac9af70e</text>
+<text x="118" y="4572" font-size="10" text-anchor="middle" fill="#475569">database</text>
+<rect x="18" y="4624" width="200" height="60" rx="8" fill="#ecfdf5" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="4649" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-c58c4cebc0844d1bac8ba</text>
+<text x="118" y="4666" font-size="10" text-anchor="middle" fill="#475569">database</text>
+<rect x="348" y="3214" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="448" y="3239" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-cf5c6b14851d44358075a</text>
+<text x="448" y="3256" font-size="10" text-anchor="middle" fill="#475569">service</text>
+<rect x="18" y="4718" width="200" height="60" rx="28" fill="#eef2ff" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="4743" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-d043af4e23664faf8e11a</text>
+<text x="118" y="4760" font-size="10" text-anchor="middle" fill="#475569">actor</text>
+<rect x="1338" y="3261" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="1438" y="3286" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-d0ca8a3062a04d91b3302</text>
+<text x="1438" y="3303" font-size="10" text-anchor="middle" fill="#475569">service</text>
+<rect x="18" y="4812" width="200" height="60" rx="8" fill="#ecfdf5" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="4837" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-d0fef223eb4c40eb944a3</text>
+<text x="118" y="4854" font-size="10" text-anchor="middle" fill="#475569">database</text>
+<rect x="18" y="4906" width="200" height="60" rx="8" fill="#ecfdf5" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="4931" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-d12f140ca9514ae08133b</text>
+<text x="118" y="4948" font-size="10" text-anchor="middle" fill="#475569">database</text>
+<rect x="348" y="3308" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="448" y="3333" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-d135548811a24e2488fa8</text>
+<text x="448" y="3350" font-size="10" text-anchor="middle" fill="#475569">service</text>
+<rect x="18" y="5000" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="5025" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-d1c2c06a3224437484557</text>
+<text x="118" y="5042" font-size="10" text-anchor="middle" fill="#475569">service</text>
+<rect x="1008" y="2979" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="1108" y="3004" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-d1de2218359a4dc1a24cb</text>
+<text x="1108" y="3021" font-size="10" text-anchor="middle" fill="#475569">service</text>
+<rect x="348" y="3402" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="448" y="3427" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-d4f946d76f5c4e4ba7d2a</text>
+<text x="448" y="3444" font-size="10" text-anchor="middle" fill="#475569">service</text>
+<rect x="18" y="5094" width="200" height="60" rx="28" fill="#eef2ff" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="5119" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-d78e8df233b54fdfbe18d</text>
+<text x="118" y="5136" font-size="10" text-anchor="middle" fill="#475569">actor</text>
+<rect x="18" y="5188" width="200" height="60" rx="28" fill="#eef2ff" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="5213" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-db0fceabf3d74616882cf</text>
+<text x="118" y="5230" font-size="10" text-anchor="middle" fill="#475569">actor</text>
+<rect x="18" y="5282" width="200" height="60" rx="8" fill="#ecfdf5" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="5307" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-e2967e37369d4baf84385</text>
+<text x="118" y="5324" font-size="10" text-anchor="middle" fill="#475569">database</text>
+<rect x="18" y="5376" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="5401" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-e586ee62d0414e6d91849</text>
+<text x="118" y="5418" font-size="10" text-anchor="middle" fill="#475569">service</text>
+<rect x="18" y="5470" width="200" height="60" rx="28" fill="#eef2ff" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="5495" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-e88dcecc14b640bbad58b</text>
+<text x="118" y="5512" font-size="10" text-anchor="middle" fill="#475569">actor</text>
+<rect x="18" y="5564" width="200" height="60" rx="28" fill="#eef2ff" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="5589" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-eabaf611452947a6a9c3e</text>
+<text x="118" y="5606" font-size="10" text-anchor="middle" fill="#475569">actor</text>
+<rect x="18" y="5658" width="200" height="60" rx="8" fill="#ecfdf5" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="5683" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-eb231c33b7f8438abceb5</text>
+<text x="118" y="5700" font-size="10" text-anchor="middle" fill="#475569">database</text>
+<rect x="1008" y="3073" width="200" height="60" rx="28" fill="#eef2ff" stroke="#334155" stroke-width="1.5"/>
+<text x="1108" y="3098" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-ebfe18cab2de4a9e96cc7</text>
+<text x="1108" y="3115" font-size="10" text-anchor="middle" fill="#475569">actor</text>
+<rect x="18" y="5752" width="200" height="60" rx="28" fill="#eef2ff" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="5777" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-f68cb30c66d94d7295bc0</text>
+<text x="118" y="5794" font-size="10" text-anchor="middle" fill="#475569">actor</text>
+<rect x="18" y="5846" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="5871" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-f6a103409bad4f9482fad</text>
+<text x="118" y="5888" font-size="10" text-anchor="middle" fill="#475569">service</text>
+<rect x="348" y="3496" width="200" height="60" rx="8" fill="#ecfdf5" stroke="#334155" stroke-width="1.5"/>
+<text x="448" y="3521" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-f94b95b37ca4488ca37a6</text>
+<text x="448" y="3538" font-size="10" text-anchor="middle" fill="#475569">database</text>
+<rect x="1008" y="3167" width="200" height="60" rx="8" fill="#ecfdf5" stroke="#334155" stroke-width="1.5"/>
+<text x="1108" y="3192" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-fca04564df21401a828ab</text>
+<text x="1108" y="3209" font-size="10" text-anchor="middle" fill="#475569">database</text>
+</svg>
+</div></section>
+<section><h3>ech-capabilities</h3><p>61 nodes, 7 relationships, 0 decorators — source: <code>../model/ech-0122.architecture.json</code> (unmodified). Prose: <a href="ech-capabilities.md">ech-capabilities.md</a></p><div class="diagram"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 896 5266" width="896" height="5266" font-family="sans-serif">
+<!-- ech-capabilities.calm-view.json from ech-0122.architecture.json sha256:56404bd0d1bb 2026-11-17 calm-views-tools@0.1.0 -->
+<title>eCH capability map</title>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#475569" /></marker></defs>
+<rect x="0" y="0" width="896" height="5266" fill="white"/>
+<line x1="218" y1="3714" x2="348" y2="2586" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+<line x1="218" y1="3996" x2="348" y2="2586" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+<line x1="218" y1="3432" x2="348" y2="2586" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+<line x1="218" y1="988" x2="348" y2="2492" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+<line x1="218" y1="3150" x2="348" y2="2774" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+<line x1="548" y1="2680" x2="678" y2="2633" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+<line x1="218" y1="1364" x2="348" y2="2680" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+<rect x="18" y="18" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="43" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-010e02ee62e9406ab46bc</text>
+<text x="118" y="60" font-size="10" text-anchor="middle" fill="#475569">capability</text>
+<rect x="18" y="112" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="137" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-048da02167a64db6860c8</text>
+<text x="118" y="154" font-size="10" text-anchor="middle" fill="#475569">capability</text>
+<rect x="18" y="206" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="231" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-061dc63116a14e4bb5a72</text>
+<text x="118" y="248" font-size="10" text-anchor="middle" fill="#475569">capability</text>
+<rect x="18" y="300" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="325" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-06d1934efefe46b08c590</text>
+<text x="118" y="342" font-size="10" text-anchor="middle" fill="#475569">capability</text>
+<rect x="18" y="394" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="419" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-09940a190f954a4d986a2</text>
+<text x="118" y="436" font-size="10" text-anchor="middle" fill="#475569">capability</text>
+<rect x="678" y="2603" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="778" y="2628" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-0c62d85a6ee64a59a8e0c</text>
+<text x="778" y="2645" font-size="10" text-anchor="middle" fill="#475569">capability</text>
+<rect x="18" y="488" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="513" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-0d5ac72c9dbd40e9a4988</text>
+<text x="118" y="530" font-size="10" text-anchor="middle" fill="#475569">capability</text>
+<rect x="18" y="582" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="607" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-0ecde0ca162742338a3c8</text>
+<text x="118" y="624" font-size="10" text-anchor="middle" fill="#475569">capability</text>
+<rect x="18" y="676" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="701" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-11f5db39421e453095c21</text>
+<text x="118" y="718" font-size="10" text-anchor="middle" fill="#475569">capability</text>
+<rect x="18" y="770" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="795" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-13989069955e4ee59203c</text>
+<text x="118" y="812" font-size="10" text-anchor="middle" fill="#475569">capability</text>
+<rect x="18" y="864" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="889" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-1ceb583efbe94bb2adf66</text>
+<text x="118" y="906" font-size="10" text-anchor="middle" fill="#475569">capability</text>
+<rect x="348" y="2462" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="448" y="2487" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-29b5528aa76b4a60bfab2</text>
+<text x="448" y="2504" font-size="10" text-anchor="middle" fill="#475569">capability</text>
+<rect x="18" y="958" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="983" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-2b12096506264f5f8f4f8</text>
+<text x="118" y="1000" font-size="10" text-anchor="middle" fill="#475569">capability</text>
+<rect x="18" y="1052" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="1077" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-2d5a7349657a447c9cc95</text>
+<text x="118" y="1094" font-size="10" text-anchor="middle" fill="#475569">capability</text>
+<rect x="348" y="2556" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="448" y="2581" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-301e6d62884641f2922d2</text>
+<text x="448" y="2598" font-size="10" text-anchor="middle" fill="#475569">capability</text>
+<rect x="18" y="1146" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="1171" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-30714ce06e6345fe8c71a</text>
+<text x="118" y="1188" font-size="10" text-anchor="middle" fill="#475569">capability</text>
+<rect x="18" y="1240" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="1265" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-3c9b3b59280449759484e</text>
+<text x="118" y="1282" font-size="10" text-anchor="middle" fill="#475569">capability</text>
+<rect x="18" y="1334" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="1359" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-3ddfb0593ff044fdaa3f4</text>
+<text x="118" y="1376" font-size="10" text-anchor="middle" fill="#475569">capability</text>
+<rect x="18" y="1428" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="1453" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-3f54afae67664a5788aa4</text>
+<text x="118" y="1470" font-size="10" text-anchor="middle" fill="#475569">capability</text>
+<rect x="18" y="1522" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="1547" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-46e7ef18a6764673882d7</text>
+<text x="118" y="1564" font-size="10" text-anchor="middle" fill="#475569">capability</text>
+<rect x="18" y="1616" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="1641" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-47125da40f204ec48683c</text>
+<text x="118" y="1658" font-size="10" text-anchor="middle" fill="#475569">capability</text>
+<rect x="18" y="1710" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="1735" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-4e8e22b20ac14cbcaec77</text>
+<text x="118" y="1752" font-size="10" text-anchor="middle" fill="#475569">capability</text>
+<rect x="18" y="1804" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="1829" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-5294aab4aa944678867eb</text>
+<text x="118" y="1846" font-size="10" text-anchor="middle" fill="#475569">capability</text>
+<rect x="18" y="1898" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="1923" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-547f981655dc496c8e65f</text>
+<text x="118" y="1940" font-size="10" text-anchor="middle" fill="#475569">capability</text>
+<rect x="18" y="1992" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="2017" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-549b4498bc664cce81472</text>
+<text x="118" y="2034" font-size="10" text-anchor="middle" fill="#475569">capability</text>
+<rect x="18" y="2086" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="2111" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-5511b259548a4d15a8ad5</text>
+<text x="118" y="2128" font-size="10" text-anchor="middle" fill="#475569">capability</text>
+<rect x="18" y="2180" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="2205" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-59d1ca94bc16425186e62</text>
+<text x="118" y="2222" font-size="10" text-anchor="middle" fill="#475569">capability</text>
+<rect x="18" y="2274" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="2299" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-5ccb20c4d7154d83bdaaa</text>
+<text x="118" y="2316" font-size="10" text-anchor="middle" fill="#475569">capability</text>
+<rect x="18" y="2368" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="2393" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-5f362ed303e840f2a54bb</text>
+<text x="118" y="2410" font-size="10" text-anchor="middle" fill="#475569">capability</text>
+<rect x="18" y="2462" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="2487" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-64f4c3223dbc444e9379f</text>
+<text x="118" y="2504" font-size="10" text-anchor="middle" fill="#475569">capability</text>
+<rect x="18" y="2556" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="2581" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-6bd074248722482a8f8ac</text>
+<text x="118" y="2598" font-size="10" text-anchor="middle" fill="#475569">capability</text>
+<rect x="18" y="2650" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="2675" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-6c27bcc1614b468a9db3b</text>
+<text x="118" y="2692" font-size="10" text-anchor="middle" fill="#475569">capability</text>
+<rect x="18" y="2744" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="2769" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-6d790fd02ca544d2afabd</text>
+<text x="118" y="2786" font-size="10" text-anchor="middle" fill="#475569">capability</text>
+<rect x="18" y="2838" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="2863" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-6de6559bf3e34273b004a</text>
+<text x="118" y="2880" font-size="10" text-anchor="middle" fill="#475569">capability</text>
+<rect x="18" y="2932" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="2957" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-6f37a58bcd5741c28716c</text>
+<text x="118" y="2974" font-size="10" text-anchor="middle" fill="#475569">capability</text>
+<rect x="18" y="3026" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="3051" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-6ff1e56e07994cb5bbfd2</text>
+<text x="118" y="3068" font-size="10" text-anchor="middle" fill="#475569">capability</text>
+<rect x="18" y="3120" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="3145" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-753b5e9dfc1b48caa7dc4</text>
+<text x="118" y="3162" font-size="10" text-anchor="middle" fill="#475569">capability</text>
+<rect x="18" y="3214" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="3239" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-766030fe256d4f7789a82</text>
+<text x="118" y="3256" font-size="10" text-anchor="middle" fill="#475569">capability</text>
+<rect x="348" y="2650" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="448" y="2675" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-7806964a6f5b4997a5844</text>
+<text x="448" y="2692" font-size="10" text-anchor="middle" fill="#475569">capability</text>
+<rect x="18" y="3308" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="3333" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-7af9e3534cce45ce8dea9</text>
+<text x="118" y="3350" font-size="10" text-anchor="middle" fill="#475569">capability</text>
+<rect x="18" y="3402" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="3427" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-80ed1b9a933942c783db5</text>
+<text x="118" y="3444" font-size="10" text-anchor="middle" fill="#475569">capability</text>
+<rect x="18" y="3496" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="3521" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-856ba09fa79f448aaf609</text>
+<text x="118" y="3538" font-size="10" text-anchor="middle" fill="#475569">capability</text>
+<rect x="18" y="3590" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="3615" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-870d6178f29847b483e95</text>
+<text x="118" y="3632" font-size="10" text-anchor="middle" fill="#475569">capability</text>
+<rect x="18" y="3684" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="3709" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-87e0337529a84832aed6e</text>
+<text x="118" y="3726" font-size="10" text-anchor="middle" fill="#475569">capability</text>
+<rect x="18" y="3778" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="3803" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-8831132885184e3faea70</text>
+<text x="118" y="3820" font-size="10" text-anchor="middle" fill="#475569">capability</text>
+<rect x="18" y="3872" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="3897" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-8f07d421319d4fac936cb</text>
+<text x="118" y="3914" font-size="10" text-anchor="middle" fill="#475569">capability</text>
+<rect x="18" y="3966" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="3991" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-94c68a180ffe4ee5a34a9</text>
+<text x="118" y="4008" font-size="10" text-anchor="middle" fill="#475569">capability</text>
+<rect x="18" y="4060" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="4085" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-9674f373e406469c9f9d0</text>
+<text x="118" y="4102" font-size="10" text-anchor="middle" fill="#475569">capability</text>
+<rect x="18" y="4154" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="4179" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-9ea3b12f505c470bac45d</text>
+<text x="118" y="4196" font-size="10" text-anchor="middle" fill="#475569">capability</text>
+<rect x="18" y="4248" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="4273" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-a37f2e9dc53148a7aedcb</text>
+<text x="118" y="4290" font-size="10" text-anchor="middle" fill="#475569">capability</text>
+<rect x="18" y="4342" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="4367" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-a8f2bd5b9ceb4ee2a1316</text>
+<text x="118" y="4384" font-size="10" text-anchor="middle" fill="#475569">capability</text>
+<rect x="18" y="4436" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="4461" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-acea85073aaa483aa55e3</text>
+<text x="118" y="4478" font-size="10" text-anchor="middle" fill="#475569">capability</text>
+<rect x="18" y="4530" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="4555" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-af272b1a8ac44c18bf93e</text>
+<text x="118" y="4572" font-size="10" text-anchor="middle" fill="#475569">capability</text>
+<rect x="18" y="4624" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="4649" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-b2b173aae01a4d79bed5f</text>
+<text x="118" y="4666" font-size="10" text-anchor="middle" fill="#475569">capability</text>
+<rect x="18" y="4718" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="4743" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-c3a25efee3eb410689076</text>
+<text x="118" y="4760" font-size="10" text-anchor="middle" fill="#475569">capability</text>
+<rect x="18" y="4812" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="4837" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-cdb29f6122304fc98526c</text>
+<text x="118" y="4854" font-size="10" text-anchor="middle" fill="#475569">capability</text>
+<rect x="18" y="4906" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="4931" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-e651a241087046f28305d</text>
+<text x="118" y="4948" font-size="10" text-anchor="middle" fill="#475569">capability</text>
+<rect x="18" y="5000" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="5025" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-ea4dc3cc33404e9688f6f</text>
+<text x="118" y="5042" font-size="10" text-anchor="middle" fill="#475569">capability</text>
+<rect x="18" y="5094" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="5119" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-ea9c0624c2164a96abad9</text>
+<text x="118" y="5136" font-size="10" text-anchor="middle" fill="#475569">capability</text>
+<rect x="18" y="5188" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="5213" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-ef771d2b5c674b288333b</text>
+<text x="118" y="5230" font-size="10" text-anchor="middle" fill="#475569">capability</text>
+<rect x="348" y="2744" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="448" y="2769" font-size="12" text-anchor="middle" fill="#0f172a">ech-id-eff28fbde9e746b1b0fb1</text>
+<text x="448" y="2786" font-size="10" text-anchor="middle" fill="#475569">capability</text>
+</svg>
+</div></section>
+<h2>KYC onboarding</h2>
+<section><h3>kyc-audit-logging</h3><p>4 nodes, 3 relationships, 0 decorators — source: <code>../model/fluxnova-kyc-onboarding.architecture.json</code> (unmodified). Prose: <a href="kyc-audit-logging.md">kyc-audit-logging.md</a></p><div class="diagram"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 566 284" width="566" height="284" font-family="sans-serif">
+<!-- kyc-audit-logging.calm-view.json from fluxnova-kyc-onboarding.architecture.json sha256:54a5d6066987 2026-11-17 calm-views-tools@0.1.0 -->
+<title>Audit logging coverage</title>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#475569" /></marker></defs>
+<rect x="0" y="0" width="566" height="284" fill="white"/>
+<line x1="218" y1="142" x2="348" y2="48" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/><text x="283" y="90" font-size="11" text-anchor="middle" fill="#0f172a" stroke="white" stroke-width="3" paint-order="stroke">HTTPS</text>
+<line x1="218" y1="142" x2="348" y2="236" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/><text x="283" y="184" font-size="11" text-anchor="middle" fill="#0f172a" stroke="white" stroke-width="3" paint-order="stroke">HTTPS</text>
+<line x1="218" y1="142" x2="348" y2="142" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/><text x="283" y="137" font-size="11" text-anchor="middle" fill="#0f172a" stroke="white" stroke-width="3" paint-order="stroke">HTTPS</text>
+<rect x="18" y="112" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="118" y="137" font-size="12" text-anchor="middle" fill="#0f172a">kyc-fluxnova-engine</text>
+<text x="118" y="154" font-size="10" text-anchor="middle" fill="#475569">fluxnova:engine</text>
+<rect x="348" y="18" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="448" y="43" font-size="12" text-anchor="middle" fill="#0f172a">kyc-identity-verification-sv</text>
+<text x="448" y="60" font-size="10" text-anchor="middle" fill="#475569">service</text>
+<rect x="348" y="112" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="448" y="137" font-size="12" text-anchor="middle" fill="#0f172a">kyc-risk-scoring-svc</text>
+<text x="448" y="154" font-size="10" text-anchor="middle" fill="#475569">service</text>
+<rect x="348" y="206" width="200" height="60" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text x="448" y="231" font-size="12" text-anchor="middle" fill="#0f172a">kyc-sanctions-screening-svc</text>
+<text x="448" y="248" font-size="10" text-anchor="middle" fill="#475569">service</text>
+</svg>
+</div></section>
 <section><h3>kyc-audit-view</h3><p>15 nodes, 21 relationships, 1 decorators — source: <code>../model/fluxnova-kyc-onboarding.architecture.json</code> (unmodified). Prose: <a href="kyc-audit-view.md">kyc-audit-view.md</a></p><div class="diagram"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 896 660" width="896" height="660" font-family="sans-serif">
+<!-- kyc-audit.calm-view.json from fluxnova-kyc-onboarding.architecture.json sha256:54a5d6066987 2026-11-17 calm-views-tools@0.1.0 -->
 <title>KYC Audit View</title>
 <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#475569" /></marker></defs>
 <rect x="0" y="0" width="896" height="660" fill="white"/>
@@ -73,6 +872,7 @@
 </svg>
 </div></section>
 <section><h3>kyc-integration-view</h3><p>10 nodes, 9 relationships, 0 decorators — source: <code>../model/fluxnova-kyc-onboarding.architecture.json</code> (unmodified). Prose: <a href="kyc-integration-view.md">kyc-integration-view.md</a></p><div class="diagram"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1226 566" width="1226" height="566" font-family="sans-serif">
+<!-- kyc-integration.calm-view.json from fluxnova-kyc-onboarding.architecture.json sha256:54a5d6066987 2026-11-17 calm-views-tools@0.1.0 -->
 <title>KYC Integration View</title>
 <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#475569" /></marker></defs>
 <rect x="0" y="0" width="1226" height="566" fill="white"/>
@@ -118,6 +918,7 @@
 </svg>
 </div></section>
 <section><h3>kyc-platform-inside · derived</h3><p>6 nodes, 5 relationships, 0 decorators — source: <code>../model/fluxnova-kyc-onboarding.architecture.json</code> (unmodified). Prose: <a href="kyc-platform-inside.md">kyc-platform-inside.md</a></p><div class="diagram"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1226 284" width="1226" height="284" font-family="sans-serif">
+<!-- kyc-platform-inside.calm-view.json from fluxnova-kyc-onboarding.architecture.json sha256:54a5d6066987 2026-11-17 calm-views-tools@0.1.0 -->
 <title>Inside the Platform (derived)</title>
 <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#475569" /></marker></defs>
 <rect x="0" y="0" width="1226" height="284" fill="white"/>
@@ -147,6 +948,7 @@
 </svg>
 </div></section>
 <section><h3>kyc-platform-view</h3><p>14 nodes, 22 relationships, 0 decorators — source: <code>../model/fluxnova-kyc-onboarding.architecture.json</code> (unmodified). Prose: <a href="kyc-platform-view.md">kyc-platform-view.md</a></p><div class="diagram"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1556 660" width="1556" height="660" font-family="sans-serif">
+<!-- kyc-platform.calm-view.json from fluxnova-kyc-onboarding.architecture.json sha256:54a5d6066987 2026-11-17 calm-views-tools@0.1.0 -->
 <title>KYC Platform View</title>
 <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#475569" /></marker></defs>
 <rect x="0" y="0" width="1556" height="660" fill="white"/>
@@ -213,6 +1015,7 @@
 </svg>
 </div></section>
 <section><h3>kyc-screening-neighborhood · derived</h3><p>4 nodes, 3 relationships, 0 decorators — source: <code>../model/fluxnova-kyc-onboarding.architecture.json</code> (unmodified). Prose: <a href="kyc-screening-neighborhood.md">kyc-screening-neighborhood.md</a></p><div class="diagram"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 896 190" width="896" height="190" font-family="sans-serif">
+<!-- kyc-screening-neighborhood.calm-view.json from fluxnova-kyc-onboarding.architecture.json sha256:54a5d6066987 2026-11-17 calm-views-tools@0.1.0 -->
 <title>Screening Neighborhood (derived)</title>
 <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#475569" /></marker></defs>
 <rect x="0" y="0" width="896" height="190" fill="white"/>

@@ -183,5 +183,12 @@
       "description": "Tasklist enables compliance officers and ops staff to claim and complete KYC review tasks"
     }
   ],
-  "decorators": []
+  "decorators": [],
+  "attestation": {
+    "view": "kyc-platform-inside.calm-view.json",
+    "model": "fluxnova-kyc-onboarding.architecture.json",
+    "modelSha256": "54a5d6066987cd41ffbaf5e8fb1e666a03816074c56aa8219111396abd2a4541",
+    "generated": "2026-11-17",
+    "tool": "calm-views-tools@0.1.0"
+  }
 }

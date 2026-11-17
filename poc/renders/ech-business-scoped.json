@@ -1,0 +1,2250 @@
+{
+  "view": "ech-business",
+  "for": "../model/ech-0122.architecture.json",
+  "nodes": [
+    {
+      "unique-id": "ech-id-6653eb62a3264ff7b7637575fa697e2a",
+      "node-type": "actor",
+      "name": "Business Actor",
+      "description": "ArchiMate BusinessActor from Business (imported from eCH-0122-2-0-1.archimate).",
+      "metadata": {
+        "archimate-type": "BusinessActor",
+        "archimate-layer": "Business",
+        "archimate-folders": "Business"
+      }
+    },
+    {
+      "unique-id": "ech-id-59fc81a268cc454c8b1b5c3c72066d92",
+      "node-type": "actor",
+      "name": "Kunde A",
+      "description": "ArchiMate BusinessActor from Business (imported from eCH-0122-2-0-1.archimate).",
+      "metadata": {
+        "archimate-type": "BusinessActor",
+        "archimate-layer": "Business",
+        "archimate-folders": "Business"
+      }
+    },
+    {
+      "unique-id": "ech-id-d043af4e23664faf8e11af66b7983e4f",
+      "node-type": "actor",
+      "name": "Beh\u00f6rde A",
+      "description": "ArchiMate BusinessActor from Business (imported from eCH-0122-2-0-1.archimate).",
+      "metadata": {
+        "archimate-type": "BusinessActor",
+        "archimate-layer": "Business",
+        "archimate-folders": "Business"
+      }
+    },
+    {
+      "unique-id": "ech-id-209c8f0310e6427e8a916750fd72e649",
+      "node-type": "service",
+      "name": "\u00d6ffentliche Leistung A",
+      "description": "ArchiMate BusinessService from Business (imported from eCH-0122-2-0-1.archimate).",
+      "metadata": {
+        "archimate-type": "BusinessService",
+        "archimate-layer": "Business",
+        "archimate-folders": "Business"
+      }
+    },
+    {
+      "unique-id": "ech-id-9a744745e1354b6b8ba677eae0e7bd94",
+      "node-type": "actor",
+      "name": "id-9a744745e1354b6b8ba677eae0e7bd94",
+      "description": "ArchiMate BusinessInterface from Business (imported from eCH-0122-2-0-1.archimate).",
+      "metadata": {
+        "archimate-type": "BusinessInterface",
+        "archimate-layer": "Business",
+        "archimate-folders": "Business"
+      }
+    },
+    {
+      "unique-id": "ech-id-9e6a0db663aa46598bfaacb0ed1404cc",
+      "node-type": "actor",
+      "name": "Unternehmen",
+      "description": "ArchiMate BusinessActor from Business (imported from eCH-0122-2-0-1.archimate).",
+      "metadata": {
+        "archimate-type": "BusinessActor",
+        "archimate-layer": "Business",
+        "archimate-folders": "Business"
+      }
+    },
+    {
+      "unique-id": "ech-id-2a68f92cf6e6411da6d602100a890ee0",
+      "node-type": "service",
+      "name": "Leistung",
+      "description": "ArchiMate BusinessService from Business (imported from eCH-0122-2-0-1.archimate).",
+      "metadata": {
+        "archimate-type": "BusinessService",
+        "archimate-layer": "Business",
+        "archimate-folders": "Business"
+      }
+    },
+    {
+      "unique-id": "ech-id-eabaf611452947a6a9c3ef68703e33ae",
+      "node-type": "actor",
+      "name": "Beh\u00f6rde",
+      "description": "ArchiMate BusinessActor from Business (imported from eCH-0122-2-0-1.archimate).",
+      "metadata": {
+        "archimate-type": "BusinessActor",
+        "archimate-layer": "Business",
+        "archimate-folders": "Business"
+      }
+    },
+    {
+      "unique-id": "ech-id-d1de2218359a4dc1a24cb8370d7a11c5",
+      "node-type": "service",
+      "name": "\u00d6ffentliche Leistung",
+      "description": "ArchiMate BusinessService from Business (imported from eCH-0122-2-0-1.archimate).",
+      "metadata": {
+        "archimate-type": "BusinessService",
+        "archimate-layer": "Business",
+        "archimate-folders": "Business"
+      }
+    },
+    {
+      "unique-id": "ech-id-4338721bf0a6424786bf190ff04a083e",
+      "node-type": "actor",
+      "name": "Kunde B",
+      "description": "ArchiMate BusinessActor from Business (imported from eCH-0122-2-0-1.archimate).",
+      "metadata": {
+        "archimate-type": "BusinessActor",
+        "archimate-layer": "Business",
+        "archimate-folders": "Business"
+      }
+    },
+    {
+      "unique-id": "ech-id-d78e8df233b54fdfbe18dd4b0984ae52",
+      "node-type": "actor",
+      "name": "Beh\u00f6rde B",
+      "description": "ArchiMate BusinessActor from Business (imported from eCH-0122-2-0-1.archimate).",
+      "metadata": {
+        "archimate-type": "BusinessActor",
+        "archimate-layer": "Business",
+        "archimate-folders": "Business"
+      }
+    },
+    {
+      "unique-id": "ech-id-d0ca8a3062a04d91b3302021b1af69db",
+      "node-type": "service",
+      "name": "\u00d6ffentliche Leistung B",
+      "description": "ArchiMate BusinessService from Business (imported from eCH-0122-2-0-1.archimate).",
+      "metadata": {
+        "archimate-type": "BusinessService",
+        "archimate-layer": "Business",
+        "archimate-folders": "Business"
+      }
+    },
+    {
+      "unique-id": "ech-id-1618135b21e64179b3ad2072ac5c0027",
+      "node-type": "actor",
+      "name": "Kunde Inland",
+      "description": "ArchiMate BusinessActor from Business (imported from eCH-0122-2-0-1.archimate).",
+      "metadata": {
+        "archimate-type": "BusinessActor",
+        "archimate-layer": "Business",
+        "archimate-folders": "Business"
+      }
+    },
+    {
+      "unique-id": "ech-id-d12f140ca9514ae08133b722431d14b1",
+      "node-type": "database",
+      "name": "Business Object A",
+      "description": "ArchiMate BusinessObject from Business (imported from eCH-0122-2-0-1.archimate).",
+      "metadata": {
+        "archimate-type": "BusinessObject",
+        "archimate-layer": "Business",
+        "archimate-folders": "Business"
+      }
+    },
+    {
+      "unique-id": "ech-id-3b3e328f24f94acb8cd9d318b0c86987",
+      "node-type": "database",
+      "name": "Business Object B",
+      "description": "ArchiMate BusinessObject from Business (imported from eCH-0122-2-0-1.archimate).",
+      "metadata": {
+        "archimate-type": "BusinessObject",
+        "archimate-layer": "Business",
+        "archimate-folders": "Business"
+      }
+    },
+    {
+      "unique-id": "ech-id-8b48b4a0b6a94406a2f995c5dc161dc1",
+      "node-type": "database",
+      "name": "Business Object",
+      "description": "ArchiMate BusinessObject from Business (imported from eCH-0122-2-0-1.archimate).",
+      "metadata": {
+        "archimate-type": "BusinessObject",
+        "archimate-layer": "Business",
+        "archimate-folders": "Business"
+      }
+    },
+    {
+      "unique-id": "ech-id-2bdc7b81d9534152b43ef7cea43b71d0",
+      "node-type": "actor",
+      "name": "Aufsichtsbeh\u00f6rde",
+      "description": "ArchiMate BusinessActor from Business (imported from eCH-0122-2-0-1.archimate).",
+      "metadata": {
+        "archimate-type": "BusinessActor",
+        "archimate-layer": "Business",
+        "archimate-folders": "Business"
+      }
+    },
+    {
+      "unique-id": "ech-id-abb5146d37414421b1b5a410d0a5443d",
+      "node-type": "database",
+      "name": "Regularien",
+      "description": "ArchiMate BusinessObject from Business (imported from eCH-0122-2-0-1.archimate).",
+      "metadata": {
+        "archimate-type": "BusinessObject",
+        "archimate-layer": "Business",
+        "archimate-folders": "Business"
+      }
+    },
+    {
+      "unique-id": "ech-id-02b0ab643aff433e94faa80ecc2379c2",
+      "node-type": "actor",
+      "name": "Aufsichtsbeh\u00f6rde A",
+      "description": "ArchiMate BusinessActor from Business (imported from eCH-0122-2-0-1.archimate).",
+      "metadata": {
+        "archimate-type": "BusinessActor",
+        "archimate-layer": "Business",
+        "archimate-folders": "Business"
+      }
+    },
+    {
+      "unique-id": "ech-id-19962ef695864bb6bf0d07455a81a3c3",
+      "node-type": "database",
+      "name": "Regularien A",
+      "description": "ArchiMate BusinessObject from Business (imported from eCH-0122-2-0-1.archimate).",
+      "metadata": {
+        "archimate-type": "BusinessObject",
+        "archimate-layer": "Business",
+        "archimate-folders": "Business"
+      }
+    },
+    {
+      "unique-id": "ech-id-32de3a21f68a4315b2226168a5de0c81",
+      "node-type": "actor",
+      "name": "Aufsichtsbeh\u00f6rde B",
+      "description": "ArchiMate BusinessActor from Business (imported from eCH-0122-2-0-1.archimate).",
+      "metadata": {
+        "archimate-type": "BusinessActor",
+        "archimate-layer": "Business",
+        "archimate-folders": "Business"
+      }
+    },
+    {
+      "unique-id": "ech-id-02472a07db1348cdbe6f1f91c8a5405b",
+      "node-type": "database",
+      "name": "Regularien B",
+      "description": "ArchiMate BusinessObject from Business (imported from eCH-0122-2-0-1.archimate).",
+      "metadata": {
+        "archimate-type": "BusinessObject",
+        "archimate-layer": "Business",
+        "archimate-folders": "Business"
+      }
+    },
+    {
+      "unique-id": "ech-id-bd2b7fe702384022b7f12f88558859d1",
+      "node-type": "actor",
+      "name": "Externer Benutzer",
+      "description": "ArchiMate BusinessActor from Business (imported from eCH-0122-2-0-1.archimate).",
+      "metadata": {
+        "archimate-type": "BusinessActor",
+        "archimate-layer": "Business",
+        "archimate-folders": "Business"
+      }
+    },
+    {
+      "unique-id": "ech-id-db0fceabf3d74616882cff2f0ddbcb57",
+      "node-type": "actor",
+      "name": "Interner Benutzer ",
+      "description": "ArchiMate BusinessActor from Business (imported from eCH-0122-2-0-1.archimate).",
+      "metadata": {
+        "archimate-type": "BusinessActor",
+        "archimate-layer": "Business",
+        "archimate-folders": "Business"
+      }
+    },
+    {
+      "unique-id": "ech-id-89781978e6b0425ab27a9e8e1e0274df",
+      "node-type": "database",
+      "name": "Legacy-Datenmodell",
+      "description": "ArchiMate Representation from Business (imported from eCH-0122-2-0-1.archimate).",
+      "metadata": {
+        "archimate-type": "Representation",
+        "archimate-layer": "Business",
+        "archimate-folders": "Business"
+      }
+    },
+    {
+      "unique-id": "ech-id-a2dbf5e2f4cb45ebba8f1bfc9af5f091",
+      "node-type": "actor",
+      "name": "Service Consumer (Leistungsbez\u00fcger)",
+      "description": "ArchiMate BusinessActor from Business (imported from eCH-0122-2-0-1.archimate).",
+      "metadata": {
+        "archimate-type": "BusinessActor",
+        "archimate-layer": "Business",
+        "archimate-folders": "Business"
+      }
+    },
+    {
+      "unique-id": "ech-id-4456c0605c7443198ab84bab37132e27",
+      "node-type": "database",
+      "name": "Standardisierte Datendarstellung",
+      "description": "ArchiMate Representation from Business (imported from eCH-0122-2-0-1.archimate).",
+      "metadata": {
+        "archimate-type": "Representation",
+        "archimate-layer": "Business",
+        "archimate-folders": "Business"
+      }
+    },
+    {
+      "unique-id": "ech-id-05ef46ab0a8d4b8cb008e64b06fd0b34",
+      "node-type": "service",
+      "name": "Gesch\u00e4fts-prozess A2",
+      "description": "ArchiMate BusinessProcess from Business (imported from eCH-0122-2-0-1.archimate).",
+      "metadata": {
+        "archimate-type": "BusinessProcess",
+        "archimate-layer": "Business",
+        "archimate-folders": "Business"
+      }
+    },
+    {
+      "unique-id": "ech-id-d135548811a24e2488fa80c62f27c20b",
+      "node-type": "service",
+      "name": "Leistung A2",
+      "description": "ArchiMate BusinessService from Business (imported from eCH-0122-2-0-1.archimate).",
+      "metadata": {
+        "archimate-type": "BusinessService",
+        "archimate-layer": "Business",
+        "archimate-folders": "Business"
+      }
+    },
+    {
+      "unique-id": "ech-id-2997c431368547f4ad6a8d61b3a788e9",
+      "node-type": "actor",
+      "name": "Leistungs-bez\u00fcger A2",
+      "description": "ArchiMate BusinessActor from Business (imported from eCH-0122-2-0-1.archimate).",
+      "metadata": {
+        "archimate-type": "BusinessActor",
+        "archimate-layer": "Business",
+        "archimate-folders": "Business"
+      }
+    },
+    {
+      "unique-id": "ech-id-7a999b49564b4dbfbf93a72eb4c63e1e",
+      "node-type": "actor",
+      "name": "Leistungs-erbringer A2",
+      "description": "ArchiMate BusinessActor from Business (imported from eCH-0122-2-0-1.archimate).",
+      "metadata": {
+        "archimate-type": "BusinessActor",
+        "archimate-layer": "Business",
+        "archimate-folders": "Business"
+      }
+    },
+    {
+      "unique-id": "ech-id-a1dfebc7e9ff400fa7d294db5eec32ae",
+      "node-type": "service",
+      "name": "Leistung A",
+      "description": "ArchiMate BusinessService from Business (imported from eCH-0122-2-0-1.archimate).",
+      "metadata": {
+        "archimate-type": "BusinessService",
+        "archimate-layer": "Business",
+        "archimate-folders": "Business"
+      }
+    },
+    {
+      "unique-id": "ech-id-49cdf3eb8a2547fc82e50741942484ce",
+      "node-type": "service",
+      "name": "Gesch\u00e4fts-prozess A",
+      "description": "ArchiMate BusinessProcess from Business (imported from eCH-0122-2-0-1.archimate).",
+      "metadata": {
+        "archimate-type": "BusinessProcess",
+        "archimate-layer": "Business",
+        "archimate-folders": "Business"
+      }
+    },
+    {
+      "unique-id": "ech-id-5e57bae9e5054f378d1a7b33b95e50b7",
+      "node-type": "actor",
+      "name": "Leistungs-erbringer A",
+      "description": "ArchiMate BusinessActor from Business (imported from eCH-0122-2-0-1.archimate).",
+      "metadata": {
+        "archimate-type": "BusinessActor",
+        "archimate-layer": "Business",
+        "archimate-folders": "Business"
+      }
+    },
+    {
+      "unique-id": "ech-id-d4f946d76f5c4e4ba7d2a06dc9db8171",
+      "node-type": "service",
+      "name": "Leistung A1",
+      "description": "ArchiMate BusinessService from Business (imported from eCH-0122-2-0-1.archimate).",
+      "metadata": {
+        "archimate-type": "BusinessService",
+        "archimate-layer": "Business",
+        "archimate-folders": "Business"
+      }
+    },
+    {
+      "unique-id": "ech-id-d1c2c06a32244374845579f5c9e2aa47",
+      "node-type": "service",
+      "name": "Gesch\u00e4fts-prozess A1",
+      "description": "ArchiMate BusinessProcess from Business (imported from eCH-0122-2-0-1.archimate).",
+      "metadata": {
+        "archimate-type": "BusinessProcess",
+        "archimate-layer": "Business",
+        "archimate-folders": "Business"
+      }
+    },
+    {
+      "unique-id": "ech-id-6c8df94cac9e4bbcbcd4d0c6246a5fd1",
+      "node-type": "actor",
+      "name": "Leistungs-bez\u00fcger A1",
+      "description": "ArchiMate BusinessActor from Business (imported from eCH-0122-2-0-1.archimate).",
+      "metadata": {
+        "archimate-type": "BusinessActor",
+        "archimate-layer": "Business",
+        "archimate-folders": "Business"
+      }
+    },
+    {
+      "unique-id": "ech-id-67ebd962647441088b6c1d7eb7302908",
+      "node-type": "actor",
+      "name": "Leistungs-erbringer A1",
+      "description": "ArchiMate BusinessActor from Business (imported from eCH-0122-2-0-1.archimate).",
+      "metadata": {
+        "archimate-type": "BusinessActor",
+        "archimate-layer": "Business",
+        "archimate-folders": "Business"
+      }
+    },
+    {
+      "unique-id": "ech-id-fca04564df21401a828ab0653d29b5da",
+      "node-type": "database",
+      "name": "Standardisierte Informationsdarstellung A",
+      "description": "ArchiMate Representation from Business (imported from eCH-0122-2-0-1.archimate).",
+      "metadata": {
+        "archimate-type": "Representation",
+        "archimate-layer": "Business",
+        "archimate-folders": "Business"
+      }
+    },
+    {
+      "unique-id": "ech-id-c4247ea416974089a0ba72caa6d625ce",
+      "node-type": "database",
+      "name": "Standardisierte Informationsdarstellung",
+      "description": "ArchiMate Representation from Business (imported from eCH-0122-2-0-1.archimate).",
+      "metadata": {
+        "archimate-type": "Representation",
+        "archimate-layer": "Business",
+        "archimate-folders": "Business"
+      }
+    },
+    {
+      "unique-id": "ech-id-6ade3f65382445c997414284b1bb4279",
+      "node-type": "service",
+      "name": "Gesch\u00e4fts-prozess B",
+      "description": "ArchiMate BusinessProcess from Business (imported from eCH-0122-2-0-1.archimate).",
+      "metadata": {
+        "archimate-type": "BusinessProcess",
+        "archimate-layer": "Business",
+        "archimate-folders": "Business"
+      }
+    },
+    {
+      "unique-id": "ech-id-a7aee60b30214aff84f6e27224537eff",
+      "node-type": "service",
+      "name": "Leistung B",
+      "description": "ArchiMate BusinessService from Business (imported from eCH-0122-2-0-1.archimate).",
+      "metadata": {
+        "archimate-type": "BusinessService",
+        "archimate-layer": "Business",
+        "archimate-folders": "Business"
+      }
+    },
+    {
+      "unique-id": "ech-id-66fca61560e749739bf8d06ccea2e57e",
+      "node-type": "actor",
+      "name": "Leistungs-bez\u00fcger B",
+      "description": "ArchiMate BusinessActor from Business (imported from eCH-0122-2-0-1.archimate).",
+      "metadata": {
+        "archimate-type": "BusinessActor",
+        "archimate-layer": "Business",
+        "archimate-folders": "Business"
+      }
+    },
+    {
+      "unique-id": "ech-id-30a816331d074bc5b855fcdbe5cdcc2b",
+      "node-type": "actor",
+      "name": "Leistungs-erbringer B",
+      "description": "ArchiMate BusinessActor from Business (imported from eCH-0122-2-0-1.archimate).",
+      "metadata": {
+        "archimate-type": "BusinessActor",
+        "archimate-layer": "Business",
+        "archimate-folders": "Business"
+      }
+    },
+    {
+      "unique-id": "ech-id-ebfe18cab2de4a9e96cc7ce09a81e0b3",
+      "node-type": "actor",
+      "name": "Leistungs-bez\u00fcger A",
+      "description": "ArchiMate BusinessActor from Business (imported from eCH-0122-2-0-1.archimate).",
+      "metadata": {
+        "archimate-type": "BusinessActor",
+        "archimate-layer": "Business",
+        "archimate-folders": "Business"
+      }
+    },
+    {
+      "unique-id": "ech-id-2f7cd36649234dc4978fa15d66c10fc1",
+      "node-type": "database",
+      "name": "Standardisierte Datendarstellung A",
+      "description": "ArchiMate Representation from Business (imported from eCH-0122-2-0-1.archimate).",
+      "metadata": {
+        "archimate-type": "Representation",
+        "archimate-layer": "Business",
+        "archimate-folders": "Business"
+      }
+    },
+    {
+      "unique-id": "ech-id-764fa4696c6e41698e0d56d576a724d9",
+      "node-type": "database",
+      "name": "Datenarchitektur Standards",
+      "description": "ArchiMate BusinessObject from Business (imported from eCH-0122-2-0-1.archimate).",
+      "metadata": {
+        "archimate-type": "BusinessObject",
+        "archimate-layer": "Business",
+        "archimate-folders": "Business"
+      }
+    },
+    {
+      "unique-id": "ech-id-eb231c33b7f8438abceb53158dc7bec2",
+      "node-type": "database",
+      "name": "Datenformat",
+      "description": "ArchiMate BusinessObject from Business (imported from eCH-0122-2-0-1.archimate).",
+      "metadata": {
+        "archimate-type": "BusinessObject",
+        "archimate-layer": "Business",
+        "archimate-folders": "Business"
+      }
+    },
+    {
+      "unique-id": "ech-id-c58c4cebc0844d1bac8baba44cd8d5aa",
+      "node-type": "database",
+      "name": "Kommunikations-protokol",
+      "description": "ArchiMate BusinessObject from Business (imported from eCH-0122-2-0-1.archimate).",
+      "metadata": {
+        "archimate-type": "BusinessObject",
+        "archimate-layer": "Business",
+        "archimate-folders": "Business"
+      }
+    },
+    {
+      "unique-id": "ech-id-f94b95b37ca4488ca37a687b926a821b",
+      "node-type": "database",
+      "name": "Datenmodell",
+      "description": "ArchiMate BusinessObject from Business (imported from eCH-0122-2-0-1.archimate).",
+      "metadata": {
+        "archimate-type": "BusinessObject",
+        "archimate-layer": "Business",
+        "archimate-folders": "Business"
+      }
+    },
+    {
+      "unique-id": "ech-id-d0fef223eb4c40eb944a3bae071b022d",
+      "node-type": "database",
+      "name": "Datenbestand",
+      "description": "ArchiMate Representation from Business (imported from eCH-0122-2-0-1.archimate).",
+      "metadata": {
+        "archimate-type": "Representation",
+        "archimate-layer": "Business",
+        "archimate-folders": "Business"
+      }
+    },
+    {
+      "unique-id": "ech-id-66ba282d30264ef9adcaeed2806d6286",
+      "node-type": "database",
+      "name": "Dokument",
+      "description": "ArchiMate Representation from Business (imported from eCH-0122-2-0-1.archimate).",
+      "metadata": {
+        "archimate-type": "Representation",
+        "archimate-layer": "Business",
+        "archimate-folders": "Business"
+      }
+    },
+    {
+      "unique-id": "ech-id-a5a4d9f4d0d242888889b9802a0b1112",
+      "node-type": "database",
+      "name": "Gesch\u00e4ftsobjekt",
+      "description": "ArchiMate BusinessObject from Business (imported from eCH-0122-2-0-1.archimate).",
+      "metadata": {
+        "archimate-type": "BusinessObject",
+        "archimate-layer": "Business",
+        "archimate-folders": "Business"
+      }
+    },
+    {
+      "unique-id": "ech-id-b43c924c047d4f8ab9dd1fb867db7829",
+      "node-type": "database",
+      "name": "Gesch\u00e4fts-information",
+      "description": "ArchiMate BusinessObject from Business (imported from eCH-0122-2-0-1.archimate).",
+      "metadata": {
+        "archimate-type": "BusinessObject",
+        "archimate-layer": "Business",
+        "archimate-folders": "Business"
+      }
+    },
+    {
+      "unique-id": "ech-id-389b3c55777a4e7c8bf5150c6169e683",
+      "node-type": "database",
+      "name": "Formular",
+      "description": "ArchiMate Representation from Business (imported from eCH-0122-2-0-1.archimate).",
+      "metadata": {
+        "archimate-type": "Representation",
+        "archimate-layer": "Business",
+        "archimate-folders": "Business"
+      }
+    },
+    {
+      "unique-id": "ech-id-e586ee62d0414e6d9184931ffe44fbfb",
+      "node-type": "service",
+      "name": "Gesch\u00e4fts-prozess",
+      "description": "ArchiMate BusinessProcess from Business (imported from eCH-0122-2-0-1.archimate).",
+      "metadata": {
+        "archimate-type": "BusinessProcess",
+        "archimate-layer": "Business",
+        "archimate-folders": "Business"
+      }
+    },
+    {
+      "unique-id": "ech-id-52982c2d58c64a6cb942a7c5db4aa11a",
+      "node-type": "service",
+      "name": "Fachliche Funktion",
+      "description": "ArchiMate BusinessFunction from Business (imported from eCH-0122-2-0-1.archimate).",
+      "metadata": {
+        "archimate-type": "BusinessFunction",
+        "archimate-layer": "Business",
+        "archimate-folders": "Business"
+      }
+    },
+    {
+      "unique-id": "ech-id-f6a103409bad4f9482fad0493e7107a8",
+      "node-type": "service",
+      "name": "Informationsaustausch",
+      "description": "ArchiMate BusinessInteraction from Business (imported from eCH-0122-2-0-1.archimate).",
+      "metadata": {
+        "archimate-type": "BusinessInteraction",
+        "archimate-layer": "Business",
+        "archimate-folders": "Business"
+      }
+    },
+    {
+      "unique-id": "ech-id-8b498b10f96446159a1a3c23ebf7b8b8",
+      "node-type": "actor",
+      "name": "Nat\u00fcrliche Person",
+      "description": "ArchiMate BusinessActor from Business (imported from eCH-0122-2-0-1.archimate).",
+      "metadata": {
+        "archimate-type": "BusinessActor",
+        "archimate-layer": "Business",
+        "archimate-folders": "Business"
+      }
+    },
+    {
+      "unique-id": "ech-id-244aae288b3248248a33e633c0029972",
+      "node-type": "actor",
+      "name": "Partner",
+      "description": "ArchiMate BusinessActor from Business (imported from eCH-0122-2-0-1.archimate).",
+      "metadata": {
+        "archimate-type": "BusinessActor",
+        "archimate-layer": "Business",
+        "archimate-folders": "Business"
+      }
+    },
+    {
+      "unique-id": "ech-id-2c22f8430c744412a16feb3ed836be66",
+      "node-type": "actor",
+      "name": "Leistungs-erbringer",
+      "description": "ArchiMate BusinessRole from Business (imported from eCH-0122-2-0-1.archimate).",
+      "metadata": {
+        "archimate-type": "BusinessRole",
+        "archimate-layer": "Business",
+        "archimate-folders": "Business"
+      }
+    },
+    {
+      "unique-id": "ech-id-2ad7de2fd40e487bb3947eaf833abddf",
+      "node-type": "actor",
+      "name": "Leistungs-bez\u00fcger",
+      "description": "ArchiMate BusinessRole from Business (imported from eCH-0122-2-0-1.archimate).",
+      "metadata": {
+        "archimate-type": "BusinessRole",
+        "archimate-layer": "Business",
+        "archimate-folders": "Business"
+      }
+    },
+    {
+      "unique-id": "ech-id-9edf9a87ea4a41dfa4a8e63794740fcb",
+      "node-type": "actor",
+      "name": "Versicherer",
+      "description": "ArchiMate BusinessRole from Business (imported from eCH-0122-2-0-1.archimate).",
+      "metadata": {
+        "archimate-type": "BusinessRole",
+        "archimate-layer": "Business",
+        "archimate-folders": "Business"
+      }
+    },
+    {
+      "unique-id": "ech-id-7bd099f44aa44581ab78db92be436b33",
+      "node-type": "service",
+      "name": "Kranken-versicherung",
+      "description": "ArchiMate BusinessService from Business (imported from eCH-0122-2-0-1.archimate).",
+      "metadata": {
+        "archimate-type": "BusinessService",
+        "archimate-layer": "Business",
+        "archimate-folders": "Business"
+      }
+    },
+    {
+      "unique-id": "ech-id-8ac479b4ddf445c48dba0f5f784dcfe4",
+      "node-type": "actor",
+      "name": "Versicherter",
+      "description": "ArchiMate BusinessRole from Business (imported from eCH-0122-2-0-1.archimate).",
+      "metadata": {
+        "archimate-type": "BusinessRole",
+        "archimate-layer": "Business",
+        "archimate-folders": "Business"
+      }
+    },
+    {
+      "unique-id": "ech-id-3fa7c6bd85284524a64d9727141406fd",
+      "node-type": "actor",
+      "name": "Krankenkasse",
+      "description": "ArchiMate BusinessActor from Business (imported from eCH-0122-2-0-1.archimate).",
+      "metadata": {
+        "archimate-type": "BusinessActor",
+        "archimate-layer": "Business",
+        "archimate-folders": "Business"
+      }
+    },
+    {
+      "unique-id": "ech-id-4a87f752fb5148909b5201b239777908",
+      "node-type": "actor",
+      "name": "Mitarbeiter",
+      "description": "ArchiMate BusinessActor from Business (imported from eCH-0122-2-0-1.archimate).",
+      "metadata": {
+        "archimate-type": "BusinessActor",
+        "archimate-layer": "Business",
+        "archimate-folders": "Business"
+      }
+    },
+    {
+      "unique-id": "ech-id-1bf5096f7ed04de18934bd39132ef5d4",
+      "node-type": "actor",
+      "name": "Spital",
+      "description": "ArchiMate BusinessActor from Business (imported from eCH-0122-2-0-1.archimate).",
+      "metadata": {
+        "archimate-type": "BusinessActor",
+        "archimate-layer": "Business",
+        "archimate-folders": "Business"
+      }
+    },
+    {
+      "unique-id": "ech-id-9dea9c5ec8eb4345810fda4a1efb2ffd",
+      "node-type": "actor",
+      "name": "Gesundheitsdienst-lieferant",
+      "description": "ArchiMate BusinessRole from Business (imported from eCH-0122-2-0-1.archimate).",
+      "metadata": {
+        "archimate-type": "BusinessRole",
+        "archimate-layer": "Business",
+        "archimate-folders": "Business"
+      }
+    },
+    {
+      "unique-id": "ech-id-91c53215409d4535bd0bbea67aca4a2d",
+      "node-type": "actor",
+      "name": "Regierung",
+      "description": "ArchiMate BusinessActor from Business (imported from eCH-0122-2-0-1.archimate).",
+      "metadata": {
+        "archimate-type": "BusinessActor",
+        "archimate-layer": "Business",
+        "archimate-folders": "Business"
+      }
+    },
+    {
+      "unique-id": "ech-id-8302508b85c647068025ebca5703bb20",
+      "node-type": "actor",
+      "name": "Volk",
+      "description": "ArchiMate BusinessActor from Business (imported from eCH-0122-2-0-1.archimate).",
+      "metadata": {
+        "archimate-type": "BusinessActor",
+        "archimate-layer": "Business",
+        "archimate-folders": "Business"
+      }
+    },
+    {
+      "unique-id": "ech-id-560ec276fd8949df85703e708ac7ba13",
+      "node-type": "actor",
+      "name": "Patient",
+      "description": "ArchiMate BusinessActor from Business (imported from eCH-0122-2-0-1.archimate).",
+      "metadata": {
+        "archimate-type": "BusinessActor",
+        "archimate-layer": "Business",
+        "archimate-folders": "Business"
+      }
+    },
+    {
+      "unique-id": "ech-id-62b21d39a0f04ee0833dbd2ced4e4f6d",
+      "node-type": "actor",
+      "name": "Schwangere",
+      "description": "ArchiMate BusinessActor from Business (imported from eCH-0122-2-0-1.archimate).",
+      "metadata": {
+        "archimate-type": "BusinessActor",
+        "archimate-layer": "Business",
+        "archimate-folders": "Business"
+      }
+    },
+    {
+      "unique-id": "ech-id-5f90ec2563bb4eb9902d1d590d5eab5e",
+      "node-type": "actor",
+      "name": "Alte",
+      "description": "ArchiMate BusinessActor from Business (imported from eCH-0122-2-0-1.archimate).",
+      "metadata": {
+        "archimate-type": "BusinessActor",
+        "archimate-layer": "Business",
+        "archimate-folders": "Business"
+      }
+    },
+    {
+      "unique-id": "ech-id-1701f70cf2e04f41ab1f880204da748a",
+      "node-type": "service",
+      "name": "Grundbuch",
+      "description": "ArchiMate BusinessService from Business (imported from eCH-0122-2-0-1.archimate).",
+      "metadata": {
+        "archimate-type": "BusinessService",
+        "archimate-layer": "Business",
+        "archimate-folders": "Business"
+      }
+    },
+    {
+      "unique-id": "ech-id-08ac90d625554732aa7596dfa4544435",
+      "node-type": "service",
+      "name": "Grundbuchauszug",
+      "description": "ArchiMate BusinessService from Business (imported from eCH-0122-2-0-1.archimate).",
+      "metadata": {
+        "archimate-type": "BusinessService",
+        "archimate-layer": "Business",
+        "archimate-folders": "Business"
+      }
+    },
+    {
+      "unique-id": "ech-id-ad92de19a6b1426c92d13514f3a2d468",
+      "node-type": "service",
+      "name": "Grundbuchplan",
+      "description": "ArchiMate BusinessService from Business (imported from eCH-0122-2-0-1.archimate).",
+      "metadata": {
+        "archimate-type": "BusinessService",
+        "archimate-layer": "Business",
+        "archimate-folders": "Business"
+      }
+    },
+    {
+      "unique-id": "ech-id-a39cdd3a8b04436bb7e652e443443e0a",
+      "node-type": "actor",
+      "name": "Grundbuchamt",
+      "description": "ArchiMate BusinessActor from Business (imported from eCH-0122-2-0-1.archimate).",
+      "metadata": {
+        "archimate-type": "BusinessActor",
+        "archimate-layer": "Business",
+        "archimate-folders": "Business"
+      }
+    },
+    {
+      "unique-id": "ech-id-cf5c6b14851d44358075a10d1b8958eb",
+      "node-type": "service",
+      "name": "Umweltvertr\u00e4glichkeitspr\u00fcfung",
+      "description": "ArchiMate BusinessService from Business (imported from eCH-0122-2-0-1.archimate).",
+      "metadata": {
+        "archimate-type": "BusinessService",
+        "archimate-layer": "Business",
+        "archimate-folders": "Business"
+      }
+    },
+    {
+      "unique-id": "ech-id-51936d57e25849e7842324a8b44b3949",
+      "node-type": "service",
+      "name": "Erstellung der Baubewilligung",
+      "description": "ArchiMate BusinessService from Business (imported from eCH-0122-2-0-1.archimate).",
+      "metadata": {
+        "archimate-type": "BusinessService",
+        "archimate-layer": "Business",
+        "archimate-folders": "Business"
+      }
+    },
+    {
+      "unique-id": "ech-id-9eea74c6c60444308af04b37f07f0b82",
+      "node-type": "actor",
+      "name": "Umweltamt",
+      "description": "ArchiMate BusinessActor from Business (imported from eCH-0122-2-0-1.archimate).",
+      "metadata": {
+        "archimate-type": "BusinessActor",
+        "archimate-layer": "Business",
+        "archimate-folders": "Business"
+      }
+    },
+    {
+      "unique-id": "ech-id-1c0a827a4a8c4084b0ed3f74ae8dde06",
+      "node-type": "actor",
+      "name": "Bauamt",
+      "description": "ArchiMate BusinessActor from Business (imported from eCH-0122-2-0-1.archimate).",
+      "metadata": {
+        "archimate-type": "BusinessActor",
+        "archimate-layer": "Business",
+        "archimate-folders": "Business"
+      }
+    },
+    {
+      "unique-id": "ech-id-f68cb30c66d94d7295bc0a8d7ff58946",
+      "node-type": "actor",
+      "name": "Gesuchsteller",
+      "description": "ArchiMate BusinessActor from Business (imported from eCH-0122-2-0-1.archimate).",
+      "metadata": {
+        "archimate-type": "BusinessActor",
+        "archimate-layer": "Business",
+        "archimate-folders": "Business"
+      }
+    },
+    {
+      "unique-id": "ech-id-672ca484eef24d53b832ffb53ccc984c",
+      "node-type": "actor",
+      "name": "Begehrensteller",
+      "description": "ArchiMate BusinessActor from Business (imported from eCH-0122-2-0-1.archimate).",
+      "metadata": {
+        "archimate-type": "BusinessActor",
+        "archimate-layer": "Business",
+        "archimate-folders": "Business"
+      }
+    },
+    {
+      "unique-id": "ech-id-9e1da98c1d3c4be08a41b90b6a50c4ef",
+      "node-type": "database",
+      "name": "Gesetz",
+      "description": "ArchiMate BusinessObject from Business (imported from eCH-0122-2-0-1.archimate).",
+      "metadata": {
+        "archimate-type": "BusinessObject",
+        "archimate-layer": "Business",
+        "archimate-folders": "Business"
+      }
+    },
+    {
+      "unique-id": "ech-id-88f7d42e42f14930ac53faad5e1c56fc",
+      "node-type": "actor",
+      "name": "Privatperson",
+      "description": "ArchiMate BusinessActor from Business (imported from eCH-0122-2-0-1.archimate).",
+      "metadata": {
+        "archimate-type": "BusinessActor",
+        "archimate-layer": "Business",
+        "archimate-folders": "Business"
+      }
+    },
+    {
+      "unique-id": "ech-id-e88dcecc14b640bbad58baa8ed6a31b8",
+      "node-type": "actor",
+      "name": "Legislative",
+      "description": "ArchiMate BusinessActor from Business (imported from eCH-0122-2-0-1.archimate).",
+      "metadata": {
+        "archimate-type": "BusinessActor",
+        "archimate-layer": "Business",
+        "archimate-folders": "Business"
+      }
+    },
+    {
+      "unique-id": "ech-id-e2967e37369d4baf843850201c134566",
+      "node-type": "database",
+      "name": "Elektronische Datei",
+      "description": "ArchiMate Representation from Business (imported from eCH-0122-2-0-1.archimate).",
+      "metadata": {
+        "archimate-type": "Representation",
+        "archimate-layer": "Business",
+        "archimate-folders": "Business"
+      }
+    },
+    {
+      "unique-id": "ech-id-c569380a24124ac9af70edd6f84aa59d",
+      "node-type": "database",
+      "name": "Schriftst\u00fcck",
+      "description": "ArchiMate Representation from Business (imported from eCH-0122-2-0-1.archimate).",
+      "metadata": {
+        "archimate-type": "Representation",
+        "archimate-layer": "Business",
+        "archimate-folders": "Business"
+      }
+    },
+    {
+      "unique-id": "ech-id-5e2a841269e04858b9a2af54d8919673",
+      "node-type": "database",
+      "name": "Gesch\u00e4ftsfall",
+      "description": "ArchiMate BusinessObject from Business (imported from eCH-0122-2-0-1.archimate).",
+      "metadata": {
+        "archimate-type": "BusinessObject",
+        "archimate-layer": "Business",
+        "archimate-folders": "Business"
+      }
+    },
+    {
+      "unique-id": "ech-id-ba77dc6679ad412393c37e6840a0117d",
+      "node-type": "database",
+      "name": "Dossier",
+      "description": "ArchiMate Representation from Business (imported from eCH-0122-2-0-1.archimate).",
+      "metadata": {
+        "archimate-type": "Representation",
+        "archimate-layer": "Business",
+        "archimate-folders": "Business"
+      }
+    },
+    {
+      "unique-id": "ech-id-829b55c9d9bf47af895a9df60a2c6fdf",
+      "node-type": "database",
+      "name": "Auftrag",
+      "description": "ArchiMate BusinessObject from Business (imported from eCH-0122-2-0-1.archimate).",
+      "metadata": {
+        "archimate-type": "BusinessObject",
+        "archimate-layer": "Business",
+        "archimate-folders": "Business"
+      }
+    },
+    {
+      "unique-id": "ech-id-2a8c62ec43f44457aec5554bc6ea1e5b",
+      "node-type": "database",
+      "name": "Bestand",
+      "description": "ArchiMate Representation from Business (imported from eCH-0122-2-0-1.archimate).",
+      "metadata": {
+        "archimate-type": "Representation",
+        "archimate-layer": "Business",
+        "archimate-folders": "Business"
+      }
+    },
+    {
+      "unique-id": "ech-id-3d09e05ab3b74ac493a7b8e812852d96",
+      "node-type": "actor",
+      "name": "Personal A",
+      "description": "ArchiMate BusinessActor from Business (imported from eCH-0122-2-0-1.archimate).",
+      "metadata": {
+        "archimate-type": "BusinessActor",
+        "archimate-layer": "Business",
+        "archimate-folders": "Business"
+      }
+    },
+    {
+      "unique-id": "ech-id-7cac0626feeb4463b54647e6f492aa9c",
+      "node-type": "database",
+      "name": "Stichwort",
+      "description": "ArchiMate Representation from Business (imported from eCH-0122-2-0-1.archimate).",
+      "metadata": {
+        "archimate-type": "Representation",
+        "archimate-layer": "Business",
+        "archimate-folders": "Business"
+      }
+    },
+    {
+      "unique-id": "ech-id-17c523b520304e0892a00cd6be3e00b5",
+      "node-type": "database",
+      "name": "Thesaurus / Vokabular",
+      "description": "ArchiMate Representation from Business (imported from eCH-0122-2-0-1.archimate).",
+      "metadata": {
+        "archimate-type": "Representation",
+        "archimate-layer": "Business",
+        "archimate-folders": "Business"
+      }
+    },
+    {
+      "unique-id": "ech-id-2b668c5f755047848d173649edbfced8",
+      "node-type": "database",
+      "name": "Dokumentelement (Kapitel, Paragraph, Linie, Artikel, usw.)",
+      "description": "ArchiMate Representation from Business (imported from eCH-0122-2-0-1.archimate).",
+      "metadata": {
+        "archimate-type": "Representation",
+        "archimate-layer": "Business",
+        "archimate-folders": "Business"
+      }
+    },
+    {
+      "unique-id": "ech-id-09f1cebb81cc4424b582eee9bc33d212",
+      "node-type": "database",
+      "name": "Elektronische Darstellung",
+      "description": "ArchiMate Representation from Business (imported from eCH-0122-2-0-1.archimate).",
+      "metadata": {
+        "archimate-type": "Representation",
+        "archimate-layer": "Business",
+        "archimate-folders": "Business"
+      }
+    },
+    {
+      "unique-id": "ech-id-99183004eeb642c893f42244e3c4ebd3",
+      "node-type": "database",
+      "name": "Sprache",
+      "description": "ArchiMate Representation from Business (imported from eCH-0122-2-0-1.archimate).",
+      "metadata": {
+        "archimate-type": "Representation",
+        "archimate-layer": "Business",
+        "archimate-folders": "Business"
+      }
+    },
+    {
+      "unique-id": "ech-id-8deb12d60a0f4e2ab2434eeace13cb8e",
+      "node-type": "actor",
+      "name": "Personal",
+      "description": "ArchiMate BusinessActor from Business (imported from eCH-0122-2-0-1.archimate).",
+      "metadata": {
+        "archimate-type": "BusinessActor",
+        "archimate-layer": "Business",
+        "archimate-folders": "Business"
+      }
+    }
+  ],
+  "relationships": [
+    {
+      "unique-id": "ech-rel-id-6868e7bf46c04a49a5a671d410829214",
+      "relationship-type": {
+        "connects": {
+          "source": {
+            "node": "ech-id-d1de2218359a4dc1a24cb8370d7a11c5"
+          },
+          "destination": {
+            "node": "ech-id-d0ca8a3062a04d91b3302021b1af69db"
+          }
+        }
+      },
+      "description": "ArchiMate TriggeringRelationship"
+    },
+    {
+      "unique-id": "ech-rel-id-2a00740b06e04e8da2dcb44f1e1de4fc",
+      "relationship-type": {
+        "connects": {
+          "source": {
+            "node": "ech-id-d78e8df233b54fdfbe18dd4b0984ae52"
+          },
+          "destination": {
+            "node": "ech-id-d0ca8a3062a04d91b3302021b1af69db"
+          }
+        }
+      },
+      "description": "ArchiMate RealizationRelationship"
+    },
+    {
+      "unique-id": "ech-rel-id-4170ba60fa4e48babc90af500606efd9",
+      "relationship-type": {
+        "connects": {
+          "source": {
+            "node": "ech-id-2a68f92cf6e6411da6d602100a890ee0"
+          },
+          "destination": {
+            "node": "ech-id-59fc81a268cc454c8b1b5c3c72066d92"
+          }
+        }
+      },
+      "description": "ArchiMate ServingRelationship"
+    },
+    {
+      "unique-id": "ech-rel-id-da15379af9bf45daafa57b6ef7c33119",
+      "relationship-type": {
+        "connects": {
+          "source": {
+            "node": "ech-id-2a68f92cf6e6411da6d602100a890ee0"
+          },
+          "destination": {
+            "node": "ech-id-4338721bf0a6424786bf190ff04a083e"
+          }
+        }
+      },
+      "description": "ArchiMate ServingRelationship"
+    },
+    {
+      "unique-id": "ech-rel-id-1a628b7e66bb404e844c56098da813a1",
+      "relationship-type": {
+        "connects": {
+          "source": {
+            "node": "ech-id-9e6a0db663aa46598bfaacb0ed1404cc"
+          },
+          "destination": {
+            "node": "ech-id-d0ca8a3062a04d91b3302021b1af69db"
+          }
+        }
+      },
+      "description": "ArchiMate TriggeringRelationship"
+    },
+    {
+      "unique-id": "ech-rel-id-e27d61b6c1114e5f88cd0716d0e998a4",
+      "relationship-type": {
+        "connects": {
+          "source": {
+            "node": "ech-id-9e6a0db663aa46598bfaacb0ed1404cc"
+          },
+          "destination": {
+            "node": "ech-id-2a68f92cf6e6411da6d602100a890ee0"
+          }
+        }
+      },
+      "description": "ArchiMate RealizationRelationship"
+    },
+    {
+      "unique-id": "ech-rel-id-e2f0ec87342e44109f15c0c9a409b0ec",
+      "relationship-type": {
+        "connects": {
+          "source": {
+            "node": "ech-id-eabaf611452947a6a9c3ef68703e33ae"
+          },
+          "destination": {
+            "node": "ech-id-d1de2218359a4dc1a24cb8370d7a11c5"
+          }
+        }
+      },
+      "description": "ArchiMate RealizationRelationship"
+    },
+    {
+      "unique-id": "ech-rel-id-5530ef2fb6ff4742896f19fac7458c6b",
+      "relationship-type": {
+        "connects": {
+          "source": {
+            "node": "ech-id-9e6a0db663aa46598bfaacb0ed1404cc"
+          },
+          "destination": {
+            "node": "ech-id-d1de2218359a4dc1a24cb8370d7a11c5"
+          }
+        }
+      },
+      "description": "ArchiMate TriggeringRelationship"
+    },
+    {
+      "unique-id": "ech-rel-id-312eb803c5a34d1aa0d7795160cd2afd",
+      "relationship-type": {
+        "connects": {
+          "source": {
+            "node": "ech-id-9e6a0db663aa46598bfaacb0ed1404cc"
+          },
+          "destination": {
+            "node": "ech-id-209c8f0310e6427e8a916750fd72e649"
+          }
+        }
+      },
+      "description": "ArchiMate TriggeringRelationship"
+    },
+    {
+      "unique-id": "ech-rel-id-db875191fb81499cae5610137e735ac5",
+      "relationship-type": {
+        "connects": {
+          "source": {
+            "node": "ech-id-2a68f92cf6e6411da6d602100a890ee0"
+          },
+          "destination": {
+            "node": "ech-id-1618135b21e64179b3ad2072ac5c0027"
+          }
+        }
+      },
+      "description": "ArchiMate ServingRelationship"
+    },
+    {
+      "unique-id": "ech-rel-id-b8a6c5fabff1439abadb6b0e7d6966a2",
+      "relationship-type": {
+        "connects": {
+          "source": {
+            "node": "ech-id-d043af4e23664faf8e11af66b7983e4f"
+          },
+          "destination": {
+            "node": "ech-id-209c8f0310e6427e8a916750fd72e649"
+          }
+        }
+      },
+      "description": "ArchiMate RealizationRelationship"
+    },
+    {
+      "unique-id": "ech-rel-id-a1084f56f63d46ea84a6ecfe76ccf8a4",
+      "relationship-type": {
+        "connects": {
+          "source": {
+            "node": "ech-id-eabaf611452947a6a9c3ef68703e33ae"
+          },
+          "destination": {
+            "node": "ech-id-d0ca8a3062a04d91b3302021b1af69db"
+          }
+        }
+      },
+      "description": "ArchiMate TriggeringRelationship"
+    },
+    {
+      "unique-id": "ech-rel-id-540bd260f0a4432cacdf5d078a48f2aa",
+      "relationship-type": {
+        "connects": {
+          "source": {
+            "node": "ech-id-eabaf611452947a6a9c3ef68703e33ae"
+          },
+          "destination": {
+            "node": "ech-id-209c8f0310e6427e8a916750fd72e649"
+          }
+        }
+      },
+      "description": "ArchiMate TriggeringRelationship"
+    },
+    {
+      "unique-id": "ech-rel-id-12efecb43d754ea1b24fc35b9b186d17",
+      "relationship-type": {
+        "connects": {
+          "source": {
+            "node": "ech-id-2bdc7b81d9534152b43ef7cea43b71d0"
+          },
+          "destination": {
+            "node": "ech-id-9e6a0db663aa46598bfaacb0ed1404cc"
+          }
+        }
+      },
+      "description": "ArchiMate TriggeringRelationship"
+    },
+    {
+      "unique-id": "ech-rel-id-df2b97f722d04c178ac3c1890147fdd4",
+      "relationship-type": {
+        "connects": {
+          "source": {
+            "node": "ech-id-02b0ab643aff433e94faa80ecc2379c2"
+          },
+          "destination": {
+            "node": "ech-id-2bdc7b81d9534152b43ef7cea43b71d0"
+          }
+        }
+      },
+      "description": "ArchiMate TriggeringRelationship"
+    },
+    {
+      "unique-id": "ech-rel-id-9cefddb2bd7f478c84969a64e1a81a0d",
+      "relationship-type": {
+        "connects": {
+          "source": {
+            "node": "ech-id-32de3a21f68a4315b2226168a5de0c81"
+          },
+          "destination": {
+            "node": "ech-id-2bdc7b81d9534152b43ef7cea43b71d0"
+          }
+        }
+      },
+      "description": "ArchiMate TriggeringRelationship"
+    },
+    {
+      "unique-id": "ech-rel-id-30b89945ec884c448a7b22558749fbc7",
+      "relationship-type": {
+        "connects": {
+          "source": {
+            "node": "ech-id-32de3a21f68a4315b2226168a5de0c81"
+          },
+          "destination": {
+            "node": "ech-id-9e6a0db663aa46598bfaacb0ed1404cc"
+          }
+        }
+      },
+      "description": "ArchiMate TriggeringRelationship"
+    },
+    {
+      "unique-id": "ech-rel-id-ce023f11a38548e1be8075d2d70fd29c",
+      "relationship-type": {
+        "connects": {
+          "source": {
+            "node": "ech-id-02b0ab643aff433e94faa80ecc2379c2"
+          },
+          "destination": {
+            "node": "ech-id-9e6a0db663aa46598bfaacb0ed1404cc"
+          }
+        }
+      },
+      "description": "ArchiMate TriggeringRelationship"
+    },
+    {
+      "unique-id": "ech-rel-id-1bbbfdd2196f42b387d1178e6e9a44ba",
+      "relationship-type": {
+        "connects": {
+          "source": {
+            "node": "ech-id-d135548811a24e2488fa80c62f27c20b"
+          },
+          "destination": {
+            "node": "ech-id-a1dfebc7e9ff400fa7d294db5eec32ae"
+          }
+        }
+      },
+      "description": "ArchiMate ServingRelationship"
+    },
+    {
+      "unique-id": "ech-rel-id-9da943b6123c43949ebaaa54e413d244",
+      "relationship-type": {
+        "connects": {
+          "source": {
+            "node": "ech-id-d135548811a24e2488fa80c62f27c20b"
+          },
+          "destination": {
+            "node": "ech-id-fca04564df21401a828ab0653d29b5da"
+          }
+        }
+      },
+      "description": "ArchiMate AccessRelationship"
+    },
+    {
+      "unique-id": "ech-rel-id-bb54cfd0e25b4d2b8ec199ee7e2000db",
+      "relationship-type": {
+        "connects": {
+          "source": {
+            "node": "ech-id-49cdf3eb8a2547fc82e50741942484ce"
+          },
+          "destination": {
+            "node": "ech-id-a1dfebc7e9ff400fa7d294db5eec32ae"
+          }
+        }
+      },
+      "description": "ArchiMate RealizationRelationship"
+    },
+    {
+      "unique-id": "ech-rel-id-7817771e71464e3184924fd1eebc8ca5",
+      "relationship-type": {
+        "connects": {
+          "source": {
+            "node": "ech-id-a1dfebc7e9ff400fa7d294db5eec32ae"
+          },
+          "destination": {
+            "node": "ech-id-c4247ea416974089a0ba72caa6d625ce"
+          }
+        }
+      },
+      "description": "ArchiMate AccessRelationship"
+    },
+    {
+      "unique-id": "ech-rel-id-d02591fae6eb468285f30912a4eef5bf",
+      "relationship-type": {
+        "connects": {
+          "source": {
+            "node": "ech-id-d4f946d76f5c4e4ba7d2a06dc9db8171"
+          },
+          "destination": {
+            "node": "ech-id-fca04564df21401a828ab0653d29b5da"
+          }
+        }
+      },
+      "description": "ArchiMate AccessRelationship"
+    },
+    {
+      "unique-id": "ech-rel-id-2c1505c61cf241038bc5932a8e2f4fdf",
+      "relationship-type": {
+        "connects": {
+          "source": {
+            "node": "ech-id-d135548811a24e2488fa80c62f27c20b"
+          },
+          "destination": {
+            "node": "ech-id-2997c431368547f4ad6a8d61b3a788e9"
+          }
+        }
+      },
+      "description": "ArchiMate ServingRelationship"
+    },
+    {
+      "unique-id": "ech-rel-id-128a46e0bb9b42808f6ab6e28220bfff",
+      "relationship-type": {
+        "connects": {
+          "source": {
+            "node": "ech-id-d4f946d76f5c4e4ba7d2a06dc9db8171"
+          },
+          "destination": {
+            "node": "ech-id-a1dfebc7e9ff400fa7d294db5eec32ae"
+          }
+        }
+      },
+      "description": "ArchiMate ServingRelationship"
+    },
+    {
+      "unique-id": "ech-rel-id-026786d09bef419789e478513532d1ff",
+      "relationship-type": {
+        "connects": {
+          "source": {
+            "node": "ech-id-05ef46ab0a8d4b8cb008e64b06fd0b34"
+          },
+          "destination": {
+            "node": "ech-id-d135548811a24e2488fa80c62f27c20b"
+          }
+        }
+      },
+      "description": "ArchiMate RealizationRelationship"
+    },
+    {
+      "unique-id": "ech-rel-id-afd93d0368f143eea3e033e5b7deb7f4",
+      "relationship-type": {
+        "connects": {
+          "source": {
+            "node": "ech-id-d1c2c06a32244374845579f5c9e2aa47"
+          },
+          "destination": {
+            "node": "ech-id-d4f946d76f5c4e4ba7d2a06dc9db8171"
+          }
+        }
+      },
+      "description": "ArchiMate RealizationRelationship"
+    },
+    {
+      "unique-id": "ech-rel-id-11ce15703ae94a7cb1986b31e843996f",
+      "relationship-type": {
+        "connects": {
+          "source": {
+            "node": "ech-id-19962ef695864bb6bf0d07455a81a3c3"
+          },
+          "destination": {
+            "node": "ech-id-abb5146d37414421b1b5a410d0a5443d"
+          }
+        }
+      },
+      "description": "ArchiMate SpecializationRelationship"
+    },
+    {
+      "unique-id": "ech-rel-id-d2745e67faf84293a836b01014032b51",
+      "relationship-type": {
+        "connects": {
+          "source": {
+            "node": "ech-id-d4f946d76f5c4e4ba7d2a06dc9db8171"
+          },
+          "destination": {
+            "node": "ech-id-6c8df94cac9e4bbcbcd4d0c6246a5fd1"
+          }
+        }
+      },
+      "description": "ArchiMate ServingRelationship"
+    },
+    {
+      "unique-id": "ech-rel-id-85b34722ec5a45fc874caf7692606b60",
+      "relationship-type": {
+        "connects": {
+          "source": {
+            "node": "ech-id-fca04564df21401a828ab0653d29b5da"
+          },
+          "destination": {
+            "node": "ech-id-c4247ea416974089a0ba72caa6d625ce"
+          }
+        }
+      },
+      "description": "ArchiMate SpecializationRelationship"
+    },
+    {
+      "unique-id": "ech-rel-id-4d3d7e805b0c4b4094449349a2506af7",
+      "relationship-type": {
+        "connects": {
+          "source": {
+            "node": "ech-id-a7aee60b30214aff84f6e27224537eff"
+          },
+          "destination": {
+            "node": "ech-id-c4247ea416974089a0ba72caa6d625ce"
+          }
+        }
+      },
+      "description": "ArchiMate AccessRelationship"
+    },
+    {
+      "unique-id": "ech-rel-id-f9a4a9c259c0409a93e3b43a973a459f",
+      "relationship-type": {
+        "connects": {
+          "source": {
+            "node": "ech-id-a7aee60b30214aff84f6e27224537eff"
+          },
+          "destination": {
+            "node": "ech-id-66fca61560e749739bf8d06ccea2e57e"
+          }
+        }
+      },
+      "description": "ArchiMate ServingRelationship"
+    },
+    {
+      "unique-id": "ech-rel-id-8fca675b10c34475b5461020bc031acc",
+      "relationship-type": {
+        "connects": {
+          "source": {
+            "node": "ech-id-6ade3f65382445c997414284b1bb4279"
+          },
+          "destination": {
+            "node": "ech-id-a7aee60b30214aff84f6e27224537eff"
+          }
+        }
+      },
+      "description": "ArchiMate RealizationRelationship"
+    },
+    {
+      "unique-id": "ech-rel-id-669a5a9d4b8f4fd8863ba8519bb30e64",
+      "relationship-type": {
+        "connects": {
+          "source": {
+            "node": "ech-id-a1dfebc7e9ff400fa7d294db5eec32ae"
+          },
+          "destination": {
+            "node": "ech-id-ebfe18cab2de4a9e96cc7ce09a81e0b3"
+          }
+        }
+      },
+      "description": "ArchiMate ServingRelationship"
+    },
+    {
+      "unique-id": "ech-rel-id-aef3931696c640f6b7d55f7495c90a74",
+      "relationship-type": {
+        "connects": {
+          "source": {
+            "node": "ech-id-a1dfebc7e9ff400fa7d294db5eec32ae"
+          },
+          "destination": {
+            "node": "ech-id-fca04564df21401a828ab0653d29b5da"
+          }
+        }
+      },
+      "description": "ArchiMate AccessRelationship"
+    },
+    {
+      "unique-id": "ech-rel-id-024fb056753f4111b165b5eec99dd376",
+      "relationship-type": {
+        "connects": {
+          "source": {
+            "node": "ech-id-2f7cd36649234dc4978fa15d66c10fc1"
+          },
+          "destination": {
+            "node": "ech-id-4456c0605c7443198ab84bab37132e27"
+          }
+        }
+      },
+      "description": "ArchiMate SpecializationRelationship"
+    },
+    {
+      "unique-id": "ech-rel-id-f6a83bdeded94e699e4131197da960b6",
+      "relationship-type": {
+        "connects": {
+          "source": {
+            "node": "ech-id-4456c0605c7443198ab84bab37132e27"
+          },
+          "destination": {
+            "node": "ech-id-764fa4696c6e41698e0d56d576a724d9"
+          }
+        }
+      },
+      "description": "ArchiMate RealizationRelationship"
+    },
+    {
+      "unique-id": "ech-rel-id-5feed3f915264440a0db93d7a3980476",
+      "relationship-type": {
+        "connects": {
+          "source": {
+            "node": "ech-id-2a68f92cf6e6411da6d602100a890ee0"
+          },
+          "destination": {
+            "node": "ech-id-2ad7de2fd40e487bb3947eaf833abddf"
+          }
+        }
+      },
+      "description": "bedient (ArchiMate ServingRelationship)"
+    },
+    {
+      "unique-id": "ech-rel-id-0e602219e06149c184699f7f944e70dc",
+      "relationship-type": {
+        "connects": {
+          "source": {
+            "node": "ech-id-52982c2d58c64a6cb942a7c5db4aa11a"
+          },
+          "destination": {
+            "node": "ech-id-b43c924c047d4f8ab9dd1fb867db7829"
+          }
+        }
+      },
+      "description": "verwendet (ArchiMate AccessRelationship)"
+    },
+    {
+      "unique-id": "ech-rel-id-3eb553f273924dab930b58237692e58f",
+      "relationship-type": {
+        "connects": {
+          "source": {
+            "node": "ech-id-389b3c55777a4e7c8bf5150c6169e683"
+          },
+          "destination": {
+            "node": "ech-id-66ba282d30264ef9adcaeed2806d6286"
+          }
+        }
+      },
+      "description": "ArchiMate SpecializationRelationship"
+    },
+    {
+      "unique-id": "ech-rel-id-86ccb6d2f51f4ebd88d6e0a589b47ffc",
+      "relationship-type": {
+        "connects": {
+          "source": {
+            "node": "ech-id-e586ee62d0414e6d9184931ffe44fbfb"
+          },
+          "destination": {
+            "node": "ech-id-b43c924c047d4f8ab9dd1fb867db7829"
+          }
+        }
+      },
+      "description": "verwendet (ArchiMate AccessRelationship)"
+    },
+    {
+      "unique-id": "ech-rel-id-11acb3c212b7402694f33ba9e637c299",
+      "relationship-type": {
+        "connects": {
+          "source": {
+            "node": "ech-id-e586ee62d0414e6d9184931ffe44fbfb"
+          },
+          "destination": {
+            "node": "ech-id-2a68f92cf6e6411da6d602100a890ee0"
+          }
+        }
+      },
+      "description": "ruft auf (ArchiMate TriggeringRelationship)"
+    },
+    {
+      "unique-id": "ech-rel-id-4666fbdba4f447cc8f7bb21db75dd84d",
+      "relationship-type": {
+        "connects": {
+          "source": {
+            "node": "ech-id-e586ee62d0414e6d9184931ffe44fbfb"
+          },
+          "destination": {
+            "node": "ech-id-52982c2d58c64a6cb942a7c5db4aa11a"
+          }
+        }
+      },
+      "description": "dient (ArchiMate ServingRelationship)"
+    },
+    {
+      "unique-id": "ech-rel-id-dc9973cf005b4e70bf01d692a259fc14",
+      "relationship-type": {
+        "connects": {
+          "source": {
+            "node": "ech-id-66ba282d30264ef9adcaeed2806d6286"
+          },
+          "destination": {
+            "node": "ech-id-b43c924c047d4f8ab9dd1fb867db7829"
+          }
+        }
+      },
+      "description": "darstellt (ArchiMate RealizationRelationship)"
+    },
+    {
+      "unique-id": "ech-rel-id-1f78ad91f29e4f9387790d3a6e6ab16f",
+      "relationship-type": {
+        "connects": {
+          "source": {
+            "node": "ech-id-e586ee62d0414e6d9184931ffe44fbfb"
+          },
+          "destination": {
+            "node": "ech-id-2a68f92cf6e6411da6d602100a890ee0"
+          }
+        }
+      },
+      "description": "ArchiMate RealizationRelationship"
+    },
+    {
+      "unique-id": "ech-rel-id-26b99a7407bb4349827b477f0d144257",
+      "relationship-type": {
+        "connects": {
+          "source": {
+            "node": "ech-id-52982c2d58c64a6cb942a7c5db4aa11a"
+          },
+          "destination": {
+            "node": "ech-id-2a68f92cf6e6411da6d602100a890ee0"
+          }
+        }
+      },
+      "description": "realisiert (ArchiMate RealizationRelationship)"
+    },
+    {
+      "unique-id": "ech-rel-id-f8ad41931f334eaeb8fa82ceff794f81",
+      "relationship-type": {
+        "connects": {
+          "source": {
+            "node": "ech-id-d0fef223eb4c40eb944a3bae071b022d"
+          },
+          "destination": {
+            "node": "ech-id-b43c924c047d4f8ab9dd1fb867db7829"
+          }
+        }
+      },
+      "description": "ArchiMate RealizationRelationship"
+    },
+    {
+      "unique-id": "ech-rel-id-c47ef93b4e834a04ab313e8c443b66a9",
+      "relationship-type": {
+        "connects": {
+          "source": {
+            "node": "ech-id-2c22f8430c744412a16feb3ed836be66"
+          },
+          "destination": {
+            "node": "ech-id-2a68f92cf6e6411da6d602100a890ee0"
+          }
+        }
+      },
+      "description": "liefert (ArchiMate RealizationRelationship)"
+    },
+    {
+      "unique-id": "ech-rel-id-7cadc6266dba458582803d76de60a11a",
+      "relationship-type": {
+        "connects": {
+          "source": {
+            "node": "ech-id-7bd099f44aa44581ab78db92be436b33"
+          },
+          "destination": {
+            "node": "ech-id-8ac479b4ddf445c48dba0f5f784dcfe4"
+          }
+        }
+      },
+      "description": "dient (ArchiMate ServingRelationship)"
+    },
+    {
+      "unique-id": "ech-rel-id-5ab4d40fceaf4e9db731f52575d3fd22",
+      "relationship-type": {
+        "connects": {
+          "source": {
+            "node": "ech-id-9edf9a87ea4a41dfa4a8e63794740fcb"
+          },
+          "destination": {
+            "node": "ech-id-7bd099f44aa44581ab78db92be436b33"
+          }
+        }
+      },
+      "description": "liefert (ArchiMate RealizationRelationship)"
+    },
+    {
+      "unique-id": "ech-rel-id-432f368789a14b66a50b1b6c3ed46be7",
+      "relationship-type": {
+        "connects": {
+          "source": {
+            "node": "ech-id-2ad7de2fd40e487bb3947eaf833abddf"
+          },
+          "destination": {
+            "node": "ech-id-51936d57e25849e7842324a8b44b3949"
+          }
+        }
+      },
+      "description": "ArchiMate TriggeringRelationship"
+    },
+    {
+      "unique-id": "ech-rel-id-8a09cd5162974eda97b35c8d5d9e174c",
+      "relationship-type": {
+        "connects": {
+          "source": {
+            "node": "ech-id-51936d57e25849e7842324a8b44b3949"
+          },
+          "destination": {
+            "node": "ech-id-2ad7de2fd40e487bb3947eaf833abddf"
+          }
+        }
+      },
+      "description": "ArchiMate FlowRelationship"
+    },
+    {
+      "unique-id": "ech-rel-id-065d9f54d3aa42449c0a3bf0478776cb",
+      "relationship-type": {
+        "connects": {
+          "source": {
+            "node": "ech-id-9eea74c6c60444308af04b37f07f0b82"
+          },
+          "destination": {
+            "node": "ech-id-cf5c6b14851d44358075a10d1b8958eb"
+          }
+        }
+      },
+      "description": "ArchiMate RealizationRelationship"
+    },
+    {
+      "unique-id": "ech-rel-id-4240252a1c7c4860a2995e9885e66657",
+      "relationship-type": {
+        "connects": {
+          "source": {
+            "node": "ech-id-1701f70cf2e04f41ab1f880204da748a"
+          },
+          "destination": {
+            "node": "ech-id-51936d57e25849e7842324a8b44b3949"
+          }
+        }
+      },
+      "description": "ArchiMate FlowRelationship"
+    },
+    {
+      "unique-id": "ech-rel-id-63f089470fdd4358b06dcccd1aca4129",
+      "relationship-type": {
+        "connects": {
+          "source": {
+            "node": "ech-id-51936d57e25849e7842324a8b44b3949"
+          },
+          "destination": {
+            "node": "ech-id-1701f70cf2e04f41ab1f880204da748a"
+          }
+        }
+      },
+      "description": "ArchiMate TriggeringRelationship"
+    },
+    {
+      "unique-id": "ech-rel-id-b4df84e56f8843f2910ab810331a30c5",
+      "relationship-type": {
+        "connects": {
+          "source": {
+            "node": "ech-id-51936d57e25849e7842324a8b44b3949"
+          },
+          "destination": {
+            "node": "ech-id-cf5c6b14851d44358075a10d1b8958eb"
+          }
+        }
+      },
+      "description": "ArchiMate TriggeringRelationship"
+    },
+    {
+      "unique-id": "ech-rel-id-af2a94b61ee944119c987813fecbb1a6",
+      "relationship-type": {
+        "connects": {
+          "source": {
+            "node": "ech-id-cf5c6b14851d44358075a10d1b8958eb"
+          },
+          "destination": {
+            "node": "ech-id-51936d57e25849e7842324a8b44b3949"
+          }
+        }
+      },
+      "description": "ArchiMate FlowRelationship"
+    },
+    {
+      "unique-id": "ech-rel-id-5c4b7fe4c207473ba7b4c1ed468fd331",
+      "relationship-type": {
+        "connects": {
+          "source": {
+            "node": "ech-id-a39cdd3a8b04436bb7e652e443443e0a"
+          },
+          "destination": {
+            "node": "ech-id-1701f70cf2e04f41ab1f880204da748a"
+          }
+        }
+      },
+      "description": "ArchiMate RealizationRelationship"
+    },
+    {
+      "unique-id": "ech-rel-id-6d6adc6621594dd58a572dd8214210a7",
+      "relationship-type": {
+        "connects": {
+          "source": {
+            "node": "ech-id-1c0a827a4a8c4084b0ed3f74ae8dde06"
+          },
+          "destination": {
+            "node": "ech-id-51936d57e25849e7842324a8b44b3949"
+          }
+        }
+      },
+      "description": "ArchiMate RealizationRelationship"
+    },
+    {
+      "unique-id": "ech-rel-id-58ca17f581c94acba3c89317d3dfc0ea",
+      "relationship-type": {
+        "connects": {
+          "source": {
+            "node": "ech-id-e88dcecc14b640bbad58baa8ed6a31b8"
+          },
+          "destination": {
+            "node": "ech-id-9e1da98c1d3c4be08a41b90b6a50c4ef"
+          }
+        }
+      },
+      "description": "erl\u00e4sst (ArchiMate AccessRelationship)"
+    },
+    {
+      "unique-id": "ech-rel-id-6baafcae0d3746f18ebde2d46ab462d8",
+      "relationship-type": {
+        "connects": {
+          "source": {
+            "node": "ech-id-2a68f92cf6e6411da6d602100a890ee0"
+          },
+          "destination": {
+            "node": "ech-id-9e6a0db663aa46598bfaacb0ed1404cc"
+          }
+        }
+      },
+      "description": "ArchiMate ServingRelationship"
+    },
+    {
+      "unique-id": "ech-rel-id-8097e7b505034e11bf4cfc936b022bda",
+      "relationship-type": {
+        "connects": {
+          "source": {
+            "node": "ech-id-2a68f92cf6e6411da6d602100a890ee0"
+          },
+          "destination": {
+            "node": "ech-id-88f7d42e42f14930ac53faad5e1c56fc"
+          }
+        }
+      },
+      "description": "ArchiMate ServingRelationship"
+    },
+    {
+      "unique-id": "ech-rel-id-419b7ba2eb6c413ab6023ce733385c77",
+      "relationship-type": {
+        "connects": {
+          "source": {
+            "node": "ech-id-eabaf611452947a6a9c3ef68703e33ae"
+          },
+          "destination": {
+            "node": "ech-id-2a68f92cf6e6411da6d602100a890ee0"
+          }
+        }
+      },
+      "description": "bietet an/erbringt (ArchiMate ServingRelationship)"
+    },
+    {
+      "unique-id": "ech-rel-id-2c52d567783046bf83795c8102491a98",
+      "relationship-type": {
+        "connects": {
+          "source": {
+            "node": "ech-id-e2967e37369d4baf843850201c134566"
+          },
+          "destination": {
+            "node": "ech-id-66ba282d30264ef9adcaeed2806d6286"
+          }
+        }
+      },
+      "description": "ArchiMate SpecializationRelationship"
+    },
+    {
+      "unique-id": "ech-rel-id-b1466040b28a4139b19786a908911785",
+      "relationship-type": {
+        "connects": {
+          "source": {
+            "node": "ech-id-e586ee62d0414e6d9184931ffe44fbfb"
+          },
+          "destination": {
+            "node": "ech-id-5e2a841269e04858b9a2af54d8919673"
+          }
+        }
+      },
+      "description": "instanziert und verwendet (ArchiMate AccessRelationship)"
+    },
+    {
+      "unique-id": "ech-rel-id-688aeb24f3f342699c4d5fc2b6a39efa",
+      "relationship-type": {
+        "connects": {
+          "source": {
+            "node": "ech-id-e586ee62d0414e6d9184931ffe44fbfb"
+          },
+          "destination": {
+            "node": "ech-id-52982c2d58c64a6cb942a7c5db4aa11a"
+          }
+        }
+      },
+      "description": "ArchiMate ServingRelationship"
+    },
+    {
+      "unique-id": "ech-rel-id-ee993e4655e14a8eb478df3e07aba7a7",
+      "relationship-type": {
+        "connects": {
+          "source": {
+            "node": "ech-id-66ba282d30264ef9adcaeed2806d6286"
+          },
+          "destination": {
+            "node": "ech-id-5e2a841269e04858b9a2af54d8919673"
+          }
+        }
+      },
+      "description": "darstellt (ArchiMate RealizationRelationship)"
+    },
+    {
+      "unique-id": "ech-rel-id-554c7eb5a0874087bf69f21bb865aed9",
+      "relationship-type": {
+        "connects": {
+          "source": {
+            "node": "ech-id-2ad7de2fd40e487bb3947eaf833abddf"
+          },
+          "destination": {
+            "node": "ech-id-829b55c9d9bf47af895a9df60a2c6fdf"
+          }
+        }
+      },
+      "description": "erteilt (ArchiMate AccessRelationship)"
+    },
+    {
+      "unique-id": "ech-rel-id-0beb0725663d414e8edc4cb107b3f44d",
+      "relationship-type": {
+        "connects": {
+          "source": {
+            "node": "ech-id-c569380a24124ac9af70edd6f84aa59d"
+          },
+          "destination": {
+            "node": "ech-id-66ba282d30264ef9adcaeed2806d6286"
+          }
+        }
+      },
+      "description": "ArchiMate SpecializationRelationship"
+    },
+    {
+      "unique-id": "ech-rel-id-fcbfe3f2e1b648838ca5d97fceba649d",
+      "relationship-type": {
+        "connects": {
+          "source": {
+            "node": "ech-id-ba77dc6679ad412393c37e6840a0117d"
+          },
+          "destination": {
+            "node": "ech-id-5e2a841269e04858b9a2af54d8919673"
+          }
+        }
+      },
+      "description": "ArchiMate RealizationRelationship"
+    },
+    {
+      "unique-id": "ech-rel-id-f6b5e7fcff4e4450a8ccacad3de1aafe",
+      "relationship-type": {
+        "connects": {
+          "source": {
+            "node": "ech-id-66ba282d30264ef9adcaeed2806d6286"
+          },
+          "destination": {
+            "node": "ech-id-829b55c9d9bf47af895a9df60a2c6fdf"
+          }
+        }
+      },
+      "description": "darstellt (ArchiMate RealizationRelationship)"
+    },
+    {
+      "unique-id": "ech-rel-id-656f8457c70c43a9ae81da1b4e35c29e",
+      "relationship-type": {
+        "connects": {
+          "source": {
+            "node": "ech-id-eabaf611452947a6a9c3ef68703e33ae"
+          },
+          "destination": {
+            "node": "ech-id-2c22f8430c744412a16feb3ed836be66"
+          }
+        }
+      },
+      "description": "beauftragt (ArchiMate TriggeringRelationship)"
+    },
+    {
+      "unique-id": "ech-rel-id-0022773b3f654e31916291d76eedd69b",
+      "relationship-type": {
+        "connects": {
+          "source": {
+            "node": "ech-id-2a8c62ec43f44457aec5554bc6ea1e5b"
+          },
+          "destination": {
+            "node": "ech-id-5e2a841269e04858b9a2af54d8919673"
+          }
+        }
+      },
+      "description": "ArchiMate RealizationRelationship"
+    },
+    {
+      "unique-id": "ech-rel-id-9f5f108b82c543109a1e4493875492f8",
+      "relationship-type": {
+        "connects": {
+          "source": {
+            "node": "ech-id-2c22f8430c744412a16feb3ed836be66"
+          },
+          "destination": {
+            "node": "ech-id-2a68f92cf6e6411da6d602100a890ee0"
+          }
+        }
+      },
+      "description": "bietet an/erbringt (ArchiMate ServingRelationship)"
+    },
+    {
+      "unique-id": "ech-rel-id-41d2756476dc47b289ad8db75c477613",
+      "relationship-type": {
+        "connects": {
+          "source": {
+            "node": "ech-id-3d09e05ab3b74ac493a7b8e812852d96"
+          },
+          "destination": {
+            "node": "ech-id-a7aee60b30214aff84f6e27224537eff"
+          }
+        }
+      },
+      "description": "ArchiMate RealizationRelationship"
+    },
+    {
+      "unique-id": "ech-rel-id-49d330b459a842799de86a4cf8cf5011",
+      "relationship-type": {
+        "connects": {
+          "source": {
+            "node": "ech-id-09f1cebb81cc4424b582eee9bc33d212"
+          },
+          "destination": {
+            "node": "ech-id-f94b95b37ca4488ca37a687b926a821b"
+          }
+        }
+      },
+      "description": "ArchiMate RealizationRelationship"
+    },
+    {
+      "unique-id": "ech-rel-id-a51a8ce9fb9f478da26599d83f829b7b",
+      "relationship-type": {
+        "connects": {
+          "source": {
+            "node": "ech-id-09f1cebb81cc4424b582eee9bc33d212"
+          },
+          "destination": {
+            "node": "ech-id-66ba282d30264ef9adcaeed2806d6286"
+          }
+        }
+      },
+      "description": "ArchiMate SpecializationRelationship"
+    },
+    {
+      "unique-id": "ech-rel-id-4fc6c3f1a1ea4e44b8db6e04acb5cff7",
+      "relationship-type": {
+        "connects": {
+          "source": {
+            "node": "ech-id-2b668c5f755047848d173649edbfced8"
+          },
+          "destination": {
+            "node": "ech-id-66ba282d30264ef9adcaeed2806d6286"
+          }
+        }
+      },
+      "description": "ArchiMate SpecializationRelationship"
+    },
+    {
+      "unique-id": "ech-rel-id-fc249b21cdce43329d8266c4f9c676a9",
+      "relationship-type": {
+        "connects": {
+          "source": {
+            "node": "ech-id-a1dfebc7e9ff400fa7d294db5eec32ae"
+          },
+          "destination": {
+            "node": "ech-id-a7aee60b30214aff84f6e27224537eff"
+          }
+        }
+      },
+      "description": "dient (ArchiMate ServingRelationship)"
+    },
+    {
+      "unique-id": "ech-rel-id-5b1aeca427f0461fb267d1c610c94ead",
+      "relationship-type": {
+        "connects": {
+          "source": {
+            "node": "ech-id-a1dfebc7e9ff400fa7d294db5eec32ae"
+          },
+          "destination": {
+            "node": "ech-id-a7aee60b30214aff84f6e27224537eff"
+          }
+        }
+      },
+      "description": "serves (ArchiMate ServingRelationship)"
+    },
+    {
+      "unique-id": "ech-rel-id-423d136b0420430f9cc6e52bc168e945",
+      "relationship-type": {
+        "connects": {
+          "source": {
+            "node": "ech-id-8deb12d60a0f4e2ab2434eeace13cb8e"
+          },
+          "destination": {
+            "node": "ech-id-a7aee60b30214aff84f6e27224537eff"
+          }
+        }
+      },
+      "description": "ArchiMate RealizationRelationship"
+    }
+  ],
+  "decorators": [],
+  "attestation": {
+    "view": "ech-business.calm-view.json",
+    "model": "ech-0122.architecture.json",
+    "modelSha256": "56404bd0d1bbf2f3337db008a347cd0b00d586a9edc2f3f266591a84e94fa349",
+    "generated": "2026-11-17",
+    "tool": "calm-views-tools@0.1.0"
+  }
+}

@@ -57,7 +57,7 @@
     },
     "filter": {
       "type": "object",
-      "description": "Inclusion selectors. A node is in the view if its unique-id is listed in 'nodes' or its node-type is listed in 'node-types'. A relationship is in the view if listed in 'relationships', or if all its endpoints are in the view (closure). Endpoints outside the view lift to the nearest visible container (composed-of / deployed-in ancestry); relationships that cannot lift to distinct visible endpoints stay excluded with reason. Flows and decorators resolve by unique-id against sibling documents.",
+      "description": "Inclusion selectors. A node is in the view if its unique-id is listed in 'nodes', its node-type is listed in 'node-types', or its metadata matches every key of 'metadata' (value in the listed values). A relationship is in the view if listed in 'relationships', or if all its endpoints are in the view (closure). Endpoints outside the view lift to the nearest visible container (composed-of / deployed-in ancestry); relationships that cannot lift to distinct visible endpoints stay excluded with reason. Flows and decorators resolve by unique-id against sibling documents.",
       "properties": {
         "nodes": {
           "type": "array",
@@ -65,6 +65,16 @@
         },
         "node-types": {
           "type": "array",
+          "items": { "type": "string" }
+        },
+        "metadata": {
+          "type": "object",
+          "description": "Node metadata match: the node is in the view when, for every key, its metadata value is one of the listed values.",
+          "additionalProperties": { "type": "array", "items": { "type": "string" } }
+        },
+        "controls": {
+          "type": "array",
+          "description": "Control claim match: the node or relationship is in the view when it carries one of the listed control keys in 'controls'.",
           "items": { "type": "string" }
         },
         "relationships": {

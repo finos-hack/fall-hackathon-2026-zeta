@@ -74,3 +74,7 @@ Applies to: `kyc-identity-verification-svc`, `kyc-sanctions-screening-svc`, `kyc
 
 ---
 _Rendered by the CALM Views POC (`tools/render.ts`). View semantics: listed + closure; dangling refs warn, never fail._
+
+
+---
+_Rendered 2026-11-17 by calm-views-tools@0.1.0 from fluxnova-kyc-onboarding.architecture.json sha256:54a5d6066987._

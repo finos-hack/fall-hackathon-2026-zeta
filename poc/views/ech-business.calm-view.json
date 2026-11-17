@@ -1,0 +1,11 @@
+{
+  "$schema": "../schema/view.json",
+  "unique-id": "ech-business",
+  "name": "eCH business layer",
+  "description": "The whole Business layer of the Swiss e-government reference model (eCH-0122): capabilities, services and processes of the authorities. 100 of 155 nodes.",
+  "audience": ["enterprise-architects"],
+  "suggested-formats": ["svg", "json", "markdown"],
+  "group": "eCH-0122 (imported)",
+  "for": "../model/ech-0122.architecture.json",
+  "filter": { "metadata": { "archimate-layer": ["Business"] } }
+}
