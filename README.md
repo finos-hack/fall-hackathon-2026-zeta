@@ -97,8 +97,8 @@ Views are files, so any tool can consume them. What exists today:
 - **CLI gap**: `calm docify` has no `--view` flag. Views stop at the POC
   until the schema graduates ([#2344](https://github.com/finos/architecture-as-code/issues/2344)).
 - **Agents**: a view is the context unit for an agent. A 216-node model
-  does not fit a prompt; one view does (`query.js context` emits the
-  bundle: header, nodes, relationships, exclusions with reason).
+  does not fit a prompt. One view does (`query.js context` emits the
+  bundle with header, nodes, relationships and exclusions with reason).
 
 ## Multi-file views (experimental)
 
