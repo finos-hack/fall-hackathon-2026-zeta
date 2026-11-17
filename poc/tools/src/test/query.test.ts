@@ -47,6 +47,20 @@ describe('query: reader-side queries over the model and sidecars', () => {
         assert.match(stdout, /uncovered \(\d+\):/);
     });
 
+    it('context emits an LLM-ready bundle with model sha and exclusions', () => {
+        const { stdout, code } = run(['context', 'kyc-audit-view']);
+        assert.equal(code, 0);
+        assert.match(stdout, /# view: kyc-audit-view/);
+        assert.match(stdout, /model: .* sha256:[0-9a-f]{64}/);
+        assert.match(stdout, /audience: compliance-officers, auditors/);
+        assert.match(stdout, /scope: 15\/20 nodes/);
+        assert.match(stdout, /## nodes/);
+        assert.match(stdout, /kyc-kyc-database/);
+        assert.match(stdout, /## relationships/);
+        assert.match(stdout, /## excluded/);
+        assert.match(stdout, /outside:/);
+    });
+
     it('unknown view exits 2', () => {
         const { code } = run(['describe-view', 'no-such-view']);
         assert.equal(code, 2);

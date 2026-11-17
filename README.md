@@ -32,6 +32,7 @@ node poc/tools/dist/derive.js poc/model/fluxnova-kyc-onboarding.architecture.jso
 node poc/tools/dist/gallery.js             # second consumer: poc/renders/gallery.html
 node poc/tools/dist/query.js describe-view kyc-audit-view   # reader query
 node poc/tools/dist/query.js coverage                       # per-view coverage
+node poc/tools/dist/query.js context kyc-audit-view        # LLM-ready bundle: header + nodes + rels + exclusions
 node poc/tools/dist/pack.js poc/views/kyc-audit.calm-view.json --arch-id kyc-arch  # pack for Hub transport (the Hub has no views surface today)
 ```
 
@@ -58,6 +59,17 @@ if the project continues:
    framework, plus `docify --view` parity in the CLI.
 3. Sidecar survival of a Canvas round-trip in an extension release shipping
    upstream `#3637` (merged 2026-11-16, not yet in 0.9.6).
+
+## How this was built
+
+With AI coding agents under human direction and review: research and
+upstream surveillance, test design, and rubric review ran as separate
+agent roles, and every claim above was verified by hand (clean-clone
+install, byte-identical renders, DCO on every commit). No data is
+invented: every node id resolves against the vendored architecture,
+and every exclusion names its reason. A view is also the context unit
+for an agent: a 106-node model does not fit a prompt, one view does
+(`query.js context`, above).
 
 ## Contributing
 

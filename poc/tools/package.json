@@ -12,7 +12,8 @@
     "calm-views-render": "./dist/render.js",
     "calm-views-derive": "./dist/derive.js",
     "calm-views-gallery": "./dist/gallery.js",
-    "calm-views-query": "./dist/query.js"
+    "calm-views-query": "./dist/query.js",
+    "calm-views-archimate": "./dist/archimate.js"
   },
   "scripts": {
     "build": "tsc",

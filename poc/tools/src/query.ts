@@ -7,17 +7,21 @@
  *
  * Usage: node query.js views-for-node NODE-ID
  *        node query.js nodes-in-view VIEW-ID
- *        node query.js describe-view VIEW-ID
+ *        node query.js describe-view VIEW-ID | context VIEW-ID
  *        node query.js coverage
+ * `context` emits a compact, LLM-ready bundle: header (view, model sha,
+ * audience, scope), nodes, relationships, exclusions with reason.
  *
  * VIEW-ID is the view `unique-id` (e.g. kyc-audit-view).
  */
-import { readdirSync } from 'node:fs';
+import { createHash } from 'node:crypto';
+import { readdirSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import {
     ROOT,
     readJson,
     resolveView,
+    endpoints,
     type CalmArchitecture,
     type CalmFilter,
     type JsonRecord,
@@ -104,6 +108,39 @@ export function cmdDescribeView(m: LoadedModel, viewId: string): string {
     return lines.join('\n') + '\n';
 }
 
+export function cmdContext(m: LoadedModel, viewId: string): string {
+    const v = findView(m.views, viewId);
+    const { inNodes, inRels, excluded } = resolveView(m.arch, v.filter);
+    const archPath = join(ROOT, 'model', 'fluxnova-kyc-onboarding.architecture.json');
+    const sha = createHash('sha256').update(readFileSync(archPath)).digest('hex');
+    const relById = new Map((m.arch.relationships ?? []).map((r) => [(r as JsonRecord)['unique-id'] as string, r as JsonRecord]));
+    const lines = [
+        `# view: ${v.uniqueId} (${v.name})`,
+        `model: model/fluxnova-kyc-onboarding.architecture.json sha256:${sha}`,
+        `audience: ${v.audience.join(', ') || '(none)'}`,
+        ...(v.group ? [`group: ${v.group}`] : []),
+        `scope: ${inNodes.size}/${(m.arch.nodes ?? []).length} nodes, ${inRels.size}/${(m.arch.relationships ?? []).length} relationships`,
+        '## nodes',
+    ];
+    for (const id of [...inNodes].sort()) {
+        lines.push(`- ${nodeLabel(m.arch, id)}`);
+    }
+    lines.push('## relationships');
+    for (const id of [...inRels].sort()) {
+        const r = relById.get(id) ?? {};
+        const kind = Object.keys((r['relationship-type'] as JsonRecord | undefined) ?? { '?': null })[0] as string;
+        const eps = [...endpoints(r)].sort().join(', ');
+        lines.push(`- ${id} [${kind}] ${eps}`);
+    }
+    if (excluded.size > 0) {
+        lines.push('## excluded (endpoints outside this view)');
+        for (const [id, outside] of [...excluded.entries()].sort(([a], [b]) => (a < b ? -1 : 1))) {
+            lines.push(`- ${id} (outside: ${[...outside].sort().join(', ')})`);
+        }
+    }
+    return lines.join('\n') + '\n';
+}
+
 export function cmdCoverage(m: LoadedModel): string {
     const total = (m.arch.nodes ?? []).length;
     const coveredBy = new Map<string, string[]>();
@@ -122,7 +159,7 @@ export function cmdCoverage(m: LoadedModel): string {
 
 function usage(): never {
     process.stderr.write(
-        'Usage: node query.js views-for-node NODE-ID | nodes-in-view VIEW-ID | describe-view VIEW-ID | coverage\n',
+        'Usage: node query.js views-for-node NODE-ID | nodes-in-view VIEW-ID | describe-view VIEW-ID | context VIEW-ID | coverage\n',
     );
     process.exit(2);
 }
@@ -144,6 +181,10 @@ function main(): void {
         case 'describe-view':
             if (!arg) usage();
             out = cmdDescribeView(m, arg as string);
+            break;
+        case 'context':
+            if (!arg) usage();
+            out = cmdContext(m, arg as string);
             break;
         case 'coverage':
             out = cmdCoverage(m);
