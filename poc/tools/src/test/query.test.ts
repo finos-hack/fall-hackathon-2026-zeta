@@ -35,9 +35,22 @@ describe('query: reader-side queries over the model and sidecars', () => {
         const { stdout, code } = run(['describe-view', 'kyc-audit-view']);
         assert.equal(code, 0);
         assert.match(stdout, /audience:/);
-        assert.match(stdout, /scope: 15\/20 nodes/);
+        assert.match(stdout, /model: model\/fluxnova-kyc-onboarding\.architecture\.json \(15\/20 nodes/);
         assert.match(stdout, /excluded:/);
         assert.match(stdout, /outside:/);
+    });
+
+    it('describe-view resolves each view against its own model', () => {
+        const { stdout, code } = run(['describe-view', 'ech-business']);
+        assert.equal(code, 0);
+        assert.match(stdout, /model: model\/ech-0122\.architecture\.json \(100\/216 nodes/);
+    });
+
+    it('context resolves each view against its own model sha', () => {
+        const { stdout, code } = run(['context', 'ech-business']);
+        assert.equal(code, 0);
+        assert.match(stdout, /model: model\/ech-0122\.architecture\.json sha256:[0-9a-f]{64}/);
+        assert.match(stdout, /scope: 100\/216 nodes/);
     });
 
     it('coverage reports per-view counts and uncovered nodes', () => {

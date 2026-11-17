@@ -16,11 +16,12 @@
  */
 import { createHash } from 'node:crypto';
 import { readdirSync, readFileSync } from 'node:fs';
-import { join } from 'node:path';
+import { join, dirname, normalize, basename, relative } from 'node:path';
 import {
     ROOT,
     readJson,
     resolveView,
+    resolveMultiView,
     endpoints,
     type CalmArchitecture,
     type CalmFilter,
@@ -33,10 +34,13 @@ interface LoadedView {
     description: string;
     audience: string[];
     group?: string;
+    for: unknown;
     filter: CalmFilter;
+    dir: string;
 }
 
 interface LoadedModel {
+    /** Default architecture (KYC): single-model queries answer here. */
     arch: CalmArchitecture;
     views: LoadedView[];
 }
@@ -53,7 +57,9 @@ export function loadWorkspace(root: string = ROOT): LoadedModel {
             description: (v['description'] as string) ?? '',
             audience: (v['audience'] as string[]) ?? [],
             ...(typeof v['group'] === 'string' ? { group: v['group'] as string } : {}),
+            for: v['for'],
             filter: (v['filter'] as CalmFilter) ?? {},
+            dir: viewsDir,
         });
     }
     return { arch, views };
@@ -83,59 +89,78 @@ export function cmdViewsForNode(m: LoadedModel, nodeId: string): string {
     return viewsForNode(m, nodeId).join('\n') + '\n';
 }
 
-export function cmdNodesInView(m: LoadedModel, viewId: string): string {
-    const v = findView(m.views, viewId);
-    const { inNodes } = resolveView(m.arch, v.filter);
-    return [...inNodes].sort().map((id) => nodeLabel(m.arch, id)).join('\n') + '\n';
+export function cmdNodesInView(_m: LoadedModel, viewId: string): string {
+    const v = findView(_m.views, viewId);
+    const files = resolveMultiView(v.dir, { for: v.for, filter: v.filter } as JsonRecord);
+    const parts: string[] = [];
+    for (const f of files) {
+        const rows = [...f.resolution.inNodes].sort().map((id) => nodeLabel(f.arch, id));
+        if (files.length > 1) parts.push(`# ${basename(f.archPath)}`);
+        parts.push(...rows);
+    }
+    return parts.join('\n') + '\n';
 }
 
-export function cmdDescribeView(m: LoadedModel, viewId: string): string {
-    const v = findView(m.views, viewId);
-    const { inNodes, inRels, excluded } = resolveView(m.arch, v.filter);
+export function cmdDescribeView(_m: LoadedModel, viewId: string): string {
+    const v = findView(_m.views, viewId);
+    const files = resolveMultiView(v.dir, { for: v.for, filter: v.filter } as JsonRecord);
     const lines = [
         `${v.uniqueId}: ${v.name}`,
         `audience: ${v.audience.join(', ') || '(none)'}`,
         ...(v.group ? [`group: ${v.group}`] : []),
         ...(v.description ? [v.description] : []),
-        `scope: ${inNodes.size}/${(m.arch.nodes ?? []).length} nodes, ${inRels.size}/${(m.arch.relationships ?? []).length} relationships`,
     ];
-    if (excluded.size > 0) {
-        lines.push('excluded:');
-        for (const [id, outside] of [...excluded.entries()].sort(([a], [b]) => (a < b ? -1 : 1))) {
-            lines.push(`  - ${id} (outside: ${[...outside].sort().join(', ')})`);
+    for (const f of files) {
+        const { inNodes, inRels, excluded } = f.resolution;
+        const total = (f.arch.nodes ?? []).length;
+        const totalR = (f.arch.relationships ?? []).length;
+        lines.push(`model: ${relative(ROOT, f.archPath)} (${inNodes.size}/${total} nodes, ${inRels.size}/${totalR} relationships)`);
+        if (excluded.size > 0 && files.length === 1) {
+            lines.push('excluded:');
+            for (const [id, outside] of [...excluded.entries()].sort(([a], [b]) => (a < b ? -1 : 1))) {
+                lines.push(`  - ${id} (outside: ${[...outside].sort().join(', ')})`);
+            }
         }
     }
     return lines.join('\n') + '\n';
 }
 
-export function cmdContext(m: LoadedModel, viewId: string): string {
-    const v = findView(m.views, viewId);
-    const { inNodes, inRels, excluded } = resolveView(m.arch, v.filter);
-    const archPath = join(ROOT, 'model', 'fluxnova-kyc-onboarding.architecture.json');
-    const sha = createHash('sha256').update(readFileSync(archPath)).digest('hex');
-    const relById = new Map((m.arch.relationships ?? []).map((r) => [(r as JsonRecord)['unique-id'] as string, r as JsonRecord]));
+export function cmdContext(_m: LoadedModel, viewId: string): string {
+    const v = findView(_m.views, viewId);
+    const files = resolveMultiView(v.dir, { for: v.for, filter: v.filter } as JsonRecord);
     const lines = [
         `# view: ${v.uniqueId} (${v.name})`,
-        `model: model/fluxnova-kyc-onboarding.architecture.json sha256:${sha}`,
         `audience: ${v.audience.join(', ') || '(none)'}`,
         ...(v.group ? [`group: ${v.group}`] : []),
-        `scope: ${inNodes.size}/${(m.arch.nodes ?? []).length} nodes, ${inRels.size}/${(m.arch.relationships ?? []).length} relationships`,
-        '## nodes',
     ];
-    for (const id of [...inNodes].sort()) {
-        lines.push(`- ${nodeLabel(m.arch, id)}`);
-    }
-    lines.push('## relationships');
-    for (const id of [...inRels].sort()) {
-        const r = relById.get(id) ?? {};
-        const kind = Object.keys((r['relationship-type'] as JsonRecord | undefined) ?? { '?': null })[0] as string;
-        const eps = [...endpoints(r)].sort().join(', ');
-        lines.push(`- ${id} [${kind}] ${eps}`);
-    }
-    if (excluded.size > 0) {
-        lines.push('## excluded (endpoints outside this view)');
-        for (const [id, outside] of [...excluded.entries()].sort(([a], [b]) => (a < b ? -1 : 1))) {
-            lines.push(`- ${id} (outside: ${[...outside].sort().join(', ')})`);
+    for (const f of files) {
+        const { inNodes, inRels, excluded } = f.resolution;
+        const sha = createHash('sha256').update(readFileSync(f.archPath)).digest('hex');
+        const relById = new Map(
+            (f.arch.relationships ?? []).map((r) => [(r as JsonRecord)['unique-id'] as string, r as JsonRecord])
+        );
+        lines.push(`model: ${relative(ROOT, f.archPath)} sha256:${sha}`);
+        lines.push(
+            `scope: ${inNodes.size}/${(f.arch.nodes ?? []).length} nodes, ${inRels.size}/${(f.arch.relationships ?? []).length} relationships`
+        );
+        lines.push('## nodes');
+        for (const id of [...inNodes].sort()) {
+            lines.push(`- ${nodeLabel(f.arch, id)}`);
+        }
+        lines.push('## relationships');
+        for (const id of [...inRels].sort()) {
+            const r = relById.get(id) ?? {};
+            const eps = [...endpoints(r)].sort().join(', ');
+            const kind = Object.keys(
+                ((r as JsonRecord)['relationship-type'] as JsonRecord | undefined) ?? { '?': null }
+            )[0] as string;
+            lines.push(`- ${id} [${kind}] ${eps}`);
+        }
+        if (excluded.size > 0) {
+            lines.push('## excluded (endpoints outside this view)');
+            for (const [id, outside] of [...excluded.entries()].sort(([a], [b]) => (a < b ? -1 : 1))) {
+                lines.push(`- ${id} (outside: ${[...outside].sort().join(', ')})`);
+            }
         }
     }
     return lines.join('\n') + '\n';

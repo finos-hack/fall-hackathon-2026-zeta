@@ -22,14 +22,14 @@ explicit upstream file. Nothing here is hand-written.
 ## eCH-0122 (reference model)
 
 - File: `model/ech-0122.architecture.json`
-- Upstream: eCH-0122 V2.0.1, Architektur E-Government Schweiz (Verein eCH),
-  converted from `eCH-0122-2-0-1.archimate`
+- Upstream: eCH-0122 V2.0.0, Architektur E-Government Schweiz (Verein eCH),
+  converted from `eCH-0122-2-0-1.archimate` (shipped as `eCH-0122-2-0-1.zip`)
   (https://www.ech.ch/de/ech/ech-0122/2.0.0).
 - License: eCH standards are free to use, share and develop
   ("unentgeltlich und uneingeschränkt genutzt, weiterverbreitet und
-  weiterentwickelt werden"). The file below is converted to CALM, not
-  redistributed as ArchiMate.
-- Status: 155 nodes, 247 relationships. Archi layers preserved in node
+  weiterentwickelt werden", section 9 of the standard). Attribution:
+  Verein eCH, Fachgruppe SEAC (contributors include Filippos Santas).
+- Status: 216 nodes, 287 relationships. Archi layers preserved in node
   metadata (`archimate-layer`). Capabilities are kept as `capability` nodes.
 - Verify at any time: re-run `node tools/dist/archimate.js` on a fresh
   copy of the upstream `.archimate` file.

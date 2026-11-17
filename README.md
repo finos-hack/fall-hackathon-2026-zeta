@@ -39,7 +39,7 @@ with validation in the build. This project proposes one piece that is
 not defined yet: named, reviewable selections for readers, scales and
 questions, building on issues the community already opened: first-class
 views ([#2344](https://github.com/finos/architecture-as-code/issues/2344)),
-the separate-document discussion ([#2901](https://github.com/finos/architecture-as-code/issues/2901)),
+layout and presentation as a separate document ([#2901](https://github.com/finos/architecture-as-code/issues/2901), closed as a duplicate of #2344),
 cross-document references ([#3624](https://github.com/finos/architecture-as-code/issues/3624)),
 shared identity ([calm-schema#27](https://github.com/finos/calm-schema/issues/27))
 and namespace stitching ([#47](https://github.com/finos/calm-schema/issues/47)).
@@ -105,7 +105,7 @@ Views are files, so any tool can consume them. What exists today:
   transport format, not integration yet.
 - **ArchiMate**: `archimate.js` imports Archi tool models, preserving
   layers in node metadata. A standard translated into working software,
-  shown on the real eCH-0122 model (155 nodes) to prove that views scale
+  shown on the real eCH-0122 model (216 nodes) to prove that views scale
   to complex architectures.
 - **CLI gap**: `calm docify` has no `--view` flag. Views stop at the POC
   until the schema graduates ([#2344](https://github.com/finos/architecture-as-code/issues/2344)).
@@ -144,9 +144,11 @@ In ISO 42010 terms ([ISO/IEC/IEEE 42010:2022](https://www.iso.org/standard/74393
   the model side. Named views are still open ([#2344](https://github.com/finos/architecture-as-code/issues/2344)).
 - [finos/architecture-as-code#2344](https://github.com/finos/architecture-as-code/issues/2344):
   first-class views, open. Our filter mirrors its proposed selection
-  semantics. A separate view document was proposed in [#2901](https://github.com/finos/architecture-as-code/issues/2901)
-  and closed in favor of inline views. Our sidecars are the POC vehicle
-  for the same selection semantics, not a rival schema.
+  semantics. Layout and presentation as a separate document was proposed in
+  [#2901](https://github.com/finos/architecture-as-code/issues/2901)
+  and closed as a duplicate of #2344, where the discussion continues.
+  Our sidecars are the POC vehicle for the same selection semantics,
+  not a rival schema.
 
 ## How this was built
 
