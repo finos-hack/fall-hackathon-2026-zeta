@@ -6,6 +6,10 @@
 First-class, named views over a [CALM](https://calm.finos.org) architecture: scoped, audience-tagged
 selections in sidecar `*.calm-view.json` documents, with zero presentation
 in the schema. Evidence for [finos/architecture-as-code#2344](https://github.com/finos/architecture-as-code/issues/2344).
+
+The focus of this work is not tooling for its own sake. The tools exist
+to surface the views question and make it reviewable: every claim below
+is backed by a file the judges can open, run, and diff.
 A view selects, a renderer draws (including the Hub [`diagram-lens`](https://calm.finos.org/extensions)
 ([#3771](https://github.com/finos/architecture-as-code/pull/3771)), which no view feeds yet).
 
