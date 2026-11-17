@@ -2,7 +2,7 @@
 
 Reference implementation in TypeScript, zero runtime dependencies, offline.
 Design decisions (internal): views select by id, node-type, node metadata
-or control claim; zero presentation in the schema; `for` is relative and
+or control claim. Zero presentation in the schema. `for` is relative and
 provisional.
 
 - `model/` — vendored base architecture (never modified, see
