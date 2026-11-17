@@ -71,14 +71,14 @@ export function main(): void {
     }
     const html =
         '<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">' +
-        '<title>CALM Views POC — gallery</title>' +
+        '<title>Calm views — named aspects of architectures too complex to show at once</title>' +
         '<style>body{font-family:sans-serif;max-width:1100px;margin:auto;padding:1em}' +
         '.diagram{border:1px solid #94a3b8;border-radius:8px;overflow:auto;background:#fff}' +
         '.diagram svg{max-width:none}section{margin-bottom:3em}</style></head><body>' +
-        '<h1>CALM Views POC — one model, three audiences</h1>' +
-        '<p>Each view below is a <code>*.calm-view.json</code> sidecar selecting from the same ' +
-        'unmodified architecture. Same selection, second presentation (alongside the Markdown ' +
-        'prose): the view file is renderer-neutral.</p>' +
+        '<h1>Calm views — named aspects of architectures too complex to show at once</h1>' +
+        '<p>Each view below is a <code>*.calm-view.json</code> sidecar: an audience, a filter, ' +
+        'zero presentation. The model file never changes. KYC onboarding (20 nodes) shows the ' +
+        'readers; eCH-0122 (216 nodes, Swiss e-government) shows the scale: one layer at a time.</p>' +
         cards.join('\n') +
         '</body></html>\n';
     writeText(join(rendersDir, 'gallery.html'), html);
