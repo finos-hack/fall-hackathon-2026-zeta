@@ -17,7 +17,7 @@ No lens consumes a view yet.
 
 ## What it does
 
-One vendored upstream architecture
+As an example, one vendored upstream architecture
 (`examples/fluxnova/fluxnova-kyc-onboarding.architecture.json`, 20 nodes,
 28 relationships, never modified) rendered through six views: platform,
 integration, audit, a derived neighborhood view, a drill-down inside
