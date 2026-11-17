@@ -35,8 +35,14 @@ the whole, and the community is already moving toward a unified space
 architecture, and serve every reader with views over it, carrying rich
 metadata such as maturity or lifecycle.
 That is why CALM is the answer: a vendor-neutral standard for the model,
-with validation in the build. This project proposes the missing reader
-side.
+with validation in the build. This project proposes one piece of the
+missing side — named, reviewable selections for readers, scales and
+questions — building on issues the community already opened: first-class
+views ([#2344](https://github.com/finos/architecture-as-code/issues/2344)),
+the separate-document discussion ([#2901](https://github.com/finos/architecture-as-code/issues/2901)),
+cross-document references ([#3624](https://github.com/finos/architecture-as-code/issues/3624)),
+shared identity ([calm-schema#27](https://github.com/finos/calm-schema/issues/27))
+and namespace stitching ([#47](https://github.com/finos/calm-schema/issues/47)).
 
 ## What it does
 
