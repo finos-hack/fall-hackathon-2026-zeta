@@ -6,7 +6,7 @@
  * escaping, `:.0f` banker's rounding and `xml.sax` escaping are replicated.
  */
 import { readFileSync, writeFileSync, mkdirSync } from 'node:fs';
-import { dirname } from 'node:path';
+import { dirname, join, normalize, basename } from 'node:path';
 
 export type JsonRecord = Record<string, unknown>;
 
@@ -105,6 +105,44 @@ export interface ViewResolution {
     liftedEndpoints: Map<string, string[]>;
     excluded: Map<string, string[]>;
     warnings: string[];
+}
+
+export interface ResolvedFile {
+    archPath: string;
+    arch: CalmArchitecture;
+    resolution: ViewResolution;
+}
+
+/** Multi-file view (experimental, internal): `for` accepts an array of
+ *  model paths. Each file resolves independently with the same filter;
+ *  ids are namespaced `basename(node-id)` to keep files apart. No dedup
+ *  is claimed: the same service in two files is two nodes. This is the
+ *  honest interim semantics until shared identity exists
+ *  (finos/calm-schema#27). */
+export function resolveMultiView(viewDir: string, view: JsonRecord): ResolvedFile[] {
+    const fors = view['for'];
+    const paths = (Array.isArray(fors) ? fors : [fors]) as string[];
+    return paths.map((rel) => {
+        const archPath = normalize(join(viewDir, rel as string));
+        const arch = readJson(archPath) as CalmArchitecture;
+        const filt = (view['filter'] as CalmFilter | undefined) ?? {};
+        return { archPath, arch, resolution: resolveView(arch, filt) };
+    });
+}
+
+export function namespaced(archPath: string, id: string): string {
+    return `${basename(archPath, '.architecture.json')}/${id}`;
+}
+
+/** Union scope across the resolved files, with namespaced node ids. */
+export function unionScope(files: ResolvedFile[]): { nodes: string[]; rels: Array<{ file: string; id: string }> } {
+    const nodes = new Set<string>();
+    const rels: Array<{ file: string; id: string }> = [];
+    for (const f of files) {
+        for (const id of f.resolution.inNodes) nodes.add(namespaced(f.archPath, id));
+        for (const id of f.resolution.inRels) rels.push({ file: basename(f.archPath), id });
+    }
+    return { nodes: [...nodes].sort(), rels };
 }
 
 /** Child node to all its containers, transitively (composed-of / deployed-in). */

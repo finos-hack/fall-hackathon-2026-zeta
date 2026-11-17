@@ -67,6 +67,16 @@ Views are files, so any tool can consume them. What exists today:
 - **CLI gap**: `calm docify` has no `--view` flag. Views stop at the POC
   until the schema graduates ([#2344](https://github.com/finos/architecture-as-code/issues/2344)).
 
+## Multi-file views (experimental)
+
+`for` accepts an array of model paths. Each file resolves independently
+with the same filter. Node ids carry their file as namespace
+(`ech-0122/kyc-database` stays two nodes when two files use the name).
+No deduplication is claimed: the same service in two files is two nodes
+until CALM defines shared identity ([calm-schema#27](https://github.com/finos/calm-schema/issues/27)).
+Example: `all-actors` selects every actor node across the KYC model and
+the eCH model (51 namespaced nodes). Renderers stay single-file.
+
 In ISO 42010 terms ([ISO/IEC/IEEE 42010:2022](https://www.iso.org/standard/74393.html)):
 
 | 42010 | This project |

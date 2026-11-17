@@ -1,0 +1,11 @@
+{
+  "$schema": "../schema/view.json",
+  "unique-id": "all-actors",
+  "name": "All actors, both models",
+  "description": "Multi-file view (experimental): every actor node across the KYC model and the eCH reference model, resolved independently per file with namespaced ids. No dedup claimed: same names in two files are two nodes.",
+  "audience": ["enterprise-architects"],
+  "suggested-formats": ["json"],
+  "group": "Cross-model (experimental)",
+  "for": ["../model/fluxnova-kyc-onboarding.architecture.json", "../model/ech-0122.architecture.json"],
+  "filter": { "node-types": ["actor"] }
+}

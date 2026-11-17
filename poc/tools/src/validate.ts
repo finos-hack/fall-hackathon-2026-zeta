@@ -11,6 +11,8 @@ import {
     ROOT,
     readJson,
     resolveView,
+    resolveMultiView,
+    unionScope,
     type CalmArchitecture,
     type CalmFilter,
     type JsonRecord,
@@ -24,8 +26,11 @@ function fail(msg: string): never {
 function checkSchema(view: unknown): string | null {
     if (typeof view !== 'object' || view === null) return 'view must be an object';
     const v = view as JsonRecord;
-    for (const k of ['unique-id', 'name', 'for']) {
+    for (const k of ['unique-id', 'name']) {
         if (typeof v[k] !== 'string') return `'${k}' is a required property`;
+    }
+    if (typeof v['for'] !== 'string' && !(Array.isArray(v['for']) && (v['for'] as unknown[]).every((x) => typeof x === 'string'))) {
+        return `'for' must be a model path or an array of model paths`;
     }
     const allowed = new Set([
         '$schema',
@@ -100,7 +105,21 @@ export function main(): number {
         }
         const filt = (view['filter'] as CalmFilter | undefined) ?? {};
         const viewDir = dirname(path);
-        const archPath = normalize(join(viewDir, view['for'] as string));
+        const fors = view['for'];
+        const multi = Array.isArray(fors);
+        if (multi) {
+            const files = resolveMultiView(viewDir, view);
+            const missing = (fors as string[]).filter((r) => !existsSync(normalize(join(viewDir, r))));
+            if (missing.length > 0) {
+                console.log(`${name}: ERROR: \`for\` target(s) missing: ${missing.join(', ')}`);
+                errors += 1;
+                continue;
+            }
+            const total = unionScope(files);
+            console.log(`${name}: OK — ${total.nodes.length} nodes across ${files.length} files (${total.rels.length} in-file relationships)`);
+            continue;
+        }
+        const archPath = normalize(join(viewDir, fors as string));
         if (!existsSync(archPath)) {
             console.log(`${name}: ERROR: \`for\` target missing: ${view['for']}`);
             errors += 1;

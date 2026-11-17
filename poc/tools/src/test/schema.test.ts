@@ -17,7 +17,7 @@ const POC = join(HERE, '..', '..', '..');
 describe('views conform to schema/view.json under real Ajv 2020-12', () => {
     const viewsDir = join(POC, 'views');
     const files = readdirSync(viewsDir).filter((x) => x.endsWith('.calm-view.json')).sort();
-    assert.equal(files.length, 10);
+    assert.equal(files.length, 11);
     for (const f of files) {
         it(`${f} validates`, () => {
             const ajv = new Ajv2020({ strict: true });

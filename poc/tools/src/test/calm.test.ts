@@ -1,7 +1,11 @@
 import { describe, it } from 'node:test';
 import assert from 'node:assert/strict';
-import { pyFloat0, ensureAscii, escXml, resolveView, type CalmArchitecture } from '../calm.js';
+import { join, dirname } from 'node:path';
+import { fileURLToPath } from 'node:url';
+import { pyFloat0, ensureAscii, escXml, resolveView, resolveMultiView, unionScope, type CalmArchitecture, type JsonRecord } from '../calm.js';
 import { checkDrill } from '../validate.js';
+
+const POC = join(dirname(fileURLToPath(import.meta.url)), '..', '..', '..');
 
 describe('pyFloat0 (banker rounding like Python :.0f)', () => {
     it('rounds halves to even', () => {
@@ -132,5 +136,17 @@ describe('resolveView (mirrors Python validate.resolve_view)', () => {
         const { inNodes, inRels } = resolveView(withControls, { controls: ['audit-logging'] });
         assert.deepEqual([...inNodes].sort(), ['a']);
         assert.ok(!inRels.has('r1'));
+    });
+    it('resolves a multi-file view as a namespaced union without dedup', () => {
+        const view = {
+            for: ['model/fluxnova-kyc-onboarding.architecture.json', 'model/ech-0122.architecture.json'],
+            filter: { 'node-types': ['actor'] },
+        } as unknown as JsonRecord;
+        const files = resolveMultiView(POC, view);
+        assert.equal(files.length, 2);
+        const { nodes } = unionScope(files);
+        assert.ok(nodes.length > 4, `${nodes.length} nodes`);
+        assert.ok(nodes.some((n) => n.startsWith('fluxnova-kyc-onboarding/')));
+        assert.ok(nodes.some((n) => n.startsWith('ech-0122/')));
     });
 });

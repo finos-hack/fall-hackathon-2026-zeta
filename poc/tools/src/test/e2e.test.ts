@@ -23,11 +23,11 @@ const run = (script: string, args: string[]): { stdout: string; code: number } =
 };
 
 describe('end-to-end: validate -> render -> gallery are green and reproducible', () => {
-    it('validate exits 0 with 10 OK lines', () => {
+    it('validate exits 0 with 11 OK lines', () => {
         const { stdout, code } = run('validate.js', []);
         assert.equal(code, 0);
         const oks = stdout.split('\n').filter((l) => l.includes(': OK'));
-        assert.equal(oks.length, 10);
+        assert.equal(oks.length, 11);
         assert.match(oks.join('\n'), /kyc-audit\.calm-view\.json: OK — 15 nodes, 21 relationships/);
     });
 
