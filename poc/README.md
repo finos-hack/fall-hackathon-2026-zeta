@@ -2,7 +2,6 @@
 
 Built per `../docs/DESIGN.md` §4 and `../docs/LECTORES.md` (decided 2026-11-14).
 Reference implementation in TypeScript, zero runtime dependencies, offline.
-(Ported from the original Python POC. Both render byte-identical output.)
 
 - `model/` — vendored base architecture (never modified, see
   `PROVENANCE.md`) + demo decorator (POC-authored, consumed by audit view) +

@@ -40,7 +40,7 @@ node poc/tools/dist/pack.js poc/views/kyc-audit.calm-view.json --arch-id kyc-arc
 ```
 
 Requirements: Node 18+. Zero runtime dependencies, offline reproducible,
-no network. TypeScript port of a Python prototype. Both render byte-identical output.
+no network. Renders are byte-identical across runs.
 
 ## Interactive demo (spike)
 
