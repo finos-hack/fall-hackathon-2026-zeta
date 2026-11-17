@@ -79,8 +79,8 @@ In ISO 42010 terms ([ISO/IEC/IEEE 42010:2022](https://www.iso.org/standard/74393
 
 - [LikeC4](https://likec4.dev): the model/views split this project imitates.
   One model, as many views as readers need. Its limit is being one
-  vendor's language; a bank cannot build on a dialect. CALM standardizes
-  the model side; named views are still open ([#2344](https://github.com/finos/architecture-as-code/issues/2344)).
+  vendor's language. A bank cannot build on a dialect. CALM standardizes
+  the model side. Named views are still open ([#2344](https://github.com/finos/architecture-as-code/issues/2344)).
 - [ArchiMate](https://www.opengroup.org/archimate-forum/archimate-overview):
   the earlier attempt at a common language, with clear layers. Its limit
   is tool XML that humans cannot write, review or diff by hand. CALM keeps
@@ -89,7 +89,7 @@ In ISO 42010 terms ([ISO/IEC/IEEE 42010:2022](https://www.iso.org/standard/74393
 - [finos/architecture-as-code#2344](https://github.com/finos/architecture-as-code/issues/2344):
   first-class views, open. Our filter mirrors its proposed selection
   semantics. A separate view document was proposed in [#2901](https://github.com/finos/architecture-as-code/issues/2901)
-  and closed in favor of inline views; our sidecars are the POC vehicle
+  and closed in favor of inline views. Our sidecars are the POC vehicle
   for the same selection semantics, not a rival schema.
 
 ## How this was built
