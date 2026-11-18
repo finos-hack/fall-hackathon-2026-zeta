@@ -81,6 +81,7 @@ targets fetch the pinned landing zone source first, because some importer tests 
 
 ```sh
 make validate        # check every view
+make landingzone-views # regenerate the five multi-cloud views
 make render          # write the local renders (generated, not versioned)
 make gallery         # rebuild poc/renders/gallery.html
 make query           # describe the audit view (smoke test)
@@ -99,7 +100,8 @@ Requirements:
 The landing zone source is a clone of `cloudon-one/multi-cloud-runway` at a pinned commit.
 `make landingzone-source` puts it in `.local/`. `make import-landingzone` regenerates the
 model file from that clone. The importer writes one file only. Its provenance is inline in
-the model. No sidecar file or views summary is written.
+the model. No sidecar file or views summary is written. Run `make landingzone-views` to
+regenerate the five view files from the model; the tools tests compare them with generator output.
 
 ## Renders are deterministic
 
@@ -164,8 +166,9 @@ make hub-down  # stop and remove the containers. The data volume stays.
 make hub-reset # stop the containers and DELETE the MongoDB data volume
 ```
 
-`make seed` writes the Hub-assigned model IDs to `.local/hub-models.env`. The views service
-reads that file, so the POC screen links follow the IDs returned by the Hub.
+`make seed` writes the Hub-assigned model IDs to `.local/hub-models.env`. The Compose views
+service and `make extension-start` load that file, so the POC screen links follow the IDs
+returned by the Hub.
 
 `OPERATION.md` lists the other targets and the demo URLs.
 
@@ -209,7 +212,7 @@ Separate agent roles covered research, test design and rubric review.
 The direct Node commands below passed on this repository state. The Make wrappers and local Hub image were not run in this check:
 
 - `node dist/validate.js`: 16 of 16 view files report OK.
-- tools `npm test`: 68 of 68 tests pass.
+- tools `npm test`: 69 of 69 tests pass.
 - lens extension `npm test`: 15 of 15 tests pass.
 - `node --test scripts/seed-hub.test.mjs`: 1 of 1 test passes.
 - Both auditor coverage gates pass with zero violations.

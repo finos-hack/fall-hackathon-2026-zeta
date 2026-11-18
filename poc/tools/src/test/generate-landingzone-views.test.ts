@@ -1,11 +1,15 @@
 import { existsSync, mkdirSync, mkdtempSync, readFileSync, readdirSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
-import { join } from 'node:path';
+import { dirname, join, resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { afterEach, describe, it } from 'node:test';
 import assert from 'node:assert/strict';
 import { writeLandingZoneViews, type LandingZoneArchitecture } from '../generate-landingzone-views.js';
 
 const temporary: string[] = [];
+const POC_ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '../../../');
+const MODEL_PATH = join(POC_ROOT, 'model', 'multicloud-landing-zone.architecture.json');
+const COMMITTED_VIEWS_DIR = join(POC_ROOT, 'views', 'multicloud-landing-zone');
 const node = (id: string, name: string, metadata: Record<string, string>) => ({
     'unique-id': id,
     name,
@@ -68,5 +72,34 @@ describe('landing-zone view generation', () => {
         assert.equal(saved.$schema, '../../schema/view.json');
         assert.equal(existsSync(join(multicloudViewsDir, saved.$schema)), true);
         assert.equal(readdirSync(viewsDir).some((name) => name.endsWith('.calm-view.json')), false);
+    });
+
+    it('keeps committed views in sync with the generator and resolves the schema reference', () => {
+        const root = mkdtempSync(join(tmpdir(), 'calm-views-committed-'));
+        temporary.push(root);
+        const modelDir = join(root, 'poc', 'model');
+        const viewsDir = join(root, 'poc', 'views');
+        mkdirSync(modelDir, { recursive: true });
+        mkdirSync(viewsDir, { recursive: true });
+        const modelPath = join(modelDir, 'multicloud-landing-zone.architecture.json');
+        const model = readFileSync(MODEL_PATH, 'utf8');
+        writeFileSync(modelPath, model);
+
+        const architecture = JSON.parse(model) as LandingZoneArchitecture;
+        const generated = writeLandingZoneViews(architecture, modelPath, viewsDir);
+        const generatedDir = join(viewsDir, 'multicloud-landing-zone');
+        const expectedFiles = generated.map((view) => `${view['unique-id']}.calm-view.json`).sort();
+        const committedFiles = readdirSync(COMMITTED_VIEWS_DIR)
+            .filter((name) => name.endsWith('.calm-view.json'))
+            .sort();
+
+        assert.deepEqual(committedFiles, expectedFiles);
+        for (const name of expectedFiles) {
+            const committedPath = join(COMMITTED_VIEWS_DIR, name);
+            const contents = readFileSync(committedPath, 'utf8');
+            const view = JSON.parse(contents) as { '$schema': string };
+            assert.equal(contents, readFileSync(join(generatedDir, name), 'utf8'), `${name} differs from generator output`);
+            assert.equal(existsSync(resolve(dirname(committedPath), view.$schema)), true, `${name} schema reference does not exist`);
+        }
     });
 });

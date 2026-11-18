@@ -1,5 +1,5 @@
 {
-  "$schema": "../schema/view.json",
+  "$schema": "../../schema/view.json",
   "unique-id": "multicloud-global",
   "name": "Multi-cloud overview",
   "description": "The landing zone root, cloud providers, organizations and folders.",

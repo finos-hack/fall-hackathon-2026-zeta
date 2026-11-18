@@ -16,7 +16,7 @@
 - **Repo state:** README, `submit.md`, `OPERATION.md` and `poc/` are present.
   The checks ran on this repository state. `OPERATION.md` lists the commands.
   - 16 of 16 view files validate.
-  - 57 of 57 tools tests pass.
+  - 69 of 69 tools tests pass.
   - 15 of 15 lens extension tests pass.
   - The seed script test passes.
   - Every commit carries a DCO sign-off.

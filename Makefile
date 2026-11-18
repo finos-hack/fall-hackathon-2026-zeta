@@ -9,13 +9,14 @@ LANDINGZONE_COMMIT := 2fe49b9829df7a8749915ba1200896390d95139b
 LANDINGZONE_MARKER := $(ROOT)/.local/multi-cloud-runway.zeta-source
 
 .PHONY: tools tools-build tools-test extension extension-test seed-test render validate gallery query clean check help
-.PHONY: landingzone-source import-landingzone
+.PHONY: landingzone-source import-landingzone landingzone-views
 .PHONY: keys hub-build hub-up hub-start hub-stop hub-down hub-reset hub-logs hub-status seed
 
 help:
 	@echo "tools            install, build and test poc/tools"
 	@echo "landingzone-source fetch the pinned MIT source for importer tests/rebuild"
 	@echo "import-landingzone regenerate the single multi-cloud model file"
+	@echo "landingzone-views regenerate the five multi-cloud views"
 	@echo "extension        install and build the Hub lens extension"
 	@echo "extension-test   run the extension suite (needs tools built)"
 	@echo "seed-test        test model seeding against a local HTTP stub"
@@ -62,6 +63,9 @@ tools-test: tools-build landingzone-source
 import-landingzone: tools-build landingzone-source
 	cd $(TOOLS) && SOURCE_DATE_EPOCH=1794957778 node dist/landingzone2calm.js --source "$(LANDINGZONE_SOURCE)" --out ../model
 
+landingzone-views: tools-build
+	cd $(TOOLS) && node dist/generate-landingzone-views.js
+
 extension: tools-build
 	cd $(EXT) && npm ci && npm run build
 
@@ -99,7 +103,10 @@ query: tools-build
 	cd $(TOOLS) && node dist/query.js describe-view kyc-audit-view
 
 extension-start: extension
-	CALM_VIEWS_DIR=$(ROOT)/poc/views PORT=8095 npm start --prefix $(EXT)
+	@if [ -f "$(ROOT)/.local/hub-models.env" ]; then \
+	  set -a; . "$(ROOT)/.local/hub-models.env"; set +a; \
+	fi; \
+	CALM_VIEWS_DIR="$(ROOT)/poc/views" PORT=8095 npm start --prefix "$(EXT)"
 
 check: tools extension-test seed-test
 	@echo "ALL GREEN"

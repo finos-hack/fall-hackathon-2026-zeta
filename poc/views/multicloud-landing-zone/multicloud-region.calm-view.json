@@ -1,5 +1,5 @@
 {
-  "$schema": "../schema/view.json",
+  "$schema": "../../schema/view.json",
   "unique-id": "multicloud-region",
   "name": "Region group",
   "description": "A US, EU or global slice of the selected cloud.",

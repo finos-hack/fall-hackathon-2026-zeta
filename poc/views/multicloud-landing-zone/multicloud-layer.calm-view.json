@@ -1,5 +1,5 @@
 {
-  "$schema": "../schema/view.json",
+  "$schema": "../../schema/view.json",
   "unique-id": "multicloud-layer",
   "name": "Layer",
   "description": "A governance, platform, security, network, data or compute slice within the selected environment.",

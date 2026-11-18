@@ -43,7 +43,7 @@ Run all checks with one command:
 make check
 ```
 
-It runs the tools suite (68 tests), the lens extension suite (15 tests) and the seed script test (1 test).
+It runs the tools suite (69 tests), the lens extension suite (15 tests) and the seed script test (1 test).
 The `tools` and `tools-test` targets build the tools, fetch the landing zone source, then run the tests.
 Some importer tests read that source.
 
@@ -55,6 +55,7 @@ Some importer tests read that source.
 | `make seed-test` | `node --test scripts/seed-hub.test.mjs` |
 | `make check` | runs `tools`, `extension-test` and `seed-test` |
 | `make import-landingzone` | runs `tools-build` and `landingzone-source`, then `cd poc/tools && SOURCE_DATE_EPOCH=1794957778 node dist/landingzone2calm.js --source ../../.local/multi-cloud-runway --out ../model` |
+| `make landingzone-views` | runs `tools-build`, then `cd poc/tools && node dist/generate-landingzone-views.js` |
 | `make validate` | runs `tools-build`, then `cd poc/tools && node dist/validate.js` |
 | `make render` | runs `tools-build`, then the render commands below |
 | `make gallery` | runs `render`, then `cd poc/tools && node dist/gallery.js --out ../renders` |
@@ -84,6 +85,10 @@ It uses the fixed date `SOURCE_DATE_EPOCH=1794957778` (2026-11-17 23:22:58 UTC).
 that one file. It writes no sidecar, no views summary and no separate provenance file.
 The expected sha256 of the model is `3e6a513fb9331c2319062cf715bb8acbafb238951ac7fb4f658c926c1b1a62a2`.
 It matches `poc/PROVENANCE.md`.
+
+`make landingzone-views` generates the five sidecars in `poc/views/multicloud-landing-zone/`.
+The tools tests compare the committed files with fresh generator output and check that each
+`$schema` reference resolves.
 
 ## Renders
 
@@ -155,8 +160,9 @@ to start the demo from an empty database.
 
 ### Demo URLs
 
-`make seed` assigns the Hub IDs and writes them to `.local/hub-models.env`. The views service reads
-that file, and the POC screen uses those IDs automatically. To make a direct URL, replace the ID
+`make seed` assigns the Hub IDs and writes them to `.local/hub-models.env`. The Compose views
+service and `make extension-start` load that file, and the POC screen uses those IDs automatically.
+To make a direct URL, replace the ID
 placeholder with the matching value from the env file:
 
 - Multi-cloud drill-down:

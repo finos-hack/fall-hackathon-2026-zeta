@@ -1,5 +1,5 @@
 {
-  "$schema": "../schema/view.json",
+  "$schema": "../../schema/view.json",
   "unique-id": "multicloud-cloud",
   "name": "Cloud",
   "description": "A cloud provider and its regions, environments and services.",

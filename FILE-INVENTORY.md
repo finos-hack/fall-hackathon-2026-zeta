@@ -89,8 +89,8 @@ No other file is in `poc/model/`. The model files are data. The validate and ren
 | `src/pack.ts` | tracked | Wraps a view as a decorator for transport. |
 | `src/archimate.ts` | tracked | Imports ArchiMate models and keeps the layers. |
 | `src/landingzone2calm.ts` | new | Imports the landing zone model. It writes the model file only. Run it with `make import-landingzone`. |
-| `src/generate-landingzone-views.ts` | new | Writes the five landing zone views. |
-| `src/test/*.test.ts` | tracked (landing zone tests new) | 68 tests in total. The landing zone tests are new. |
+| `src/generate-landingzone-views.ts` | new | Writes the five landing zone views. Run it with `make landingzone-views`. |
+| `src/test/*.test.ts` | tracked (landing zone tests new) | 69 tests in total. The tests compare committed landing-zone views with generator output. |
 
 ## Hub lens extension: `poc/hub-extensions/calm-views/`
 
@@ -140,4 +140,4 @@ counts from the model files. It falls back to fixed counts when a model file is 
 - `make hub-up` needs network access and Docker. It is not offline.
 - The CI workflow has not run on this branch yet.
 - The local Hub image and Compose stack have not been run in this check; the user will run the Make targets for the first end-to-end test.
-- The tools suite has 68 tests, the lens extension suite has 15 tests, and the seed script has 1 test. These direct Node test commands passed; the Make wrappers were not run.
+- The tools suite has 69 tests, the lens extension suite has 15 tests, and the seed script has 1 test. These direct Node test commands passed; the Make wrappers were not run.

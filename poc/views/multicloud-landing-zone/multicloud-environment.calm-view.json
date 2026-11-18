@@ -1,5 +1,5 @@
 {
-  "$schema": "../schema/view.json",
+  "$schema": "../../schema/view.json",
   "unique-id": "multicloud-environment",
   "name": "Environment",
   "description": "A production, staging or development slice within the selected cloud and region.",
