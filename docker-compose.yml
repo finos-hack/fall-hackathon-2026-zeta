@@ -1,8 +1,7 @@
-# Local CALM demo: Hub + views lens + MongoDB. Nothing here is production.
-# The Hub image carries the demo UI; build it once from the worktree
-# (see OPERATION.md). Everything else builds from this repo.
+# Local CALM demo: official Hub backend + local patched UI proxy, C4, EA Layers and Views lenses + MongoDB.
+# Nothing here is production. `make hub-up` builds only the UI bundle and proxy, not the Hub server.
 #
-#   make hub-up     # keys, build, (re)create, wait for :8080
+#   make hub-up     # keys, pull official images, start and seed the demo
 #   make hub-down   # stop and remove the containers (data volume stays)
 services:
   mongodb:
@@ -22,27 +21,62 @@ services:
       dockerfile: poc/hub-extensions/calm-views/Dockerfile
     image: calm-views:local
     container_name: zeta-views
+    depends_on:
+      c4:
+        condition: service_healthy
+      ea-layers:
+        condition: service_healthy
     ports:
       - "8095:8095"
+    environment:
+      - CALM_VIEWS_EXPORT_DIR=/extensions
     env_file:
       - path: ./.local/hub-models.env
         required: false
+    volumes:
+      - calm-extensions:/extensions
     healthcheck:
       test: ["CMD", "node", "-e", "fetch('http://127.0.0.1:8095/healthz').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"]
       interval: 5s
       timeout: 5s
       retries: 24
 
+  c4:
+    image: ${CALM_C4_IMAGE:-finos/calm-hub-c4:main}
+    container_name: zeta-c4
+    environment:
+      - CALM_HUB_URL=http://calmhub:8080
+      - CALM_HUB_ISSUER=http://localhost:8080
+      - CALM_C4_EXPORT_DIR=/extensions
+    volumes:
+      - calm-extensions:/extensions
+
+  ea-layers:
+    image: ${CALM_EA_LAYERS_IMAGE:-finos/calm-hub-ea-layers:main}
+    container_name: zeta-ea-layers
+    environment:
+      - CALM_HUB_URL=http://calmhub:8080
+      - CALM_HUB_ISSUER=http://localhost:8080
+      - CALM_EA_LAYERS_EXPORT_DIR=/extensions
+    volumes:
+      - calm-extensions:/extensions
+
   calmhub:
-    image: calm-hub:zeta
+    image: ${CALM_HUB_IMAGE:-finos/calm-hub:main}
     container_name: zeta-hub
     depends_on:
       mongodb:
         condition: service_healthy
-    ports:
-      - "8080:8080"
+      c4:
+        condition: service_healthy
+      views:
+        condition: service_healthy
+      ea-layers:
+        condition: service_healthy
+    expose:
+      - "8080"
     volumes:
-      - ./poc/hub-extensions:/extensions:ro
+      - calm-extensions:/extensions:ro
       - ./.local/keys:/keys:ro
     environment:
       - JAVA_OPTS=-Dquarkus.mongodb.connection-string=mongodb://mongodb:27017 -Dquarkus.profile=no-auth
@@ -54,6 +88,30 @@ services:
       - CALM_EXTENSIONS__CALM_VIEWS__ENABLED=true
       - CALM_EXTENSIONS__CALM_VIEWS__ALLOW_HTTP=true
       - CALM_EXTENSIONS__CALM_VIEWS__BACKEND_URL=http://views:8095
+      - CALM_EXTENSIONS__C4__ENABLED=true
+      - CALM_EXTENSIONS__C4__ALLOW_HTTP=true
+      - CALM_EXTENSIONS__C4__BACKEND_URL=http://c4:8093
+      - CALM_EXTENSIONS__EA_LAYERS__ENABLED=true
+      - CALM_EXTENSIONS__EA_LAYERS__ALLOW_HTTP=true
+      - CALM_EXTENSIONS__EA_LAYERS__BACKEND_URL=http://ea-layers:8094
+
+  hub-ui:
+    build:
+      context: .
+      dockerfile: scripts/hub-ui-proxy.Dockerfile
+    image: calm-hub-ui:local
+    container_name: zeta-hub-ui
+    depends_on:
+      calmhub:
+        condition: service_started
+    ports:
+      - "8080:8080"
+    healthcheck:
+      test: ["CMD", "wget", "-q", "-O", "/dev/null", "http://127.0.0.1:8080/"]
+      interval: 5s
+      timeout: 5s
+      retries: 24
 
 volumes:
+  calm-extensions:
   zeta-mongo-data:

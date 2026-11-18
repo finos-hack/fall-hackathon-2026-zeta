@@ -1,6 +1,6 @@
 # Provenance
 
-Every model in `model/` is either vendored untouched or converted from an explicit upstream file. Nothing here is hand-written.
+The repository keeps the source and license for each model. Three are imported or vendored; the Fall Hackathon ZETA model is adapted from an explicit upstream file to describe the local demo.
 
 ## KYC onboarding (demo model)
 
@@ -37,6 +37,16 @@ The CALM model is a derivative of the source layout. It keeps the hierarchy, the
 The source `ARCHITECTURE_REPORT.json` is kept as a source assessment. Its score is not a quality claim for this model or for the demo.
 
 Adapted: regions and metadata are normalized for the views. The source files are not vendored into this repository.
+
+## Fall Hackathon ZETA (local demo model)
+
+- File: `model/fall-hackathon-zeta.architecture.json`
+- Upstream: `finos/architecture-as-code`, [`calm-3.json`](https://github.com/finos/architecture-as-code/blob/e46aeeccbb626b3260dcfc3e615096e783bb7571/calm-3.json) at commit `e46aeeccbb626b3260dcfc3e615096e783bb7571`.
+- License: Apache-2.0 (upstream repo).
+- Adaptation: describes the local CALM Hub demo, including its services, endpoints and source links, Compose grouping and volumes, seed process, UI build stage, and seven model flows. It is not a copy of the upstream tooling architecture.
+- Status: 15 nodes, 26 relationships and 7 flows.
+- sha256: `b65dd3f130b3666921b37be02e1d9a0daa2b3f37c24b360630dbc22ee78b6e06`
+- The source file is linked above; this model is maintained as a local demo architecture.
 
 ## POC-authored
 

@@ -26,7 +26,7 @@ const run = (script: string, args: string[]): { stdout: string; code: number } =
 };
 
 describe('end-to-end: validate -> render -> gallery are green and reproducible', () => {
-    it('validate exits 0 with 16 OK lines', () => {
+    it('validate exits 0 with 20 OK lines', () => {
         const lines: string[] = [];
         const log = console.log;
         console.log = (line?: unknown) => lines.push(String(line ?? ''));
@@ -38,13 +38,13 @@ describe('end-to-end: validate -> render -> gallery are green and reproducible',
         }
         assert.equal(code, 0);
         const oks = lines.filter((line) => line.includes(': OK'));
-        assert.equal(oks.length, 16, oks.join('\n'));
+        assert.equal(oks.length, 20, oks.join('\n'));
         assert.ok(oks.some((line) => line.includes('kyc-audit.calm-view.json: OK — 12 nodes, 14 relationships')));
         assert.ok(oks.some((line) => line.includes('multicloud-landing-zone/multicloud-region.calm-view.json: OK')));
     });
 
-    // all-actors is multi-file (render.js is single-file) and calm-3-flows
-    // is a tooling fixture: neither ships rendered output.
+    // all-actors is multi-file and fall-hackathon-zeta-flows exercises the flows axis;
+    // neither ships rendered output.
     // multicloud-environment and multicloud-layer carry no base filter;
     // they render with the same dimension the lens drills into.
     const RENDERABLE: Array<[string, string, ...string[]]> = [
@@ -62,6 +62,10 @@ describe('end-to-end: validate -> render -> gallery are green and reproducible',
         ['multicloud-landing-zone/multicloud-region', 'multicloud-region'],
         ['multicloud-landing-zone/multicloud-environment', 'multicloud-environment', '--set', 'env=prod'],
         ['multicloud-landing-zone/multicloud-layer', 'multicloud-layer', '--set', 'layer=network'],
+        ['fall-hackathon-zeta/fall-hackathon-zeta-overview', 'fall-hackathon-zeta-overview'],
+        ['fall-hackathon-zeta/fall-hackathon-zeta-runtime', 'fall-hackathon-zeta-runtime'],
+        ['fall-hackathon-zeta/fall-hackathon-zeta-extensions', 'fall-hackathon-zeta-extensions'],
+        ['fall-hackathon-zeta/fall-hackathon-zeta-seeding', 'fall-hackathon-zeta-seeding'],
     ];
 
     it('render is deterministic: two fresh runs produce identical bytes', () => {
@@ -82,7 +86,7 @@ describe('end-to-end: validate -> render -> gallery are green and reproducible',
         }
     });
 
-    it('gallery embeds the 14 rendered views', () => {
+    it('gallery embeds the 18 rendered views', () => {
         const tmp = mkdtempSync(join(tmpdir(), 'calm-views-'));
         for (const [v, , ...extra] of RENDERABLE) {
             const { code } = run('render.js', [join(POC, 'views', `${v}.calm-view.json`), '--out', tmp, ...extra]);
@@ -91,9 +95,9 @@ describe('end-to-end: validate -> render -> gallery are green and reproducible',
         const out = mkdtempSync(join(tmpdir(), 'calm-gallery-'));
         const { stdout, code } = run('gallery.js', ['--in', tmp, '--out', out]);
         assert.equal(code, 0);
-        assert.match(stdout, /14 views embedded/);
+        assert.match(stdout, /18 views embedded/);
         const html = readFileSync(join(out, 'gallery.html'), 'utf8');
-        assert.equal((html.match(/<section>/g) ?? []).length, 14);
+        assert.equal((html.match(/<section>/g) ?? []).length, 18);
     });
 
     it('derive reproduces the frozen snapshot scope (4 nodes, 3 rels)', () => {

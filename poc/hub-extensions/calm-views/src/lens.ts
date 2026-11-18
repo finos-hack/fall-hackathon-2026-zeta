@@ -162,6 +162,8 @@ export interface GraphGroup {
     id: string;
     label: string;
     tags: string[];
+    parent?: string;
+    calm?: string[];
 }
 
 export interface LensReply {
@@ -347,7 +349,7 @@ export function viewsLensReply(
             | { container?: unknown; nodes?: unknown }
             | undefined;
         if (typeof c !== 'object' || c === null) continue;
-        if (typeof c.container !== 'string' || !inNodes.has(c.container) || containerOf.has(c.container)) continue;
+        if (typeof c.container !== 'string' || !inNodes.has(c.container)) continue;
         for (const m of Array.isArray(c.nodes) ? (c.nodes as unknown[]) : []) {
             if (typeof m === 'string' && inNodes.has(m) && !containerOf.has(m) && m !== c.container) {
                 containerOf.set(m, c.container);
@@ -368,11 +370,19 @@ export function viewsLensReply(
             ...(typeof n['description'] === 'string' ? { tooltip: n['description'] as string } : {}),
         };
     });
-    const groups = [...new Set(containerOf.values())].sort().map((id) => ({
-        id: groupId(id),
-        label: (nodeById.get(id)?.['name'] as string) ?? id,
-        tags: ['Box', 'container'],
-    }));
+    const groups = [...new Set(containerOf.values())].sort().map((id) => {
+        const container = nodeById.get(id) ?? {};
+        const calm = typeof container['hub-calm-id'] === 'string'
+            ? [container['hub-calm-id'] as string]
+            : multiFile ? [] : [id];
+        return {
+            id: groupId(id),
+            label: (container['name'] as string) ?? id,
+            tags: ['Box', 'container'],
+            ...(containerOf.has(id) ? { parent: groupId(containerOf.get(id) as string) } : {}),
+            ...(calm.length > 0 ? { calm } : {}),
+        };
+    });
     const drawn = new Set(nodes.map((n) => n.id));
     const edges: GraphEdge[] = [...inRels]
         .sort()

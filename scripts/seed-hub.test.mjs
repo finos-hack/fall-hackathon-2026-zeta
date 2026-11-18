@@ -8,6 +8,7 @@ import { seedHub } from './seed-hub.mjs';
 
 test('seedHub creates headers, adds missing versions and writes dynamic POC links', async () => {
     const architectures = [];
+    const adrs = [];
     const calls = [];
     const server = createServer(async (req, res) => {
         const url = new URL(req.url ?? '/', 'http://localhost');
@@ -23,6 +24,14 @@ test('seedHub creates headers, adds missing versions and writes dynamic POC link
         if (req.method === 'POST' && url.pathname === '/api/calm/namespaces') return send(409, { error: 'exists' });
         if (req.method === 'GET' && url.pathname === '/api/calm/namespaces/finos/architectures') {
             return send(200, { values: architectures.map(({ id, name }) => ({ id, name })) });
+        }
+        if (req.method === 'GET' && url.pathname === '/api/calm/namespaces/finos/adrs') {
+            return send(200, { values: adrs });
+        }
+        if (req.method === 'POST' && url.pathname === '/api/calm/namespaces/finos/adrs') {
+            const id = String(adrs.length + 1);
+            adrs.push({ id, revision: 1, adr: body });
+            return send(201, undefined, { Location: `/api/calm/namespaces/finos/adrs/${id}/revisions/1` });
         }
         if (req.method === 'POST' && url.pathname === '/api/calm/namespaces/finos/architectures') {
             const id = String(architectures.length + 1);
@@ -54,19 +63,29 @@ test('seedHub creates headers, adds missing versions and writes dynamic POC link
 
     try {
         const ids = await seedHub({ baseUrl: `http://127.0.0.1:${address.port}`, repoRoot: process.cwd(), envPath: envFile, log });
-        assert.deepEqual(ids, { KYC: '1', ECH: '2', ARCHITECTURE: '3' });
-        assert.equal(architectures.length, 3);
-        assert.deepEqual(architectures.map((item) => item.versions), [['1.0.0'], ['1.0.0', '1.1.0'], ['1.0.0']]);
+        assert.deepEqual(ids, { KYC: '1', ECH: '2', ARCHITECTURE: '3', ZETA: '4', ADR: '1' });
+        assert.equal(architectures.length, 4);
+        assert.equal(architectures[3]?.name, 'Fall Hackathon ZETA');
+        assert.deepEqual(architectures.map((item) => item.versions), [['1.0.0'], ['1.0.0', '1.1.0'], ['1.0.0'], ['1.0.0']]);
+        assert.equal(adrs.length, 1);
+        assert.equal(adrs[0]?.adr.title, 'Serve the patched UI beside the official Hub backend');
+        assert.ok(adrs[0]?.adr.links.some((link) => link.href.includes('/architectures/4/1.0.0')));
         const env = readFileSync(envFile, 'utf8');
         assert.match(env, /CALM_POC_KYC=1/);
         assert.match(env, /CALM_POC_ECH=2/);
         assert.match(env, /CALM_POC_ARCHITECTURE=3/);
+        assert.match(env, /CALM_POC_ZETA=4/);
+        assert.match(env, /CALM_POC_ADR=1/);
 
         const firstArchitectureCreateCount = calls.filter((call) => call.method === 'POST' && call.path.endsWith('/architectures')).length;
+        const firstAdrCreateCount = calls.filter((call) => call.method === 'POST' && call.path.endsWith('/adrs')).length;
         await seedHub({ baseUrl: `http://127.0.0.1:${address.port}`, repoRoot: process.cwd(), envPath: envFile, log });
         const secondArchitectureCreateCount = calls.filter((call) => call.method === 'POST' && call.path.endsWith('/architectures')).length;
-        assert.equal(firstArchitectureCreateCount, 3);
+        const secondAdrCreateCount = calls.filter((call) => call.method === 'POST' && call.path.endsWith('/adrs')).length;
+        assert.equal(firstArchitectureCreateCount, 4);
         assert.equal(secondArchitectureCreateCount, firstArchitectureCreateCount);
+        assert.equal(firstAdrCreateCount, 1);
+        assert.equal(secondAdrCreateCount, firstAdrCreateCount);
     } finally {
         await new Promise((resolve, reject) => server.close((error) => error ? reject(error) : resolve()));
         rmSync(out, { recursive: true, force: true });

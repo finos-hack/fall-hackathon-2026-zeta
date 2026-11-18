@@ -1,0 +1,43 @@
+{
+  "$schema": "../schema/view.json",
+  "unique-id": "fall-hackathon-zeta-flows",
+  "name": "Fall Hackathon ZETA flows",
+  "description": "The seven flows declared by the Fall Hackathon ZETA architecture. Use the focused overview, runtime, extension, and seeding views for component diagrams.",
+  "audience": [
+    "developers"
+  ],
+  "suggested-formats": [
+    "json"
+  ],
+  "group": "Fall Hackathon ZETA",
+  "for": "../model/fall-hackathon-zeta.architecture.json",
+  "architecture": "fall-hackathon-zeta",
+  "filter": {
+    "nodes": [
+      "demo-user",
+      "web-browser",
+      "hub-ui-proxy",
+      "calmhub-backend",
+      "mongodb",
+      "views-lens",
+      "c4-lens",
+      "ea-layers-lens",
+      "calm-extensions-volume",
+      "hub-data-volume",
+      "demo-model-files",
+      "view-sidecars",
+      "seed-hub-script",
+      "hub-ui-build",
+      "docker-compose-runtime"
+    ],
+    "flows": [
+      "flow-open-local-demo",
+      "flow-seed-models",
+      "flow-render-named-view",
+      "flow-use-c4-lens",
+      "flow-use-ea-layers-lens",
+      "flow-export-view",
+      "flow-build-patched-ui"
+    ]
+  }
+}

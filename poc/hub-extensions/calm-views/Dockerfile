@@ -12,6 +12,9 @@ RUN npm run build
 
 FROM node:24-bookworm-slim
 WORKDIR /srv/views
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends fontconfig fonts-dejavu-core \
+    && rm -rf /var/lib/apt/lists/*
 COPY poc/hub-extensions/calm-views/package.json poc/hub-extensions/calm-views/package-lock.json ./
 RUN npm ci --include=dev
 COPY --from=tools /srv/tools/dist /tools/dist

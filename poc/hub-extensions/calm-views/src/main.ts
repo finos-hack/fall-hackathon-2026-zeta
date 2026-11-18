@@ -32,6 +32,9 @@ createViewsServer({
             kycVersion: env.CALM_POC_KYC_VERSION ?? '1.0.0',
             echId: env.CALM_POC_ECH ?? '13',
             echVersion: env.CALM_POC_ECH_VERSION ?? '1.1.0',
+            zetaId: env.CALM_POC_ZETA ?? '15',
+            zetaVersion: env.CALM_POC_ZETA_VERSION ?? '1.0.0',
+            adrId: env.CALM_POC_ADR ?? '1',
         },
     },
 }).listen(port, host, () =>

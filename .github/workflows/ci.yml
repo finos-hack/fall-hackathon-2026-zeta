@@ -50,12 +50,12 @@ jobs:
         working-directory: poc/hub-extensions/calm-views
       - run: npm test
         working-directory: poc/hub-extensions/calm-views
-  hub-image:
+  hub-ui-proxy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Test the Hub UI patch and build the local image
-        run: bash scripts/build-hub-image.sh
+      - name: Build the patched UI proxy
+        run: docker build -f scripts/hub-ui-proxy.Dockerfile -t calm-hub-ui:ci .
   lens-image:
     runs-on: ubuntu-latest
     steps:

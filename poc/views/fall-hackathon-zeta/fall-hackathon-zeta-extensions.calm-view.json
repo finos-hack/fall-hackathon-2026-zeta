@@ -1,0 +1,23 @@
+{
+  "$schema": "../../schema/view.json",
+  "unique-id": "fall-hackathon-zeta-extensions",
+  "name": "Fall Hackathon ZETA lens services",
+  "description": "How Hub registers and calls the local Views lens and the FINOS C4 and EA Layers lenses.",
+  "audience": ["platform-engineers", "calm-extension-authors"],
+  "suggested-formats": ["json", "svg", "png"],
+  "group": "Fall Hackathon ZETA",
+  "for": "../../model/fall-hackathon-zeta.architecture.json",
+  "architecture": "fall-hackathon-zeta",
+  "filter": {
+    "nodes": [
+      "docker-compose-runtime",
+      "calmhub-backend",
+      "views-lens",
+      "c4-lens",
+      "ea-layers-lens",
+      "calm-extensions-volume",
+      "view-sidecars",
+      "demo-model-files"
+    ]
+  }
+}

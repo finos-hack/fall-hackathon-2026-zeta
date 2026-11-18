@@ -4,6 +4,13 @@ ROOT := $(CURDIR)
 TOOLS := $(ROOT)/poc/tools
 EXT := $(ROOT)/poc/hub-extensions/calm-views
 HUB_URL ?= http://localhost:8080
+HUB_READY_URL ?= $(HUB_URL)/api/calm/namespaces/counts
+CALM_HUB_IMAGE ?= finos/calm-hub:main
+export CALM_HUB_IMAGE
+CALM_C4_IMAGE ?= finos/calm-hub-c4:main
+export CALM_C4_IMAGE
+CALM_EA_LAYERS_IMAGE ?= finos/calm-hub-ea-layers:main
+export CALM_EA_LAYERS_IMAGE
 LANDINGZONE_SOURCE ?= $(ROOT)/.local/multi-cloud-runway
 LANDINGZONE_COMMIT := 2fe49b9829df7a8749915ba1200896390d95139b
 LANDINGZONE_MARKER := $(ROOT)/.local/multi-cloud-runway.zeta-source
@@ -28,14 +35,15 @@ help:
 	@echo "check            tools + extension suites, all green"
 	@echo "clean            remove local build output (keeps generated renders)"
 	@echo "keys             generate dev-only Hub identity keys (.local, git-ignored)"
-	@echo "hub-build        build the lens image from this repo"
-	@echo "hub-up           keys + build + (re)create mongo/lens/Hub, wait for Hub"
+	@echo "hub-build        optional custom Hub image with local UI patches"
+	@echo "hub-up           keys + pull official images, build the UI proxy, start and seed"
+	@echo "                 set CALM_HUB_IMAGE=calm-hub:zeta to use the custom image"
 	@echo "hub-start/stop   start/stop the demo Hub container only"
 	@echo "hub-down         stop and remove demo containers (data volume stays)"
 	@echo "hub-reset        remove demo containers and MongoDB data volume"
 	@echo "hub-logs         last Hub container logs"
 	@echo "hub-status       running containers, Hub health, lens wiring"
-	@echo "seed             load the 3 demo models into the Hub (idempotent)"
+	@echo "seed             load the 4 demo models and ADR into the Hub (idempotent)"
 
 landingzone-source:
 	@mkdir -p .local
@@ -124,11 +132,14 @@ keys:
 hub-build:
 	bash scripts/build-hub-image.sh
 
-hub-up: keys hub-build
-	docker compose up -d mongodb calmhub
-	@echo "waiting for Hub on $(HUB_URL) ..."
-	@for i in $$(seq 1 60); do curl -sf -o /dev/null $(HUB_URL)/q/health && break || sleep 2; done
-	@curl -sf -o /dev/null $(HUB_URL)/q/health && echo "Hub is up: $(HUB_URL)"
+hub-up: keys
+	@if [ "$(CALM_HUB_IMAGE)" = "finos/calm-hub:main" ]; then docker compose pull calmhub; fi
+	docker compose pull c4
+	docker compose pull ea-layers
+	docker compose up -d --build mongodb calmhub hub-ui
+	@echo "waiting for Hub API on $(HUB_READY_URL) ..."
+	@for i in $$(seq 1 60); do curl -sf -o /dev/null $(HUB_READY_URL) && break || sleep 2; done
+	@curl -sf -o /dev/null $(HUB_READY_URL) && echo "Hub API is up: $(HUB_URL)"
 	$(MAKE) seed
 	@echo "waiting for the views lens on :8095 ..."
 	@for i in $$(seq 1 60); do curl -sf -o /dev/null http://localhost:8095/healthz && break || sleep 2; done
@@ -152,7 +163,7 @@ hub-logs:
 hub-status:
 	@containers="$$(docker ps --filter name=zeta --format '{{.Names}} ({{.Image}}) {{.Status}}')"; \
 	if [ -n "$$containers" ]; then printf '%s\n' "$$containers"; else echo "no zeta containers running"; fi
-	@curl --max-time 3 -s -o /dev/null -w "hub :8080 -> %{http_code}\n" $(HUB_URL)/ || true
+	@curl --max-time 3 -s -o /dev/null -w "hub API :8080 -> %{http_code}\n" $(HUB_READY_URL) || true
 	@curl --max-time 3 -s -o /dev/null -w "lens :8095/poc -> %{http_code}\n" http://localhost:8095/poc || true
 
 seed:

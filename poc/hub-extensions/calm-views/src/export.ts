@@ -146,7 +146,7 @@ export async function renderGraphSvg(title: string, graph: DiagramGraph, layout:
     }).join('');
 
     const empty = graph.nodes.length === 0 ? '<text x="48" y="108" class="node-label">No nodes in this view</text>' : '';
-    return `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}"><defs><marker id="arrow" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto"><path d="M 0 0 L 10 4 L 0 8 z" fill="#667085"/></marker></defs><rect width="100%" height="100%" fill="#fff"/><style>text{font-family:Arial,sans-serif;fill:#202938}.title{font-size:22px;font-weight:700}.node-label{font-size:14px;font-weight:600}.edge-label{font-size:11px;fill:#475467;paint-order:stroke;stroke:#fff;stroke-width:5px;stroke-linejoin:round}.group-label{font-size:12px;font-weight:700;fill:#475467}</style><text x="${PADDING}" y="32" class="title">${escapeXml(title)}</text>${groups}${edges}${nodes}${empty}</svg>`;
+    return `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}"><defs><marker id="arrow" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto"><path d="M 0 0 L 10 4 L 0 8 z" fill="#667085"/></marker></defs><rect width="100%" height="100%" fill="#fff"/><style>text{font-family:Arial,'DejaVu Sans',sans-serif;fill:#202938}.title{font-size:22px;font-weight:700}.node-label{font-size:14px;font-weight:600}.edge-label{font-size:11px;fill:#475467;paint-order:stroke;stroke:#fff;stroke-width:5px;stroke-linejoin:round}.group-label{font-size:12px;font-weight:700;fill:#475467}</style><text x="${PADDING}" y="32" class="title">${escapeXml(title)}</text>${groups}${edges}${nodes}${empty}</svg>`;
 }
 
 function prune(now: number): void {

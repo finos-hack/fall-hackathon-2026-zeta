@@ -13,13 +13,18 @@ describe('in-Hub POC presentation', () => {
     it('returns one markdown document with live model counts and Hub links', () => {
         const reply = pocScreen(VIEWS);
         assert.equal(reply.hubApi, 0);
-        assert.match(reply.title, /CALM views/);
+        assert.match(reply.title, /Fall Hackathon ZETA/);
         assert.equal(reply.blocks.length, 1);
         const text = (reply.blocks[0] as { text?: string }).text ?? '';
-        assert.match(text, /\| Model \| Origin \| Nodes \| Relationships \| Model file \| Source \| Commit \| License \| Importer \|/);
-        assert.match(text, /\| \[FluxNova KYC onboarding\]\(http:\/\/localhost:8080\/#\/finos\/architectures\/12\/1\.0\.0\) \| Native CALM \| 20 \| 28 \|/);
-        assert.match(text, /\| \[eCH-0122\]\(http:\/\/localhost:8080\/#\/finos\/architectures\/13\/1\.1\.0\) \| Imported from ArchiMate \| 216 \| 287 \|/);
-        assert.match(text, /\| \[Multi-cloud landing zone\]\(http:\/\/localhost:8080\/#\/finos\/architectures\/14\/1\.0\.0\) \| Imported from Terragrunt \| 295 \| 450 \|/);
+        assert.match(text, /\| Model \| Origin \| Nodes \| Relationships \| Flows \| Model file \| Source \| License \|/);
+        assert.match(text, /\| \[FluxNova KYC onboarding\]\(http:\/\/localhost:8080\/#\/finos\/architectures\/12\/1\.0\.0\) \| Native CALM \| 20 \| 28 \| 0 \|/);
+        assert.match(text, /\| \[eCH-0122\]\(http:\/\/localhost:8080\/#\/finos\/architectures\/13\/1\.1\.0\) \| Imported from ArchiMate \| 216 \| 287 \| 0 \|/);
+        assert.match(text, /\| \[Multi-cloud landing zone\]\(http:\/\/localhost:8080\/#\/finos\/architectures\/14\/1\.0\.0\) \| Imported from Terragrunt \| 295 \| 450 \| 0 \|/);
+        assert.match(text, /\| \[Fall Hackathon ZETA\]\(http:\/\/localhost:8080\/#\/finos\/architectures\/15\/1\.0\.0\) \| Local demo architecture \| 15 \| 26 \| 7 \|/);
+        assert.match(text, /4 Hub models, 20 named views/);
+        assert.match(text, /## Local demo components/);
+        assert.match(text, /## Views for this model/);
+        assert.match(text, /http:\/\/localhost:8080\/#\/namespace\/finos\?type=adrs/);
         assert.match(text, /\| View \| Question it answers \| Reader \|/);
         assert.ok(!reply.blocks.some((block) => block.type === 'cards'));
         assert.ok(!reply.blocks.some((block) => block.type === 'table'));
@@ -39,7 +44,7 @@ describe('in-Hub POC presentation', () => {
             assert.equal(reply.hubApi, 0);
             assert.equal(reply.blocks.length, 1);
             assert.equal(reply.blocks[0]?.type, 'markdown');
-            assert.match(reply.blocks[0]?.text ?? '', /## Three models/);
+            assert.match(reply.blocks[0]?.text ?? '', /## Four models/);
         } finally {
             await new Promise<void>((resolve, reject) => server.close((error) => (error ? reject(error) : resolve())));
         }

@@ -1,0 +1,548 @@
+{
+  "$schema": "https://calm.finos.org/release/1.2/meta/calm.json",
+  "unique-id": "fall-hackathon-zeta",
+  "title": "Fall Hackathon ZETA",
+  "description": "The local Fall Hackathon ZETA deployment: an official CALM Hub backend, a patched UI proxy, MongoDB, and three diagram-lens services.",
+  "nodes": [
+    {
+      "unique-id": "demo-user",
+      "node-type": "actor",
+      "name": "Demo user",
+      "description": "An architect or platform engineer who opens the local demo, selects a lens, and explores a named view."
+    },
+    {
+      "unique-id": "web-browser",
+      "node-type": "webclient",
+      "name": "Web browser",
+      "description": "The browser loads the patched Hub UI and sends same-origin API requests through the local UI proxy.",
+      "interfaces": [
+        {
+          "unique-id": "demo-ui-url",
+          "type": "url",
+          "value": "http://localhost:8080"
+        }
+      ]
+    },
+    {
+      "unique-id": "hub-ui-proxy",
+      "node-type": "service",
+      "name": "Patched Hub UI proxy",
+      "description": "Nginx serves the locally patched React bundle with the drill-down badge, Key and Notes controls, and expanded JSON viewer. It forwards API requests to the official Hub backend.",
+      "metadata": {
+        "runtime": "Docker Compose",
+        "image": "calm-hub-ui:local",
+        "source": "scripts/hub-ui-proxy.Dockerfile"
+      },
+      "interfaces": [
+        {
+          "unique-id": "demo-ui",
+          "type": "url",
+          "value": "http://localhost:8080"
+        },
+        {
+          "unique-id": "hub-upstream",
+          "type": "url",
+          "value": "http://calmhub:8080"
+        }
+      ]
+    },
+    {
+      "unique-id": "calmhub-backend",
+      "node-type": "service",
+      "name": "CALM Hub backend",
+      "description": "The unmodified official finos/calm-hub:main image. It stores architectures, serves the CALM API, loads extension manifests from the shared volume, and proxies lens requests.",
+      "metadata": {
+        "runtime": "Docker Compose",
+        "image": "finos/calm-hub:main"
+      },
+      "interfaces": [
+        {
+          "unique-id": "hub-api",
+          "type": "url",
+          "value": "http://calmhub:8080"
+        },
+        {
+          "unique-id": "hub-documentation",
+          "type": "url",
+          "value": "https://calm.finos.org/calm-hub/"
+        }
+      ]
+    },
+    {
+      "unique-id": "mongodb",
+      "node-type": "database",
+      "name": "MongoDB",
+      "description": "The official Hub backend's local MongoDB 8 data store. The zeta-mongo-data Docker volume keeps its data between runs.",
+      "metadata": {
+        "runtime": "Docker Compose",
+        "image": "mongo:8.0",
+        "volume": "zeta-mongo-data"
+      },
+      "interfaces": [
+        {
+          "unique-id": "mongodb-port",
+          "type": "port-interface",
+          "port": 27017
+        }
+      ]
+    },
+    {
+      "unique-id": "views-lens",
+      "node-type": "service",
+      "name": "CALM Views lens",
+      "description": "The local calm-views extension reads the named sidecar views, draws filtered graphs in Hub, serves the POC screen, and exports SVG or PNG files.",
+      "metadata": {
+        "runtime": "Docker Compose",
+        "image": "calm-views:local",
+        "source": "poc/hub-extensions/calm-views"
+      },
+      "interfaces": [
+        {
+          "unique-id": "views-backend",
+          "type": "url",
+          "value": "http://views:8095"
+        },
+        {
+          "unique-id": "views-export",
+          "type": "url",
+          "value": "http://localhost:8095"
+        }
+      ]
+    },
+    {
+      "unique-id": "c4-lens",
+      "node-type": "service",
+      "name": "FINOS C4 lens",
+      "description": "The official C4 diagram-lens service. Hub calls it on the Compose network to draw C4 views of an architecture.",
+      "metadata": {
+        "runtime": "Docker Compose",
+        "image": "finos/calm-hub-c4:main"
+      },
+      "interfaces": [
+        {
+          "unique-id": "c4-backend",
+          "type": "url",
+          "value": "http://c4:8093"
+        },
+        {
+          "unique-id": "c4-documentation",
+          "type": "url",
+          "value": "https://calm.finos.org/extensions/c4/"
+        }
+      ]
+    },
+    {
+      "unique-id": "ea-layers-lens",
+      "node-type": "service",
+      "name": "FINOS EA Layers lens",
+      "description": "The official ArchiMate Layers diagram-lens service. Hub calls it on the Compose network to draw business, application, and technology layers.",
+      "metadata": {
+        "runtime": "Docker Compose",
+        "image": "finos/calm-hub-ea-layers:main"
+      },
+      "interfaces": [
+        {
+          "unique-id": "ea-layers-backend",
+          "type": "url",
+          "value": "http://ea-layers:8094"
+        },
+        {
+          "unique-id": "ea-layers-documentation",
+          "type": "url",
+          "value": "https://calm.finos.org/extensions/ea-layers/"
+        }
+      ]
+    },
+    {
+      "unique-id": "calm-extensions-volume",
+      "node-type": "data-asset",
+      "name": "Extension registry volume",
+      "description": "The calm-extensions Docker volume. Views, C4, and EA Layers write their extension.json and notation.json files here; Hub reads the volume when it starts.",
+      "metadata": {
+        "runtime": "Docker named volume",
+        "name": "calm-extensions"
+      }
+    },
+    {
+      "unique-id": "hub-data-volume",
+      "node-type": "data-asset",
+      "name": "Hub data volume",
+      "description": "The zeta-mongo-data Docker volume stores architecture headers and versions for the local Hub demo.",
+      "metadata": {
+        "runtime": "Docker named volume",
+        "name": "zeta-mongo-data"
+      }
+    },
+    {
+      "unique-id": "demo-model-files",
+      "node-type": "data-asset",
+      "name": "Demo architecture files",
+      "description": "The four CALM models seeded into Hub: KYC onboarding, eCH-0122, the multi-cloud landing zone, and this local demo architecture.",
+      "metadata": {
+        "source-path": "poc/model"
+      }
+    },
+    {
+      "unique-id": "view-sidecars",
+      "node-type": "data-asset",
+      "name": "Named view sidecars",
+      "description": "The *.calm-view.json selections in poc/views. The CALM Views service reads these files without changing the architecture models.",
+      "metadata": {
+        "source-path": "poc/views"
+      }
+    },
+    {
+      "unique-id": "seed-hub-script",
+      "node-type": "service",
+      "name": "Hub seed script",
+      "description": "scripts/seed-hub.mjs runs on the developer host during make hub-up. It loads the four model files through the local API proxy and writes their assigned Hub IDs to .local/hub-models.env.",
+      "metadata": {
+        "runtime": "Node.js on the developer host",
+        "source-path": "scripts/seed-hub.mjs"
+      },
+      "interfaces": [
+        {
+          "unique-id": "seed-architecture-api",
+          "type": "url",
+          "value": "http://localhost:8080/api/calm/namespaces/finos/architectures"
+        }
+      ]
+    },
+    {
+      "unique-id": "hub-ui-build",
+      "node-type": "service",
+      "name": "Hub UI build stage",
+      "description": "A Node 26 Docker build stage fetches the pinned CALM Hub UI source, applies the local view-lens-ui.patch, runs the UI tests, and produces static assets for the Nginx proxy. It does not compile the Hub server.",
+      "metadata": {
+        "runtime": "Docker build stage",
+        "source-revision": "e46aeeccbb626b3260dcfc3e615096e783bb7571",
+        "source-path": "scripts/hub-ui-proxy.Dockerfile"
+      },
+      "interfaces": [
+        {
+          "unique-id": "upstream-hub-ui-source",
+          "type": "url",
+          "value": "https://github.com/finos/architecture-as-code/tree/e46aeeccbb626b3260dcfc3e615096e783bb7571/calm-hub-ui"
+        }
+      ]
+    },
+    {
+      "unique-id": "docker-compose-runtime",
+      "node-type": "system",
+      "name": "Docker Compose runtime",
+      "description": "The six local containers and two named volumes started by docker-compose.yml. The Hub API remains the official FINOS image; the UI proxy is a separate local container."
+    }
+  ],
+  "relationships": [
+    {
+      "unique-id": "demo-user-opens-browser",
+      "description": "The demo user opens the local Hub UI in a browser.",
+      "relationship-type": {
+        "interacts": {
+          "actor": "demo-user",
+          "nodes": ["web-browser"]
+        }
+      }
+    },
+    {
+      "unique-id": "browser-to-ui-proxy",
+      "description": "The browser loads the patched UI and sends same-origin requests through Nginx.",
+      "relationship-type": {
+        "connects": {
+          "source": {"node": "web-browser"},
+          "destination": {"node": "hub-ui-proxy"},
+          "protocol": "HTTP"
+        }
+      }
+    },
+    {
+      "unique-id": "ui-proxy-to-hub-api",
+      "description": "Nginx forwards API and non-static paths to the official Hub backend.",
+      "relationship-type": {
+        "connects": {
+          "source": {"node": "hub-ui-proxy"},
+          "destination": {"node": "calmhub-backend"},
+          "protocol": "HTTP"
+        }
+      }
+    },
+    {
+      "unique-id": "hub-persists-architectures",
+      "description": "The Hub backend reads and writes architecture data in MongoDB.",
+      "relationship-type": {
+        "connects": {
+          "source": {"node": "calmhub-backend"},
+          "destination": {"node": "mongodb"},
+          "protocol": "MongoDB"
+        }
+      }
+    },
+    {
+      "unique-id": "hub-calls-views-lens",
+      "description": "The Hub sends the selected architecture to the CALM Views lens service.",
+      "relationship-type": {
+        "connects": {
+          "source": {"node": "calmhub-backend"},
+          "destination": {"node": "views-lens"},
+          "protocol": "HTTP"
+        }
+      }
+    },
+    {
+      "unique-id": "hub-calls-c4-lens",
+      "description": "The Hub sends the selected architecture to the FINOS C4 lens service.",
+      "relationship-type": {
+        "connects": {
+          "source": {"node": "calmhub-backend"},
+          "destination": {"node": "c4-lens"},
+          "protocol": "HTTP"
+        }
+      }
+    },
+    {
+      "unique-id": "hub-calls-ea-layers-lens",
+      "description": "The Hub sends the selected architecture to the FINOS EA Layers lens service.",
+      "relationship-type": {
+        "connects": {
+          "source": {"node": "calmhub-backend"},
+          "destination": {"node": "ea-layers-lens"},
+          "protocol": "HTTP"
+        }
+      }
+    },
+    {
+      "unique-id": "hub-reads-extension-registry",
+      "description": "At startup, Hub reads the extension manifests and notations from the shared volume.",
+      "relationship-type": {
+        "connects": {
+          "source": {"node": "calmhub-backend"},
+          "destination": {"node": "calm-extensions-volume"},
+          "protocol": "filesystem"
+        }
+      }
+    },
+    {
+      "unique-id": "views-publishes-manifest",
+      "description": "The Views sidecar copies its manifest and notation into the extension registry volume.",
+      "relationship-type": {
+        "connects": {
+          "source": {"node": "views-lens"},
+          "destination": {"node": "calm-extensions-volume"},
+          "protocol": "filesystem"
+        }
+      }
+    },
+    {
+      "unique-id": "c4-publishes-manifest",
+      "description": "The C4 sidecar copies its manifest and notation into the extension registry volume.",
+      "relationship-type": {
+        "connects": {
+          "source": {"node": "c4-lens"},
+          "destination": {"node": "calm-extensions-volume"},
+          "protocol": "filesystem"
+        }
+      }
+    },
+    {
+      "unique-id": "ea-layers-publishes-manifest",
+      "description": "The EA Layers sidecar copies its manifest and notation into the extension registry volume.",
+      "relationship-type": {
+        "connects": {
+          "source": {"node": "ea-layers-lens"},
+          "destination": {"node": "calm-extensions-volume"},
+          "protocol": "filesystem"
+        }
+      }
+    },
+    {
+      "unique-id": "mongodb-uses-data-volume",
+      "description": "MongoDB persists Hub data in its named Docker volume.",
+      "relationship-type": {
+        "connects": {
+          "source": {"node": "mongodb"},
+          "destination": {"node": "hub-data-volume"},
+          "protocol": "filesystem"
+        }
+      }
+    },
+    {
+      "unique-id": "views-reads-sidecars",
+      "description": "The Views service reads the named view definitions copied into its image.",
+      "relationship-type": {
+        "connects": {
+          "source": {"node": "views-lens"},
+          "destination": {"node": "view-sidecars"},
+          "protocol": "filesystem"
+        }
+      }
+    },
+    {
+      "unique-id": "views-reads-models",
+      "description": "The Views service reads model files for counts and POC links.",
+      "relationship-type": {
+        "connects": {
+          "source": {"node": "views-lens"},
+          "destination": {"node": "demo-model-files"},
+          "protocol": "filesystem"
+        }
+      }
+    },
+    {
+      "unique-id": "seed-reads-model-files",
+      "description": "The seed script reads the four model files from the repository.",
+      "relationship-type": {
+        "connects": {
+          "source": {"node": "seed-hub-script"},
+          "destination": {"node": "demo-model-files"},
+          "protocol": "filesystem"
+        }
+      }
+    },
+    {
+      "unique-id": "seed-posts-architectures",
+      "description": "The seed script posts model versions through the local UI proxy.",
+      "relationship-type": {
+        "connects": {
+          "source": {"node": "seed-hub-script"},
+          "destination": {"node": "hub-ui-proxy"},
+          "protocol": "HTTP"
+        }
+      }
+    },
+    {
+      "unique-id": "ui-build-produces-proxy-image",
+      "description": "The Node build stage produces static React assets used by the Nginx UI proxy image.",
+      "relationship-type": {
+        "connects": {
+          "source": {"node": "hub-ui-build"},
+          "destination": {"node": "hub-ui-proxy"},
+          "protocol": "Docker build"
+        }
+      }
+    },
+    {
+      "unique-id": "browser-downloads-view-export",
+      "description": "The browser downloads SVG or PNG exports directly from the Views service.",
+      "relationship-type": {
+        "connects": {
+          "source": {"node": "web-browser"},
+          "destination": {"node": "views-lens"},
+          "protocol": "HTTP"
+        }
+      }
+    },
+    {
+      "unique-id": "compose-contains-hub-ui",
+      "description": "Compose runs the UI proxy container.",
+      "relationship-type": {"composed-of": {"container": "docker-compose-runtime", "nodes": ["hub-ui-proxy"]}}
+    },
+    {
+      "unique-id": "compose-contains-hub-backend",
+      "description": "Compose runs the official Hub backend container.",
+      "relationship-type": {"composed-of": {"container": "docker-compose-runtime", "nodes": ["calmhub-backend"]}}
+    },
+    {
+      "unique-id": "compose-contains-mongodb",
+      "description": "Compose runs MongoDB.",
+      "relationship-type": {"composed-of": {"container": "docker-compose-runtime", "nodes": ["mongodb"]}}
+    },
+    {
+      "unique-id": "compose-contains-views",
+      "description": "Compose runs the local CALM Views lens container.",
+      "relationship-type": {"composed-of": {"container": "docker-compose-runtime", "nodes": ["views-lens"]}}
+    },
+    {
+      "unique-id": "compose-contains-c4",
+      "description": "Compose runs the FINOS C4 lens container.",
+      "relationship-type": {"composed-of": {"container": "docker-compose-runtime", "nodes": ["c4-lens"]}}
+    },
+    {
+      "unique-id": "compose-contains-ea-layers",
+      "description": "Compose runs the FINOS EA Layers lens container.",
+      "relationship-type": {"composed-of": {"container": "docker-compose-runtime", "nodes": ["ea-layers-lens"]}}
+    },
+    {
+      "unique-id": "compose-contains-extension-volume",
+      "description": "Compose shares the extension manifest volume with Hub and all three lens services.",
+      "relationship-type": {"composed-of": {"container": "docker-compose-runtime", "nodes": ["calm-extensions-volume"]}}
+    },
+    {
+      "unique-id": "compose-contains-hub-data-volume",
+      "description": "Compose keeps Hub data in a named MongoDB volume.",
+      "relationship-type": {"composed-of": {"container": "docker-compose-runtime", "nodes": ["hub-data-volume"]}}
+    }
+  ],
+  "flows": [
+    {
+      "unique-id": "flow-open-local-demo",
+      "name": "Open the local demo",
+      "description": "A user opens the patched UI, which sends API requests to the official Hub backend and reads stored architecture data.",
+      "transitions": [
+        {"relationship-unique-id": "demo-user-opens-browser", "sequence-number": 1},
+        {"relationship-unique-id": "browser-to-ui-proxy", "sequence-number": 2},
+        {"relationship-unique-id": "ui-proxy-to-hub-api", "sequence-number": 3},
+        {"relationship-unique-id": "hub-persists-architectures", "sequence-number": 4}
+      ]
+    },
+    {
+      "unique-id": "flow-seed-models",
+      "name": "Seed the demo models",
+      "description": "make hub-up runs the seed script, which loads the four model files into the Hub through the UI proxy.",
+      "transitions": [
+        {"relationship-unique-id": "seed-reads-model-files", "sequence-number": 1},
+        {"relationship-unique-id": "seed-posts-architectures", "sequence-number": 2},
+        {"relationship-unique-id": "ui-proxy-to-hub-api", "sequence-number": 3},
+        {"relationship-unique-id": "hub-persists-architectures", "sequence-number": 4}
+      ]
+    },
+    {
+      "unique-id": "flow-render-named-view",
+      "name": "Render a named view",
+      "description": "Hub sends the selected architecture to CALM Views, which resolves the sidecar and returns a graph for the UI to draw.",
+      "transitions": [
+        {"relationship-unique-id": "browser-to-ui-proxy", "sequence-number": 1},
+        {"relationship-unique-id": "ui-proxy-to-hub-api", "sequence-number": 2},
+        {"relationship-unique-id": "hub-calls-views-lens", "sequence-number": 3},
+        {"relationship-unique-id": "views-reads-sidecars", "sequence-number": 4}
+      ]
+    },
+    {
+      "unique-id": "flow-use-c4-lens",
+      "name": "Use the C4 lens",
+      "description": "Hub sends the selected architecture to the official C4 extension and draws its reply.",
+      "transitions": [
+        {"relationship-unique-id": "browser-to-ui-proxy", "sequence-number": 1},
+        {"relationship-unique-id": "ui-proxy-to-hub-api", "sequence-number": 2},
+        {"relationship-unique-id": "hub-calls-c4-lens", "sequence-number": 3}
+      ]
+    },
+    {
+      "unique-id": "flow-use-ea-layers-lens",
+      "name": "Use the EA Layers lens",
+      "description": "Hub sends the selected architecture to the official EA Layers extension and draws its reply.",
+      "transitions": [
+        {"relationship-unique-id": "browser-to-ui-proxy", "sequence-number": 1},
+        {"relationship-unique-id": "ui-proxy-to-hub-api", "sequence-number": 2},
+        {"relationship-unique-id": "hub-calls-ea-layers-lens", "sequence-number": 3}
+      ]
+    },
+    {
+      "unique-id": "flow-export-view",
+      "name": "Export a view",
+      "description": "The browser follows the export link to the Views service and downloads SVG or PNG output.",
+      "transitions": [
+        {"relationship-unique-id": "browser-downloads-view-export", "sequence-number": 1},
+        {"relationship-unique-id": "views-reads-sidecars", "sequence-number": 2},
+        {"relationship-unique-id": "views-reads-models", "sequence-number": 3}
+      ]
+    },
+    {
+      "unique-id": "flow-build-patched-ui",
+      "name": "Build the patched UI proxy",
+      "description": "A Node-only build produces the React static assets used by Nginx; the official Hub server image is not rebuilt.",
+      "transitions": [
+        {"relationship-unique-id": "ui-build-produces-proxy-image", "sequence-number": 1}
+      ]
+    }
+  ]
+}

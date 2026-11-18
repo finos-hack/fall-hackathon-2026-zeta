@@ -28,6 +28,14 @@ describe('calm-views lens', () => {
         assert.ok(reply.controls[0]?.items.some((i) => i.value === 'kyc-audit-view'));
     });
 
+    it('includes the visible container as group selection data for the UI', () => {
+        const reply = viewsLensReply(KYC, views, 'kyc-platform-view', KYC_ID);
+        const platform = reply.graph.nodes.find((node) => node.id === 'kyc-fluxnova-platform');
+        assert.ok(platform, 'the selected view includes the platform node');
+        const group = reply.graph.groups.find((item) => item.id === 'group:kyc-fluxnova-platform');
+        assert.deepEqual(group?.calm, ['kyc-fluxnova-platform']);
+    });
+
     it('defaults to the first matching view without a selection', () => {
         const reply = viewsLensReply(KYC, views, null, KYC_ID);
         assert.ok(reply.graph.nodes.length > 0);

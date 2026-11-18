@@ -36,15 +36,16 @@ The project defines a view document in [`poc/schema/view.json`](poc/schema/view.
 - `landingzone2calm`: imports a Terragrunt landing zone as a CALM architecture.
 - the Hub diagram lens in `poc/hub-extensions/calm-views`.
 
-The repository ships three models. Each model is converted or imported, and none is edited by hand. Sources and hashes are in `poc/PROVENANCE.md`.
+The repository ships four models. Three are imported or vendored; the Fall Hackathon ZETA model adapts the CALM tooling architecture to describe this local demo. Sources and hashes are in `poc/PROVENANCE.md`.
 
 | Model | Nodes | Relationships | Views |
 |---|---|---|---|
 | FluxNova KYC onboarding | 20 | 28 | 6, plus one multi-file view |
 | eCH-0122 (Swiss e-government) | 216 | 287 | 3 |
 | Multi-cloud landing zone | 295 | 450 | 5 |
+| Fall Hackathon ZETA | 15 | 26 | 5 |
 
-The fixture view `calm-3-flows` covers the flows axis. There are 16 view files in total.
+The ZETA model describes the local Hub demo and its seven flows. There are 20 view files in total, including the multi-file `all-actors` view.
 
 ## Quick start
 
@@ -83,7 +84,7 @@ The landing zone source is a clone of [`cloudon-one/multi-cloud-runway`](https:/
 Views are files. Any tool can read them. Today:
 
 - **Canvas (spike, patch):** `poc/vscode/view-selector.patch` adds a view dropdown, a canvas filter and drill-down. It ships with a prebuilt VSIX. The patch is not merged upstream.
-- **Hub lens:** `poc/hub-extensions/calm-views` draws the views in the Hub Diagram tab. It supports drill-down, SVG and PNG export and a POC screen. The POC screen is one Markdown block. The function `pocScreen` in `poc/hub-extensions/calm-views/src/poc.ts` builds it. The demo Hub needs the UI patch in `poc/hub-ui/`. `OPERATION.md` explains how to build it. This is a local demo extension. It is not a merged upstream feature.
+- **Hub lenses:** the demo runs the local CALM Views lens and FINOS C4 and EA Layers lenses in the Hub Diagram tab. CALM Views supports drill-down, SVG and PNG export and a POC screen. The Hub backend uses the official `finos/calm-hub:main` image. A local Nginx proxy serves the patched UI bundle and forwards API requests to that official backend.
 - **ArchiMate:** `archimate` imports Archi tool models and keeps the layers. It was tested on the eCH-0122 model.
 - **Agents:** a view is the context unit for an agent. The 216-node model does not fit in a prompt. One view does. `query context` emits the header, the nodes, the relationships and the exclusions with reasons.
 - **CLI gap:** `calm docify` has no `--view` flag. Views stay in this POC until the schema graduates ([#2344](https://github.com/finos/architecture-as-code/issues/2344)).
@@ -94,7 +95,7 @@ The workflow `.github/workflows/ci.yml` runs on push and on pull request. It has
 
 - `tools`: installs, builds and tests `poc/tools`. It validates every view. It runs two governance gates for the `auditors` audience: audit logging and data classification.
 - `extension`: builds and tests the Hub lens extension.
-- `hub-image`: applies the pinned Hub UI patch, runs the Hub UI and server tests, and builds the local image.
+- `hub-ui-proxy`: applies the pinned Hub UI patch, tests and builds the UI-only proxy. It does not build the Hub server.
 - `lens-image`: validates the Compose configuration and builds the lens image.
 - `dco`: checks that every new commit has a `Signed-off-by` line.
 
@@ -102,21 +103,26 @@ No job publishes an artifact or pushes to a registry. The workflow has not yet r
 
 ## Local Hub demo
 
-The demo runs a local CALM Hub with the lens. It is not production. The root `docker-compose.yml` starts three services:
+The demo runs a local CALM Hub with three diagram lenses. It is not production. The root `docker-compose.yml` starts six services:
 
 - `mongodb`: the Hub data store, with a named volume.
 - `views`: the lens service on port 8095, built from `poc/hub-extensions/calm-views/Dockerfile`.
-- `calmhub`: the Hub on port 8080, with the lens enabled.
+- `c4`: the official FINOS C4 lens image.
+- `ea-layers`: the official FINOS EA Layers lens image.
+- `calmhub`: the official Hub backend, available inside the Compose network.
+- `hub-ui`: the patched UI bundle on port 8080, with API requests proxied to `calmhub`.
 
-`make hub-up` builds the Hub image `calm-hub:zeta` first. The build clones upstream at a pinned commit, applies the UI patch in this repository and builds the image in Docker. It needs network access. `OPERATION.md` describes each step. Typical targets:
+`make hub-up` pulls the official Hub, C4 and EA Layers images, builds the UI-only proxy from the pinned Hub UI source and patch, then starts the services and seeds the models. It does not build the Hub server. `OPERATION.md` describes each step. Typical targets:
 
 ```sh
 make keys      # create development-only identity keys in .local/keys
-make hub-up    # build the Hub image, start MongoDB and the Hub, seed the models, start the views lens
-make seed      # load the three models, write their Hub IDs to .local/hub-models.env (safe to repeat)
+make hub-up    # build patched UI assets, start official Hub and lens services, seed the models
+make seed      # load the four models and ADR, write their Hub IDs to .local/hub-models.env (safe to repeat)
 make hub-down  # stop and remove the containers. The data volume stays.
 make hub-reset # stop the containers and DELETE the MongoDB data volume
 ```
+
+The local UI proxy builds the patched React UI with Node and serves it in front of the official Hub backend. It does not rebuild the Hub server or run Maven.
 
 `make seed` writes the Hub-assigned model IDs to `.local/hub-models.env`. The Compose views service and `make extension-start` load that file, so the POC screen links follow the IDs returned by the Hub.
 
@@ -140,14 +146,12 @@ In ISO 42010 terms ([ISO/IEC/IEEE 42010:2022](https://www.iso.org/standard/74393
 - [LikeC4](https://likec4.dev) is the model and views split that this project follows. It is one vendor's language. CALM standardizes the model side. Named views are still open in [#2344](https://github.com/finos/architecture-as-code/issues/2344).
 - [#2344](https://github.com/finos/architecture-as-code/issues/2344) is open. This project follows its selection semantics. A separate view document was proposed in [#2901](https://github.com/finos/architecture-as-code/issues/2901). That issue closed as a duplicate, and the discussion continues in #2344. The sidecars here are a proof of concept for the same selection semantics. They are not a competing schema.
 
-## How this was built
+## Validation status
 
-AI coding agents helped build this project. A person directed and reviewed the work. Separate agent roles covered research, test design and rubric review. The direct Node commands below passed on this repository state. The Make wrappers and local Hub image were not run in this check:
+The latest `make check` passed after the ZETA model, views and ADR changes. The local Compose demo and patched UI proxy were also exercised manually. The CI workflow has not run on this branch:
 
-- `node dist/validate.js`: 16 of 16 view files report OK.
-- tools `npm test`: 69 of 69 tests pass.
-- lens extension `npm test`: 15 of 15 tests pass.
-- `node --test scripts/seed-hub.test.mjs`: 1 of 1 test passes.
+- Latest `make check`: tools 73/73, lens extension 16/16 and seed 1/1 passed.
+- `node dist/validate.js`: all 20 view files report OK.
 - Both auditor coverage gates pass with zero violations.
 
 Every node id in a view resolves against its model. Every excluded relationship names the reason for the exclusion. The project does not add data that the models do not contain.
@@ -158,7 +162,7 @@ If the project continues after the hackathon, the next steps are:
 
 1. Move `view.json` into the `calm-schema` pipeline as the next draft.
 2. Add a Views tab or overlay to the Hub UI, as an extension. Add `docify --view` to the CLI.
-3. Keep sidecars intact through a Canvas round trip. This needs an extension release that includes upstream [#3637](https://github.com/finos/architecture-as-code/pull/3637), merged on 2026-11-16. The release 0.9.6 does not include it.
+3. Keep sidecars intact through a Canvas round trip. This needs an extension release that includes upstream [#3637](https://github.com/finos/architecture-as-code/pull/3637). Release 0.9.6 does not include it.
 4. Blocked upstream, documented so the direction survives:
    - a unified model across files needs shared node identity ([calm-schema#27](https://github.com/finos/calm-schema/issues/27) and [#47](https://github.com/finos/calm-schema/issues/47)).
    - cross-document references need one format and one resolver ([#3624](https://github.com/finos/architecture-as-code/issues/3624)).

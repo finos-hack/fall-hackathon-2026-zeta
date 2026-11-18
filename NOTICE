@@ -8,6 +8,11 @@ E-Government Schweiz, by Verein eCH, Fachgruppe SEAC (contributors include
 Filippos Santas), https://www.ech.ch/de/ech/ech-0122/2.0.0, used under the
 eCH terms allowing free use, sharing and development with attribution.
 
+This product includes an adaptation of the CALM tooling architecture from
+finos/architecture-as-code, commit
+e46aeeccbb626b3260dcfc3e615096e783bb7571, used under the Apache License 2.0.
+See poc/PROVENANCE.md for the adapted model details.
+
 This product includes data derived from multi-cloud-runway by cloudon-one
 (https://github.com/cloudon-one/multi-cloud-runway, commit
 2fe49b9829df7a8749915ba1200896390d95139b), used under the MIT License.

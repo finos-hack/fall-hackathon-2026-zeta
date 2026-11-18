@@ -50,7 +50,7 @@ index acf6495c..fadd3d2f 100644
      },
      controls: [{ type: 'segmented', param: 'level', items: [{ value: 'context', label: 'Context' }, { value: 'container', label: 'Container' }] }],
      panels: [{ title: 'Notes', blocks: [{ type: 'alert', tone: 'warning', text: 'payments is guessed' }] }],
-@@ -68,13 +68,57 @@ describe('DiagramLensView', () => {
+@@ -68,13 +68,58 @@ describe('DiagramLensView', () => {
          expect(screen.queryByRole('option', { name: 'Choose…' })).toBeNull();
      });
  
@@ -81,7 +81,8 @@ index acf6495c..fadd3d2f 100644
 +        expect(onSelectElement).toHaveBeenCalledWith('shop');
 +        expect(onParamsChange).not.toHaveBeenCalled();
 +        const badges = screen.getAllByRole('button', { name: 'Open Online Shop' });
-+        expect(badges).toHaveLength(2);
++        expect(badges).toHaveLength(1);
++        expect(screen.queryByRole('button', { name: 'Online Shop' })).toBeNull();
 +        fireEvent.click(badges[0]);
 +        expect(onParamsChange).toHaveBeenCalledWith({ level: 'container' }, 'shop');
 +    });
@@ -114,7 +115,36 @@ diff --git a/calm-hub-ui/src/extensions/lens/DiagramLensView.tsx b/calm-hub-ui/s
 index 664b423d..24486692 100644
 --- a/calm-hub-ui/src/extensions/lens/DiagramLensView.tsx
 +++ b/calm-hub-ui/src/extensions/lens/DiagramLensView.tsx
-@@ -49,6 +49,7 @@ export function DiagramLensView({ extension, lens, context, params, onParamsChan
+@@ -36,5 +36,27 @@
+ type Ready = { status: 'ready'; reply: LensReply; notation: ResolvedNotation; layout: Layout };
+ type LaidOut = (Ready | { status: 'error'; message: string; detail?: string }) & { source: Fetched };
+ type State = Exclude<Fetched, { status: 'fetched' }> | Ready;
+-
++
++function layoutReply(reply: LensReply): LensReply {
++    const groupByContainer = new Map<string, string>();
++    for (const group of reply.graph.groups) {
++        if (!group.id.startsWith('group:')) continue;
++        const id = group.id.slice('group:'.length);
++        if (reply.graph.nodes.some((node) => node.id === id)) groupByContainer.set(id, group.id);
++    }
++    if (groupByContainer.size === 0) return reply;
++    return {
++        ...reply,
++        graph: {
++            ...reply.graph,
++            nodes: reply.graph.nodes.filter((node) => !groupByContainer.has(node.id)),
++            edges: reply.graph.edges.map((edge) => ({
++                ...edge,
++                source: groupByContainer.get(edge.source) ?? edge.source,
++                target: groupByContainer.get(edge.target) ?? edge.target,
++            })),
++        },
++    };
++}
++
+ /**
+@@ -49,6 +71,7 @@ export function DiagramLensView({ extension, lens, context, params, onParamsChan
      const [laidOut, setLaidOut] = useState<LaidOut>();
      const [hiddenTags, setHiddenTags] = useState<ReadonlySet<string>>(new Set());
      const [panelsOpen, setPanelsOpen] = useState(true);
@@ -122,7 +152,15 @@ index 664b423d..24486692 100644
      const route = extension.routes.find((entry) => entry.id === lens.route);
      const values = useMemo(() => lensParams(lens, params), [lens, params]);
      const { namespace, resource, resourceType, resourceId, version, selectedElement } = context;
-@@ -129,6 +130,15 @@ export function DiagramLensView({ extension, lens, context, params, onParamsChan
+@@ -78,6 +101,6 @@ export function DiagramLensView({ extension, lens, context, params, onParamsChan
+     // The theme changes the colours only, so a change of theme lays out again with no request.
+     useEffect(() => {
+         if (fetched.status !== 'fetched') return;
+         let current = true;
+-        layoutLens(fetched.reply, fetched.notation, theme, sharedElk)
++        layoutLens(layoutReply(fetched.reply), fetched.notation, theme, sharedElk)
+             .then((layout) => {
+@@ -129,6 +152,15 @@ export function DiagramLensView({ extension, lens, context, params, onParamsChan
              if (!next.delete(tag)) next.add(tag);
              return next;
          });
@@ -138,7 +176,7 @@ index 664b423d..24486692 100644
  
      return (
          <section className="flex h-full min-h-0 flex-col" aria-label={lens.title} data-lens={`${extension.id}/${lens.id}`}>
-@@ -156,8 +166,12 @@ export function DiagramLensView({ extension, lens, context, params, onParamsChan
+@@ -156,8 +188,12 @@ export function DiagramLensView({ extension, lens, context, params, onParamsChan
                      <>
                          <div className="relative min-h-0 min-w-0 flex-1">
                              <LensCanvas layout={state.layout} notation={state.notation} theme={theme} selectedElement={selectedElement}

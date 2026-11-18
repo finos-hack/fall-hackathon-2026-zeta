@@ -101,7 +101,7 @@ describe('views service export route', () => {
             assert.equal(response.status, 200);
             return await response.json() as {
                 title: string;
-                graph: { nodes: { id: string; link?: { params?: Record<string, string> } }[] };
+                graph: { nodes: { id: string; calm?: string[]; link?: { params?: Record<string, string> } }[] };
                 controls: { param: string; items: { value: string }[] }[];
                 panels: { title: string }[];
             };
@@ -115,6 +115,11 @@ describe('views service export route', () => {
                 view: 'multicloud-cloud', cloud: 'aws', regionGroup: 'all', env: 'all', layer: 'all',
             });
             assert.equal(overview.graph.nodes.find((node) => node.id === 'mlz-gcp')?.link?.params?.cloud, 'gcp');
+            const gcpStagingFolder = overview.graph.nodes.find((node) => node.id === 'mlz-gcp-folder-stg');
+            assert.deepEqual(gcpStagingFolder?.calm, ['mlz-gcp-folder-stg']);
+            assert.deepEqual(gcpStagingFolder?.link?.params, {
+                view: 'multicloud-cloud', cloud: 'gcp', regionGroup: 'all', env: 'all', layer: 'all',
+            });
             assert.equal(overview.panels.some((panel) => panel.title === 'Drill-down'), false);
 
             const aws = await requestView('multicloud-cloud', { cloud: 'aws', regionGroup: 'all', env: 'all', layer: 'all' });

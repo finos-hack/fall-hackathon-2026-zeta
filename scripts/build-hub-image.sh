@@ -6,11 +6,16 @@ BASE="e46aeeccbb626b3260dcfc3e615096e783bb7571"
 SOURCE="${HUB_SOURCE_DIR:-$ROOT/.local/architecture-as-code-build}"
 MARKER="$ROOT/.local/hub-source-base"
 PATCH="$ROOT/poc/hub-ui/view-lens-ui.patch"
+TEST_PATCH="$ROOT/poc/hub-build/nitrite-config-test.patch"
 NODE_IMAGE="${NODE_BUILD_IMAGE:-node:26-bookworm}"
 MAVEN_IMAGE="${MAVEN_BUILD_IMAGE:-maven:3.9.16-eclipse-temurin-21}"
 
 if [[ ! -f "$PATCH" ]]; then
     printf 'Hub UI patch not found: %s\n' "$PATCH" >&2
+    exit 1
+fi
+if [[ ! -f "$TEST_PATCH" ]]; then
+    printf 'Hub test compatibility patch not found: %s\n' "$TEST_PATCH" >&2
     exit 1
 fi
 
@@ -38,8 +43,11 @@ docker run --rm -v "$SOURCE:/workspace" -w /workspace "$NODE_IMAGE" npm run buil
 docker run --rm -v "$SOURCE:/workspace" -w /workspace "$NODE_IMAGE" npm test --workspace calm-hub-ui
 node -e 'const fs = require("node:fs"); fs.cpSync(process.argv[1], process.argv[2], { recursive: true });' \
     "$SOURCE/calm-hub-ui/build" "$SOURCE/calm-hub/src/main/resources/META-INF/resources"
+# This test assumes a missing path cannot be created. Maven runs as root in Docker, so use a file parent to force the IOException.
+git -C "$SOURCE" apply --check "$TEST_PATCH"
+git -C "$SOURCE" apply "$TEST_PATCH"
 docker run --rm -v "$SOURCE:/workspace" -w /workspace "$MAVEN_IMAGE" \
     ./mvnw -B -Pserver-only clean package
 docker build -f "$SOURCE/calm-hub/src/main/docker/Dockerfile.jvm" -t calm-hub:zeta "$SOURCE/calm-hub"
 
-printf 'Built local image calm-hub:zeta from %s plus the zeta UI patch.\n' "$BASE"
+printf 'Built local image calm-hub:zeta from %s plus the zeta UI and test patches.\n' "$BASE"
