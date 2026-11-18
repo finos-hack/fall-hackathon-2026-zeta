@@ -12,7 +12,8 @@ export interface PocLinks {
     echVersion: string;
     zetaId: string;
     zetaVersion: string;
-    adrId: string;
+    adrViewsId: string;
+    adrProxyId: string;
 }
 
 export interface PocScreenConfig {
@@ -67,6 +68,10 @@ function hubViewUrl(hubBase: string, links: PocLinks, id: string, version: strin
     return `${hubArchUrl(hubBase, links, id, version)}?lens=views&view=${encodeURIComponent(view)}`;
 }
 
+function hubAdrUrl(hubBase: string, links: PocLinks, id: string): string {
+    return `${hubBase}/#/${links.namespace}/adrs/${id}/1`;
+}
+
 /** The home card and the screen that defend the POC inside CALM Hub. One markdown document. */
 export function pocScreen(viewsDir: string, config: PocScreenConfig = {}): PocScreenReply {
     const modelPath = config.modelPath ?? join(viewsDir, '..', 'model', 'multicloud-landing-zone.architecture.json');
@@ -85,7 +90,8 @@ export function pocScreen(viewsDir: string, config: PocScreenConfig = {}): PocSc
         echVersion: '1.1.0',
         zetaId: '15',
         zetaVersion: '1.0.0',
-        adrId: '1',
+        adrViewsId: '1',
+        adrProxyId: '2',
         ...config.links,
     };
     const hubBase = (config.hubBaseUrl ?? 'http://localhost:8080').replace(/\/+$/, '');
@@ -127,7 +133,7 @@ export function pocScreen(viewsDir: string, config: PocScreenConfig = {}): PocSc
         `| CALM Views | Draws named views and exports SVG or PNG. | [POC screen](${hubBase}/#/extensions/calm-views/poc), [service](http://localhost:8095) |`,
         '| C4 lens | Draws context, container, component, and deployment views. | [FINOS documentation](https://calm.finos.org/extensions/c4/) |',
         '| EA Layers lens | Draws business, application, and technology layers. | [FINOS documentation](https://calm.finos.org/extensions/ea-layers/) |',
-        '| Seed script | Loads the four model versions and records their Hub IDs. | `scripts/seed-hub.mjs` |',
+        '| Seed script | Loads four model versions and two ADRs, then records their Hub IDs. | `scripts/seed-hub.mjs` |',
         `| UI build stage | Builds the patched React bundle with Node; it does not build the Hub server. | [Pinned Hub UI source](${HUB_UI_SOURCE_URL}) |`,
         `| Model files | Four versioned architecture documents, including this model. | [Open ZETA model](${hubArchUrl(hubBase, links, links.zetaId, links.zetaVersion)}) |`,
         `| View sidecars | Named selections read by CALM Views. | [List sidecars](http://localhost:8095/views) |`,
@@ -144,8 +150,11 @@ export function pocScreen(viewsDir: string, config: PocScreenConfig = {}): PocSc
         `| [Seed the demo](${hubViewUrl(hubBase, links, links.zetaId, links.zetaVersion, 'fall-hackathon-zeta-seeding')}) | How the seed script loads models into Hub |`,
         `| [Flow set](${hubViewUrl(hubBase, links, links.zetaId, links.zetaVersion, 'fall-hackathon-zeta-flows')}) | The seven model flows that describe the demo lifecycle |`,
         '',
-        `The ADR list records why the demo keeps the official Hub backend and serves its UI through a local proxy. The seed script creates ADR ${links.adrId} in namespace ${links.namespace}.`,
-        `- [Read the decision record](${hubBase}/#/namespace/${links.namespace}?type=adrs)`,
+        '## Architecture decision records',
+        'ADR-0001 records why views are named sidecar selections over unchanged CALM models. ADR-0002 records why the demo serves a patched UI beside the official Hub backend.',
+        `- [Read ADR-0001](${hubAdrUrl(hubBase, links, links.adrViewsId)})`,
+        `- [Read ADR-0002](${hubAdrUrl(hubBase, links, links.adrProxyId)})`,
+        `- [Browse all ADRs in ${links.namespace}](${hubBase}/#/namespace/${links.namespace}?type=adrs)`,
         '',
         'The presentation and the Views lens use the CALM Hub extensions mechanism: a screen, a landing card and a diagram lens served by the calm-views extension. This demo serves a locally patched Hub UI with drill-down badges, Key and Notes toolbar controls and an expanded code viewer.',
         '',
@@ -176,6 +185,8 @@ export function pocScreen(viewsDir: string, config: PocScreenConfig = {}): PocSc
         `- [Source repository (MIT)](${SOURCE_URL})`,
         `- [Open the multi-cloud architecture](${hubArchUrl(hubBase, links, links.architectureId, links.architectureVersion)})`,
         `- [Open the Fall Hackathon ZETA architecture](${hubArchUrl(hubBase, links, links.zetaId, links.zetaVersion)})`,
+        `- [Read ADR-0001](${hubAdrUrl(hubBase, links, links.adrViewsId)})`,
+        `- [Read ADR-0002](${hubAdrUrl(hubBase, links, links.adrProxyId)})`,
         `- [Open ADRs in the finos namespace](${hubBase}/#/namespace/${links.namespace}?type=adrs)`,
         '',
     ].join('\n');

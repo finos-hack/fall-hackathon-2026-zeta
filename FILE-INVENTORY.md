@@ -10,7 +10,7 @@ This file inventories the current project files and generated or ignored outputs
 | `poc/tools/dist/`, `poc/hub-extensions/calm-views/dist/` | compiled JavaScript | `npm run build` in each folder |
 | `.local/keys/` | development keys for the local Hub, not for production | `make keys` |
 | `.local/architecture-as-code-build/`, `.local/hub-source-base` | upstream clone and marker used by the Hub image build | `make hub-build` |
-| `.local/hub-models.env` | Hub IDs of the four seeded models and ADR | `make seed` |
+| `.local/hub-models.env` | Hub IDs of the four seeded models and two ADRs | `make seed` |
 | `.local/multi-cloud-runway/`, `.local/multi-cloud-runway.zeta-source` | landing zone source clone and marker used by the importer | `make landingzone-source` |
 | `poc/renders/` | generated SVG, Markdown, JSON and the gallery | `make render` and `make gallery` |
 | `.DS_Store` | operating system file | not needed |
@@ -61,11 +61,13 @@ No other file is in `poc/model/`. The model files are data. The validate and ren
 | File | Why it is kept |
 |---|---|
 | `poc/schema/view.json` | The view schema. It accepts the optional `architecture` field. |
+| `poc/schema/calm-1.3/` | Five pinned CALM 1.3 schemas for offline model validation in the tools tests. |
 | `poc/PROVENANCE.md` | Sources, licenses, commits and hashes for each model. |
 | `poc/README.md` | Describes the POC folders, the view format and the validation results. |
 | `poc/fixtures/archimate-mini.archimate` | Small ArchiMate file for the importer tests. |
 | `poc/fixtures/PROVENANCE.md` | Source of the importer test fixture. |
-| `poc/adrs/0001-official-hub-ui-proxy.json` | Decision record for serving the patched UI beside the official Hub backend. |
+| `poc/adrs/0001-named-views-as-sidecars.json` | Records the model, view, and renderer separation, with related work and roadmap issues. |
+| `poc/adrs/0002-official-hub-ui-proxy.json` | Records the decision to serve the patched UI beside the official Hub backend. |
 
 ## Tools: `poc/tools/`
 
@@ -138,4 +140,4 @@ The POC screen has no separate Markdown file. The function `pocScreen` in `poc/h
 - The CI workflow has not run from this branch.
 - The default Compose path uses `finos/calm-hub:main` behind the local patched UI proxy; it was exercised manually.
 - The optional custom Hub build uses the pinned source and local UI patches.
-- The latest `make check` passes with the ZETA model, views and ADR changes.
+- The latest `make check` passes with the ZETA model, views, and ADR changes.

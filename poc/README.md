@@ -17,7 +17,7 @@ The reference implementation is in TypeScript. It runs offline. It has one runti
   - `multicloud-landing-zone/`: global, cloud, region, environment and layer views.
   - `fall-hackathon-zeta/`: overview, Docker Compose runtime, lens services and seeding views.
   - `all-actors.calm-view.json`: a multi-file view over the KYC and eCH models.
-- `adrs/`: the Hub UI proxy architecture decision record.
+- `adrs/`: the project decision in ADR-0001 and the Hub UI proxy decision in ADR-0002.
 - `views/fall-hackathon-zeta-flows.calm-view.json`: the flows view for the ZETA demo model.
 - `tools/`: validate, render, derive, gallery, query, pack, archimate and landingzone2calm.
 - `hub-extensions/calm-views/`: the Hub diagram lens and its lens service.

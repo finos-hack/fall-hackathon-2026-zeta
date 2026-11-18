@@ -6,7 +6,7 @@ import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { seedHub } from './seed-hub.mjs';
 
-test('seedHub creates headers, adds missing versions and writes dynamic POC links', async () => {
+test('seedHub creates models and both ADRs, writes dynamic links, and is safe to repeat', async () => {
     const architectures = [];
     const adrs = [];
     const calls = [];
@@ -63,20 +63,30 @@ test('seedHub creates headers, adds missing versions and writes dynamic POC link
 
     try {
         const ids = await seedHub({ baseUrl: `http://127.0.0.1:${address.port}`, repoRoot: process.cwd(), envPath: envFile, log });
-        assert.deepEqual(ids, { KYC: '1', ECH: '2', ARCHITECTURE: '3', ZETA: '4', ADR: '1' });
+        assert.deepEqual(ids, {
+            KYC: '1', ECH: '2', ARCHITECTURE: '3', ZETA: '4',
+            ADR_VIEWS: '1', ADR_PROXY: '2', ADR: '2',
+        });
         assert.equal(architectures.length, 4);
         assert.equal(architectures[3]?.name, 'Fall Hackathon ZETA');
         assert.deepEqual(architectures.map((item) => item.versions), [['1.0.0'], ['1.0.0', '1.1.0'], ['1.0.0'], ['1.0.0']]);
-        assert.equal(adrs.length, 1);
-        assert.equal(adrs[0]?.title, 'Serve the patched UI beside the official Hub backend');
-        const createdAdr = calls.find((call) => call.method === 'POST' && call.path.endsWith('/adrs'))?.body;
-        assert.ok(createdAdr?.links.some((link) => link.href.includes('/architectures/4/1.0.0')));
+        assert.equal(adrs.length, 2);
+        assert.deepEqual(adrs.map((adr) => adr.title), [
+            'Define named views as sidecars over unchanged CALM models',
+            'Serve the patched UI beside the official Hub backend',
+        ]);
+        const createdAdrs = calls.filter((call) => call.method === 'POST' && call.path.endsWith('/adrs')).map((call) => call.body);
+        assert.ok(createdAdrs[0]?.links.some((link) => link.href === 'https://github.com/finos/architecture-as-code/issues/2344'));
+        assert.ok(createdAdrs[0]?.links.some((link) => link.href.includes('/architectures/4/1.0.0')));
+        assert.ok(createdAdrs[1]?.links.some((link) => link.href === 'https://calm.finos.org/calm-hub/extension-points/'));
         const env = readFileSync(envFile, 'utf8');
         assert.match(env, /CALM_POC_KYC=1/);
         assert.match(env, /CALM_POC_ECH=2/);
         assert.match(env, /CALM_POC_ARCHITECTURE=3/);
         assert.match(env, /CALM_POC_ZETA=4/);
-        assert.match(env, /CALM_POC_ADR=1/);
+        assert.match(env, /CALM_POC_ADR_VIEWS=1/);
+        assert.match(env, /CALM_POC_ADR_PROXY=2/);
+        assert.match(env, /CALM_POC_ADR=2/);
 
         const firstArchitectureCreateCount = calls.filter((call) => call.method === 'POST' && call.path.endsWith('/architectures')).length;
         const firstAdrCreateCount = calls.filter((call) => call.method === 'POST' && call.path.endsWith('/adrs')).length;
@@ -85,9 +95,9 @@ test('seedHub creates headers, adds missing versions and writes dynamic POC link
         const secondAdrCreateCount = calls.filter((call) => call.method === 'POST' && call.path.endsWith('/adrs')).length;
         assert.equal(firstArchitectureCreateCount, 4);
         assert.equal(secondArchitectureCreateCount, firstArchitectureCreateCount);
-        assert.equal(firstAdrCreateCount, 1);
+        assert.equal(firstAdrCreateCount, 2);
         assert.equal(secondAdrCreateCount, firstAdrCreateCount);
-        assert.equal(adrs.length, 1);
+        assert.equal(adrs.length, 2);
     } finally {
         await new Promise((resolve, reject) => server.close((error) => error ? reject(error) : resolve()));
         rmSync(out, { recursive: true, force: true });

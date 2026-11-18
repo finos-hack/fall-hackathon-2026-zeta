@@ -16,6 +16,7 @@ This file explains how to run, check and demonstrate this repository. The table 
   - `ech-0122.architecture.json`: the eCH-0122 model, converted from ArchiMate.
   - `multicloud-landing-zone.architecture.json`: the landing zone, imported from Terragrunt.
   - `fall-hackathon-zeta.architecture.json`: the adapted CALM Hub demo architecture.
+- `poc/adrs/`: ADR-0001 records the named-view design; ADR-0002 records the local Hub UI proxy decision.
 - `poc/views/`: twenty `*.calm-view.json` files, grouped by model:
   - `kyc-onboarding/`: six view files; the audit view also uses a separate decorator.
   - `ech-0122/`: three views.
@@ -26,7 +27,7 @@ This file explains how to run, check and demonstrate this repository. The table 
 - `poc/tools/`: validate, render, derive, gallery, query, pack, the ArchiMate importer and the landing zone importer.
 - `poc/hub-extensions/calm-views/`: the Hub diagram lens, the POC screen and the Dockerfile for the lens service. Its `DEPLOY.md` describes the deployment.
 - `poc/vscode/`: the Canvas view selector patch and the prebuilt VSIX.
-- `scripts/seed-hub.mjs`: loads the four models and the ADR into the Hub.
+- `scripts/seed-hub.mjs`: loads the four models and both ADRs into the Hub.
 - `scripts/hub-ui-proxy.Dockerfile`, `scripts/hub-ui-proxy.conf`: build the patched UI bundle and proxy it to the official Hub backend.
 - `scripts/build-hub-image.sh`: optional full Hub image build from the pinned upstream commit and UI patch.
 - `docker-compose.yml`: the local demo stack (official Hub backend, patched UI proxy, three lenses and MongoDB).
@@ -121,7 +122,7 @@ make hub-up
 make hub-status
 ```
 
-The other targets are `hub-start`, `hub-stop`, `hub-down` and `hub-logs`. `make keys` creates development-only keys in `.local/keys`. The private key has mode `0644` so the Hub container can read the bind mount. The key stays in the ignored `.local/` directory and is only for this local demo. `make seed` loads the models and refreshes the POC links without rebuilding the Hub image. `hub-down` removes the containers; the MongoDB volume stays. `hub-reset` removes the containers and the MongoDB volume. All Hub data is lost. Use it only to start the demo from an empty database.
+The other targets are `hub-start`, `hub-stop`, `hub-down` and `hub-logs`. `make keys` creates development-only keys in `.local/keys`. The private key has mode `0644` so the Hub container can read the bind mount. The key stays in the ignored `.local/` directory and is only for this local demo. `make seed` loads the models and both ADRs, then refreshes the POC links without rebuilding the Hub image. `hub-down` removes the containers; the MongoDB volume stays. `hub-reset` removes the containers and the MongoDB volume. All Hub data is lost. Use it only to start the demo from an empty database.
 
 `make seed` loads eCH-0122 as version 1.1.0. The POC links to version 1.1.0.
 

@@ -24,6 +24,11 @@ describe('in-Hub POC presentation', () => {
         assert.match(text, /4 Hub models, 20 named views/);
         assert.match(text, /## Local demo components/);
         assert.match(text, /## Views for this model/);
+        assert.match(text, /Loads four model versions and two ADRs/);
+        assert.match(text, /ADR-0001 records why views are named sidecar selections/);
+        assert.match(text, /ADR-0002 records why the demo serves a patched UI/);
+        assert.match(text, /http:\/\/localhost:8080\/#\/finos\/adrs\/1\/1/);
+        assert.match(text, /http:\/\/localhost:8080\/#\/finos\/adrs\/2\/1/);
         assert.match(text, /http:\/\/localhost:8080\/#\/namespace\/finos\?type=adrs/);
         assert.match(text, /\| View \| Question it answers \| Reader \|/);
         assert.ok(!reply.blocks.some((block) => block.type === 'cards'));
@@ -58,5 +63,7 @@ describe('in-Hub POC presentation', () => {
         });
         const text = (reply.blocks[0] as { text?: string }).text ?? '';
         assert.match(text, /https:\/\/hub\.example\/#\/demo\/architectures\/landing-zone\/2\.0\.0/);
+        assert.match(text, /https:\/\/hub\.example\/#\/demo\/adrs\/1\/1/);
+        assert.match(text, /https:\/\/hub\.example\/#\/demo\/adrs\/2\/1/);
     });
 });

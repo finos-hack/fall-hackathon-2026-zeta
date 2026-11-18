@@ -43,7 +43,7 @@ help:
 	@echo "hub-reset        remove demo containers and MongoDB data volume"
 	@echo "hub-logs         last Hub container logs"
 	@echo "hub-status       running containers, Hub health, lens wiring"
-	@echo "seed             load the 4 demo models and ADR into the Hub (idempotent)"
+	@echo "seed             load the 4 demo models and 2 ADRs into the Hub (idempotent)"
 
 landingzone-source:
 	@mkdir -p .local

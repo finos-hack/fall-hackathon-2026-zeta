@@ -53,6 +53,13 @@ Adapted: regions and metadata are normalized for the views. The source files are
 - Files: `schema/calm-1.3/{calm,core,control,flow,interface}.json`
 - Source: [`finos/architecture-as-code`](https://github.com/finos/architecture-as-code), release 1.3 meta schemas published at `https://calm.finos.org/release/1.3/meta/`.
 - License: Apache-2.0.
+- Retrieved from the published release URL on 2026-11-18. The hosted release does not provide a source commit reference.
+- sha256:
+  - `calm.json`: `c4152260c37f3ff6d01b57570aff0e135d3a536f8b2c39c976239f623e9993c1`
+  - `core.json`: `f1a4f5cc4f6a6f9787adc3fd4208771e8991f6e16913533bbda16b3ccb388066`
+  - `control.json`: `753237161324cebdc488b095d27e4a71a37f72d659493740cd868328efd2456c`
+  - `flow.json`: `47f38914fa32a3193c9ccd67ce7327ada0136e6093190820cc3d3ff53ce0c186`
+  - `interface.json`: `ff68e0eec6939ecbc7b7b02a1f147350a3a09943c1e603c201f3a0137ad32807`
 - Purpose: let the model tests validate every architecture against CALM 1.3 without fetching schemas at test time.
 
 ## POC-authored

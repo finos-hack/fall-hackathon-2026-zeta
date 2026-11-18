@@ -8,6 +8,8 @@ A view is a named selection over a [CALM](https://calm.finos.org) architecture. 
 
 A view selects. A renderer draws. This repository contains the view schema, the tools that validate and render views, and a Hub diagram lens that draws them. The Hub draws through [diagram lenses](https://calm.finos.org/extensions), such as C4 and EA layers (see [#3771](https://github.com/finos/architecture-as-code/pull/3771)). No upstream lens consumes a view yet.
 
+The project decision is in [ADR-0001](poc/adrs/0001-named-views-as-sidecars.json). The local Hub deployment decision is in [ADR-0002](poc/adrs/0002-official-hub-ui-proxy.json).
+
 ## Why
 
 I modeled with ArchiMate for years. ArchiMate is a common language with clear layers. Its files are tool XML, though. XML does not fit the as-code loop of diff, review and validation in build. I adopted LikeC4 next. Its model and views split works well: one model, as many views as readers need. Its limit is standardization. One vendor's DSL is a dialect. A bank should not build on a dialect.
@@ -112,12 +114,12 @@ The demo runs a local CALM Hub with three diagram lenses. It is not production. 
 - `calmhub`: the official Hub backend, available inside the Compose network.
 - `hub-ui`: the patched UI bundle on port 8080, with API requests proxied to `calmhub`.
 
-`make hub-up` pulls the official Hub, C4 and EA Layers images, builds the UI-only proxy from the pinned Hub UI source and patch, then starts the services and seeds the models. It does not build the Hub server. `OPERATION.md` describes each step. Typical targets:
+`make hub-up` pulls the official Hub, C4 and EA Layers images, builds the UI-only proxy from the pinned Hub UI source and patch, then starts the services and seeds the models and ADRs. It does not build the Hub server. `OPERATION.md` describes each step. Typical targets:
 
 ```sh
 make keys      # create development-only identity keys in .local/keys
-make hub-up    # build patched UI assets, start official Hub and lens services, seed the models
-make seed      # load the four models and ADR, write their Hub IDs to .local/hub-models.env (safe to repeat)
+make hub-up    # build patched UI assets, start official Hub and lens services, seed models and ADRs
+make seed      # load the four models and two ADRs, write their Hub IDs to .local/hub-models.env (safe to repeat)
 make hub-down  # stop and remove the containers. The data volume stays.
 make hub-reset # stop the containers and DELETE the MongoDB data volume
 ```

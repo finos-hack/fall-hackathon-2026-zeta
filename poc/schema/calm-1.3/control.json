@@ -8,8 +8,8 @@
       "type": "object",
       "properties": {
         "requirement-url": { "type": "string", "description": "The requirement schema that specifies how a control should be defined" },
-        "config-url": { "type": "string", "description": "The configuration of how a control requirement schema is met" },
-        "config": { "type": "object", "description": "Inline configuration of how a control requirement schema is met" }
+        "config-url": { "type": "string", "description": "The configuration of how the control requirement schema is met" },
+        "config": { "type": "object", "description": "Inline configuration of how the control requirement schema is met" }
       },
       "required": ["requirement-url"],
       "oneOf": [{ "required": ["config-url"] }, { "required": ["config"] }]
