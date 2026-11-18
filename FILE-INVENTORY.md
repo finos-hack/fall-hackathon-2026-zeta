@@ -1,12 +1,8 @@
 # File inventory
 
-This file explains each file that the repository keeps. It covers source files,
-versioned data and deliverables. Generated and ignored files are listed in the
-first section, with the command that rebuilds them.
+This file explains each file that the repository keeps. It covers source files, versioned data and deliverables. Generated and ignored files are listed in the first section, with the command that rebuilds them.
 
-Status values: **tracked** means the file is in Git history. **modified** means a
-tracked file has changes. **new** means the file is not committed yet. **removed**
-means the file is staged for removal.
+Status values: **tracked** means the file is in Git history. **modified** means a tracked file has changes. **new** means the file is not committed yet. **removed** means the file is staged for removal.
 
 The inventory describes the working tree on 2026-11-18. Run `git status` for the current state.
 
@@ -23,8 +19,7 @@ The inventory describes the working tree on 2026-11-18. Run `git status` for the
 | `poc/renders/` | generated SVG, Markdown, JSON and the gallery | `make render` and `make gallery` |
 | `.DS_Store` | operating system file | not needed |
 
-The renders were tracked in an earlier state. They are now removed from version control
-and listed in `.gitignore`.
+The renders were tracked in an earlier state. They are now removed from version control and listed in `.gitignore`.
 
 ## Repository root
 
@@ -113,10 +108,7 @@ No other file is in `poc/model/`. The model files are data. The validate and ren
 
 ### Where the POC screen text lives
 
-The POC screen has no separate Markdown file. The function `pocScreen` in
-`poc/hub-extensions/calm-views/src/poc.ts` builds the whole screen as one Markdown block.
-The Hub shows the block at `/extensions/calm-views/poc`. The function reads the model
-counts from the model files. It falls back to fixed counts when a model file is missing.
+The POC screen has no separate Markdown file. The function `pocScreen` in `poc/hub-extensions/calm-views/src/poc.ts` builds the whole screen as one Markdown block. The Hub shows the block at `/extensions/calm-views/poc`. The function reads the model counts from the model files. It falls back to fixed counts when a model file is missing.
 
 ## Hub user interface and Canvas: `poc/hub-ui/`, `poc/vscode/`
 

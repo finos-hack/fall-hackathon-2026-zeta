@@ -1,39 +1,24 @@
 # Provenance
 
-Every model in `model/` is either vendored untouched or converted from an
-explicit upstream file. Nothing here is hand-written.
+Every model in `model/` is either vendored untouched or converted from an explicit upstream file. Nothing here is hand-written.
 
 ## KYC onboarding (demo model)
 
 - File: `model/fluxnova-kyc-onboarding.architecture.json`
-- Upstream: `finos/architecture-as-code`,
-  `examples/fluxnova/fluxnova-kyc-onboarding.architecture.json`
-  at commit `0626cea3` (2026-11-10). Chosen because it is also seeded as
-  Hub demo data upstream.
+- Upstream: `finos/architecture-as-code`, `examples/fluxnova/fluxnova-kyc-onboarding.architecture.json` at commit `0626cea3` (2026-11-10). Chosen because it is also seeded as Hub demo data upstream.
 - License: Apache-2.0 (upstream repo).
-- Status: 20 nodes, 28 relationships, 0 flows. No top-level `controls`
-  array. Nodes and relationships may carry inline `controls` (audit
-  claims live there), and some services carry `interfaces`.
+- Status: 20 nodes, 28 relationships, 0 flows. No top-level `controls` array. Nodes and relationships may carry inline `controls` (audit claims live there), and some services carry `interfaces`.
 - sha256: `54a5d6066987cd41ffbaf5e8fb1e666a03816074c56aa8219111396abd2a4541`
-- Verify at any time: `shasum -a 256
-  model/fluxnova-kyc-onboarding.architecture.json`. The POC never
-  modifies this file.
+- Verify at any time: `shasum -a 256 model/fluxnova-kyc-onboarding.architecture.json`. The POC never modifies this file.
 
 ## eCH-0122 (reference model)
 
 - File: `model/ech-0122.architecture.json`
-- Upstream: eCH-0122 V2.0.0, Architektur E-Government Schweiz (Verein eCH),
-  converted from `eCH-0122-2-0-1.archimate` (shipped as `eCH-0122-2-0-1.zip`)
-  (https://www.ech.ch/de/ech/ech-0122/2.0.0).
-- License: eCH standards are free to use, share and develop
-  ("unentgeltlich und uneingeschränkt genutzt, weiterverbreitet und
-  weiterentwickelt werden", section 9 of the standard). Attribution:
-  Verein eCH, Fachgruppe SEAC (contributors include Filippos Santas).
-- Status: 216 nodes, 287 relationships. Archi layers preserved in node
-  metadata (`archimate-layer`). Capabilities are kept as `capability` nodes.
+- Upstream: eCH-0122 V2.0.0, Architektur E-Government Schweiz (Verein eCH), converted from `eCH-0122-2-0-1.archimate` (shipped as `eCH-0122-2-0-1.zip`) (https://www.ech.ch/de/ech/ech-0122/2.0.0).
+- License: eCH standards are free to use, share and develop ("unentgeltlich und uneingeschränkt genutzt, weiterverbreitet und weiterentwickelt werden", section 9 of the standard). Attribution: Verein eCH, Fachgruppe SEAC (contributors include Filippos Santas).
+- Status: 216 nodes, 287 relationships. Archi layers preserved in node metadata (`archimate-layer`). Capabilities are kept as `capability` nodes.
 - sha256: `1527e32c1ba1733ccdf36f5f81e8b56062d67ce93ec26e869090b44ef6566dc6`
-- Verify at any time: re-run `node tools/dist/archimate.js` on a fresh
-  copy of the upstream `.archimate` file.
+- Verify at any time: re-run `node tools/dist/archimate.js` on a fresh copy of the upstream `.archimate` file.
 
 ## Multi-cloud landing zone (imported from Terragrunt)
 
@@ -42,27 +27,17 @@ explicit upstream file. Nothing here is hand-written.
 - Commit: `2fe49b9829df7a8749915ba1200896390d95139b`
 - License: MIT
 - Imported at: 2026-11-17T23:22:58+00:00
-- Importer: `landingzone2calm 0.3.0` (`tools/src/landingzone2calm.ts`). Regenerate it with
-  `make import-landingzone` after `make landingzone-source`.
+- Importer: `landingzone2calm 0.3.0` (`tools/src/landingzone2calm.ts`). Regenerate it with `make import-landingzone` after `make landingzone-source`.
 - Status: 295 nodes, 450 relationships, AWS and GCP.
 - sha256: `3e6a513fb9331c2319062cf715bb8acbafb238951ac7fb4f658c926c1b1a62a2`
-- Verify at any time: `shasum -a 256
-  model/multicloud-landing-zone.architecture.json`. The importer writes
-  only this model file. It keeps source URLs, commits, licenses, paths and
-  hashes in CALM metadata. It writes no source sidecars or summary files.
+- Verify at any time: `shasum -a 256 model/multicloud-landing-zone.architecture.json`. The importer writes only this model file. It keeps source URLs, commits, licenses, paths and hashes in CALM metadata. It writes no source sidecars or summary files.
 
-The CALM model is a derivative of the source layout. It keeps the
-hierarchy, the resource inputs, the tags and the source paths. The
-source repository and its MIT licence remain the canonical source.
+The CALM model is a derivative of the source layout. It keeps the hierarchy, the resource inputs, the tags and the source paths. The source repository and its MIT licence remain the canonical source.
 
-The source `ARCHITECTURE_REPORT.json` is kept as a source assessment.
-Its score is not a quality claim for this model or for the demo.
+The source `ARCHITECTURE_REPORT.json` is kept as a source assessment. Its score is not a quality claim for this model or for the demo.
 
-Adapted: regions and metadata are normalized for the views. The
-source files are not vendored into this repository.
+Adapted: regions and metadata are normalized for the views. The source files are not vendored into this repository.
 
 ## POC-authored
 
-- `views/kyc-onboarding/kyc-screening-effectiveness.decorator.json`: demo decorator,
-  not upstream. Lives next to the views because decorators resolve as
-  sibling documents of the view that consumes it.
+- `views/kyc-onboarding/kyc-screening-effectiveness.decorator.json`: demo decorator, not upstream. Lives next to the views because decorators resolve as sibling documents of the view that consumes it.

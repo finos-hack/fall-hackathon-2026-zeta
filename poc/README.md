@@ -1,26 +1,16 @@
 # poc: CALM views, reference implementation
 
-The reference implementation is in TypeScript. It runs offline. It has one runtime
-dependency, `yaml`. A view selects by id, node type, node metadata or control claim.
-A view has no presentation in the schema. The `for` field is relative and provisional.
+The reference implementation is in TypeScript. It runs offline. It has one runtime dependency, `yaml`. A view selects by id, node type, node metadata or control claim. A view has no presentation in the schema. The `for` field is relative and provisional.
 
 ## Folders
 
-- `model/`: three architecture files. Each file was converted or imported from a
-  named source. None is edited by hand. Sources and hashes are in `PROVENANCE.md`.
+- `model/`: three architecture files. Each file was converted or imported from a named source. None is edited by hand. Sources and hashes are in `PROVENANCE.md`.
   - `fluxnova-kyc-onboarding.architecture.json`: 20 nodes, 28 relationships.
-  - `ech-0122.architecture.json`: 216 nodes, 287 relationships. It is the Swiss
-    e-government reference architecture, eCH-0122 V2.0.0. Verein eCH publishes it.
-    The standard allows free use, sharing and development, with attribution.
-  - `multicloud-landing-zone.architecture.json`: 295 nodes, 450 relationships.
-    It was imported from an MIT-licensed Terragrunt landing zone.
-- `schema/view.json`: the view schema. It has filter properties only. It has optional
-  `suggested-formats`, which is a non-normative hint, and optional `derived-from`
-  provenance. It is a proof of concept. It is not a standard.
+  - `ech-0122.architecture.json`: 216 nodes, 287 relationships. It is the Swiss e-government reference architecture, eCH-0122 V2.0.0. Verein eCH publishes it. The standard allows free use, sharing and development, with attribution.
+  - `multicloud-landing-zone.architecture.json`: 295 nodes, 450 relationships. It was imported from an MIT-licensed Terragrunt landing zone.
+- `schema/view.json`: the view schema. It has filter properties only. It has optional `suggested-formats`, which is a non-normative hint, and optional `derived-from` provenance. It is a proof of concept. It is not a standard.
 - `views/`: sixteen `*.calm-view.json` files, grouped by model.
-  - `kyc-onboarding/`: platform, integration, audit, the screening neighborhood
-    (derived), the platform inside view (the drill-down target), the audit logging
-    coverage view and the decorator used by the audit view.
+  - `kyc-onboarding/`: platform, integration, audit, the screening neighborhood (derived), the platform inside view (the drill-down target), the audit logging coverage view and the decorator used by the audit view.
   - `ech-0122/`: business, application and capabilities views.
   - `multicloud-landing-zone/`: global, cloud, region, environment and layer views.
   - `all-actors.calm-view.json`: a multi-file view over the KYC and eCH models.
@@ -42,12 +32,7 @@ A view has no presentation in the schema. The `for` field is relative and provis
 }
 ```
 
-`unique-id` names the view. `audience` says who reads it. `for` points to the model.
-It can be one path, or an array of paths for a multi-file view. `filter` selects
-nodes by id, by node type, by node metadata or by control claim. Relationships close
-over the selected nodes. Dangling endpoints are excluded, and each exclusion gives a reason.
-An optional `architecture` field names the model by its `unique-id`. Use it when the
-document has no `$id`, for example when the document comes from CALM Hub.
+`unique-id` names the view. `audience` says who reads it. `for` points to the model. It can be one path, or an array of paths for a multi-file view. `filter` selects nodes by id, by node type, by node metadata or by control claim. Relationships close over the selected nodes. Dangling endpoints are excluded, and each exclusion gives a reason. An optional `architecture` field names the model by its `unique-id`. Use it when the document has no `$id`, for example when the document comes from CALM Hub.
 
 ## Commands
 
@@ -68,9 +53,7 @@ node poc/tools/dist/gallery.js --out poc/renders
 
 ## Validation results
 
-`validate` checks each view against the schema and resolves its filter.
-The last run reported OK for all 16 files. The counts are nodes and relationships
-in each view:
+`validate` checks each view against the schema and resolves its filter. The last run reported OK for all 16 files. The counts are nodes and relationships in each view:
 
 | View | Nodes | Relationships |
 |---|---|---|
@@ -89,11 +72,8 @@ in each view:
 | all-actors (two files) | 51 | 46 in file |
 | calm-3-flows | 10 | 10 |
 
-The views `multicloud-environment` and `multicloud-layer` need a parameter
-(`--set env=...` or `--set layer=...`). Without it, they show no nodes.
+The views `multicloud-environment` and `multicloud-layer` need a parameter (`--set env=...` or `--set layer=...`). Without it, they show no nodes.
 
 ## Determinism
 
-`render` uses the date from `SOURCE_DATE_EPOCH` when it is set. The end-to-end test
-sets it, so the outputs match on any day. `render` and `validate` never write to
-`model/`. Only the importers write to `model/`, and only when you run them.
+`render` uses the date from `SOURCE_DATE_EPOCH` when it is set. The end-to-end test sets it, so the outputs match on any day. `render` and `validate` never write to `model/`. Only the importers write to `model/`, and only when you run them.
