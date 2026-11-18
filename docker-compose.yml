@@ -1,0 +1,59 @@
+# Local CALM demo: Hub + views lens + MongoDB. Nothing here is production.
+# The Hub image carries the demo UI; build it once from the worktree
+# (see OPERATION.md). Everything else builds from this repo.
+#
+#   make hub-up     # keys, build, (re)create, wait for :8080
+#   make hub-down   # stop and remove the containers (data volume stays)
+services:
+  mongodb:
+    image: mongo:8.0
+    container_name: zeta-mongodb
+    volumes:
+      - zeta-mongo-data:/data/db
+    healthcheck:
+      test: ["CMD", "mongosh", "--quiet", "--eval", "db.adminCommand('ping').ok"]
+      interval: 5s
+      timeout: 5s
+      retries: 24
+
+  views:
+    build:
+      context: .
+      dockerfile: poc/hub-extensions/calm-views/Dockerfile
+    image: calm-views:local
+    container_name: zeta-views
+    ports:
+      - "8095:8095"
+    env_file:
+      - path: ./.local/hub-models.env
+        required: false
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://127.0.0.1:8095/healthz').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"]
+      interval: 5s
+      timeout: 5s
+      retries: 24
+
+  calmhub:
+    image: calm-hub:zeta
+    container_name: zeta-hub
+    depends_on:
+      mongodb:
+        condition: service_healthy
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./poc/hub-extensions:/extensions:ro
+      - ./.local/keys:/keys:ro
+    environment:
+      - JAVA_OPTS=-Dquarkus.mongodb.connection-string=mongodb://mongodb:27017 -Dquarkus.profile=no-auth
+      - CALM_EXTENSIONS_DIR=/extensions
+      - CALM_EXTENSIONS_ALLOW_WITHOUT_AUTH=true
+      - CALM_EXTENSIONS_HTTP_MAX_REQUEST_BYTES=4194304
+      - CALM_EXTENSIONS_IDENTITY_PRIVATE_KEY_LOCATION=/keys/hub-key.pem
+      - CALM_EXTENSIONS_IDENTITY_PUBLIC_KEY_LOCATIONS=/keys/hub-key.pub
+      - CALM_EXTENSIONS__CALM_VIEWS__ENABLED=true
+      - CALM_EXTENSIONS__CALM_VIEWS__ALLOW_HTTP=true
+      - CALM_EXTENSIONS__CALM_VIEWS__BACKEND_URL=http://views:8095
+
+volumes:
+  zeta-mongo-data:

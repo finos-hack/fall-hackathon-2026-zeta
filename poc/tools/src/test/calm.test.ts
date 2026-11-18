@@ -123,7 +123,7 @@ describe('resolveView (mirrors Python validate.resolve_view)', () => {
         const none = resolveView(withMeta, { metadata: { layer: ['infra'] } });
         assert.deepEqual([...none.inNodes].sort(), []);
     });
-    it('selects by control claim on nodes', () => {
+    it('selects nodes and relationships by control claim', () => {
         const withControls = {
             nodes: [
                 { 'unique-id': 'a', 'node-type': 'service', controls: { 'audit-logging': {} } },
@@ -133,9 +133,9 @@ describe('resolveView (mirrors Python validate.resolve_view)', () => {
                 { 'unique-id': 'r1', 'relationship-type': { connects: { source: { node: 'a' }, destination: { node: 'b' } } }, controls: { 'audit-logging': {} } },
             ],
         } as unknown as CalmArchitecture;
-        const { inNodes, inRels } = resolveView(withControls, { controls: ['audit-logging'] });
-        assert.deepEqual([...inNodes].sort(), ['a']);
-        assert.ok(!inRels.has('r1'));
+        const { inNodes, inRels } = resolveView(withControls, { nodes: ['b'], controls: ['audit-logging'] });
+        assert.deepEqual([...inNodes].sort(), ['a', 'b']);
+        assert.ok(inRels.has('r1'));
     });
     it('resolves a multi-file view as a namespaced union without dedup', () => {
         const view = {

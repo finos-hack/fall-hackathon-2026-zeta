@@ -55,6 +55,10 @@
       "anyOf": [{ "type": "string" }, { "type": "array", "items": { "type": "string" } }],
       "description": "One-way reference(s) to the architecture(s) this view selects from. A single path (provisional semantics: relative to this file's directory, pending finos/architecture-as-code#3624) or an array of paths for a multi-file view: each file resolves independently, ids are namespaced per file, no dedup is claimed."
     },
+    "architecture": {
+      "type": "string",
+      "description": "unique-id of the architecture this view selects from. Lets a view match a document that has no $id (for example one uploaded to CALM Hub)."
+    },
     "filter": {
       "type": "object",
       "description": "Inclusion selectors. A node is in the view if its unique-id is listed in 'nodes', its node-type is listed in 'node-types', or its metadata matches every key of 'metadata' (value in the listed values). A relationship is in the view if listed in 'relationships', or if all its endpoints are in the view (closure). Endpoints outside the view lift to the nearest visible container (composed-of / deployed-in ancestry); relationships that cannot lift to distinct visible endpoints stay excluded with reason. Flows and decorators resolve by unique-id against sibling documents.",

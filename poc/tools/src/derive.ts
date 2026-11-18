@@ -11,8 +11,7 @@
  * parent sidecar (container -> new view).
  */
 import { join, dirname, resolve, relative } from 'node:path';
-import { readdirSync } from 'node:fs';
-import { ROOT, readJson, writeText, dumpJson, endpoints, type CalmArchitecture } from './calm.js';
+import { ROOT, listViewFiles, readJson, writeText, dumpJson, endpoints, type CalmArchitecture } from './calm.js';
 
 interface Args {
     arch: string;
@@ -171,11 +170,9 @@ export function main(): void {
     let parentGroup: string | null = null;
     if (args.parent) {
         const viewsDir = join(ROOT, 'views');
-        parentFile =
-            readdirSync(viewsDir)
-                .filter((f: string) => f.endsWith('.calm-view.json'))
-                .map((f) => join(viewsDir, f))
-                .find((p) => (readJson(p) as Record<string, unknown>)['unique-id'] === args.parent) ?? null;
+        parentFile = listViewFiles(viewsDir)
+            .map((name) => join(viewsDir, name))
+            .find((path) => (readJson(path) as Record<string, unknown>)['unique-id'] === args.parent) ?? null;
         if (!parentFile) {
             console.error(`error: parent view not found: ${args.parent}`);
             process.exit(1);

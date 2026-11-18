@@ -26,10 +26,18 @@ describe('archimate: ArchiMate XML converts to a CALM architecture', () => {
         assert.deepEqual([...layers].sort(), ['Application', 'Business', 'Technology']);
         const ids = new Set(a.nodes.map((n) => n['unique-id']));
         const endpoints = (r: Record<string, unknown>): string[] => {
-            const rt = r['relationship-type'] as Record<string, { source?: { node?: string }; destination?: { node?: string } }>;
+            const rt = r['relationship-type'] as Record<string, Record<string, unknown>>;
             const k = Object.keys(rt)[0] as string;
-            return [rt[k]?.source?.node, rt[k]?.destination?.node].filter((x): x is string => !!x);
+            const body = rt[k] as { source?: { node?: string }; destination?: { node?: string }; container?: string; nodes?: string[] };
+            if (k === 'composed-of') return [body.container, ...(body.nodes ?? [])].filter((x): x is string => !!x);
+            return [body.source?.node, body.destination?.node].filter((x): x is string => !!x);
         };
+        const composed = a.relationships.filter((r) => 'composed-of' in r['relationship-type']);
+        assert.ok(composed.length > 0, 'fixture has composition relationships');
+        for (const r of composed) {
+            const body = r['relationship-type']['composed-of'] as { container?: string; nodes?: string[] };
+            assert.ok(body.container && Array.isArray(body.nodes) && body.nodes.length > 0, `composed-of shape in ${r['unique-id']}`);
+        }
         for (const r of a.relationships) {
             for (const e of endpoints(r as unknown as Record<string, unknown>)) {
                 assert.ok(ids.has(e), `dangling endpoint ${e} in ${r['unique-id']}`);

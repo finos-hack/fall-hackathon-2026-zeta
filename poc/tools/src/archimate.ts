@@ -15,7 +15,9 @@
  * Relationship mapping (-> CALM relationship-type):
  *   Composition/Aggregation/Assignment/
  *    Specialisation                           -> composed-of
- *   Association                                -> interacts
+ *   Association                                -> connects (undirected in
+ *     ArchiMate; connects with source/destination keeps the endpoints
+ *     resolvable, since CALM interacts requires a named actor)
  *   Flow/Triggering/UsedBy/Access/Realisation -> connects
  *
  * Spike: lossy by design (diagrams, viewpoints and styling stay in Archi).
@@ -66,7 +68,7 @@ function nodeType(archiType: string): string | null {
 
 function relKind(archiType: string): string {
     if (STRUCTURAL.has(archiType)) return 'composed-of';
-    if (archiType === 'AssociationRelationship') return 'interacts';
+    if (archiType === 'AssociationRelationship') return 'connects';
     return 'connects';
 }
 
@@ -179,10 +181,14 @@ function main(): void {
         const kind = relKind(type);
         const src = merged.get(source) as string;
         const dst = merged.get(target) as string;
+        // CALM composed-of is { container, nodes[] }: the whole (ArchiMate source) contains the part (target).
+        const body = kind === 'composed-of'
+            ? { container: src, nodes: [dst] }
+            : { source: { node: src }, destination: { node: dst } };
         relationships.push({
             'unique-id': `${p}-rel-${id}`,
             'relationship-type': {
-                [kind]: { source: { node: src }, destination: { node: dst } },
+                [kind]: body,
             },
             ...(name ? { description: `${name} (ArchiMate ${type})` } : { description: `ArchiMate ${type}` }),
         });

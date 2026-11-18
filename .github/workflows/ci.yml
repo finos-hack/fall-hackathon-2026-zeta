@@ -3,24 +3,94 @@ on:
   push:
   pull_request:
 jobs:
-  poc:
+  tools:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 24
           cache: npm
           cache-dependency-path: poc/tools/package-lock.json
+      - name: Checkout the pinned landing-zone source for importer tests
+        run: |
+          mkdir -p .local
+          git clone --filter=blob:none --no-checkout https://github.com/cloudon-one/multi-cloud-runway.git .local/multi-cloud-runway
+          git -C .local/multi-cloud-runway fetch --depth=1 origin 2fe49b9829df7a8749915ba1200896390d95139b
+          git -C .local/multi-cloud-runway checkout --detach 2fe49b9829df7a8749915ba1200896390d95139b
       - run: npm ci
         working-directory: poc/tools
       - run: npm run build
         working-directory: poc/tools
       - run: npm test
         working-directory: poc/tools
+      - run: node --test scripts/seed-hub.test.mjs
       - run: node dist/validate.js
         working-directory: poc/tools
       - run: node dist/query.js coverage --require audit-logging auditors
         working-directory: poc/tools
       - run: node dist/query.js coverage --require data-classification auditors
         working-directory: poc/tools
+  extension:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: |
+            poc/tools/package-lock.json
+            poc/hub-extensions/calm-views/package-lock.json
+      - run: npm ci && npm run build
+        working-directory: poc/tools
+      - run: npm ci
+        working-directory: poc/hub-extensions/calm-views
+      - run: npm run build
+        working-directory: poc/hub-extensions/calm-views
+      - run: npm test
+        working-directory: poc/hub-extensions/calm-views
+  hub-image:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Test the Hub UI patch and build the local image
+        run: bash scripts/build-hub-image.sh
+  lens-image:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate compose configuration
+        run: docker compose config --quiet
+      - name: Build the lens image
+        run: docker build -f poc/hub-extensions/calm-views/Dockerfile -t calm-views:ci .
+  dco:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Check DCO sign-off on new commits
+        run: |
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            BASE="${{ github.event.pull_request.base.sha }}"
+          else
+            BASE="${{ github.event.before }}"
+            if [ "$BASE" = "0000000000000000000000000000000000000000" ]; then
+              BASE=$(git rev-list --max-parents=0 HEAD)
+            fi
+          fi
+          FAIL=0
+          for C in $(git rev-list --no-merges "$BASE..${{ github.sha }}"); do
+            AUTHOR=$(git log -1 --format='%an <%ae>' "$C")
+            MESSAGE=$(git log -1 --format=%B "$C")
+            FOUND=0
+            while IFS= read -r LINE; do
+              if [ "$LINE" = "Signed-off-by: $AUTHOR" ]; then FOUND=1; fi
+            done <<< "$MESSAGE"
+            if [ "$FOUND" -ne 1 ]; then
+              echo "missing matching Signed-off-by in $C ($AUTHOR)"
+              FAIL=1
+            fi
+          done
+          exit $FAIL

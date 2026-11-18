@@ -1,0 +1,27 @@
+{
+  "$schema": "../schema/view.json",
+  "unique-id": "multicloud-global",
+  "name": "Multi-cloud overview",
+  "description": "The landing zone root, cloud providers, organizations and folders.",
+  "audience": [
+    "cloud-architects",
+    "platform-engineers"
+  ],
+  "suggested-formats": [
+    "svg",
+    "json"
+  ],
+  "group": "Multi-cloud landing zone",
+  "for": "../../model/multicloud-landing-zone.architecture.json",
+  "architecture": "multicloud-landing-zone",
+  "filter": {
+    "metadata": {
+      "kind": [
+        "landing-zone",
+        "cloud",
+        "ou",
+        "folder"
+      ]
+    }
+  }
+}
