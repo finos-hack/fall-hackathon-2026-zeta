@@ -1,0 +1,125 @@
+{
+  "id": "calm-views",
+  "version": "0.1.0",
+  "hubApi": 0,
+  "name": "CALM views",
+  "description": "Named, versioned views over the architecture: audience, filter, zero presentation. Internal spike.",
+  "provider": "zeta (hackathon spike)",
+  "routes": [
+    {
+      "id": "lens",
+      "method": "POST",
+      "path": "/lens/{namespace}/{resourceType}/{resourceId}",
+      "scope": "read",
+      "readOnly": true,
+      "hubData": [
+        "document"
+      ]
+    },
+    {
+      "id": "export",
+      "method": "GET",
+      "path": "/export/{namespace}/{token}",
+      "scope": "read",
+      "readOnly": true
+    },
+    {
+      "id": "poc",
+      "method": "GET",
+      "path": "/poc",
+      "scope": "authenticated",
+      "readOnly": true
+    }
+  ],
+  "contributes": {
+    "diagram-lens": [
+      {
+        "id": "views",
+        "title": "Views",
+        "description": "Named selections over the architecture (sidecar views)",
+        "route": "lens",
+        "appliesTo": {
+          "resourceTypes": [
+            "architectures"
+          ]
+        },
+        "params": {
+          "view": {
+            "pattern": "^[a-z][a-z0-9-]{0,63}$"
+          },
+          "cloud": {
+            "values": [
+              "all",
+              "aws",
+              "gcp"
+            ],
+            "default": "all"
+          },
+          "regionGroup": {
+            "values": [
+              "all",
+              "us",
+              "eu",
+              "global"
+            ],
+            "default": "all"
+          },
+          "env": {
+            "pattern": "^(all|[a-z][a-z0-9-]{0,63})$",
+            "default": "all"
+          },
+          "layer": {
+            "values": [
+              "all",
+              "governance",
+              "platform",
+              "security",
+              "network",
+              "data",
+              "compute"
+            ],
+            "default": "all"
+          },
+          "nodeType": {
+            "pattern": "^(all|[a-z0-9][a-z0-9:_-]{0,63})$",
+            "default": "all"
+          },
+          "relType": {
+            "values": [
+              "all",
+              "connects",
+              "interacts",
+              "composed-of",
+              "deployed-in"
+            ],
+            "default": "all"
+          },
+          "layout": {
+            "values": [
+              "layered-right",
+              "layered-down",
+              "tree",
+              "radial"
+            ],
+            "default": "layered-right"
+          }
+        },
+        "notation": "notation.json"
+      }
+    ],
+    "screen": [
+      {
+        "id": "poc",
+        "title": "CALM views POC",
+        "route": "poc"
+      }
+    ],
+    "landing-card": [
+      {
+        "id": "poc-card",
+        "title": "CALM views POC",
+        "route": "poc"
+      }
+    ]
+  }
+}

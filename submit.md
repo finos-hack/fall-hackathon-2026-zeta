@@ -1,36 +1,11 @@
 # Submission
 
-- Project: Calm views — one model, three readers
-- Track: Track 3 Features
-- Team: zeta — Andrés Antoniuk (solo)
-- Why FINOS should care: CALM has models and diagrams but no reader layer —
-  issue #2344 is open because views are not first-class. This entry ships
-  that missing layer as evidence: named, versioned, reviewable selections
-  over untouched models, with real control claims, a redistributable
-  reference model, and governance gates running in CI. The graduation path
-  is concrete: view schema into the calm-schema pipeline, a Hub extension
-  tab, and reader-side queries sitting on CalmGraph when `calm query`
-  (#3661) lands. A view selects, a lens draws.
-- Repo state at submission: README filled, `submit.md` present, POC
-  workspace with 10/10 validate OK, 38/38 tests green from a clean clone,
-  DCO on every commit, CI green (install, build, test, validate, plus
-  both governance gates).
-- POC issue: none (decided 2026-11-14 — no POC issue). Community vehicle is
-  the comment on `finos/architecture-as-code#3731`, plus link if applicable.
-- Demo: live (validate + coverage gates → render + gallery + Canvas spike
-  with the grouped view selector and drill-down). No recording.
-- Evidence for `finos/architecture-as-code#2344`: named, versioned views
-  as sidecars with audience and filter, zero presentation in the schema.
-  Two models: the vendored KYC architecture (20 nodes, untouched) and the
-  redistributable eCH-0122 Swiss e-government reference (155 nodes, layers
-  and capabilities as views). Reader-side queries run over both via
-  `query.js` (including `context` bundles and `coverage --require` gates).
-
-Submission checklist (Wed 18/11, hard stop 19:00 local):
-
-- [x] Project name and track confirmed.
-- [x] README filled in the zeta repo via PR (branch, never direct to main).
-- [x] `submit.md` present in the zeta repo via PR.
-- [ ] DCO audit: every commit carries matching Signed-off-by.
-- [ ] Reread diff for environment mentions or private material.
-- [ ] Confirm receipt per the channel announced at kickoff.
+- **Project:** Calm views, named selections over CALM architectures
+- **Track:** Track 3 Features
+- **Team:** zeta (Andrés Antoniuk, solo)
+- **Why FINOS should care:** CALM has models and diagrams. It has no named, versioned reader selections yet. Issue [#2344](https://github.com/finos/architecture-as-code/issues/2344) is open because views are not first-class. This entry gives the missing layer as evidence. A view is a named, versioned, reviewable selection over an unchanged model. The entry includes real control claims, a reference model with an open license, and governance gates in a CI workflow. The path to graduation has three steps. First, move the view schema into the calm-schema pipeline. Second, add a Hub extension tab. Third, sit reader-side queries on CalmGraph when `calm query` ([#3661](https://github.com/finos/architecture-as-code/issues/3661)) lands. A view selects. A lens draws.
+- **Repo state:** README, `submit.md`, `OPERATION.md` and `poc/` are present. `OPERATION.md` lists the checks and commands.
+- **Validation:** all 20 views validate; 77 tools tests, 16 lens extension tests and the seed test pass.
+- **Commits:** every committed change carries a DCO sign-off.
+- **POC issue:** none. The community vehicle is the comment on [finos/architecture-as-code#3731](https://github.com/finos/architecture-as-code/issues/3731).
+- **Demo:** local POC. The patched UI proxy runs in front of the official Hub backend. The ZETA model documents the demo topology and its flows. There is no recording.

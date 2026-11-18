@@ -5,12 +5,15 @@
  * never fail (partial views stay renderable — evidence for #2344 Q3).
  * Exit 0 unless a view fails schema validation or its `for` target is missing.
  */
-import { readdirSync, existsSync } from 'node:fs';
+import { existsSync } from 'node:fs';
 import { join, dirname, normalize } from 'node:path';
 import {
     ROOT,
+    listViewFiles,
     readJson,
     resolveView,
+    resolveMultiView,
+    unionScope,
     type CalmArchitecture,
     type CalmFilter,
     type JsonRecord,
@@ -21,12 +24,16 @@ function fail(msg: string): never {
     process.exit(1);
 }
 
-function checkSchema(view: unknown): string | null {
+export function checkSchema(view: unknown): string | null {
     if (typeof view !== 'object' || view === null) return 'view must be an object';
     const v = view as JsonRecord;
-    for (const k of ['unique-id', 'name', 'for']) {
+    for (const k of ['unique-id', 'name']) {
         if (typeof v[k] !== 'string') return `'${k}' is a required property`;
     }
+    if (typeof v['for'] !== 'string' && !(Array.isArray(v['for']) && (v['for'] as unknown[]).every((x) => typeof x === 'string'))) {
+        return `'for' must be a model path or an array of model paths`;
+    }
+    if (!('filter' in v)) return `'filter' is a required property`;
     const allowed = new Set([
         '$schema',
         'unique-id',
@@ -38,13 +45,32 @@ function checkSchema(view: unknown): string | null {
         'derived-from',
         'drill-down',
         'for',
+        'architecture',
         'filter',
     ]);
     for (const k of Object.keys(v)) {
         if (!allowed.has(k)) return `additional properties not allowed ('${k}')`;
     }
-    if (v['audience'] !== undefined && !Array.isArray(v['audience'])) {
-        return `'audience' must be an array`;
+    for (const k of ['$schema', 'description', 'group', 'architecture']) {
+        if (v[k] !== undefined && typeof v[k] !== 'string') return `'${k}' must be a string`;
+    }
+    if (v['audience'] !== undefined && (!Array.isArray(v['audience']) || v['audience'].length < 1 || !v['audience'].every((x) => typeof x === 'string'))) {
+        return `'audience' must be an array of one or more strings`;
+    }
+    if (v['suggested-formats'] !== undefined && (!Array.isArray(v['suggested-formats']) || !v['suggested-formats'].every((x) => typeof x === 'string'))) {
+        return `'suggested-formats' must be an array of strings`;
+    }
+    if (v['derived-from'] !== undefined) {
+        const derived = v['derived-from'];
+        if (typeof derived !== 'object' || derived === null || Array.isArray(derived)) return `'derived-from' must be an object`;
+        const fields = derived as JsonRecord;
+        if (fields['seeds'] !== undefined && (!Array.isArray(fields['seeds']) || !fields['seeds'].every((x) => typeof x === 'string'))) {
+            return `'derived-from.seeds' must be an array of strings`;
+        }
+        if (fields['depth'] !== undefined && !Number.isInteger(fields['depth'])) return `'derived-from.depth' must be an integer`;
+        for (const key of ['generated', 'tool']) {
+            if (fields[key] !== undefined && typeof fields[key] !== 'string') return `'derived-from.${key}' must be a string`;
+        }
     }
     const drill = v['drill-down'] as JsonRecord | undefined;
     if (drill !== undefined) {
@@ -65,21 +91,28 @@ function checkSchema(view: unknown): string | null {
                 if (typeof filter[k] !== 'object' || filter[k] === null || Array.isArray(filter[k])) {
                     return `filter.metadata must be an object of key to string array`;
                 }
+                for (const [key, values] of Object.entries(filter[k] as JsonRecord)) {
+                    if (!Array.isArray(values) || !values.every((value) => typeof value === 'string')) {
+                        return `filter.metadata.${key} must be an array of strings`;
+                    }
+                }
                 continue;
             }
-            if (!Array.isArray(filter[k])) return `filter.${k} must be an array`;
+            if (!Array.isArray(filter[k]) || !(filter[k] as unknown[]).every((value) => typeof value === 'string')) {
+                return `filter.${k} must be an array of strings`;
+            }
         }
     }
     return null;
 }
 
-export function main(): number {
-    const schemaPath = join(ROOT, 'schema', 'view.json');
+export function main(root: string = ROOT, log: typeof console.log = console.log): number {
+    const schemaPath = join(root, 'schema', 'view.json');
     if (!existsSync(schemaPath)) fail(`schema missing: ${schemaPath}`);
     readJson(schemaPath);
     let errors = 0;
-    const viewsDir = join(ROOT, 'views');
-    const viewFiles = readdirSync(viewsDir).filter((f: string) => f.endsWith('.calm-view.json')).sort();
+    const viewsDir = join(root, 'views');
+    const viewFiles = listViewFiles(viewsDir);
     const byId = new Map<string, { file: string; for: unknown }>();
     for (const name of viewFiles) {
         try {
@@ -91,39 +124,72 @@ export function main(): number {
     }
     for (const name of viewFiles) {
         const path = join(viewsDir, name);
-        const view = readJson(path) as JsonRecord;
+        let view: JsonRecord;
+        try {
+            view = readJson(path) as JsonRecord;
+        } catch (error) {
+            log(`${name}: SCHEMA ERROR: invalid JSON: ${(error as Error).message}`);
+            errors += 1;
+            continue;
+        }
         const schemaError = checkSchema(view);
         if (schemaError) {
-            console.log(`${name}: SCHEMA ERROR: ${schemaError}`);
+            log(`${name}: SCHEMA ERROR: ${schemaError}`);
             errors += 1;
             continue;
         }
         const filt = (view['filter'] as CalmFilter | undefined) ?? {};
         const viewDir = dirname(path);
-        const archPath = normalize(join(viewDir, view['for'] as string));
+        const fors = view['for'];
+        const multi = Array.isArray(fors);
+        if (multi) {
+            const missing = (fors as string[]).filter((r) => !existsSync(normalize(join(viewDir, r))));
+            if (missing.length > 0) {
+                log(`${name}: ERROR: \`for\` target(s) missing: ${missing.join(', ')}`);
+                errors += 1;
+                continue;
+            }
+            try {
+                const files = resolveMultiView(viewDir, view);
+                const total = unionScope(files);
+                log(`${name}: OK — ${total.nodes.length} nodes across ${files.length} files (${total.rels.length} in-file relationships)`);
+            } catch (error) {
+                log(`${name}: ERROR: cannot resolve \`for\` target(s): ${(error as Error).message}`);
+                errors += 1;
+            }
+            continue;
+        }
+        const archPath = normalize(join(viewDir, fors as string));
         if (!existsSync(archPath)) {
-            console.log(`${name}: ERROR: \`for\` target missing: ${view['for']}`);
+            log(`${name}: ERROR: \`for\` target missing: ${view['for']}`);
             errors += 1;
             continue;
         }
-        const arch = readJson(archPath) as CalmArchitecture;
+        let arch: CalmArchitecture;
+        try {
+            arch = readJson(archPath) as CalmArchitecture;
+        } catch (error) {
+            log(`${name}: ERROR: cannot read model ${view['for']}: ${(error as Error).message}`);
+            errors += 1;
+            continue;
+        }
         const rels = new Map((arch.relationships ?? []).map((r) => [r['unique-id'] as string, r]));
         const { inNodes, inRels, excluded, warnings } = resolveView(arch, filt);
         const listed = new Set(filt.relationships ?? []);
         const inferred = [...inRels].filter((u) => rels.has(u) && !listed.has(u)).length;
-        console.log(
+        log(
             `${name}: OK — ${inNodes.size} nodes, ${inRels.size} relationships ` +
                 `(${(filt.relationships ?? []).length} listed, ${inferred} inferred)`
         );
         for (const u of [...excluded.keys()].sort()) {
-            console.log(`  excluded rel '${u}' (endpoint(s) outside view: ${excluded.get(u)?.join(', ')})`);
+            log(`  excluded rel '${u}' (endpoint(s) outside view: ${excluded.get(u)?.join(', ')})`);
         }
         for (const f of filt.flows ?? []) {
-            console.log(`  warning: flow '${f}' has no sibling document in this POC`);
+            log(`  warning: flow '${f}' has no sibling document in this POC`);
         }
         for (const d of filt.decorators ?? []) {
             if (!existsSync(join(viewDir, `${d}.decorator.json`))) {
-                console.log(`  warning: decorator '${d}' has no sibling document`);
+                log(`  warning: decorator '${d}' has no sibling document`);
             }
         }
         for (const e of checkDrill(
@@ -132,10 +198,10 @@ export function main(): number {
             byId,
             view['for']
         )) {
-            console.log(`  ERROR: ${e}`);
+            log(`  ERROR: ${e}`);
             errors += 1;
         }
-        for (const w of warnings) console.log(`  warning: ${w}`);
+        for (const w of warnings) log(`  warning: ${w}`);
     }
     return errors > 0 ? 1 : 0;
 }

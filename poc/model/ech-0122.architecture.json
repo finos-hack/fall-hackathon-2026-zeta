@@ -2385,7 +2385,7 @@
     {
       "unique-id": "ech-rel-id-448919b9a975494a82cc276938412e6b",
       "relationship-type": {
-        "interacts": {
+        "connects": {
           "source": {
             "node": "ech-id-8e1bf77800024627a92afd30a337a936"
           },
@@ -2400,12 +2400,10 @@
       "unique-id": "ech-rel-id-526577eb85074a9195c5c071986d45db",
       "relationship-type": {
         "composed-of": {
-          "source": {
-            "node": "ech-id-755e1f25c8ae4140a07fbe25c92529f6"
-          },
-          "destination": {
-            "node": "ech-id-8e1bf77800024627a92afd30a337a936"
-          }
+          "container": "ech-id-755e1f25c8ae4140a07fbe25c92529f6",
+          "nodes": [
+            "ech-id-8e1bf77800024627a92afd30a337a936"
+          ]
         }
       },
       "description": "ArchiMate CompositionRelationship"
@@ -2413,7 +2411,7 @@
     {
       "unique-id": "ech-rel-id-3ea4293229b141b4af747cabdce4340c",
       "relationship-type": {
-        "interacts": {
+        "connects": {
           "source": {
             "node": "ech-id-060b64f78066488ca2beac4e6622db12"
           },
@@ -2470,12 +2468,10 @@
       "unique-id": "ech-rel-id-f12d5e2d990f4fea961dcce3ab33e2d1",
       "relationship-type": {
         "composed-of": {
-          "source": {
-            "node": "ech-id-755e1f25c8ae4140a07fbe25c92529f6"
-          },
-          "destination": {
-            "node": "ech-id-060b64f78066488ca2beac4e6622db12"
-          }
+          "container": "ech-id-755e1f25c8ae4140a07fbe25c92529f6",
+          "nodes": [
+            "ech-id-060b64f78066488ca2beac4e6622db12"
+          ]
         }
       },
       "description": "ArchiMate CompositionRelationship"
@@ -2903,7 +2899,7 @@
     {
       "unique-id": "ech-rel-id-73a3e147d75d43ab8aa2e2bf3b1d14cc",
       "relationship-type": {
-        "interacts": {
+        "connects": {
           "source": {
             "node": "ech-id-7af9e3534cce45ce8dea9ef3eeec6473"
           },
@@ -2931,7 +2927,7 @@
     {
       "unique-id": "ech-rel-id-afc54c6dfb9f496f90a235b6b454b9c1",
       "relationship-type": {
-        "interacts": {
+        "connects": {
           "source": {
             "node": "ech-id-1ceb583efbe94bb2adf664d8b8570d95"
           },
@@ -3002,12 +2998,10 @@
       "unique-id": "ech-rel-id-8c2638689ffc461e824b9da681b83f48",
       "relationship-type": {
         "composed-of": {
-          "source": {
-            "node": "ech-id-6ab818fe8704440e9cb6847a7578767f"
-          },
-          "destination": {
-            "node": "ech-id-78222fba875448e68e77ebb519393bde"
-          }
+          "container": "ech-id-6ab818fe8704440e9cb6847a7578767f",
+          "nodes": [
+            "ech-id-78222fba875448e68e77ebb519393bde"
+          ]
         }
       },
       "description": "ArchiMate AssignmentRelationship"
@@ -3156,12 +3150,10 @@
       "unique-id": "ech-rel-id-503c772affa84dc5aba7705a87c72f95",
       "relationship-type": {
         "composed-of": {
-          "source": {
-            "node": "ech-id-6ff5577ebe1d42ce8770632a9eb475a9"
-          },
-          "destination": {
-            "node": "ech-id-78222fba875448e68e77ebb519393bde"
-          }
+          "container": "ech-id-6ff5577ebe1d42ce8770632a9eb475a9",
+          "nodes": [
+            "ech-id-78222fba875448e68e77ebb519393bde"
+          ]
         }
       },
       "description": "ArchiMate AssignmentRelationship"
@@ -3310,12 +3302,10 @@
       "unique-id": "ech-rel-id-1a32bc4c455f464ab656e3de4c2a1552",
       "relationship-type": {
         "composed-of": {
-          "source": {
-            "node": "ech-id-569c65b065694bee90716f2d4851327b"
-          },
-          "destination": {
-            "node": "ech-id-bfcc587967e64d8b804eb40195266a18"
-          }
+          "container": "ech-id-569c65b065694bee90716f2d4851327b",
+          "nodes": [
+            "ech-id-bfcc587967e64d8b804eb40195266a18"
+          ]
         }
       },
       "description": "ArchiMate AssignmentRelationship"
@@ -3324,12 +3314,10 @@
       "unique-id": "ech-rel-id-1c4f9e62c4564a18b6c0eef34147ba9c",
       "relationship-type": {
         "composed-of": {
-          "source": {
-            "node": "ech-id-6ab818fe8704440e9cb6847a7578767f"
-          },
-          "destination": {
-            "node": "ech-id-bfcc587967e64d8b804eb40195266a18"
-          }
+          "container": "ech-id-6ab818fe8704440e9cb6847a7578767f",
+          "nodes": [
+            "ech-id-bfcc587967e64d8b804eb40195266a18"
+          ]
         }
       },
       "description": "ArchiMate AssignmentRelationship"
@@ -3422,12 +3410,10 @@
       "unique-id": "ech-rel-id-af591cea25114224ab01b69fc32152d0",
       "relationship-type": {
         "composed-of": {
-          "source": {
-            "node": "ech-id-ac8ef321097c49c28ea8277a3f58fd6b"
-          },
-          "destination": {
-            "node": "ech-id-07240f6a5f5a4033855da4e581e117b4"
-          }
+          "container": "ech-id-ac8ef321097c49c28ea8277a3f58fd6b",
+          "nodes": [
+            "ech-id-07240f6a5f5a4033855da4e581e117b4"
+          ]
         }
       },
       "description": "ArchiMate AssignmentRelationship"
@@ -3534,12 +3520,10 @@
       "unique-id": "ech-rel-id-97be2b01aa6a421489d962e8d53b7f9c",
       "relationship-type": {
         "composed-of": {
-          "source": {
-            "node": "ech-id-42402b1d4ebc4645a1230d8a1dfdffd7"
-          },
-          "destination": {
-            "node": "ech-id-30526707fce0488c813226dd60666fea"
-          }
+          "container": "ech-id-42402b1d4ebc4645a1230d8a1dfdffd7",
+          "nodes": [
+            "ech-id-30526707fce0488c813226dd60666fea"
+          ]
         }
       },
       "description": "ArchiMate CompositionRelationship"
@@ -3561,7 +3545,7 @@
     {
       "unique-id": "ech-rel-id-03f5d55419904142a46f19e3dcc8abc2",
       "relationship-type": {
-        "interacts": {
+        "connects": {
           "source": {
             "node": "ech-id-64f979d75d9242688aaa3ab7ca19dffe"
           },
@@ -3575,7 +3559,7 @@
     {
       "unique-id": "ech-rel-id-8d91c8baa8824c7584d579b3512e171d",
       "relationship-type": {
-        "interacts": {
+        "connects": {
           "source": {
             "node": "ech-id-64f979d75d9242688aaa3ab7ca19dffe"
           },
@@ -3632,12 +3616,10 @@
       "unique-id": "ech-rel-id-e63c199d70cd42fd99b83af327fe6214",
       "relationship-type": {
         "composed-of": {
-          "source": {
-            "node": "ech-id-7a999b49564b4dbfbf93a72eb4c63e1e"
-          },
-          "destination": {
-            "node": "ech-id-d135548811a24e2488fa80c62f27c20b"
-          }
+          "container": "ech-id-7a999b49564b4dbfbf93a72eb4c63e1e",
+          "nodes": [
+            "ech-id-d135548811a24e2488fa80c62f27c20b"
+          ]
         }
       },
       "description": "ArchiMate AssignmentRelationship"
@@ -3800,12 +3782,10 @@
       "unique-id": "ech-rel-id-6c191f71849e4aeb8c3571a4183323fd",
       "relationship-type": {
         "composed-of": {
-          "source": {
-            "node": "ech-id-67ebd962647441088b6c1d7eb7302908"
-          },
-          "destination": {
-            "node": "ech-id-d4f946d76f5c4e4ba7d2a06dc9db8171"
-          }
+          "container": "ech-id-67ebd962647441088b6c1d7eb7302908",
+          "nodes": [
+            "ech-id-d4f946d76f5c4e4ba7d2a06dc9db8171"
+          ]
         }
       },
       "description": "ArchiMate AssignmentRelationship"
@@ -3912,12 +3892,10 @@
       "unique-id": "ech-rel-id-83946c797a754d008f28909da1738e31",
       "relationship-type": {
         "composed-of": {
-          "source": {
-            "node": "ech-id-5e57bae9e5054f378d1a7b33b95e50b7"
-          },
-          "destination": {
-            "node": "ech-id-a1dfebc7e9ff400fa7d294db5eec32ae"
-          }
+          "container": "ech-id-5e57bae9e5054f378d1a7b33b95e50b7",
+          "nodes": [
+            "ech-id-a1dfebc7e9ff400fa7d294db5eec32ae"
+          ]
         }
       },
       "description": "ArchiMate AssignmentRelationship"
@@ -4080,12 +4058,10 @@
       "unique-id": "ech-rel-id-128cddbc79234d05b0ec1c3845d39f8e",
       "relationship-type": {
         "composed-of": {
-          "source": {
-            "node": "ech-id-30a816331d074bc5b855fcdbe5cdcc2b"
-          },
-          "destination": {
-            "node": "ech-id-a7aee60b30214aff84f6e27224537eff"
-          }
+          "container": "ech-id-30a816331d074bc5b855fcdbe5cdcc2b",
+          "nodes": [
+            "ech-id-a7aee60b30214aff84f6e27224537eff"
+          ]
         }
       },
       "description": "ArchiMate AssignmentRelationship"
@@ -4261,7 +4237,7 @@
     {
       "unique-id": "ech-rel-id-3da15622b6e04e718a79fcbbd15f2519",
       "relationship-type": {
-        "interacts": {
+        "connects": {
           "source": {
             "node": "ech-id-5e57bae9e5054f378d1a7b33b95e50b7"
           },
@@ -4303,7 +4279,7 @@
     {
       "unique-id": "ech-rel-id-811ec1c0324e4d93926800b77ad93461",
       "relationship-type": {
-        "interacts": {
+        "connects": {
           "source": {
             "node": "ech-id-30a816331d074bc5b855fcdbe5cdcc2b"
           },
@@ -4486,12 +4462,10 @@
       "unique-id": "ech-rel-id-e38e38272c6144a4a0caa7138f2bb609",
       "relationship-type": {
         "composed-of": {
-          "source": {
-            "node": "ech-id-764fa4696c6e41698e0d56d576a724d9"
-          },
-          "destination": {
-            "node": "ech-id-f94b95b37ca4488ca37a687b926a821b"
-          }
+          "container": "ech-id-764fa4696c6e41698e0d56d576a724d9",
+          "nodes": [
+            "ech-id-f94b95b37ca4488ca37a687b926a821b"
+          ]
         }
       },
       "description": "ArchiMate CompositionRelationship"
@@ -4500,12 +4474,10 @@
       "unique-id": "ech-rel-id-00abdc36bc1c4f4d9cf139f4333feb2a",
       "relationship-type": {
         "composed-of": {
-          "source": {
-            "node": "ech-id-fc269abaa1da48cba5f2f11940fc0fda"
-          },
-          "destination": {
-            "node": "ech-id-184b53652e9a4d118cb12ee5cd7a8717"
-          }
+          "container": "ech-id-fc269abaa1da48cba5f2f11940fc0fda",
+          "nodes": [
+            "ech-id-184b53652e9a4d118cb12ee5cd7a8717"
+          ]
         }
       },
       "description": "ArchiMate AssignmentRelationship"
@@ -4528,12 +4500,10 @@
       "unique-id": "ech-rel-id-57799ac982634b9c953fe327b8812104",
       "relationship-type": {
         "composed-of": {
-          "source": {
-            "node": "ech-id-764fa4696c6e41698e0d56d576a724d9"
-          },
-          "destination": {
-            "node": "ech-id-eb231c33b7f8438abceb53158dc7bec2"
-          }
+          "container": "ech-id-764fa4696c6e41698e0d56d576a724d9",
+          "nodes": [
+            "ech-id-eb231c33b7f8438abceb53158dc7bec2"
+          ]
         }
       },
       "description": "ArchiMate CompositionRelationship"
@@ -4542,12 +4512,10 @@
       "unique-id": "ech-rel-id-08d6ac3196ee4719bb1b06b5d5954392",
       "relationship-type": {
         "composed-of": {
-          "source": {
-            "node": "ech-id-764fa4696c6e41698e0d56d576a724d9"
-          },
-          "destination": {
-            "node": "ech-id-c58c4cebc0844d1bac8baba44cd8d5aa"
-          }
+          "container": "ech-id-764fa4696c6e41698e0d56d576a724d9",
+          "nodes": [
+            "ech-id-c58c4cebc0844d1bac8baba44cd8d5aa"
+          ]
         }
       },
       "description": "ArchiMate CompositionRelationship"
@@ -4612,12 +4580,10 @@
       "unique-id": "ech-rel-id-17a712c376174afa9e97a1e746c02dc7",
       "relationship-type": {
         "composed-of": {
-          "source": {
-            "node": "ech-id-fc269abaa1da48cba5f2f11940fc0fda"
-          },
-          "destination": {
-            "node": "ech-id-ce2c71580df649128ce62a49e39f3201"
-          }
+          "container": "ech-id-fc269abaa1da48cba5f2f11940fc0fda",
+          "nodes": [
+            "ech-id-ce2c71580df649128ce62a49e39f3201"
+          ]
         }
       },
       "description": "ArchiMate AssignmentRelationship"
@@ -4709,7 +4675,7 @@
     {
       "unique-id": "ech-rel-id-17161596c80a4dceab8c6ae210bed9e4",
       "relationship-type": {
-        "interacts": {
+        "connects": {
           "source": {
             "node": "ech-id-66ba282d30264ef9adcaeed2806d6286"
           },
@@ -4738,12 +4704,10 @@
       "unique-id": "ech-rel-id-45c4fa2bbc064f1d9098309630a2f0ae",
       "relationship-type": {
         "composed-of": {
-          "source": {
-            "node": "ech-id-e586ee62d0414e6d9184931ffe44fbfb"
-          },
-          "destination": {
-            "node": "ech-id-52982c2d58c64a6cb942a7c5db4aa11a"
-          }
+          "container": "ech-id-e586ee62d0414e6d9184931ffe44fbfb",
+          "nodes": [
+            "ech-id-52982c2d58c64a6cb942a7c5db4aa11a"
+          ]
         }
       },
       "description": "ArchiMate AggregationRelationship"
@@ -4752,12 +4716,10 @@
       "unique-id": "ech-rel-id-ff1dac6465b84dc4ac5af8a47bd0df3a",
       "relationship-type": {
         "composed-of": {
-          "source": {
-            "node": "ech-id-2c22f8430c744412a16feb3ed836be66"
-          },
-          "destination": {
-            "node": "ech-id-2a68f92cf6e6411da6d602100a890ee0"
-          }
+          "container": "ech-id-2c22f8430c744412a16feb3ed836be66",
+          "nodes": [
+            "ech-id-2a68f92cf6e6411da6d602100a890ee0"
+          ]
         }
       },
       "description": "ArchiMate AssignmentRelationship"
@@ -4766,12 +4728,10 @@
       "unique-id": "ech-rel-id-91c69725d4bc43588778dcf2e480218d",
       "relationship-type": {
         "composed-of": {
-          "source": {
-            "node": "ech-id-eabaf611452947a6a9c3ef68703e33ae"
-          },
-          "destination": {
-            "node": "ech-id-2ad7de2fd40e487bb3947eaf833abddf"
-          }
+          "container": "ech-id-eabaf611452947a6a9c3ef68703e33ae",
+          "nodes": [
+            "ech-id-2ad7de2fd40e487bb3947eaf833abddf"
+          ]
         }
       },
       "description": "ArchiMate AssignmentRelationship"
@@ -4822,12 +4782,10 @@
       "unique-id": "ech-rel-id-115235b132df42b08eedd2f17725b8aa",
       "relationship-type": {
         "composed-of": {
-          "source": {
-            "node": "ech-id-52982c2d58c64a6cb942a7c5db4aa11a"
-          },
-          "destination": {
-            "node": "ech-id-52982c2d58c64a6cb942a7c5db4aa11a"
-          }
+          "container": "ech-id-52982c2d58c64a6cb942a7c5db4aa11a",
+          "nodes": [
+            "ech-id-52982c2d58c64a6cb942a7c5db4aa11a"
+          ]
         }
       },
       "description": "ArchiMate AggregationRelationship"
@@ -4849,7 +4807,7 @@
     {
       "unique-id": "ech-rel-id-501494e266f9458eb9de5b9cc4d3640a",
       "relationship-type": {
-        "interacts": {
+        "connects": {
           "source": {
             "node": "ech-id-2c22f8430c744412a16feb3ed836be66"
           },
@@ -4877,7 +4835,7 @@
     {
       "unique-id": "ech-rel-id-f440baecf8b145f2b4085bc3fcc9f7bc",
       "relationship-type": {
-        "interacts": {
+        "connects": {
           "source": {
             "node": "ech-id-d0fef223eb4c40eb944a3bae071b022d"
           },
@@ -4920,12 +4878,10 @@
       "unique-id": "ech-rel-id-07818e50c36c4c78847b281da4181912",
       "relationship-type": {
         "composed-of": {
-          "source": {
-            "node": "ech-id-8b498b10f96446159a1a3c23ebf7b8b8"
-          },
-          "destination": {
-            "node": "ech-id-2ad7de2fd40e487bb3947eaf833abddf"
-          }
+          "container": "ech-id-8b498b10f96446159a1a3c23ebf7b8b8",
+          "nodes": [
+            "ech-id-2ad7de2fd40e487bb3947eaf833abddf"
+          ]
         }
       },
       "description": "ArchiMate AssignmentRelationship"
@@ -4948,12 +4904,10 @@
       "unique-id": "ech-rel-id-72daf2780e8741df99862de3143246a4",
       "relationship-type": {
         "composed-of": {
-          "source": {
-            "node": "ech-id-b43c924c047d4f8ab9dd1fb867db7829"
-          },
-          "destination": {
-            "node": "ech-id-a5a4d9f4d0d242888889b9802a0b1112"
-          }
+          "container": "ech-id-b43c924c047d4f8ab9dd1fb867db7829",
+          "nodes": [
+            "ech-id-a5a4d9f4d0d242888889b9802a0b1112"
+          ]
         }
       },
       "description": "ArchiMate AggregationRelationship"
@@ -4990,12 +4944,10 @@
       "unique-id": "ech-rel-id-a1d72220c72943fbadc6a5e71dcd02bc",
       "relationship-type": {
         "composed-of": {
-          "source": {
-            "node": "ech-id-244aae288b3248248a33e633c0029972"
-          },
-          "destination": {
-            "node": "ech-id-2c22f8430c744412a16feb3ed836be66"
-          }
+          "container": "ech-id-244aae288b3248248a33e633c0029972",
+          "nodes": [
+            "ech-id-2c22f8430c744412a16feb3ed836be66"
+          ]
         }
       },
       "description": "ArchiMate AssignmentRelationship"
@@ -5018,12 +4970,10 @@
       "unique-id": "ech-rel-id-87da0218aa824e35879221991e615cc7",
       "relationship-type": {
         "composed-of": {
-          "source": {
-            "node": "ech-id-52982c2d58c64a6cb942a7c5db4aa11a"
-          },
-          "destination": {
-            "node": "ech-id-f6a103409bad4f9482fad0493e7107a8"
-          }
+          "container": "ech-id-52982c2d58c64a6cb942a7c5db4aa11a",
+          "nodes": [
+            "ech-id-f6a103409bad4f9482fad0493e7107a8"
+          ]
         }
       },
       "description": "ArchiMate CompositionRelationship"
@@ -5032,12 +4982,10 @@
       "unique-id": "ech-rel-id-368360b2a12849b28000caf9238668ed",
       "relationship-type": {
         "composed-of": {
-          "source": {
-            "node": "ech-id-9e6a0db663aa46598bfaacb0ed1404cc"
-          },
-          "destination": {
-            "node": "ech-id-2ad7de2fd40e487bb3947eaf833abddf"
-          }
+          "container": "ech-id-9e6a0db663aa46598bfaacb0ed1404cc",
+          "nodes": [
+            "ech-id-2ad7de2fd40e487bb3947eaf833abddf"
+          ]
         }
       },
       "description": "ArchiMate AssignmentRelationship"
@@ -5046,12 +4994,10 @@
       "unique-id": "ech-rel-id-d9bf216b142b436b9973b0c7813fdca7",
       "relationship-type": {
         "composed-of": {
-          "source": {
-            "node": "ech-id-eabaf611452947a6a9c3ef68703e33ae"
-          },
-          "destination": {
-            "node": "ech-id-2c22f8430c744412a16feb3ed836be66"
-          }
+          "container": "ech-id-eabaf611452947a6a9c3ef68703e33ae",
+          "nodes": [
+            "ech-id-2c22f8430c744412a16feb3ed836be66"
+          ]
         }
       },
       "description": "ArchiMate AssignmentRelationship"
@@ -5088,12 +5034,10 @@
       "unique-id": "ech-rel-id-fad8706a9f0842d590d96de9309e0d7e",
       "relationship-type": {
         "composed-of": {
-          "source": {
-            "node": "ech-id-e586ee62d0414e6d9184931ffe44fbfb"
-          },
-          "destination": {
-            "node": "ech-id-e586ee62d0414e6d9184931ffe44fbfb"
-          }
+          "container": "ech-id-e586ee62d0414e6d9184931ffe44fbfb",
+          "nodes": [
+            "ech-id-e586ee62d0414e6d9184931ffe44fbfb"
+          ]
         }
       },
       "description": "ArchiMate AggregationRelationship"
@@ -5144,12 +5088,10 @@
       "unique-id": "ech-rel-id-ee7413958758472293e19e406ba156ff",
       "relationship-type": {
         "composed-of": {
-          "source": {
-            "node": "ech-id-62b21d39a0f04ee0833dbd2ced4e4f6d"
-          },
-          "destination": {
-            "node": "ech-id-8ac479b4ddf445c48dba0f5f784dcfe4"
-          }
+          "container": "ech-id-62b21d39a0f04ee0833dbd2ced4e4f6d",
+          "nodes": [
+            "ech-id-8ac479b4ddf445c48dba0f5f784dcfe4"
+          ]
         }
       },
       "description": "ArchiMate AssignmentRelationship"
@@ -5172,12 +5114,10 @@
       "unique-id": "ech-rel-id-4f1b849e5d7741ea83bc5d17b0f05203",
       "relationship-type": {
         "composed-of": {
-          "source": {
-            "node": "ech-id-3fa7c6bd85284524a64d9727141406fd"
-          },
-          "destination": {
-            "node": "ech-id-9edf9a87ea4a41dfa4a8e63794740fcb"
-          }
+          "container": "ech-id-3fa7c6bd85284524a64d9727141406fd",
+          "nodes": [
+            "ech-id-9edf9a87ea4a41dfa4a8e63794740fcb"
+          ]
         }
       },
       "description": "ArchiMate AssignmentRelationship"
@@ -5186,12 +5126,10 @@
       "unique-id": "ech-rel-id-55cb97022c83414887387c07edc04b44",
       "relationship-type": {
         "composed-of": {
-          "source": {
-            "node": "ech-id-560ec276fd8949df85703e708ac7ba13"
-          },
-          "destination": {
-            "node": "ech-id-8ac479b4ddf445c48dba0f5f784dcfe4"
-          }
+          "container": "ech-id-560ec276fd8949df85703e708ac7ba13",
+          "nodes": [
+            "ech-id-8ac479b4ddf445c48dba0f5f784dcfe4"
+          ]
         }
       },
       "description": "ArchiMate AssignmentRelationship"
@@ -5200,12 +5138,10 @@
       "unique-id": "ech-rel-id-1974fad7595c40b9b5032414ce334b38",
       "relationship-type": {
         "composed-of": {
-          "source": {
-            "node": "ech-id-3fa7c6bd85284524a64d9727141406fd"
-          },
-          "destination": {
-            "node": "ech-id-4a87f752fb5148909b5201b239777908"
-          }
+          "container": "ech-id-3fa7c6bd85284524a64d9727141406fd",
+          "nodes": [
+            "ech-id-4a87f752fb5148909b5201b239777908"
+          ]
         }
       },
       "description": "ArchiMate CompositionRelationship"
@@ -5214,12 +5150,10 @@
       "unique-id": "ech-rel-id-f38205034d214eb7b32952deef1cdca2",
       "relationship-type": {
         "composed-of": {
-          "source": {
-            "node": "ech-id-1bf5096f7ed04de18934bd39132ef5d4"
-          },
-          "destination": {
-            "node": "ech-id-9dea9c5ec8eb4345810fda4a1efb2ffd"
-          }
+          "container": "ech-id-1bf5096f7ed04de18934bd39132ef5d4",
+          "nodes": [
+            "ech-id-9dea9c5ec8eb4345810fda4a1efb2ffd"
+          ]
         }
       },
       "description": "ArchiMate AssignmentRelationship"
@@ -5270,12 +5204,10 @@
       "unique-id": "ech-rel-id-83db4bc93d05419cabbc4f1544df2fed",
       "relationship-type": {
         "composed-of": {
-          "source": {
-            "node": "ech-id-5f90ec2563bb4eb9902d1d590d5eab5e"
-          },
-          "destination": {
-            "node": "ech-id-8ac479b4ddf445c48dba0f5f784dcfe4"
-          }
+          "container": "ech-id-5f90ec2563bb4eb9902d1d590d5eab5e",
+          "nodes": [
+            "ech-id-8ac479b4ddf445c48dba0f5f784dcfe4"
+          ]
         }
       },
       "description": "ArchiMate AssignmentRelationship"
@@ -5298,12 +5230,10 @@
       "unique-id": "ech-rel-id-3650ebc363fe4cb2954223d5763ac4fc",
       "relationship-type": {
         "composed-of": {
-          "source": {
-            "node": "ech-id-1c0a827a4a8c4084b0ed3f74ae8dde06"
-          },
-          "destination": {
-            "node": "ech-id-2ad7de2fd40e487bb3947eaf833abddf"
-          }
+          "container": "ech-id-1c0a827a4a8c4084b0ed3f74ae8dde06",
+          "nodes": [
+            "ech-id-2ad7de2fd40e487bb3947eaf833abddf"
+          ]
         }
       },
       "description": "ArchiMate AssignmentRelationship"
@@ -5312,12 +5242,10 @@
       "unique-id": "ech-rel-id-94c17223398e461b85ee9056be88c554",
       "relationship-type": {
         "composed-of": {
-          "source": {
-            "node": "ech-id-1701f70cf2e04f41ab1f880204da748a"
-          },
-          "destination": {
-            "node": "ech-id-ad92de19a6b1426c92d13514f3a2d468"
-          }
+          "container": "ech-id-1701f70cf2e04f41ab1f880204da748a",
+          "nodes": [
+            "ech-id-ad92de19a6b1426c92d13514f3a2d468"
+          ]
         }
       },
       "description": "ArchiMate AggregationRelationship"
@@ -5368,12 +5296,10 @@
       "unique-id": "ech-rel-id-5cbfede8a2e442cdbe9ff34a8b19dc0f",
       "relationship-type": {
         "composed-of": {
-          "source": {
-            "node": "ech-id-1701f70cf2e04f41ab1f880204da748a"
-          },
-          "destination": {
-            "node": "ech-id-08ac90d625554732aa7596dfa4544435"
-          }
+          "container": "ech-id-1701f70cf2e04f41ab1f880204da748a",
+          "nodes": [
+            "ech-id-08ac90d625554732aa7596dfa4544435"
+          ]
         }
       },
       "description": "ArchiMate AggregationRelationship"
@@ -5396,12 +5322,10 @@
       "unique-id": "ech-rel-id-e93d8e0ac7c144ff8aacc37631387b4b",
       "relationship-type": {
         "composed-of": {
-          "source": {
-            "node": "ech-id-9eea74c6c60444308af04b37f07f0b82"
-          },
-          "destination": {
-            "node": "ech-id-2c22f8430c744412a16feb3ed836be66"
-          }
+          "container": "ech-id-9eea74c6c60444308af04b37f07f0b82",
+          "nodes": [
+            "ech-id-2c22f8430c744412a16feb3ed836be66"
+          ]
         }
       },
       "description": "ArchiMate AssignmentRelationship"
@@ -5410,12 +5334,10 @@
       "unique-id": "ech-rel-id-57f29a3d3f7f42cb9edf878f57fd5d68",
       "relationship-type": {
         "composed-of": {
-          "source": {
-            "node": "ech-id-a39cdd3a8b04436bb7e652e443443e0a"
-          },
-          "destination": {
-            "node": "ech-id-2c22f8430c744412a16feb3ed836be66"
-          }
+          "container": "ech-id-a39cdd3a8b04436bb7e652e443443e0a",
+          "nodes": [
+            "ech-id-2c22f8430c744412a16feb3ed836be66"
+          ]
         }
       },
       "description": "ArchiMate AssignmentRelationship"
@@ -5438,12 +5360,10 @@
       "unique-id": "ech-rel-id-c6789386642147ea981273d01c8f754e",
       "relationship-type": {
         "composed-of": {
-          "source": {
-            "node": "ech-id-672ca484eef24d53b832ffb53ccc984c"
-          },
-          "destination": {
-            "node": "ech-id-2ad7de2fd40e487bb3947eaf833abddf"
-          }
+          "container": "ech-id-672ca484eef24d53b832ffb53ccc984c",
+          "nodes": [
+            "ech-id-2ad7de2fd40e487bb3947eaf833abddf"
+          ]
         }
       },
       "description": "ArchiMate AssignmentRelationship"
@@ -5452,12 +5372,10 @@
       "unique-id": "ech-rel-id-8bf7693a72024940b182ff16da9bdc20",
       "relationship-type": {
         "composed-of": {
-          "source": {
-            "node": "ech-id-1c0a827a4a8c4084b0ed3f74ae8dde06"
-          },
-          "destination": {
-            "node": "ech-id-2c22f8430c744412a16feb3ed836be66"
-          }
+          "container": "ech-id-1c0a827a4a8c4084b0ed3f74ae8dde06",
+          "nodes": [
+            "ech-id-2c22f8430c744412a16feb3ed836be66"
+          ]
         }
       },
       "description": "ArchiMate AssignmentRelationship"
@@ -5494,12 +5412,10 @@
       "unique-id": "ech-rel-id-0b6d5b81be6b4f34aeb98ef7b14e0eb7",
       "relationship-type": {
         "composed-of": {
-          "source": {
-            "node": "ech-id-f68cb30c66d94d7295bc0a8d7ff58946"
-          },
-          "destination": {
-            "node": "ech-id-2ad7de2fd40e487bb3947eaf833abddf"
-          }
+          "container": "ech-id-f68cb30c66d94d7295bc0a8d7ff58946",
+          "nodes": [
+            "ech-id-2ad7de2fd40e487bb3947eaf833abddf"
+          ]
         }
       },
       "description": "ArchiMate AssignmentRelationship"
@@ -5829,7 +5745,7 @@
     {
       "unique-id": "ech-rel-id-31bed176d10f41f8aa4826e74e80c3ca",
       "relationship-type": {
-        "interacts": {
+        "connects": {
           "source": {
             "node": "ech-id-e2967e37369d4baf843850201c134566"
           },
@@ -5885,7 +5801,7 @@
     {
       "unique-id": "ech-rel-id-8a5d9f68f7024162b33a4372eafc4811",
       "relationship-type": {
-        "interacts": {
+        "connects": {
           "source": {
             "node": "ech-id-829b55c9d9bf47af895a9df60a2c6fdf"
           },
@@ -5942,12 +5858,10 @@
       "unique-id": "ech-rel-id-810ce91fa01141d5820c67bb16b39e4e",
       "relationship-type": {
         "composed-of": {
-          "source": {
-            "node": "ech-id-ba77dc6679ad412393c37e6840a0117d"
-          },
-          "destination": {
-            "node": "ech-id-66ba282d30264ef9adcaeed2806d6286"
-          }
+          "container": "ech-id-ba77dc6679ad412393c37e6840a0117d",
+          "nodes": [
+            "ech-id-66ba282d30264ef9adcaeed2806d6286"
+          ]
         }
       },
       "description": "ArchiMate CompositionRelationship"
@@ -5969,7 +5883,7 @@
     {
       "unique-id": "ech-rel-id-219ffe1f9a6b417b9a51eefc0ca9a4da",
       "relationship-type": {
-        "interacts": {
+        "connects": {
           "source": {
             "node": "ech-id-2a8c62ec43f44457aec5554bc6ea1e5b"
           },
@@ -5983,7 +5897,7 @@
     {
       "unique-id": "ech-rel-id-68ad3f3a2dc5466faf11de58f3ac7da9",
       "relationship-type": {
-        "interacts": {
+        "connects": {
           "source": {
             "node": "ech-id-4470de18918d41699af444ecbf136f8d"
           },
@@ -5997,7 +5911,7 @@
     {
       "unique-id": "ech-rel-id-7ddff4215b4143d0bb0de89ce83e5e7c",
       "relationship-type": {
-        "interacts": {
+        "connects": {
           "source": {
             "node": "ech-id-4470de18918d41699af444ecbf136f8d"
           },
@@ -6026,12 +5940,10 @@
       "unique-id": "ech-rel-id-6bb94eabcaf74c9a8262980fef6d190f",
       "relationship-type": {
         "composed-of": {
-          "source": {
-            "node": "ech-id-3d09e05ab3b74ac493a7b8e812852d96"
-          },
-          "destination": {
-            "node": "ech-id-a7aee60b30214aff84f6e27224537eff"
-          }
+          "container": "ech-id-3d09e05ab3b74ac493a7b8e812852d96",
+          "nodes": [
+            "ech-id-a7aee60b30214aff84f6e27224537eff"
+          ]
         }
       },
       "description": "transiente exklusive Zuweisung (ArchiMate AssignmentRelationship)"
@@ -6040,12 +5952,10 @@
       "unique-id": "ech-rel-id-0aa27d5c11bc4e2fb3df4e2ae8486a22",
       "relationship-type": {
         "composed-of": {
-          "source": {
-            "node": "ech-id-3d09e05ab3b74ac493a7b8e812852d96"
-          },
-          "destination": {
-            "node": "ech-id-6ade3f65382445c997414284b1bb4279"
-          }
+          "container": "ech-id-3d09e05ab3b74ac493a7b8e812852d96",
+          "nodes": [
+            "ech-id-6ade3f65382445c997414284b1bb4279"
+          ]
         }
       },
       "description": "transiente exklusive Zuweisung (ArchiMate AssignmentRelationship)"
@@ -6054,12 +5964,10 @@
       "unique-id": "ech-rel-id-44362aa5613b46c0a78db5f3f9fda76d",
       "relationship-type": {
         "composed-of": {
-          "source": {
-            "node": "ech-id-66ba282d30264ef9adcaeed2806d6286"
-          },
-          "destination": {
-            "node": "ech-id-99183004eeb642c893f42244e3c4ebd3"
-          }
+          "container": "ech-id-66ba282d30264ef9adcaeed2806d6286",
+          "nodes": [
+            "ech-id-99183004eeb642c893f42244e3c4ebd3"
+          ]
         }
       },
       "description": "ArchiMate CompositionRelationship"
@@ -6068,12 +5976,10 @@
       "unique-id": "ech-rel-id-923df8f72a054967be75d1bc8b711aa6",
       "relationship-type": {
         "composed-of": {
-          "source": {
-            "node": "ech-id-17c523b520304e0892a00cd6be3e00b5"
-          },
-          "destination": {
-            "node": "ech-id-7cac0626feeb4463b54647e6f492aa9c"
-          }
+          "container": "ech-id-17c523b520304e0892a00cd6be3e00b5",
+          "nodes": [
+            "ech-id-7cac0626feeb4463b54647e6f492aa9c"
+          ]
         }
       },
       "description": "ArchiMate AggregationRelationship"
@@ -6096,12 +6002,10 @@
       "unique-id": "ech-rel-id-75dfd6fde8fb4f38b2346d89d892830a",
       "relationship-type": {
         "composed-of": {
-          "source": {
-            "node": "ech-id-66ba282d30264ef9adcaeed2806d6286"
-          },
-          "destination": {
-            "node": "ech-id-7cac0626feeb4463b54647e6f492aa9c"
-          }
+          "container": "ech-id-66ba282d30264ef9adcaeed2806d6286",
+          "nodes": [
+            "ech-id-7cac0626feeb4463b54647e6f492aa9c"
+          ]
         }
       },
       "description": "ArchiMate AggregationRelationship"
@@ -6124,12 +6028,10 @@
       "unique-id": "ech-rel-id-8a8e48bd524a4298a25cceb7f9c78618",
       "relationship-type": {
         "composed-of": {
-          "source": {
-            "node": "ech-id-66ba282d30264ef9adcaeed2806d6286"
-          },
-          "destination": {
-            "node": "ech-id-66ba282d30264ef9adcaeed2806d6286"
-          }
+          "container": "ech-id-66ba282d30264ef9adcaeed2806d6286",
+          "nodes": [
+            "ech-id-66ba282d30264ef9adcaeed2806d6286"
+          ]
         }
       },
       "description": "ArchiMate AggregationRelationship"
@@ -6138,12 +6040,10 @@
       "unique-id": "ech-rel-id-cec6612e9b944c129263ffba4896e71f",
       "relationship-type": {
         "composed-of": {
-          "source": {
-            "node": "ech-id-c43305c39a844451a5736d7316b04def"
-          },
-          "destination": {
-            "node": "ech-id-0c4f6432ab8441a389608dfcca10465d"
-          }
+          "container": "ech-id-c43305c39a844451a5736d7316b04def",
+          "nodes": [
+            "ech-id-0c4f6432ab8441a389608dfcca10465d"
+          ]
         }
       },
       "description": "ArchiMate AggregationRelationship"
@@ -6165,7 +6065,7 @@
     {
       "unique-id": "ech-rel-id-41b879a846e542108d1a81702b57243e",
       "relationship-type": {
-        "interacts": {
+        "connects": {
           "source": {
             "node": "ech-id-c43305c39a844451a5736d7316b04def"
           },
@@ -6180,12 +6080,10 @@
       "unique-id": "ech-rel-id-044cb0ccc60649748fc7048f4293ed05",
       "relationship-type": {
         "composed-of": {
-          "source": {
-            "node": "ech-id-66ba282d30264ef9adcaeed2806d6286"
-          },
-          "destination": {
-            "node": "ech-id-2b668c5f755047848d173649edbfced8"
-          }
+          "container": "ech-id-66ba282d30264ef9adcaeed2806d6286",
+          "nodes": [
+            "ech-id-2b668c5f755047848d173649edbfced8"
+          ]
         }
       },
       "description": "ArchiMate AggregationRelationship"
@@ -6291,7 +6189,7 @@
     {
       "unique-id": "ech-rel-id-21c25eeaa8ce4bf7baea1392712492be",
       "relationship-type": {
-        "interacts": {
+        "connects": {
           "source": {
             "node": "ech-id-5e57bae9e5054f378d1a7b33b95e50b7"
           },
@@ -6320,12 +6218,10 @@
       "unique-id": "ech-rel-id-984451995d0a46deb1ac6dd966c22350",
       "relationship-type": {
         "composed-of": {
-          "source": {
-            "node": "ech-id-8deb12d60a0f4e2ab2434eeace13cb8e"
-          },
-          "destination": {
-            "node": "ech-id-a7aee60b30214aff84f6e27224537eff"
-          }
+          "container": "ech-id-8deb12d60a0f4e2ab2434eeace13cb8e",
+          "nodes": [
+            "ech-id-a7aee60b30214aff84f6e27224537eff"
+          ]
         }
       },
       "description": "transiente exklusive Zuweisung (ArchiMate AssignmentRelationship)"
@@ -6333,7 +6229,7 @@
     {
       "unique-id": "ech-rel-id-cc125e8671a0454bafe80366c417ad39",
       "relationship-type": {
-        "interacts": {
+        "connects": {
           "source": {
             "node": "ech-id-5e57bae9e5054f378d1a7b33b95e50b7"
           },
@@ -6347,7 +6243,7 @@
     {
       "unique-id": "ech-rel-id-10373280a26a4d93849a01a918511bda",
       "relationship-type": {
-        "interacts": {
+        "connects": {
           "source": {
             "node": "ech-id-d68a6e73d76343c4b7c22afb17eca5eb"
           },
@@ -6361,7 +6257,7 @@
     {
       "unique-id": "ech-rel-id-77f533a615cb4f11b93975937cf09f08",
       "relationship-type": {
-        "interacts": {
+        "connects": {
           "source": {
             "node": "ech-id-5e57bae9e5054f378d1a7b33b95e50b7"
           },
@@ -6389,7 +6285,7 @@
     {
       "unique-id": "ech-rel-id-d76f266237f84d6b850f3b8c4d65262d",
       "relationship-type": {
-        "interacts": {
+        "connects": {
           "source": {
             "node": "ech-id-30a816331d074bc5b855fcdbe5cdcc2b"
           },

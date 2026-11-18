@@ -1,0 +1,22 @@
+{
+  "$schema": "../../schema/view.json",
+  "unique-id": "ech-capabilities",
+  "name": "eCH capability map",
+  "description": "The business capability map of the Swiss authorities (Geschäftsfähigkeiten): the core of eCH-0122, strategy and motivation elements that the layer views leave out.",
+  "audience": [
+    "enterprise-architects"
+  ],
+  "suggested-formats": [
+    "svg",
+    "json",
+    "markdown"
+  ],
+  "group": "eCH-0122 (imported)",
+  "for": "../../model/ech-0122.architecture.json",
+  "architecture": "ech-architecture",
+  "filter": {
+    "node-types": [
+      "capability"
+    ]
+  }
+}

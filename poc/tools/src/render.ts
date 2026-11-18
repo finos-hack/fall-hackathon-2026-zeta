@@ -34,13 +34,20 @@ export interface Attestation {
     tool: string;
 }
 
+/** Render date: `SOURCE_DATE_EPOCH` (reproducible-builds standard) wins, else today. */
+export function renderDate(): string {
+    const epoch = Number(process.env.SOURCE_DATE_EPOCH ?? NaN);
+    const when = Number.isFinite(epoch) ? new Date(epoch * 1000) : new Date();
+    return when.toISOString().slice(0, 10);
+}
+
 export function attestation(viewPath: string, archPath: string): Attestation {
     const sha = createHash('sha256').update(readFileSync(archPath)).digest('hex');
     return {
         view: basename(viewPath),
         model: basename(archPath),
         modelSha256: sha,
-        generated: new Date().toISOString().slice(0, 10),
+        generated: renderDate(),
         tool: 'calm-views-tools@0.1.0',
     };
 }
@@ -252,10 +259,12 @@ export function renderMarkdown(
     inRels: Set<string>,
     excluded: Map<string, string[]>,
     viewDir: string,
-    lifted: Map<string, string[]>
+    lifted: Map<string, string[]>,
+    applied: Record<string, string[]> = {}
 ): string {
     const nodes = new Map((arch.nodes ?? []).map((n) => [n['unique-id'] as string, n]));
     const rels = new Map((arch.relationships ?? []).map((r) => [r['unique-id'] as string, r]));
+    const appliedEntries = Object.entries(applied);
     const L = [
         `# ${(view['name'] as string) ?? (view['unique-id'] as string)}`,
         '',
@@ -264,6 +273,7 @@ export function renderMarkdown(
         `**Audience:** ${((view['audience'] as string[]) ?? []).join(', ')}  `,
         `**Source model:** \`${view['for'] as string}\` (unmodified)  `,
         `**Scope:** ${inNodes.size} nodes, ${inRels.size} relationships`,
+        ...(appliedEntries.length > 0 ? [`**Applied filters:** ${appliedEntries.map(([k, v]) => `${k}=${v.join('|')}`).join(', ')}`] : []),
         '',
         '## Nodes',
         '',
@@ -316,18 +326,34 @@ export function renderMarkdown(
     return L.join('\n');
 }
 
-function parseArgs(argv: string[]): { view: string; out: string; format: string } {
+function parseArgs(argv: string[]): { view: string; out: string; format: string; set: Record<string, string[]> } {
     const args = argv.slice(2);
     if (args.length === 0 || args[0]?.startsWith('-')) {
-        console.error('usage: node render.js <view-file> [--out DIR] [--format all|json|svg|md]');
+        console.error('usage: node render.js <view-file> [--out DIR] [--format all|json|svg|md] [--set metadata.key=value,...]');
         process.exit(2);
     }
     let out = join(ROOT, 'renders');
     let format = 'all';
+    const set: Record<string, string[]> = {};
     for (let i = 1; i < args.length; i++) {
         if (args[i] === '--out' && i + 1 < args.length) out = args[++i] as string;
         else if (args[i] === '--format' && i + 1 < args.length) format = args[++i] as string;
-        else {
+        else if (args[i] === '--set' && i + 1 < args.length) {
+            for (const pair of (args[++i] as string).split(',')) {
+                const at = pair.indexOf('=');
+                if (at <= 0 || at === pair.length - 1) {
+                    console.error(`invalid --set pair (want key=value): ${pair}`);
+                    process.exit(2);
+                }
+                const key = pair.slice(0, at).replace(/^metadata\./, '');
+                const values = pair.slice(at + 1).split('|').filter((v) => v !== '');
+                if (values.length === 0) {
+                    console.error(`invalid --set pair (empty value): ${pair}`);
+                    process.exit(2);
+                }
+                set[key] = values;
+            }
+        } else {
             console.error(`unknown argument: ${args[i]}`);
             process.exit(2);
         }
@@ -336,16 +362,18 @@ function parseArgs(argv: string[]): { view: string; out: string; format: string 
         console.error(`invalid format: ${format}`);
         process.exit(2);
     }
-    return { view: args[0] as string, out, format };
+    return { view: args[0] as string, out, format, set };
 }
 
 export function main(): void {
-    const { view: viewPath, out, format } = parseArgs(process.argv);
+    const { view: viewPath, out, format, set } = parseArgs(process.argv);
     const view = readJson(viewPath) as JsonRecord;
     const viewDir = dirname(normalize(viewPath));
     const archPath = normalize(join(viewDir, view['for'] as string));
     const arch = readJson(archPath) as CalmArchitecture;
-    const { inNodes, inRels, excluded, liftedEndpoints } = resolveView(arch, (view['filter'] as CalmFilter | undefined) ?? {});
+    const filt = { ...((view['filter'] as CalmFilter | undefined) ?? {}) } as CalmFilter & { metadata: Record<string, string[]> };
+    filt.metadata = { ...(filt.metadata ?? {}), ...set };
+    const { inNodes, inRels, excluded, liftedEndpoints } = resolveView(arch, filt);
     const attest = attestation(viewPath, archPath);
     const base = join(out, view['unique-id'] as string);
     const want = new Set(['all', format]);
@@ -371,7 +399,7 @@ export function main(): void {
         writeText(base + '.svg', attestSvg(renderSvg(view, arch, inNodes, inRels, liftedEndpoints), attest));
     }
     if (want.has('md') || want.has('all')) {
-        writeText(base + '.md', renderMarkdown(view, arch, inNodes, inRels, excluded, viewDir, liftedEndpoints) + attestMarkdown(attest));
+        writeText(base + '.md', renderMarkdown(view, arch, inNodes, inRels, excluded, viewDir, liftedEndpoints, set) + attestMarkdown(attest));
     }
     console.log(
         `${view['unique-id']}: ${inNodes.size} nodes, ${inRels.size} relationships -> ${base}.{json,svg,md}`

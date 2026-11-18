@@ -1,0 +1,37 @@
+{
+  "$schema": "../../schema/view.json",
+  "unique-id": "kyc-screening-neighborhood",
+  "name": "Screening Neighborhood (derived)",
+  "description": "Derived view: 1-hop neighborhood of kyc-sanctions-screening-svc.",
+  "audience": [
+    "risk-analysts"
+  ],
+  "suggested-formats": [
+    "svg",
+    "json",
+    "markdown"
+  ],
+  "group": "KYC onboarding",
+  "derived-from": {
+    "seeds": [
+      "kyc-sanctions-screening-svc"
+    ],
+    "depth": 1,
+    "generated": "2026-11-14",
+    "tool": "tools/derive.py"
+  },
+  "for": "../../model/fluxnova-kyc-onboarding.architecture.json",
+  "filter": {
+    "nodes": [
+      "kyc-fluxnova-engine",
+      "kyc-kyc-database",
+      "kyc-sanctions-screening-svc",
+      "kyc-watchlist-provider"
+    ],
+    "relationships": [
+      "kyc-engine-to-sanctions-svc",
+      "kyc-sanctions-svc-to-kyc-db",
+      "kyc-sanctions-svc-to-watchlist"
+    ]
+  }
+}

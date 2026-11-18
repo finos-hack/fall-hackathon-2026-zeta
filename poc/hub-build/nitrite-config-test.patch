@@ -1,0 +1,15 @@
+diff --git a/calm-hub/src/test/java/org/finos/calm/config/NitriteDBConfigTest.java b/calm-hub/src/test/java/org/finos/calm/config/NitriteDBConfigTest.java
+index 1c8d46db..d782e30d 100644
+--- a/calm-hub/src/test/java/org/finos/calm/config/NitriteDBConfigTest.java
++++ b/calm-hub/src/test/java/org/finos/calm/config/NitriteDBConfigTest.java
+@@ -132,7 +132,9 @@ public class NitriteDBConfigTest {
+     public void testInitializeWithIOException() throws Exception {
+         // Given
+         nitriteDBConfig.databaseMode = "standalone";
+-        nitriteDBConfig.dataDirectory = "/non-existent-directory-that-cannot-be-created";
++        Path fileInsteadOfDirectory = tempDir.resolve("not-a-directory");
++        Files.createFile(fileInsteadOfDirectory);
++        nitriteDBConfig.dataDirectory = fileInsteadOfDirectory.resolve("child").toString();
+
+         // When/Then
+         Exception exception = assertThrows(RuntimeException.class, () -> {

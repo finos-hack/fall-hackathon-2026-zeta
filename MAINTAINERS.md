@@ -6,6 +6,7 @@ This file lists the maintainers of this repository.
 
 | GitHub Username | Name | Organization | Email (Optional) |
 |----------------|------|--------------|-------|
+| andresantoniuk | Juan Andrés Antoniuk | jaab.tech | |
 
 For information about maintainer responsibilities and resources, see the [FINOS Maintainers Cheatsheet](https://community.finos.org/docs/finos-maintainers-cheatsheet).
 

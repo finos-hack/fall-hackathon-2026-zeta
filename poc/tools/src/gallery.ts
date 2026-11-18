@@ -7,24 +7,40 @@
  * presentation — evidence that the view file is renderer-neutral.
  */
 import { readdirSync, readFileSync } from 'node:fs';
-import { join, normalize } from 'node:path';
-import { ROOT, readJson, writeText, type JsonRecord } from './calm.js';
+import { dirname, join, normalize, relative, sep } from 'node:path';
+import { ROOT, listViewFiles, readJson, writeText, type JsonRecord } from './calm.js';
+
+/** Every `*-scoped.json` under a directory, including named subfolders. */
+export function scopedRenders(inDir: string): string[] {
+    const out: string[] = [];
+    const visit = (dir: string) => {
+        for (const entry of readdirSync(dir, { withFileTypes: true })) {
+            const path = join(dir, entry.name);
+            if (entry.isDirectory()) visit(path);
+            else if (entry.isFile() && entry.name.endsWith('-scoped.json')) out.push(path);
+        }
+    };
+    visit(inDir);
+    return out.sort();
+}
 
 export function main(): void {
     const argv = process.argv.slice(2);
     let out = join(ROOT, 'renders');
+    let indir = join(ROOT, 'renders');
     for (let i = 0; i < argv.length; i++) {
         if (argv[i] === '--out' && i + 1 < argv.length) out = argv[++i] as string;
+        else if (argv[i] === '--in' && i + 1 < argv.length) indir = argv[++i] as string;
         else {
             console.error(`unknown argument: ${argv[i]}`);
             process.exit(2);
         }
     }
     const rendersDir = normalize(out);
-    const inDir = join(ROOT, 'renders');
+    const inDir = normalize(indir);
     const groupOf = new Map<string, string>();
     const derivedOf = new Set<string>();
-    for (const f of readdirSync(join(ROOT, 'views')).filter((x: string) => x.endsWith('.calm-view.json'))) {
+    for (const f of listViewFiles(join(ROOT, 'views'))) {
         try {
             const v = readJson(join(ROOT, 'views', f)) as JsonRecord;
             const id = v['unique-id'] as string;
@@ -37,21 +53,20 @@ export function main(): void {
     const cards: string[] = [];
     let viewCount = 0;
     let lastGroup = '';
-    const scopedFiles = readdirSync(inDir)
-        .filter((f) => f.endsWith('-scoped.json'))
-        .sort()
-        .map((f) => join(inDir, f));
+    const scopedFiles = scopedRenders(inDir);
     for (const sp of scopedFiles) {
         const scoped = readJson(sp) as JsonRecord;
         const vid = scoped['view'] as string;
-        const svgPath = join(inDir, vid + '.svg');
+        const subdir = dirname(relative(inDir, sp)).split(sep).join('/');
+        const prefix = subdir === '.' ? '' : `${subdir}/`;
+        const svgPath = join(inDir, `${prefix}${vid}.svg`);
         let svg: string;
         try {
             svg = readFileSync(svgPath, 'utf8');
         } catch {
             svg = '<p>(no diagram)</p>';
         }
-        const md = vid + '.md';
+        const md = `${prefix}${vid}.md`;
         const group = groupOf.get(vid) ?? 'Ungrouped';
         const derived = derivedOf.has(vid) ? ' · derived' : '';
         viewCount += 1;
@@ -71,14 +86,17 @@ export function main(): void {
     }
     const html =
         '<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">' +
-        '<title>CALM Views POC — gallery</title>' +
+        '<title>Calm views — one architecture, many readers, scales and questions</title>' +
         '<style>body{font-family:sans-serif;max-width:1100px;margin:auto;padding:1em}' +
         '.diagram{border:1px solid #94a3b8;border-radius:8px;overflow:auto;background:#fff}' +
         '.diagram svg{max-width:none}section{margin-bottom:3em}</style></head><body>' +
-        '<h1>CALM Views POC — one model, three audiences</h1>' +
-        '<p>Each view below is a <code>*.calm-view.json</code> sidecar selecting from the same ' +
-        'unmodified architecture. Same selection, second presentation (alongside the Markdown ' +
-        'prose): the view file is renderer-neutral.</p>' +
+        '<h1>Calm views — one architecture, many readers, scales and questions</h1>' +
+        '<p>Each view below is a <code>*.calm-view.json</code> sidecar: an audience, a filter, ' +
+        'zero presentation. The model file never changes. No single picture serves every reader, ' +
+        'every scale and every question. KYC onboarding (20 nodes) shows the readers. ' +
+        'eCH-0122 (216 nodes, Swiss e-government) shows the scale. ' +
+        'The multi-cloud landing zone (295 nodes, AWS and GCP) shows the drill-down: ' +
+        'overview, cloud, region, environment and layer.</p>' +
         cards.join('\n') +
         '</body></html>\n';
     writeText(join(rendersDir, 'gallery.html'), html);

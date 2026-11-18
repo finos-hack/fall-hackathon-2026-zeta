@@ -1,0 +1,23 @@
+{
+  "$schema": "../../schema/view.json",
+  "unique-id": "fall-hackathon-zeta-seeding",
+  "name": "Seed Fall Hackathon ZETA",
+  "description": "How the host-side seed script reads the four model files and loads their versions through the local UI proxy.",
+  "audience": ["demo-readers", "platform-engineers"],
+  "suggested-formats": ["json", "svg", "png"],
+  "group": "Fall Hackathon ZETA",
+  "for": "../../model/fall-hackathon-zeta.architecture.json",
+  "architecture": "fall-hackathon-zeta",
+  "filter": {
+    "nodes": [
+      "web-browser",
+      "hub-ui-proxy",
+      "calmhub-backend",
+      "mongodb",
+      "hub-data-volume",
+      "demo-model-files",
+      "seed-hub-script",
+      "docker-compose-runtime"
+    ]
+  }
+}

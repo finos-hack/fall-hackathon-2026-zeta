@@ -1,0 +1,24 @@
+{
+  "$schema": "../../schema/view.json",
+  "unique-id": "fall-hackathon-zeta-runtime",
+  "name": "Fall Hackathon ZETA runtime",
+  "description": "The official Hub backend, local UI proxy, MongoDB, three lenses, and their shared volumes.",
+  "audience": ["platform-engineers", "sre"],
+  "suggested-formats": ["json", "svg", "png"],
+  "group": "Fall Hackathon ZETA",
+  "for": "../../model/fall-hackathon-zeta.architecture.json",
+  "architecture": "fall-hackathon-zeta",
+  "filter": {
+    "nodes": [
+      "docker-compose-runtime",
+      "hub-ui-proxy",
+      "calmhub-backend",
+      "mongodb",
+      "views-lens",
+      "c4-lens",
+      "ea-layers-lens",
+      "calm-extensions-volume",
+      "hub-data-volume"
+    ]
+  }
+}

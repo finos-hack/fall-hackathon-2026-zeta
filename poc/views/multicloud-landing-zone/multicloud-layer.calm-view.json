@@ -1,0 +1,20 @@
+{
+  "$schema": "../../schema/view.json",
+  "unique-id": "multicloud-layer",
+  "name": "Layer",
+  "description": "A governance, platform, security, network, data or compute slice within the selected environment.",
+  "audience": [
+    "cloud-architects",
+    "platform-engineers"
+  ],
+  "suggested-formats": [
+    "svg",
+    "json"
+  ],
+  "group": "Multi-cloud landing zone",
+  "for": "../../model/multicloud-landing-zone.architecture.json",
+  "architecture": "multicloud-landing-zone",
+  "filter": {
+    "metadata": {}
+  }
+}

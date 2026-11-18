@@ -1,0 +1,43 @@
+{
+  "title": "Serve the patched UI beside the official Hub backend",
+  "contextAndProblemStatement": "The local demo uses the CALM Hub diagram-lens API for CALM Views, C4, and EA Layers. The official Hub image serves the backend and its own UI, but the Views demo also needs a drill-down badge, Key and Notes toolbar controls, and an expanded JSON viewer for the View definition. These are host UI features; an extension manifest cannot inject browser code or replace those Hub components. Rebuilding the complete Hub server image with Maven works, but costs more time and maintenance than this local demo needs.",
+  "decisionDrivers": [
+    "Keep the official finos/calm-hub image as the backend.",
+    "Separate node selection from explicit drill-down navigation.",
+    "Keep the Key and Notes controls available in the lens toolbar.",
+    "Make JSON view definitions readable and easy to copy or expand.",
+    "Avoid compiling or packaging the Hub Java server for local UI changes."
+  ],
+  "consideredOptions": [
+    {
+      "name": "Use the official Hub UI unchanged",
+      "description": "Run finos/calm-hub:main and the lens services without a local UI layer.",
+      "positiveConsequences": ["Uses the official Hub image without modification."],
+      "negativeConsequences": ["The demo loses the explicit drill-down badge, toolbar toggles, and expanded code viewer."]
+    },
+    {
+      "name": "Build a complete custom Hub image",
+      "description": "Patch the Hub UI source, run the Hub server build and tests, and package a new Hub image.",
+      "positiveConsequences": ["The UI and backend ship in one image."],
+      "negativeConsequences": ["A UI-only change requires a full Hub server build and Maven test run."]
+    },
+    {
+      "name": "Serve a patched UI through a local proxy",
+      "description": "Build the React UI bundle from pinned Hub UI source with the local patch. Nginx serves the bundle at localhost:8080 and forwards API requests to the official Hub backend.",
+      "positiveConsequences": ["Keeps the Hub backend image official.", "Builds the UI bundle without compiling the Hub server.", "Keeps browser UI and API requests on the same origin."],
+      "negativeConsequences": ["Adds one local proxy container.", "The UI patch must be checked against the pinned Hub UI source when it changes."]
+    }
+  ],
+  "decisionOutcome": {
+    "chosenOption": {
+      "name": "Serve a patched UI through a local proxy",
+      "description": "Use the official Hub image for the backend and a local Nginx image for the patched React UI.",
+      "positiveConsequences": ["The backend stays official.", "The local UI features remain available without a Hub server rebuild."],
+      "negativeConsequences": ["The local UI proxy is part of the demo stack and must be updated with the UI patch."]
+    },
+    "rationale": "The required changes affect Hub presentation and interaction, while the extension API deliberately returns data for Hub to render. A local same-origin proxy is the smallest supported way to serve the patched UI with the official backend and without rebuilding the Hub server."
+  },
+  "links": [
+    {"rel": "CALM Hub extension points", "href": "https://calm.finos.org/calm-hub/extension-points/"}
+  ]
+}

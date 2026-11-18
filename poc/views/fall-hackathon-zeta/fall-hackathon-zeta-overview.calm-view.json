@@ -1,0 +1,30 @@
+{
+  "$schema": "../../schema/view.json",
+  "unique-id": "fall-hackathon-zeta-overview",
+  "name": "Fall Hackathon ZETA overview",
+  "description": "All components, data, and links in the local CALM demo architecture.",
+  "audience": ["demo-readers", "platform-engineers"],
+  "suggested-formats": ["json", "svg", "png"],
+  "group": "Fall Hackathon ZETA",
+  "for": "../../model/fall-hackathon-zeta.architecture.json",
+  "architecture": "fall-hackathon-zeta",
+  "filter": {
+    "nodes": [
+      "demo-user",
+      "web-browser",
+      "hub-ui-proxy",
+      "calmhub-backend",
+      "mongodb",
+      "views-lens",
+      "c4-lens",
+      "ea-layers-lens",
+      "calm-extensions-volume",
+      "hub-data-volume",
+      "demo-model-files",
+      "view-sidecars",
+      "seed-hub-script",
+      "hub-ui-build",
+      "docker-compose-runtime"
+    ]
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "$schema": "../../schema/view.json",
+  "unique-id": "multicloud-cloud",
+  "name": "Cloud",
+  "description": "A cloud provider and its regions, environments and services.",
+  "audience": [
+    "cloud-architects",
+    "platform-engineers"
+  ],
+  "suggested-formats": [
+    "svg",
+    "json"
+  ],
+  "group": "Multi-cloud landing zone",
+  "for": "../../model/multicloud-landing-zone.architecture.json",
+  "architecture": "multicloud-landing-zone",
+  "filter": {
+    "metadata": {
+      "kind": [
+        "cloud"
+      ]
+    }
+  }
+}

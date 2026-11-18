@@ -2,7 +2,7 @@
   "name": "calm-views-tools",
   "version": "0.1.0",
   "private": true,
-  "description": "CALM Views reference tools: validate, render, derive, gallery (stdlib only, no runtime dependencies). TypeScript port of the original Python POC; outputs are byte-identical.",
+  "description": "CALM Views reference tools: validate, render, derive, gallery, query, the ArchiMate importer and the landing-zone importer.",
   "type": "module",
   "engines": {
     "node": ">=18"
@@ -13,17 +13,23 @@
     "calm-views-derive": "./dist/derive.js",
     "calm-views-gallery": "./dist/gallery.js",
     "calm-views-query": "./dist/query.js",
-    "calm-views-archimate": "./dist/archimate.js"
+    "calm-views-archimate": "./dist/archimate.js",
+    "calm-views-import": "./dist/landingzone2calm.js"
   },
   "scripts": {
     "build": "tsc",
     "validate": "node dist/validate.js",
     "gallery": "node dist/gallery.js",
-    "test": "node --test dist/test/*.test.js"
+    "test": "node --test dist/test/*.test.js",
+    "import": "node dist/landingzone2calm.js",
+    "test:import": "node --test dist/test/landingzone2calm.test.js"
   },
   "devDependencies": {
     "@types/node": "^26.6.6",
     "ajv": "^8.20.0",
     "typescript": "^5.8.2"
+  },
+  "dependencies": {
+    "yaml": "^2.9.1"
   }
 }

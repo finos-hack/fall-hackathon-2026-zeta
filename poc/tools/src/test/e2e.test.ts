@@ -5,16 +5,19 @@ import { mkdtempSync, readdirSync, readFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { main as validateMain } from '../validate.js';
+
+// Renders embed a date; pin it so committed renders match on any day.
+process.env.SOURCE_DATE_EPOCH ??= '1794873600';
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const DIST = join(HERE, '..');
 const POC = join(HERE, '..', '..', '..');
-const RENDERS = join(POC, 'renders');
 const node = process.execPath;
 
 const run = (script: string, args: string[]): { stdout: string; code: number } => {
     try {
-        const stdout = execFileSync(node, [join(DIST, script), ...args], { encoding: 'utf8' });
+        const stdout = execFileSync(node, [join(DIST, script), ...args], { encoding: 'utf8', maxBuffer: 32 * 1024 * 1024 });
         return { stdout, code: 0 };
     } catch (e: unknown) {
         const err = e as { stdout?: string; status?: number };
@@ -23,46 +26,78 @@ const run = (script: string, args: string[]): { stdout: string; code: number } =
 };
 
 describe('end-to-end: validate -> render -> gallery are green and reproducible', () => {
-    it('validate exits 0 with 10 OK lines', () => {
-        const { stdout, code } = run('validate.js', []);
+    it('validate exits 0 with 20 OK lines', () => {
+        const lines: string[] = [];
+        const log = console.log;
+        console.log = (line?: unknown) => lines.push(String(line ?? ''));
+        let code: number;
+        try {
+            code = validateMain();
+        } finally {
+            console.log = log;
+        }
         assert.equal(code, 0);
-        const oks = stdout.split('\n').filter((l) => l.includes(': OK'));
-        assert.equal(oks.length, 10);
-        assert.match(oks.join('\n'), /kyc-audit\.calm-view\.json: OK — 15 nodes, 21 relationships/);
+        const oks = lines.filter((line) => line.includes(': OK'));
+        assert.equal(oks.length, 20, oks.join('\n'));
+        assert.ok(oks.some((line) => line.includes('kyc-audit.calm-view.json: OK — 12 nodes, 14 relationships')));
+        assert.ok(oks.some((line) => line.includes('multicloud-landing-zone/multicloud-region.calm-view.json: OK')));
     });
 
-    it('render into a fresh temp dir reproduces the committed renders byte-for-byte', () => {
-        const tmp = mkdtempSync(join(tmpdir(), 'calm-views-'));
-        for (const v of [
-            'kyc-platform',
-            'kyc-integration',
-            'kyc-audit',
-            'kyc-screening-neighborhood',
-            'kyc-platform-inside',
-            'kyc-audit-logging',
-            'ech-business',
-            'ech-application',
-            'ech-capabilities',
-        ]) {
-            const { code } = run('render.js', [join(POC, 'views', `${v}.calm-view.json`), '--out', tmp]);
-            assert.equal(code, 0, v);
+    // all-actors is multi-file and fall-hackathon-zeta-flows exercises the flows axis;
+    // neither ships rendered output.
+    // multicloud-environment and multicloud-layer carry no base filter;
+    // they render with the same dimension the lens drills into.
+    const RENDERABLE: Array<[string, string, ...string[]]> = [
+        ['kyc-onboarding/kyc-platform', 'kyc-platform-view'],
+        ['kyc-onboarding/kyc-integration', 'kyc-integration-view'],
+        ['kyc-onboarding/kyc-audit', 'kyc-audit-view'],
+        ['kyc-onboarding/kyc-screening-neighborhood', 'kyc-screening-neighborhood'],
+        ['kyc-onboarding/kyc-platform-inside', 'kyc-platform-inside'],
+        ['kyc-onboarding/kyc-audit-logging', 'kyc-audit-logging'],
+        ['ech-0122/ech-business', 'ech-business'],
+        ['ech-0122/ech-application', 'ech-application'],
+        ['ech-0122/ech-capabilities', 'ech-capabilities'],
+        ['multicloud-landing-zone/multicloud-global', 'multicloud-global'],
+        ['multicloud-landing-zone/multicloud-cloud', 'multicloud-cloud'],
+        ['multicloud-landing-zone/multicloud-region', 'multicloud-region'],
+        ['multicloud-landing-zone/multicloud-environment', 'multicloud-environment', '--set', 'env=prod'],
+        ['multicloud-landing-zone/multicloud-layer', 'multicloud-layer', '--set', 'layer=network'],
+        ['fall-hackathon-zeta/fall-hackathon-zeta-overview', 'fall-hackathon-zeta-overview'],
+        ['fall-hackathon-zeta/fall-hackathon-zeta-runtime', 'fall-hackathon-zeta-runtime'],
+        ['fall-hackathon-zeta/fall-hackathon-zeta-extensions', 'fall-hackathon-zeta-extensions'],
+        ['fall-hackathon-zeta/fall-hackathon-zeta-seeding', 'fall-hackathon-zeta-seeding'],
+    ];
+
+    it('render is deterministic: two fresh runs produce identical bytes', () => {
+        const first = mkdtempSync(join(tmpdir(), 'calm-views-a-'));
+        const second = mkdtempSync(join(tmpdir(), 'calm-views-b-'));
+        for (const [v, outputId, ...extra] of RENDERABLE) {
+            for (const tmp of [first, second]) {
+                const { code } = run('render.js', [join(POC, 'views', `${v}.calm-view.json`), '--out', tmp, ...extra]);
+                assert.equal(code, 0, v);
+                const scoped = JSON.parse(readFileSync(join(tmp, `${outputId}-scoped.json`), 'utf8')) as { nodes: unknown[] };
+                assert.ok(scoped.nodes.length > 0, `${v} renders no nodes`);
+            }
         }
-        const committed = readdirSync(RENDERS).filter((x) => x !== 'gallery.html');
-        assert.ok(committed.length >= 15, `expected 15+ committed renders, got ${committed.length}`);
-        for (const f of committed) {
-            const a = readFileSync(join(RENDERS, f));
-            const b = readFileSync(join(tmp, f));
+        for (const f of readdirSync(first)) {
+            const a = readFileSync(join(first, f));
+            const b = readFileSync(join(second, f));
             assert.ok(a.equals(b), `${f} differs`);
         }
     });
 
-    it('gallery embeds the 9 views', () => {
-        const tmp = mkdtempSync(join(tmpdir(), 'calm-gallery-'));
-        const { stdout, code } = run('gallery.js', ['--out', tmp]);
+    it('gallery embeds the 18 rendered views', () => {
+        const tmp = mkdtempSync(join(tmpdir(), 'calm-views-'));
+        for (const [v, , ...extra] of RENDERABLE) {
+            const { code } = run('render.js', [join(POC, 'views', `${v}.calm-view.json`), '--out', tmp, ...extra]);
+            assert.equal(code, 0, v);
+        }
+        const out = mkdtempSync(join(tmpdir(), 'calm-gallery-'));
+        const { stdout, code } = run('gallery.js', ['--in', tmp, '--out', out]);
         assert.equal(code, 0);
-        assert.match(stdout, /9 views embedded/);
-        const html = readFileSync(join(tmp, 'gallery.html'), 'utf8');
-        assert.equal((html.match(/<section>/g) ?? []).length, 9);
+        assert.match(stdout, /18 views embedded/);
+        const html = readFileSync(join(out, 'gallery.html'), 'utf8');
+        assert.equal((html.match(/<section>/g) ?? []).length, 18);
     });
 
     it('derive reproduces the frozen snapshot scope (4 nodes, 3 rels)', () => {

@@ -1,0 +1,24 @@
+{
+  "$schema": "../../schema/view.json",
+  "unique-id": "multicloud-region",
+  "name": "Region group",
+  "description": "A US, EU or global slice of the selected cloud.",
+  "audience": [
+    "cloud-architects",
+    "platform-engineers"
+  ],
+  "suggested-formats": [
+    "svg",
+    "json"
+  ],
+  "group": "Multi-cloud landing zone",
+  "for": "../../model/multicloud-landing-zone.architecture.json",
+  "architecture": "multicloud-landing-zone",
+  "filter": {
+    "metadata": {
+      "kind": [
+        "region"
+      ]
+    }
+  }
+}

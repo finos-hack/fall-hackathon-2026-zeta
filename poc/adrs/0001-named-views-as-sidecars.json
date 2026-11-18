@@ -1,0 +1,51 @@
+{
+  "title": "Define named views as sidecars over unchanged CALM models",
+  "contextAndProblemStatement": "CALM provides a vendor-neutral format for architecture models and validates those models in the build. It does not yet define first-class named views. Existing systems are large, and architects, platform engineers, operations teams, and compliance readers need different scopes. Separate architecture files for each reader can drift. Embedding selection and layout in the architecture ties the model to one renderer. ArchiMate provides clear layers but uses tool-specific XML. LikeC4 separates models from views, but its DSL is vendor-specific.",
+  "decisionDrivers": [
+    "Keep one CALM architecture as the source of truth.",
+    "Give each reader a named, reviewable selection without copying model data.",
+    "Separate selection from layout and renderer behavior.",
+    "Reuse the same view files in the CLI, Hub, and Canvas.",
+    "Build on the open community work for first-class views and cross-document references."
+  ],
+  "consideredOptions": [
+    {
+      "name": "Create an architecture file for each reader",
+      "description": "Copy the relevant model data into a separate architecture for each team or concern.",
+      "positiveConsequences": ["Each file can show a small scope."],
+      "negativeConsequences": ["Copies can diverge from the source model.", "A shared system has several competing files."]
+    },
+    {
+      "name": "Put selections and presentation in the architecture",
+      "description": "Add audience filters and visual layout rules to each CALM architecture document.",
+      "positiveConsequences": ["Readers can find model and view settings in one document."],
+      "negativeConsequences": ["The architecture becomes tied to presentation choices.", "Different renderers must share the same layout rules."]
+    },
+    {
+      "name": "Define named selections as sidecars",
+      "description": "Keep the CALM architecture unchanged. Store each named, audience-focused selection in a separate view document.",
+      "positiveConsequences": ["One model can serve many readers.", "Teams can review and reuse views independently.", "Each renderer can choose its own presentation."],
+      "negativeConsequences": ["The view schema and relative model references remain provisional until upstream standards define them.", "Multi-file views depend on open work for shared identity and namespace stitching."]
+    }
+  ],
+  "decisionOutcome": {
+    "chosenOption": {
+      "name": "Define named selections as sidecars",
+      "description": "A view names an audience and a filter over an unchanged CALM architecture. A renderer or diagram lens draws the selected scope.",
+      "positiveConsequences": ["The model remains the source of truth.", "The same selection can serve the CLI, Hub, and Canvas.", "View changes can be reviewed without changing the model."],
+      "negativeConsequences": ["The local schema remains a proof of concept until CALM defines first-class views.", "Cross-file identity and references still need upstream standards."]
+    },
+    "rationale": "This design keeps CALM model data separate from reader needs and renderer behavior. The next steps are to move the view schema into the calm-schema process, add view support to Hub and the CLI, let calm query consumers use named views, and preserve sidecars through a Canvas round trip. Cross-document references, shared identity, namespace stitching, and nested architecture examples remain open upstream questions."
+  },
+  "links": [
+    {"rel": "First-class CALM views (#2344)", "href": "https://github.com/finos/architecture-as-code/issues/2344"},
+    {"rel": "Reader-side queries and calm query (#3661)", "href": "https://github.com/finos/architecture-as-code/issues/3661"},
+    {"rel": "Cross-document references (#3624)", "href": "https://github.com/finos/architecture-as-code/issues/3624"},
+    {"rel": "Shared identity (calm-schema#27)", "href": "https://github.com/finos/calm-schema/issues/27"},
+    {"rel": "Namespace stitching (calm-schema#47)", "href": "https://github.com/finos/calm-schema/issues/47"},
+    {"rel": "Nested architecture examples (#1568)", "href": "https://github.com/finos/architecture-as-code/issues/1568"},
+    {"rel": "ArchiMate overview", "href": "https://www.opengroup.org/archimate-forum/archimate-overview"},
+    {"rel": "LikeC4", "href": "https://likec4.dev"},
+    {"rel": "CALM EA Layers extension", "href": "https://calm.finos.org/extensions/ea-layers/"}
+  ]
+}

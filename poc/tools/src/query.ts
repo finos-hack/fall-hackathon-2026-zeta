@@ -15,12 +15,14 @@
  * VIEW-ID is the view `unique-id` (e.g. kyc-audit-view).
  */
 import { createHash } from 'node:crypto';
-import { readdirSync, readFileSync } from 'node:fs';
-import { join } from 'node:path';
+import { existsSync, readFileSync } from 'node:fs';
+import { join, dirname, normalize, basename, relative } from 'node:path';
 import {
     ROOT,
+    listViewFiles,
+    namespaced,
     readJson,
-    resolveView,
+    resolveMultiView,
     endpoints,
     type CalmArchitecture,
     type CalmFilter,
@@ -33,30 +35,51 @@ interface LoadedView {
     description: string;
     audience: string[];
     group?: string;
+    for: unknown;
     filter: CalmFilter;
+    dir: string;
 }
 
 interface LoadedModel {
-    arch: CalmArchitecture;
     views: LoadedView[];
 }
 
 export function loadWorkspace(root: string = ROOT): LoadedModel {
-    const arch = readJson(join(root, 'model', 'fluxnova-kyc-onboarding.architecture.json')) as CalmArchitecture;
     const viewsDir = join(root, 'views');
     const views: LoadedView[] = [];
-    for (const name of readdirSync(viewsDir).filter((f) => f.endsWith('.calm-view.json')).sort()) {
-        const v = readJson(join(viewsDir, name)) as JsonRecord;
-        views.push({
-            uniqueId: v['unique-id'] as string,
-            name: (v['name'] as string) ?? '',
-            description: (v['description'] as string) ?? '',
-            audience: (v['audience'] as string[]) ?? [],
-            ...(typeof v['group'] === 'string' ? { group: v['group'] as string } : {}),
-            filter: (v['filter'] as CalmFilter) ?? {},
-        });
+    for (const name of listViewFiles(viewsDir)) {
+        const path = join(viewsDir, name);
+        try {
+            const v = readJson(path) as JsonRecord;
+            const targets = Array.isArray(v['for']) ? v['for'] : [v['for']];
+            if (typeof v['unique-id'] !== 'string' || typeof v['name'] !== 'string'
+                || targets.length === 0 || !targets.every((target) => typeof target === 'string')
+                || typeof v['filter'] !== 'object' || v['filter'] === null || Array.isArray(v['filter'])) {
+                process.stderr.write(`skip invalid view ${name}: required fields are missing or invalid\n`);
+                continue;
+            }
+            const dir = dirname(path);
+            const missing = (targets as string[]).filter((target) => !existsSync(normalize(join(dir, target))));
+            if (missing.length > 0) {
+                process.stderr.write(`skip view ${name}: model target missing: ${missing.join(', ')}\n`);
+                continue;
+            }
+            for (const target of targets as string[]) readJson(normalize(join(dir, target)));
+            views.push({
+                uniqueId: v['unique-id'] as string,
+                name: v['name'] as string,
+                description: (v['description'] as string) ?? '',
+                audience: Array.isArray(v['audience']) ? v['audience'] as string[] : [],
+                ...(typeof v['group'] === 'string' ? { group: v['group'] as string } : {}),
+                for: v['for'],
+                filter: v['filter'] as CalmFilter,
+                dir,
+            });
+        } catch (error) {
+            process.stderr.write(`skip invalid view ${name}: ${(error as Error).message}\n`);
+        }
     }
-    return { arch, views };
+    return { views };
 }
 
 function findView(views: LoadedView[], id: string): LoadedView {
@@ -75,104 +98,167 @@ function nodeLabel(arch: CalmArchitecture, id: string): string {
     return `${id} [${type}]${name ? ` ${name}` : ''}`;
 }
 
-export function viewsForNode({ arch, views }: LoadedModel, nodeId: string): string[] {
-    return views.filter((v) => resolveView(arch, v.filter).inNodes.has(nodeId)).map((v) => v.uniqueId);
+export function viewsForNode({ views }: LoadedModel, nodeId: string): string[] {
+    return views.filter((view) => resolveMultiView(view.dir, { for: view.for, filter: view.filter } as JsonRecord)
+        .some((file) => file.resolution.inNodes.has(nodeId) || file.resolution.inNodes.has(namespaced(file.archPath, nodeId)))).map((v) => v.uniqueId);
 }
 
 export function cmdViewsForNode(m: LoadedModel, nodeId: string): string {
     return viewsForNode(m, nodeId).join('\n') + '\n';
 }
 
-export function cmdNodesInView(m: LoadedModel, viewId: string): string {
-    const v = findView(m.views, viewId);
-    const { inNodes } = resolveView(m.arch, v.filter);
-    return [...inNodes].sort().map((id) => nodeLabel(m.arch, id)).join('\n') + '\n';
+export function cmdNodesInView(_m: LoadedModel, viewId: string): string {
+    const v = findView(_m.views, viewId);
+    const files = resolveMultiView(v.dir, { for: v.for, filter: v.filter } as JsonRecord);
+    const parts: string[] = [];
+    for (const f of files) {
+        const rows = [...f.resolution.inNodes].sort().map((id) => nodeLabel(f.arch, id));
+        if (files.length > 1) parts.push(`# ${basename(f.archPath)}`);
+        parts.push(...rows);
+    }
+    return parts.join('\n') + '\n';
 }
 
-export function cmdDescribeView(m: LoadedModel, viewId: string): string {
-    const v = findView(m.views, viewId);
-    const { inNodes, inRels, excluded } = resolveView(m.arch, v.filter);
+export function cmdDescribeView(_m: LoadedModel, viewId: string): string {
+    const v = findView(_m.views, viewId);
+    const files = resolveMultiView(v.dir, { for: v.for, filter: v.filter } as JsonRecord);
     const lines = [
         `${v.uniqueId}: ${v.name}`,
         `audience: ${v.audience.join(', ') || '(none)'}`,
         ...(v.group ? [`group: ${v.group}`] : []),
         ...(v.description ? [v.description] : []),
-        `scope: ${inNodes.size}/${(m.arch.nodes ?? []).length} nodes, ${inRels.size}/${(m.arch.relationships ?? []).length} relationships`,
     ];
-    if (excluded.size > 0) {
-        lines.push('excluded:');
-        for (const [id, outside] of [...excluded.entries()].sort(([a], [b]) => (a < b ? -1 : 1))) {
-            lines.push(`  - ${id} (outside: ${[...outside].sort().join(', ')})`);
+    for (const f of files) {
+        const { inNodes, inRels, excluded } = f.resolution;
+        const total = (f.arch.nodes ?? []).length;
+        const totalR = (f.arch.relationships ?? []).length;
+        lines.push(`model: ${relative(ROOT, f.archPath)} (${inNodes.size}/${total} nodes, ${inRels.size}/${totalR} relationships)`);
+        if (excluded.size > 0 && files.length === 1) {
+            lines.push('excluded:');
+            for (const [id, outside] of [...excluded.entries()].sort(([a], [b]) => (a < b ? -1 : 1))) {
+                lines.push(`  - ${id} (outside: ${[...outside].sort().join(', ')})`);
+            }
         }
     }
     return lines.join('\n') + '\n';
 }
 
-export function cmdContext(m: LoadedModel, viewId: string): string {
-    const v = findView(m.views, viewId);
-    const { inNodes, inRels, excluded } = resolveView(m.arch, v.filter);
-    const archPath = join(ROOT, 'model', 'fluxnova-kyc-onboarding.architecture.json');
-    const sha = createHash('sha256').update(readFileSync(archPath)).digest('hex');
-    const relById = new Map((m.arch.relationships ?? []).map((r) => [(r as JsonRecord)['unique-id'] as string, r as JsonRecord]));
+export function cmdContext(_m: LoadedModel, viewId: string): string {
+    const v = findView(_m.views, viewId);
+    const files = resolveMultiView(v.dir, { for: v.for, filter: v.filter } as JsonRecord);
     const lines = [
         `# view: ${v.uniqueId} (${v.name})`,
-        `model: model/fluxnova-kyc-onboarding.architecture.json sha256:${sha}`,
         `audience: ${v.audience.join(', ') || '(none)'}`,
         ...(v.group ? [`group: ${v.group}`] : []),
-        `scope: ${inNodes.size}/${(m.arch.nodes ?? []).length} nodes, ${inRels.size}/${(m.arch.relationships ?? []).length} relationships`,
-        '## nodes',
     ];
-    for (const id of [...inNodes].sort()) {
-        lines.push(`- ${nodeLabel(m.arch, id)}`);
-    }
-    lines.push('## relationships');
-    for (const id of [...inRels].sort()) {
-        const r = relById.get(id) ?? {};
-        const kind = Object.keys((r['relationship-type'] as JsonRecord | undefined) ?? { '?': null })[0] as string;
-        const eps = [...endpoints(r)].sort().join(', ');
-        lines.push(`- ${id} [${kind}] ${eps}`);
-    }
-    if (excluded.size > 0) {
-        lines.push('## excluded (endpoints outside this view)');
-        for (const [id, outside] of [...excluded.entries()].sort(([a], [b]) => (a < b ? -1 : 1))) {
-            lines.push(`- ${id} (outside: ${[...outside].sort().join(', ')})`);
+    for (const f of files) {
+        const { inNodes, inRels, excluded } = f.resolution;
+        const sha = createHash('sha256').update(readFileSync(f.archPath)).digest('hex');
+        const relById = new Map(
+            (f.arch.relationships ?? []).map((r) => [(r as JsonRecord)['unique-id'] as string, r as JsonRecord])
+        );
+        lines.push(`model: ${relative(ROOT, f.archPath)} sha256:${sha}`);
+        lines.push(
+            `scope: ${inNodes.size}/${(f.arch.nodes ?? []).length} nodes, ${inRels.size}/${(f.arch.relationships ?? []).length} relationships`
+        );
+        lines.push('## nodes');
+        for (const id of [...inNodes].sort()) {
+            lines.push(`- ${nodeLabel(f.arch, id)}`);
+        }
+        lines.push('## relationships');
+        for (const id of [...inRels].sort()) {
+            const r = relById.get(id) ?? {};
+            const eps = [...endpoints(r)].sort().join(', ');
+            const kind = Object.keys(
+                ((r as JsonRecord)['relationship-type'] as JsonRecord | undefined) ?? { '?': null }
+            )[0] as string;
+            lines.push(`- ${id} [${kind}] ${eps}`);
+        }
+        if (excluded.size > 0) {
+            lines.push('## excluded (endpoints outside this view)');
+            for (const [id, outside] of [...excluded.entries()].sort(([a], [b]) => (a < b ? -1 : 1))) {
+                lines.push(`- ${id} (outside: ${[...outside].sort().join(', ')})`);
+            }
         }
     }
     return lines.join('\n') + '\n';
+}
+
+function claimsControl(holder: JsonRecord, control: string): boolean {
+    const claims = holder['controls'];
+    if (Array.isArray(claims)) return claims.includes(control);
+    return typeof claims === 'object' && claims !== null && control in (claims as JsonRecord);
+}
+
+function elementKey(modelPath: string, kind: 'node' | 'relationship', id: string): string {
+    return `${normalize(modelPath)}#${kind}:${id}`;
+}
+
+function elementLabel(modelPath: string, kind: 'node' | 'relationship', id: string, arch: CalmArchitecture): string {
+    if (kind === 'node') return `${relative(ROOT, modelPath)}: ${nodeLabel(arch, id)}`;
+    return `${relative(ROOT, modelPath)}: relationship ${id}`;
 }
 
 export function cmdCoverageRequire(m: LoadedModel, control: string, audience: string): { ok: boolean; text: string } {
-    const need = new Set(
-        (m.arch.nodes ?? [])
-            .filter((n) => control in (((n as JsonRecord)['controls'] as JsonRecord | undefined) ?? {}))
-            .map((n) => (n as JsonRecord)['unique-id'] as string)
-    );
-    const covered = new Set<string>();
-    for (const v of m.views) {
-        if (!v.audience.includes(audience)) continue;
-        for (const id of resolveView(m.arch, v.filter).inNodes) covered.add(id);
+    const views = m.views.map((view) => ({
+        view,
+        files: resolveMultiView(view.dir, { for: view.for, filter: view.filter } as JsonRecord),
+    }));
+    const needed = new Map<string, { modelPath: string; kind: 'node' | 'relationship'; id: string; arch: CalmArchitecture }>();
+    for (const { files } of views) {
+        for (const file of files) {
+            for (const node of file.arch.nodes ?? []) {
+                const id = (node as JsonRecord)['unique-id'] as string;
+                if (claimsControl(node as JsonRecord, control)) {
+                    needed.set(elementKey(file.archPath, 'node', id), { modelPath: file.archPath, kind: 'node', id, arch: file.arch });
+                }
+            }
+            for (const relationship of file.arch.relationships ?? []) {
+                const id = (relationship as JsonRecord)['unique-id'] as string;
+                if (claimsControl(relationship as JsonRecord, control)) {
+                    needed.set(elementKey(file.archPath, 'relationship', id), { modelPath: file.archPath, kind: 'relationship', id, arch: file.arch });
+                }
+            }
+        }
     }
-    const missing = [...need].filter((id) => !covered.has(id)).sort();
+    const covered = new Set<string>();
+    for (const { view, files } of views) {
+        if (!view.audience.includes(audience)) continue;
+        for (const file of files) {
+            for (const id of file.resolution.inNodes) covered.add(elementKey(file.archPath, 'node', id));
+            for (const id of file.resolution.inRels) covered.add(elementKey(file.archPath, 'relationship', id));
+        }
+    }
+    const missing = [...needed.entries()].filter(([key]) => !covered.has(key)).map(([, item]) => item)
+        .sort((a, b) => elementLabel(a.modelPath, a.kind, a.id, a.arch).localeCompare(elementLabel(b.modelPath, b.kind, b.id, b.arch)));
     const head = `require ${control} in audience ${audience}: ${missing.length} violation(s)`;
     if (missing.length === 0) return { ok: true, text: head + '\n' };
-    return {
-        ok: false,
-        text: head + '\n' + missing.map((id) => `- ${nodeLabel(m.arch, id)}`).join('\n') + '\n',
-    };
+    return { ok: false, text: head + '\n' + missing.map((item) => `- ${item.kind} ${elementLabel(item.modelPath, item.kind, item.id, item.arch)}`).join('\n') + '\n' };
 }
 
 export function cmdCoverage(m: LoadedModel): string {
-    const total = (m.arch.nodes ?? []).length;
-    const coveredBy = new Map<string, string[]>();
-    const lines = m.views.map((v) => {
-        const { inNodes } = resolveView(m.arch, v.filter);
-        for (const id of inNodes) coveredBy.set(id, [...(coveredBy.get(id) ?? []), v.uniqueId]);
-        return `${v.uniqueId} ${inNodes.size}/${total}`;
-    });
-    const uncovered = (m.arch.nodes ?? [])
-        .map((n) => (n as JsonRecord)['unique-id'] as string)
-        .filter((id) => !coveredBy.has(id))
-        .sort();
+    const views = m.views.map((view) => ({
+        view,
+        files: resolveMultiView(view.dir, { for: view.for, filter: view.filter } as JsonRecord),
+    }));
+    const coveredNodes = new Set<string>();
+    const allModels = new Map<string, CalmArchitecture>();
+    const lines: string[] = [];
+    for (const { view, files } of views) {
+        for (const file of files) {
+            allModels.set(normalize(file.archPath), file.arch);
+            for (const id of file.resolution.inNodes) coveredNodes.add(elementKey(file.archPath, 'node', id));
+            lines.push(`${view.uniqueId} ${relative(ROOT, file.archPath)} ${file.resolution.inNodes.size}/${(file.arch.nodes ?? []).length} nodes, ${file.resolution.inRels.size}/${(file.arch.relationships ?? []).length} relationships`);
+        }
+    }
+    const uncovered: string[] = [];
+    for (const [modelPath, arch] of allModels) {
+        for (const node of arch.nodes ?? []) {
+            const id = (node as JsonRecord)['unique-id'] as string;
+            if (!coveredNodes.has(elementKey(modelPath, 'node', id))) uncovered.push(`${relative(ROOT, modelPath)}: ${id}`);
+        }
+    }
+    uncovered.sort();
     lines.push(`uncovered (${uncovered.length}): ${uncovered.join(', ') || '(none)'}`);
     return lines.join('\n') + '\n';
 }
@@ -225,4 +311,4 @@ function main(): void {
     process.stdout.write(out);
 }
 
-main();
+if (process.argv[1]?.endsWith('/query.js') || process.argv[1]?.endsWith('\\query.js')) main();

@@ -5,8 +5,8 @@
  * Byte-identical outputs are the contract: Python `json.dump(indent=2)`
  * escaping, `:.0f` banker's rounding and `xml.sax` escaping are replicated.
  */
-import { readFileSync, writeFileSync, mkdirSync } from 'node:fs';
-import { dirname } from 'node:path';
+import { readFileSync, writeFileSync, mkdirSync, readdirSync } from 'node:fs';
+import { dirname, join, normalize, basename, relative } from 'node:path';
 
 export type JsonRecord = Record<string, unknown>;
 
@@ -33,6 +33,20 @@ export const ROOT = new URL('../..', import.meta.url).pathname.replace(/\/$/, ''
 
 export function readJson(path: string): unknown {
     return JSON.parse(readFileSync(path, 'utf8'));
+}
+
+/** Lists sidecar view paths relative to their views directory, including named folders. */
+export function listViewFiles(viewsDir: string): string[] {
+    const files: string[] = [];
+    const visit = (dir: string) => {
+        for (const entry of readdirSync(dir, { withFileTypes: true })) {
+            const path = join(dir, entry.name);
+            if (entry.isDirectory()) visit(path);
+            else if (entry.isFile() && entry.name.endsWith('.calm-view.json')) files.push(relative(viewsDir, path));
+        }
+    };
+    visit(viewsDir);
+    return files.sort();
 }
 
 /** Python xml.sax.saxutils.escape default: & < > only. */
@@ -107,6 +121,44 @@ export interface ViewResolution {
     warnings: string[];
 }
 
+export interface ResolvedFile {
+    archPath: string;
+    arch: CalmArchitecture;
+    resolution: ViewResolution;
+}
+
+/** Multi-file view (experimental, internal): `for` accepts an array of
+ *  model paths. Each file resolves independently with the same filter;
+ *  ids are namespaced `basename(node-id)` to keep files apart. No dedup
+ *  is claimed: the same service in two files is two nodes. This is the
+ *  honest interim semantics until shared identity exists
+ *  (finos/calm-schema#27). */
+export function resolveMultiView(viewDir: string, view: JsonRecord): ResolvedFile[] {
+    const fors = view['for'];
+    const paths = (Array.isArray(fors) ? fors : [fors]) as string[];
+    return paths.map((rel) => {
+        const archPath = normalize(join(viewDir, rel as string));
+        const arch = readJson(archPath) as CalmArchitecture;
+        const filt = (view['filter'] as CalmFilter | undefined) ?? {};
+        return { archPath, arch, resolution: resolveView(arch, filt) };
+    });
+}
+
+export function namespaced(archPath: string, id: string): string {
+    return `${basename(archPath, '.architecture.json')}/${id}`;
+}
+
+/** Union scope across the resolved files, with namespaced node ids. */
+export function unionScope(files: ResolvedFile[]): { nodes: string[]; rels: Array<{ file: string; id: string }> } {
+    const nodes = new Set<string>();
+    const rels: Array<{ file: string; id: string }> = [];
+    for (const f of files) {
+        for (const id of f.resolution.inNodes) nodes.add(namespaced(f.archPath, id));
+        for (const id of f.resolution.inRels) rels.push({ file: basename(f.archPath), id });
+    }
+    return { nodes: [...nodes].sort(), rels };
+}
+
 /** Child node to all its containers, transitively (composed-of / deployed-in). */
 export function containerAncestors(arch: CalmArchitecture): Map<string, Set<string>> {
     const parents = new Map<string, Set<string>>();
@@ -158,12 +210,22 @@ function liftEndpoint(e: string, inNodes: Set<string>, ancestors: Map<string, Se
     return null;
 }
 
+function hasControlClaim(value: unknown, control: string): boolean {
+    if (Array.isArray(value)) return value.includes(control);
+    return typeof value === 'object' && value !== null && !Array.isArray(value) && control in value;
+}
+
 /** Apply the filter: listed ids plus relationship closure. Mirrors resolve_view. */
 export function resolveView(arch: CalmArchitecture, filt: CalmFilter): ViewResolution {
     const nodes = new Map<string, JsonRecord>();
     for (const n of arch.nodes ?? []) {
         const id = n['unique-id'] as string;
         if (id) nodes.set(id, n);
+    }
+    const rels = new Map<string, JsonRecord>();
+    for (const r of arch.relationships ?? []) {
+        const id = r['unique-id'] as string;
+        if (id) rels.set(id, r);
     }
     const inNodes = new Set<string>(filt.nodes ?? []);
     for (const [id, n] of nodes) {
@@ -177,17 +239,12 @@ export function resolveView(arch: CalmArchitecture, filt: CalmFilter): ViewResol
         ) {
             inNodes.add(id);
         }
-        const ctrl = (n['controls'] as JsonRecord | undefined) ?? {};
-        if ((filt.controls ?? []).some((c) => c in ctrl)) inNodes.add(id);
+        const ctrl = n['controls'];
+        if ((filt.controls ?? []).some((c) => hasControlClaim(ctrl, c))) inNodes.add(id);
     }
     const warnings: string[] = [];
     for (const u of filt.nodes ?? []) {
         if (!nodes.has(u)) warnings.push(`node '${u}' not in architecture`);
-    }
-    const rels = new Map<string, JsonRecord>();
-    for (const r of arch.relationships ?? []) {
-        const id = r['unique-id'] as string;
-        if (id) rels.set(id, r);
     }
     const inRels = new Set<string>();
     const liftedEndpoints = new Map<string, string[]>();
@@ -207,7 +264,14 @@ export function resolveView(arch: CalmArchitecture, filt: CalmFilter): ViewResol
         liftedEndpoints.set(id, lifted);
         return true;
     };
-    for (const u of filt.relationships ?? []) {
+    const selectedByControl = [...rels.entries()]
+        .filter(([, relationship]) => {
+            const claims = relationship['controls'];
+            return (filt.controls ?? []).some((control) => hasControlClaim(claims, control));
+        })
+        .map(([id]) => id);
+    const listedRelationships = new Set([...(filt.relationships ?? []), ...selectedByControl]);
+    for (const u of listedRelationships) {
         if (!rels.has(u)) warnings.push(`relationship '${u}' not in architecture`);
         else if (!liftAll(u, rels.get(u) as JsonRecord)) {
             excluded.set(u, [...endpoints(rels.get(u) as JsonRecord)].filter((e) => !inNodes.has(e)).sort());

@@ -1,0 +1,39 @@
+{
+  "$schema": "../../schema/view.json",
+  "unique-id": "kyc-audit-view",
+  "name": "KYC Audit View",
+  "description": "Where can a compliance officer see control coverage? Human touchpoints, the screening and scoring services, the database holding PII, the external providers receiving data, the platform container hosting the process (open it), and the screening-effectiveness evaluation.",
+  "audience": [
+    "compliance-officers",
+    "auditors"
+  ],
+  "suggested-formats": [
+    "markdown",
+    "svg",
+    "json"
+  ],
+  "group": "KYC onboarding",
+  "for": "../../model/fluxnova-kyc-onboarding.architecture.json",
+  "filter": {
+    "nodes": [
+      "kyc-customer",
+      "kyc-compliance-officer",
+      "kyc-senior-compliance",
+      "kyc-ops-manager",
+      "kyc-fluxnova-platform",
+      "kyc-identity-verification-svc",
+      "kyc-sanctions-screening-svc",
+      "kyc-risk-scoring-svc",
+      "kyc-document-mgmt-svc",
+      "kyc-kyc-database",
+      "kyc-watchlist-provider",
+      "kyc-idv-provider"
+    ],
+    "decorators": [
+      "kyc-screening-effectiveness"
+    ]
+  },
+  "drill-down": {
+    "kyc-fluxnova-platform": "kyc-platform-inside"
+  }
+}

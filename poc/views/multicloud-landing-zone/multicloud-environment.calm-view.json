@@ -1,0 +1,20 @@
+{
+  "$schema": "../../schema/view.json",
+  "unique-id": "multicloud-environment",
+  "name": "Environment",
+  "description": "A production, staging or development slice within the selected cloud and region.",
+  "audience": [
+    "cloud-architects",
+    "platform-engineers"
+  ],
+  "suggested-formats": [
+    "svg",
+    "json"
+  ],
+  "group": "Multi-cloud landing zone",
+  "for": "../../model/multicloud-landing-zone.architecture.json",
+  "architecture": "multicloud-landing-zone",
+  "filter": {
+    "metadata": {}
+  }
+}
