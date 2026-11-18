@@ -136,7 +136,7 @@ In ISO 42010 terms ([ISO/IEC/IEEE 42010:2022](https://www.iso.org/standard/74393
 
 ## Related work
 
-- [ArchiMate](https://www.opengroup.org/archimate-forum/archimate-overview) is an earlier common language with clear layers. Its files are tool XML. People cannot write, review or diff them by hand. CALM keeps the discipline. It adds readable JSON and validation in the build. The importer in this repository maps the layers across.
+- [ArchiMate](https://www.opengroup.org/archimate-forum/archimate-overview) is an earlier common language with clear layers. Its files are tool XML. People cannot write, review or diff them by hand. CALM already considers ArchiMate through its [EA Layers extension](https://calm.finos.org/extensions/ea-layers). It adds readable JSON and validation in the build. The importer in this repository maps the layers across.
 - [LikeC4](https://likec4.dev) is the model and views split that this project follows. It is one vendor's language. CALM standardizes the model side. Named views are still open in [#2344](https://github.com/finos/architecture-as-code/issues/2344).
 - [#2344](https://github.com/finos/architecture-as-code/issues/2344) is open. This project follows its selection semantics. A separate view document was proposed in [#2901](https://github.com/finos/architecture-as-code/issues/2901). That issue closed as a duplicate, and the discussion continues in #2344. The sidecars here are a proof of concept for the same selection semantics. They are not a competing schema.
 
