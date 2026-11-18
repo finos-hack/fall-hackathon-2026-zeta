@@ -12,8 +12,8 @@ export interface PocLinks {
     echVersion: string;
     zetaId: string;
     zetaVersion: string;
-    adrViewsId: string;
-    adrProxyId: string;
+    adrViewsId?: string;
+    adrProxyId?: string;
 }
 
 export interface PocScreenConfig {
@@ -90,8 +90,6 @@ export function pocScreen(viewsDir: string, config: PocScreenConfig = {}): PocSc
         echVersion: '1.1.0',
         zetaId: '15',
         zetaVersion: '1.0.0',
-        adrViewsId: '1',
-        adrProxyId: '2',
         ...config.links,
     };
     const hubBase = (config.hubBaseUrl ?? 'http://localhost:8080').replace(/\/+$/, '');
@@ -152,8 +150,8 @@ export function pocScreen(viewsDir: string, config: PocScreenConfig = {}): PocSc
         '',
         '## Architecture decision records',
         'ADR-0001 records why views are named sidecar selections over unchanged CALM models. ADR-0002 records why the demo serves a patched UI beside the official Hub backend.',
-        `- [Read ADR-0001](${hubAdrUrl(hubBase, links, links.adrViewsId)})`,
-        `- [Read ADR-0002](${hubAdrUrl(hubBase, links, links.adrProxyId)})`,
+        ...(links.adrViewsId ? [`- [Read ADR-0001](${hubAdrUrl(hubBase, links, links.adrViewsId)})`] : []),
+        ...(links.adrProxyId ? [`- [Read ADR-0002](${hubAdrUrl(hubBase, links, links.adrProxyId)})`] : []),
         `- [Browse all ADRs in ${links.namespace}](${hubBase}/#/namespace/${links.namespace}?type=adrs)`,
         '',
         'The presentation and the Views lens use the CALM Hub extensions mechanism: a screen, a landing card and a diagram lens served by the calm-views extension. This demo serves a locally patched Hub UI with drill-down badges, Key and Notes toolbar controls and an expanded code viewer.',
@@ -185,8 +183,8 @@ export function pocScreen(viewsDir: string, config: PocScreenConfig = {}): PocSc
         `- [Source repository (MIT)](${SOURCE_URL})`,
         `- [Open the multi-cloud architecture](${hubArchUrl(hubBase, links, links.architectureId, links.architectureVersion)})`,
         `- [Open the Fall Hackathon ZETA architecture](${hubArchUrl(hubBase, links, links.zetaId, links.zetaVersion)})`,
-        `- [Read ADR-0001](${hubAdrUrl(hubBase, links, links.adrViewsId)})`,
-        `- [Read ADR-0002](${hubAdrUrl(hubBase, links, links.adrProxyId)})`,
+        ...(links.adrViewsId ? [`- [Read ADR-0001](${hubAdrUrl(hubBase, links, links.adrViewsId)})`] : []),
+        ...(links.adrProxyId ? [`- [Read ADR-0002](${hubAdrUrl(hubBase, links, links.adrProxyId)})`] : []),
         `- [Open ADRs in the finos namespace](${hubBase}/#/namespace/${links.namespace}?type=adrs)`,
         '',
     ].join('\n');

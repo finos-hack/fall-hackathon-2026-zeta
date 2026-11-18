@@ -79,6 +79,7 @@ test('seedHub creates models and both ADRs, writes dynamic links, and is safe to
         assert.ok(createdAdrs[0]?.links.some((link) => link.href === 'https://github.com/finos/architecture-as-code/issues/2344'));
         assert.ok(createdAdrs[0]?.links.some((link) => link.href.includes('/architectures/4/1.0.0')));
         assert.ok(createdAdrs[1]?.links.some((link) => link.href === 'https://calm.finos.org/calm-hub/extension-points/'));
+        assert.equal(createdAdrs[1]?.links.filter((link) => link.href.endsWith('/#/extensions/calm-views/poc')).length, 1);
         const env = readFileSync(envFile, 'utf8');
         assert.match(env, /CALM_POC_KYC=1/);
         assert.match(env, /CALM_POC_ECH=2/);

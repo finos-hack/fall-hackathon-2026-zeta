@@ -27,8 +27,7 @@ describe('in-Hub POC presentation', () => {
         assert.match(text, /Loads four model versions and two ADRs/);
         assert.match(text, /ADR-0001 records why views are named sidecar selections/);
         assert.match(text, /ADR-0002 records why the demo serves a patched UI/);
-        assert.match(text, /http:\/\/localhost:8080\/#\/finos\/adrs\/1\/1/);
-        assert.match(text, /http:\/\/localhost:8080\/#\/finos\/adrs\/2\/1/);
+        assert.doesNotMatch(text, /#\/finos\/adrs\/\d+\/1/);
         assert.match(text, /http:\/\/localhost:8080\/#\/namespace\/finos\?type=adrs/);
         assert.match(text, /\| View \| Question it answers \| Reader \|/);
         assert.ok(!reply.blocks.some((block) => block.type === 'cards'));
@@ -59,11 +58,14 @@ describe('in-Hub POC presentation', () => {
         const reply = pocScreen(VIEWS, {
             modelPath: join(POC, 'model', 'multicloud-landing-zone.architecture.json'),
             hubBaseUrl: 'https://hub.example',
-            links: { namespace: 'demo', architectureId: 'landing-zone', architectureVersion: '2.0.0' },
+            links: {
+                namespace: 'demo', architectureId: 'landing-zone', architectureVersion: '2.0.0',
+                adrViewsId: 'view-decision', adrProxyId: 'proxy-decision',
+            },
         });
         const text = (reply.blocks[0] as { text?: string }).text ?? '';
         assert.match(text, /https:\/\/hub\.example\/#\/demo\/architectures\/landing-zone\/2\.0\.0/);
-        assert.match(text, /https:\/\/hub\.example\/#\/demo\/adrs\/1\/1/);
-        assert.match(text, /https:\/\/hub\.example\/#\/demo\/adrs\/2\/1/);
+        assert.match(text, /https:\/\/hub\.example\/#\/demo\/adrs\/view-decision\/1/);
+        assert.match(text, /https:\/\/hub\.example\/#\/demo\/adrs\/proxy-decision\/1/);
     });
 });

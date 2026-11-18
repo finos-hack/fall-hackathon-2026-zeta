@@ -34,8 +34,8 @@ createViewsServer({
             echVersion: env.CALM_POC_ECH_VERSION ?? '1.1.0',
             zetaId: env.CALM_POC_ZETA ?? '15',
             zetaVersion: env.CALM_POC_ZETA_VERSION ?? '1.0.0',
-            adrViewsId: env.CALM_POC_ADR_VIEWS ?? '1',
-            adrProxyId: env.CALM_POC_ADR_PROXY ?? env.CALM_POC_ADR ?? '2',
+            adrViewsId: env.CALM_POC_ADR_VIEWS,
+            adrProxyId: env.CALM_POC_ADR_PROXY ?? env.CALM_POC_ADR,
         },
     },
 }).listen(port, host, () =>

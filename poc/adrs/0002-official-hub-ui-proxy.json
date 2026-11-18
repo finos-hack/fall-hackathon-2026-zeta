@@ -38,7 +38,6 @@
     "rationale": "The required changes affect Hub presentation and interaction, while the extension API deliberately returns data for Hub to render. A local same-origin proxy is the smallest supported way to serve the patched UI with the official backend and without rebuilding the Hub server."
   },
   "links": [
-    {"rel": "CALM Hub extension points", "href": "https://calm.finos.org/calm-hub/extension-points/"},
-    {"rel": "CALM Views UI patch", "href": "http://localhost:8080/#/extensions/calm-views/poc"}
+    {"rel": "CALM Hub extension points", "href": "https://calm.finos.org/calm-hub/extension-points/"}
   ]
 }

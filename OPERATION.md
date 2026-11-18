@@ -130,6 +130,8 @@ The other targets are `hub-start`, `hub-stop`, `hub-down` and `hub-logs`. `make 
 
 `make seed` assigns the Hub IDs and writes them to `.local/hub-models.env`. The Compose views service and `make extension-start` load that file, and the POC screen uses those IDs automatically. To make a direct URL, replace the ID placeholder with the matching value from the env file:
 
+The POC screen reads the ADR IDs from the same env file. If the file has no ADR IDs, the screen links to the namespace ADR list instead of guessing numeric IDs.
+
 - Multi-cloud drill-down:
   `http://localhost:8080/#/finos/architectures/<CALM_POC_ARCHITECTURE>/<CALM_POC_VERSION>?lens=views&view=multicloud-global`
 - KYC audit view:
