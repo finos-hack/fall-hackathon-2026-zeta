@@ -45,8 +45,15 @@ Adapted: regions and metadata are normalized for the views. The source files are
 - License: Apache-2.0 (upstream repo).
 - Adaptation: describes the local CALM Hub demo, including its services, endpoints and source links, Compose grouping and volumes, seed process, UI build stage, and seven model flows. It is not a copy of the upstream tooling architecture.
 - Status: 15 nodes, 26 relationships and 7 flows.
-- sha256: `b65dd3f130b3666921b37be02e1d9a0daa2b3f37c24b360630dbc22ee78b6e06`
+- sha256: `44181c9cb2addcc5a29d19febf6defbdcb679486cb3ad9632bb207b7f9932ea9`
 - The source file is linked above; this model is maintained as a local demo architecture.
+
+## CALM 1.3 validation schemas
+
+- Files: `schema/calm-1.3/{calm,core,control,flow,interface}.json`
+- Source: [`finos/architecture-as-code`](https://github.com/finos/architecture-as-code), release 1.3 meta schemas published at `https://calm.finos.org/release/1.3/meta/`.
+- License: Apache-2.0.
+- Purpose: let the model tests validate every architecture against CALM 1.3 without fetching schemas at test time.
 
 ## POC-authored
 

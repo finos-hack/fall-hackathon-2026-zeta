@@ -83,7 +83,7 @@ No other file is in `poc/model/`. The model files are data. The validate and ren
 | `src/archimate.ts` | Imports ArchiMate models and keeps the layers. |
 | `src/landingzone2calm.ts` | Imports the landing zone model. It writes the model file only. Run it with `make import-landingzone`. |
 | `src/generate-landingzone-views.ts` | Writes the five landing zone views. Run it with `make landingzone-views`. |
-| `src/test/*.test.ts` | 73 tests in total. The tests compare committed landing-zone views with generator output. |
+| `src/test/*.test.ts` | 77 tests in total. The tests validate all models against CALM 1.3 and compare committed landing-zone views with generator output. |
 
 ## Hub lens extension: `poc/hub-extensions/calm-views/`
 

@@ -10,6 +10,7 @@ The reference implementation is in TypeScript. It runs offline. It has one runti
   - `multicloud-landing-zone.architecture.json`: 295 nodes, 450 relationships. It was imported from an MIT-licensed Terragrunt landing zone.
   - `fall-hackathon-zeta.architecture.json`: 15 nodes, 26 relationships and seven flows for the local Hub demo.
 - `schema/view.json`: the view schema. It has filter properties only. It has optional `suggested-formats`, which is a non-normative hint, and optional `derived-from` provenance. It is a proof of concept. It is not a standard.
+- `schema/calm-1.3/`: pinned CALM 1.3 meta schemas used to validate all architecture models in the tools test suite.
 - `views/`: twenty `*.calm-view.json` files, grouped by model.
   - `kyc-onboarding/`: platform, integration, audit, the screening neighborhood (derived), the platform inside view (the drill-down target), the audit logging coverage view and the decorator used by the audit view.
   - `ech-0122/`: business, application and capabilities views.

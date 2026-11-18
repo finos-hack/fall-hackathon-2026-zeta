@@ -116,7 +116,7 @@ export async function seedHub({
         if (!Array.isArray(values)) throw new Error('Hub returned no ADR list');
         return values;
     };
-    let existingAdr = (await listAdrs()).find((item) => item.adr?.title === adrRequest.title);
+    let existingAdr = (await listAdrs()).find((item) => item.title === adrRequest.title || item.adr?.title === adrRequest.title);
     let adrId;
     if (existingAdr) {
         adrId = String(existingAdr.id);
@@ -124,7 +124,7 @@ export async function seedHub({
     } else {
         const createdAdr = await request(base, '/api/calm/namespaces/finos/adrs', 'POST', adrRequest);
         if (createdAdr.status === 409) {
-            existingAdr = (await listAdrs()).find((item) => item.adr?.title === adrRequest.title);
+            existingAdr = (await listAdrs()).find((item) => item.title === adrRequest.title || item.adr?.title === adrRequest.title);
             if (!existingAdr) throw new Error(`Hub reports an ADR conflict for '${adrRequest.title}', but no matching ADR exists`);
             adrId = String(existingAdr.id);
         } else {

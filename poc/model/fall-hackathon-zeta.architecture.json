@@ -1,5 +1,5 @@
 {
-  "$schema": "https://calm.finos.org/release/1.2/meta/calm.json",
+  "$schema": "https://calm.finos.org/release/1.3/meta/calm.json",
   "unique-id": "fall-hackathon-zeta",
   "title": "Fall Hackathon ZETA",
   "description": "The local Fall Hackathon ZETA deployment: an official CALM Hub backend, a patched UI proxy, MongoDB, and three diagram-lens services.",
@@ -478,10 +478,10 @@
       "name": "Open the local demo",
       "description": "A user opens the patched UI, which sends API requests to the official Hub backend and reads stored architecture data.",
       "transitions": [
-        {"relationship-unique-id": "demo-user-opens-browser", "sequence-number": 1},
-        {"relationship-unique-id": "browser-to-ui-proxy", "sequence-number": 2},
-        {"relationship-unique-id": "ui-proxy-to-hub-api", "sequence-number": 3},
-        {"relationship-unique-id": "hub-persists-architectures", "sequence-number": 4}
+        {"relationship-unique-id": "demo-user-opens-browser", "sequence-number": 1, "description": "The architect starts the demo in a browser."},
+        {"relationship-unique-id": "browser-to-ui-proxy", "sequence-number": 2, "description": "The browser requests the local Hub interface."},
+        {"relationship-unique-id": "ui-proxy-to-hub-api", "sequence-number": 3, "description": "The UI proxy forwards the request to Hub."},
+        {"relationship-unique-id": "hub-persists-architectures", "sequence-number": 4, "description": "Hub reads the stored architecture data."}
       ]
     },
     {
@@ -489,10 +489,10 @@
       "name": "Seed the demo models",
       "description": "make hub-up runs the seed script, which loads the four model files into the Hub through the UI proxy.",
       "transitions": [
-        {"relationship-unique-id": "seed-reads-model-files", "sequence-number": 1},
-        {"relationship-unique-id": "seed-posts-architectures", "sequence-number": 2},
-        {"relationship-unique-id": "ui-proxy-to-hub-api", "sequence-number": 3},
-        {"relationship-unique-id": "hub-persists-architectures", "sequence-number": 4}
+        {"relationship-unique-id": "seed-reads-model-files", "sequence-number": 1, "description": "Read the architecture files from the repository."},
+        {"relationship-unique-id": "seed-posts-architectures", "sequence-number": 2, "description": "Post each architecture version through the local proxy."},
+        {"relationship-unique-id": "ui-proxy-to-hub-api", "sequence-number": 3, "description": "Forward the seed requests to the Hub API."},
+        {"relationship-unique-id": "hub-persists-architectures", "sequence-number": 4, "description": "Store the seeded architecture versions in MongoDB."}
       ]
     },
     {
@@ -500,10 +500,10 @@
       "name": "Render a named view",
       "description": "Hub sends the selected architecture to CALM Views, which resolves the sidecar and returns a graph for the UI to draw.",
       "transitions": [
-        {"relationship-unique-id": "browser-to-ui-proxy", "sequence-number": 1},
-        {"relationship-unique-id": "ui-proxy-to-hub-api", "sequence-number": 2},
-        {"relationship-unique-id": "hub-calls-views-lens", "sequence-number": 3},
-        {"relationship-unique-id": "views-reads-sidecars", "sequence-number": 4}
+        {"relationship-unique-id": "browser-to-ui-proxy", "sequence-number": 1, "description": "Open the Hub UI and select an architecture."},
+        {"relationship-unique-id": "ui-proxy-to-hub-api", "sequence-number": 2, "description": "Send the selected architecture request to Hub."},
+        {"relationship-unique-id": "hub-calls-views-lens", "sequence-number": 3, "description": "Send the architecture to the CALM Views lens."},
+        {"relationship-unique-id": "views-reads-sidecars", "sequence-number": 4, "description": "Resolve the named view from its sidecar."}
       ]
     },
     {
@@ -511,9 +511,9 @@
       "name": "Use the C4 lens",
       "description": "Hub sends the selected architecture to the official C4 extension and draws its reply.",
       "transitions": [
-        {"relationship-unique-id": "browser-to-ui-proxy", "sequence-number": 1},
-        {"relationship-unique-id": "ui-proxy-to-hub-api", "sequence-number": 2},
-        {"relationship-unique-id": "hub-calls-c4-lens", "sequence-number": 3}
+        {"relationship-unique-id": "browser-to-ui-proxy", "sequence-number": 1, "description": "Open the Hub UI and choose the C4 lens."},
+        {"relationship-unique-id": "ui-proxy-to-hub-api", "sequence-number": 2, "description": "Send the selected architecture request to Hub."},
+        {"relationship-unique-id": "hub-calls-c4-lens", "sequence-number": 3, "description": "Send the architecture to the FINOS C4 lens."}
       ]
     },
     {
@@ -521,9 +521,9 @@
       "name": "Use the EA Layers lens",
       "description": "Hub sends the selected architecture to the official EA Layers extension and draws its reply.",
       "transitions": [
-        {"relationship-unique-id": "browser-to-ui-proxy", "sequence-number": 1},
-        {"relationship-unique-id": "ui-proxy-to-hub-api", "sequence-number": 2},
-        {"relationship-unique-id": "hub-calls-ea-layers-lens", "sequence-number": 3}
+        {"relationship-unique-id": "browser-to-ui-proxy", "sequence-number": 1, "description": "Open the Hub UI and choose the EA Layers lens."},
+        {"relationship-unique-id": "ui-proxy-to-hub-api", "sequence-number": 2, "description": "Send the selected architecture request to Hub."},
+        {"relationship-unique-id": "hub-calls-ea-layers-lens", "sequence-number": 3, "description": "Send the architecture to the FINOS EA Layers lens."}
       ]
     },
     {
@@ -531,9 +531,9 @@
       "name": "Export a view",
       "description": "The browser follows the export link to the Views service and downloads SVG or PNG output.",
       "transitions": [
-        {"relationship-unique-id": "browser-downloads-view-export", "sequence-number": 1},
-        {"relationship-unique-id": "views-reads-sidecars", "sequence-number": 2},
-        {"relationship-unique-id": "views-reads-models", "sequence-number": 3}
+        {"relationship-unique-id": "browser-downloads-view-export", "sequence-number": 1, "description": "Request the selected view's export from CALM Views."},
+        {"relationship-unique-id": "views-reads-sidecars", "sequence-number": 2, "description": "Read the named view's scope and metadata."},
+        {"relationship-unique-id": "views-reads-models", "sequence-number": 3, "description": "Read model data needed to build the exported graph."}
       ]
     },
     {
@@ -541,7 +541,7 @@
       "name": "Build the patched UI proxy",
       "description": "A Node-only build produces the React static assets used by Nginx; the official Hub server image is not rebuilt.",
       "transitions": [
-        {"relationship-unique-id": "ui-build-produces-proxy-image", "sequence-number": 1}
+        {"relationship-unique-id": "ui-build-produces-proxy-image", "sequence-number": 1, "description": "Build the patched React bundle and proxy image from pinned sources."}
       ]
     }
   ]

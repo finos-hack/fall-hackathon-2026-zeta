@@ -134,8 +134,8 @@ hub-build:
 
 hub-up: keys
 	@if [ "$(CALM_HUB_IMAGE)" = "finos/calm-hub:main" ]; then docker compose pull calmhub; fi
-	docker compose pull c4
-	docker compose pull ea-layers
+	@if [ "$(CALM_C4_IMAGE)" = "finos/calm-hub-c4:main" ]; then docker compose pull c4; fi
+	@if [ "$(CALM_EA_LAYERS_IMAGE)" = "finos/calm-hub-ea-layers:main" ]; then docker compose pull ea-layers; fi
 	docker compose up -d --build mongodb calmhub hub-ui
 	@echo "waiting for Hub API on $(HUB_READY_URL) ..."
 	@for i in $$(seq 1 60); do curl -sf -o /dev/null $(HUB_READY_URL) && break || sleep 2; done

@@ -1,6 +1,6 @@
 import { describe, it } from 'node:test';
 import assert from 'node:assert/strict';
-import { mkdtempSync, readFileSync, rmSync, writeFileSync, mkdirSync } from 'node:fs';
+import { mkdtempSync, readFileSync, rmSync, writeFileSync, mkdirSync, readdirSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { tmpdir } from 'node:os';
 import { fileURLToPath } from 'node:url';
@@ -10,9 +10,13 @@ import { listViewFiles } from '../calm.js';
 
 const require = createRequire(import.meta.url);
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const Ajv2020 = require('ajv/dist/2020') as new (opts?: Record<string, unknown>) => {
-    compile: (schema: unknown) => ((data: unknown) => boolean) & { errors?: unknown };
-};
+type Validator = ((data: unknown) => boolean) & { errors?: unknown };
+interface Ajv2020Instance {
+    addSchema: (schema: unknown) => Ajv2020Instance;
+    compile: (schema: unknown) => Validator;
+    getSchema: (key: string) => Validator | undefined;
+}
+const Ajv2020 = require('ajv/dist/2020') as new (opts?: Record<string, unknown>) => Ajv2020Instance;
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const POC = join(HERE, '..', '..', '..');
@@ -73,4 +77,26 @@ describe('views conform to schema/view.json under real Ajv 2020-12', () => {
             rmSync(root, { recursive: true, force: true });
         }
     });
+});
+
+describe('architectures conform to the pinned CALM 1.3 schema', () => {
+    const modelDir = join(POC, 'model');
+    const schemaDir = join(POC, 'schema', 'calm-1.3');
+    const models = readdirSync(modelDir).filter((file) => file.endsWith('.architecture.json')).sort();
+    const schemas = ['calm.json', 'core.json', 'control.json', 'flow.json', 'interface.json'];
+    const schemaId = 'https://calm.finos.org/release/1.3/meta/calm.json';
+
+    assert.ok(models.length >= 1, 'expected at least one architecture model');
+    for (const file of models) {
+        it(`${file} validates`, () => {
+            const ajv = new Ajv2020({ strict: false, allErrors: true });
+            for (const schemaFile of schemas) {
+                ajv.addSchema(JSON.parse(readFileSync(join(schemaDir, schemaFile), 'utf8')));
+            }
+            const validate = ajv.getSchema(schemaId);
+            assert.ok(validate, `CALM 1.3 schema ${schemaId} is registered`);
+            const model = JSON.parse(readFileSync(join(modelDir, file), 'utf8'));
+            assert.equal(validate(model), true, JSON.stringify(validate.errors, null, 2));
+        });
+    }
 });

@@ -30,7 +30,7 @@ test('seedHub creates headers, adds missing versions and writes dynamic POC link
         }
         if (req.method === 'POST' && url.pathname === '/api/calm/namespaces/finos/adrs') {
             const id = String(adrs.length + 1);
-            adrs.push({ id, revision: 1, adr: body });
+            adrs.push({ id: Number(id), title: body.title, status: 'draft' });
             return send(201, undefined, { Location: `/api/calm/namespaces/finos/adrs/${id}/revisions/1` });
         }
         if (req.method === 'POST' && url.pathname === '/api/calm/namespaces/finos/architectures') {
@@ -68,8 +68,9 @@ test('seedHub creates headers, adds missing versions and writes dynamic POC link
         assert.equal(architectures[3]?.name, 'Fall Hackathon ZETA');
         assert.deepEqual(architectures.map((item) => item.versions), [['1.0.0'], ['1.0.0', '1.1.0'], ['1.0.0'], ['1.0.0']]);
         assert.equal(adrs.length, 1);
-        assert.equal(adrs[0]?.adr.title, 'Serve the patched UI beside the official Hub backend');
-        assert.ok(adrs[0]?.adr.links.some((link) => link.href.includes('/architectures/4/1.0.0')));
+        assert.equal(adrs[0]?.title, 'Serve the patched UI beside the official Hub backend');
+        const createdAdr = calls.find((call) => call.method === 'POST' && call.path.endsWith('/adrs'))?.body;
+        assert.ok(createdAdr?.links.some((link) => link.href.includes('/architectures/4/1.0.0')));
         const env = readFileSync(envFile, 'utf8');
         assert.match(env, /CALM_POC_KYC=1/);
         assert.match(env, /CALM_POC_ECH=2/);
@@ -86,6 +87,7 @@ test('seedHub creates headers, adds missing versions and writes dynamic POC link
         assert.equal(secondArchitectureCreateCount, firstArchitectureCreateCount);
         assert.equal(firstAdrCreateCount, 1);
         assert.equal(secondAdrCreateCount, firstAdrCreateCount);
+        assert.equal(adrs.length, 1);
     } finally {
         await new Promise((resolve, reject) => server.close((error) => error ? reject(error) : resolve()));
         rmSync(out, { recursive: true, force: true });

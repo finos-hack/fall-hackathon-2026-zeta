@@ -40,7 +40,7 @@ Run all checks with one command:
 make check
 ```
 
-It runs the tools suite (73 tests), the lens extension suite (16 tests) and the seed script test (1 test). The `tools` and `tools-test` targets build the tools, fetch the landing zone source, then run the tests. Some importer tests read that source.
+It runs the tools suite (77 tests), the lens extension suite (16 tests) and the seed script test (1 test). The `tools` and `tools-test` targets build the tools, fetch the landing zone source, then run the tests. Some importer tests read that source.
 
 | Make target | Prerequisites and recipe |
 |---|---|

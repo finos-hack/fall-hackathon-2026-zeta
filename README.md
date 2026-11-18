@@ -150,7 +150,7 @@ In ISO 42010 terms ([ISO/IEC/IEEE 42010:2022](https://www.iso.org/standard/74393
 
 The latest `make check` passed after the ZETA model, views and ADR changes. The local Compose demo and patched UI proxy were also exercised manually. The CI workflow has not run on this branch:
 
-- Latest `make check`: tools 73/73, lens extension 16/16 and seed 1/1 passed.
+- Latest `make check`: tools 77/77, lens extension 16/16 and seed 1/1 passed.
 - `node dist/validate.js`: all 20 view files report OK.
 - Both auditor coverage gates pass with zero violations.
 
