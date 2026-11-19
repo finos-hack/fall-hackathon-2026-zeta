@@ -105,6 +105,8 @@ No job publishes an artifact or pushes to a registry. The workflow has not yet r
 
 ## Local Hub demo
 
+Narrated video demo (English, 3:52): https://youtu.be/FgxKLOsVypE
+
 The demo runs a local CALM Hub with three diagram lenses. It is not production. The root `docker-compose.yml` starts six services:
 
 - `mongodb`: the Hub data store, with a named volume.
