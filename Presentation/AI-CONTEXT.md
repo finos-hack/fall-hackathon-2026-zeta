@@ -30,13 +30,37 @@ Designed to sit on CalmGraph when calm query (#3661) lands.
 
 ## Two ways for an agent to reach a view
 
-- Command line: `node dist/query.js context <view-id>` from `poc/tools`.
-  No server, no SQL. Same command, same bundle, every time.
-- Hub via MCP: the same extension routes the Hub UI draws (`lens`,
-  `export`, `poc`, all read-only in `extension.json`) are also MCP tools
-  on the Hub (`http://localhost:8080/mcp`). An agent with an MCP client
-  draws a named view, exports it as SVG or PNG, or reads the POC screen,
-  without checking out the repo.
+Same views, two doors. One for agents that work with files, one for agents
+that work against a running Hub.
+
+**1. Command line, against the repo.** From `poc/tools`:
+
+```
+node dist/query.js context kyc-audit-view
+```
+
+The command resolves the sidecar, reads the model file, and prints the
+bundle shown above. No server, no SQL, no network. Same command, same
+bundle, every time, which is what makes it testable in CI and quotable in
+an audit: the sha in the header pins the exact bytes the answer is about.
+Use this when the agent has the repo checked out, in a pipeline, or in a
+review that must reproduce byte for byte.
+
+**2. Hub via MCP, against stored architectures.** The Hub UI draws views
+through three extension routes declared in `extension.json`: `lens`
+(draw a named view), `export` (SVG or PNG download), and `poc` (the
+presentation screen). All three are `readOnly`, and the upstream Hub
+exposes read-only extension routes as MCP tools, so an agent with an MCP
+client talks to `http://localhost:8080/mcp` instead of the terminal. It
+names a namespace, an architecture id and version, and a view, and gets
+back the drawn graph, a file download, or the POC markdown. No repo
+checkout needed, and it works on whatever the Hub currently stores, not
+on local files. Use this when the agent operates live systems, asks
+follow-up questions across architectures, or needs a rendered image
+rather than text.
+
+Both doors serve the same named selections. The CLI bundle is the
+auditable record; the MCP tools are the live handle.
 
 - Repo: https://github.com/finos-hack/fall-hackathon-2026-zeta
 - Demo video: https://youtu.be/FgxKLOsVypE
