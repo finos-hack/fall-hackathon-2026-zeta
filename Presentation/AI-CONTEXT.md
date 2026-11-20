@@ -28,6 +28,16 @@ gates in CI fail the build when a node claiming audit-logging or
 data-classification is missing from every auditor view. No server, no SQL.
 Designed to sit on CalmGraph when calm query (#3661) lands.
 
+## Two ways for an agent to reach a view
+
+- Command line: `node dist/query.js context <view-id>` from `poc/tools`.
+  No server, no SQL. Same command, same bundle, every time.
+- Hub via MCP: the same extension routes the Hub UI draws (`lens`,
+  `export`, `poc`, all read-only in `extension.json`) are also MCP tools
+  on the Hub (`http://localhost:8080/mcp`). An agent with an MCP client
+  draws a named view, exports it as SVG or PNG, or reads the POC screen,
+  without checking out the repo.
+
 - Repo: https://github.com/finos-hack/fall-hackathon-2026-zeta
 - Demo video: https://youtu.be/FgxKLOsVypE
 - https://github.com/finos/architecture-as-code/issues/2344
